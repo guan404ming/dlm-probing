@@ -1,0 +1,128 @@
+\begin{thebibliography}{17}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Austin et~al.(2021)Austin, Johnson, Ho, Tarlow, and van~den
+  Berg}]{austin2021d3pm}
+Jacob Austin, Daniel~D. Johnson, Jonathan Ho, Danny Tarlow, and Rianne van~den
+  Berg. 2021.
+\newblock Structured denoising diffusion models in discrete state-spaces.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~34, pages 17981--17993.
+
+\bibitem[{Azaria and Mitchell(2023)}]{azaria2023internal}
+Amos Azaria and Tom Mitchell. 2023.
+\newblock \href {https://doi.org/10.18653/v1/2023.findings-emnlp.68} {The
+  internal state of an {LLM} knows when it's lying}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  EMNLP 2023}, pages 967--976.
+
+\bibitem[{Belinkov(2022)}]{belinkov2022probing}
+Yonatan Belinkov. 2022.
+\newblock \href {https://doi.org/10.1162/coli_a_00422} {Probing classifiers:
+  Promises, shortcomings, and advances}.
+\newblock \emph{Computational Linguistics}, 48(1):207--219.
+
+\bibitem[{Cobbe et~al.(2021)Cobbe, Kosaraju, Bavarian, Chen, Jun, Kaiser,
+  Plappert, Tworek, Hilton, Nakano, Hesse, and Schulman}]{cobbe2021gsm8k}
+Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz
+  Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano,
+  Christopher Hesse, and John Schulman. 2021.
+\newblock \href {https://arxiv.org/abs/2110.14168} {Training verifiers to solve
+  math word problems}.
+\newblock \emph{arXiv preprint arXiv:2110.14168}.
+
+\bibitem[{Conneau et~al.(2018)Conneau, Kruszewski, Lample, Barrault, and
+  Baroni}]{conneau2018cram}
+Alexis Conneau, German Kruszewski, Guillaume Lample, Lo{\"\i}c Barrault, and
+  Marco Baroni. 2018.
+\newblock \href {https://doi.org/10.18653/v1/P18-1198} {What you can cram into
+  a single \$\&!\#* vector: Probing sentence embeddings for linguistic
+  properties}.
+\newblock In \emph{Proceedings of the 56th Annual Meeting of the Association
+  for Computational Linguistics (Volume 1: Long Papers)}, pages 2126--2136.
+
+\bibitem[{{Dream-org}(2025)}]{dream2025}
+{Dream-org}. 2025.
+\newblock \href {https://arxiv.org/abs/2504.16915} {Dream 7b: A diffusion
+  reasoning model with enhanced accuracy and mastery}.
+\newblock \emph{arXiv preprint arXiv:2504.16915}.
+
+\bibitem[{Elbayad et~al.(2020)Elbayad, Gu, Grave, and Auli}]{elbayad2020depth}
+Maha Elbayad, Jiatao Gu, Edouard Grave, and Michael Auli. 2020.
+\newblock \href {https://openreview.net/forum?id=SJg7KhVKPH} {Depth-adaptive
+  transformer}.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Geva et~al.(2023)Geva, Bastings, Filippova, and
+  Globerson}]{geva2023dissecting}
+Mor Geva, Jasmijn Bastings, Katja Filippova, and Amir Globerson. 2023.
+\newblock \href {https://doi.org/10.18653/v1/2023.emnlp-main.751} {Dissecting
+  recall of factual associations in auto-regressive language models}.
+\newblock In \emph{Proceedings of the 2023 Conference on Empirical Methods in
+  Natural Language Processing}, pages 12216--12235.
+
+\bibitem[{Lou et~al.(2024)Lou, Meng, and Ermon}]{lou2024discrete}
+Aaron Lou, Chenlin Meng, and Stefano Ermon. 2024.
+\newblock \href {https://arxiv.org/abs/2310.16834} {Discrete diffusion modeling
+  by estimating the ratios of the data distribution}.
+\newblock \emph{arXiv preprint arXiv:2310.16834}.
+
+\bibitem[{M{\"u}ndler et~al.(2025)M{\"u}ndler, Dekoninck, and
+  Vechev}]{mundler2025constrained}
+Niels M{\"u}ndler, Jasper Dekoninck, and Martin Vechev. 2025.
+\newblock \href {https://arxiv.org/abs/2502.11727} {Constrained decoding of
+  diffusion {LLMs} with context-free grammars}.
+\newblock \emph{arXiv preprint arXiv:2502.11727}.
+
+\bibitem[{Nie et~al.(2025)Nie, Zhu, You, Zhang, and Ou}]{nie2025llada}
+Shen Nie, Fengqi Zhu, Chao You, Xiaojun Zhang, and Zhenguo Ou. 2025.
+\newblock \href {https://arxiv.org/abs/2502.09992} {{LLaDA}: Large language
+  diffusion with m{A}sking}.
+\newblock \emph{arXiv preprint arXiv:2502.09992}.
+
+\bibitem[{Pedregosa et~al.(2011)Pedregosa, Varoquaux, Gramfort, Michel,
+  Thirion, Grisel, Blondel, Prettenhofer, Weiss, Dubourg
+  et~al.}]{pedregosa2011scikit}
+Fabian Pedregosa, Ga{\"e}l Varoquaux, Alexandre Gramfort, Vincent Michel,
+  Bertrand Thirion, Olivier Grisel, Mathieu Blondel, Peter Prettenhofer, Ron
+  Weiss, Vincent Dubourg, and 1 others. 2011.
+\newblock Scikit-learn: Machine learning in {Python}.
+\newblock \emph{Journal of Machine Learning Research}, 12:2825--2830.
+
+\bibitem[{Sahoo et~al.(2024)Sahoo, Arriola, Schiff, Gokaslan, Marroquin, Chiu,
+  Rush, and Kuleshov}]{sahoo2024simple}
+Subham~Sekhar Sahoo, Marianne Arriola, Yair Schiff, Aaron Gokaslan, Edgar
+  Marroquin, Justin~T Chiu, Alexander Rush, and Volodymyr Kuleshov. 2024.
+\newblock \href {https://arxiv.org/abs/2406.07524} {Simple and effective masked
+  diffusion language models}.
+\newblock \emph{arXiv preprint arXiv:2406.07524}.
+
+\bibitem[{Schuster et~al.(2022)Schuster, Fisch, Gupta, Dehghani, Bahri, Tran,
+  Tay, and Metzler}]{schuster2022confident}
+Tal Schuster, Adam Fisch, Jai Gupta, Mostafa Dehghani, Dara Bahri, Vinh~Q Tran,
+  Yi~Tay, and Donald Metzler. 2022.
+\newblock Confident adaptive language modeling.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~35, pages 17456--17472.
+
+\bibitem[{Shnaidman et~al.(2025)Shnaidman, Marek, Karpas, and
+  Herzig}]{shnaidman2025steering}
+Andrey Shnaidman, Philip Marek, Eyal Karpas, and Jonathan Herzig. 2025.
+\newblock \href {https://arxiv.org/abs/2505.20389} {Activation steering in
+  discrete diffusion language models}.
+\newblock \emph{arXiv preprint arXiv:2505.20389}.
+
+\bibitem[{Tenney et~al.(2019)Tenney, Das, and Pavlick}]{tenney2019bert}
+Ian Tenney, Dipanjan Das, and Eleni Pavlick. 2019.
+\newblock \href {https://doi.org/10.18653/v1/P19-1452} {{BERT} rediscovers the
+  classical {NLP} pipeline}.
+\newblock In \emph{Proceedings of the 57th Annual Meeting of the Association
+  for Computational Linguistics}, pages 4593--4601.
+
+\bibitem[{Wang et~al.(2025)Wang, Luo, Tang, and Gao}]{wang2025time}
+Ziming Wang, Jiahao Luo, Haowei Tang, and Tian Gao. 2025.
+\newblock \href {https://arxiv.org/abs/2505.11229} {Time is a feature: Temporal
+  oscillation in discrete diffusion language models}.
+\newblock \emph{arXiv preprint arXiv:2505.11229}.
+
+\end{thebibliography}
