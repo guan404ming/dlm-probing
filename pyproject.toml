@@ -1,0 +1,14 @@
+[project]
+name = "dllm-probing"
+version = "0.1.0"
+description = "Probing functional correctness in diffusion language models"
+requires-python = ">=3.12"
+dependencies = [
+    "torch>=2.0",
+    "transformers==4.52.2",
+    "accelerate>=0.30",
+    "numpy",
+    "datasets==2.21.0",
+    "scikit-learn",
+    "modal",
+]

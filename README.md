@@ -6,10 +6,10 @@ Probing classifiers on diffusion LLM hidden states to predict functional correct
 
 | Script | Description |
 |---|---|
-| `modal_midstep_probe.py` | Mid-step probing (generation + feature extraction + probe training). Supports `--dataset` and `--model` flags, multi-GPU via `--chunks`. |
-| `modal_early_exit_sim.py` | Early exit simulation. Uses per-step probe confidence to decide when to stop. CPU-only. |
-| `modal_adaptive_compute_sim.py` | Adaptive compute simulation. Uses step-0 probe to classify easy/hard, allocates fewer steps to easy instances. CPU-only. |
-| `modal_seed_rerank.py` | Seed reranking experiment (negative result). |
+| `src/modal_midstep_probe.py` | Mid-step probing (generation + feature extraction + probe training). Supports `--dataset` and `--model` flags, multi-GPU via `--chunks`. |
+| `src/modal_early_exit_sim.py` | Early exit simulation. Uses per-step probe confidence to decide when to stop. CPU-only. |
+| `src/modal_adaptive_compute_sim.py` | Adaptive compute simulation. Uses step-0 probe to classify easy/hard, allocates fewer steps to easy instances. CPU-only. |
+| `src/modal_seed_rerank.py` | Seed reranking experiment (negative result). |
 
 ## Data (Modal volume `probe-results`)
 
@@ -117,14 +117,12 @@ Probe learns instance difficulty, not seed quality.
 ## Usage
 
 ```bash
-cd probe
-
 # Mid-step probe (8x A100)
-../.venv/bin/modal run modal_midstep_probe.py --dataset jsonschema --model llada --chunks 8
+.venv/bin/modal run src/modal_midstep_probe.py --dataset jsonschema --model llada --chunks 8
 
 # Early exit simulation (CPU)
-../.venv/bin/modal run modal_early_exit_sim.py --dataset gsm8k --model dream --chunks 8
+.venv/bin/modal run src/modal_early_exit_sim.py --dataset gsm8k --model dream --chunks 8
 
 # Adaptive compute simulation (CPU)
-../.venv/bin/modal run modal_adaptive_compute_sim.py --dataset gsm8k --model llada --chunks 8
+.venv/bin/modal run src/modal_adaptive_compute_sim.py --dataset gsm8k --model llada --chunks 8
 ```

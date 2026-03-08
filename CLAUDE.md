@@ -25,5 +25,6 @@ See README.md for scripts, data format, results, and usage.
 ## Tools & Environment
 - Python 3.12, datasets==2.21.0, transformers==4.52.2
 - Modal for cloud GPU (A100), run via `.venv/bin/modal`
+- Scripts in `src/`, run as `.venv/bin/modal run src/modal_*.py`
 - Use `--chunks 8` for 8x A100 parallel
 - Use `uv` for Python package management (not pip)
