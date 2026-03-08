@@ -11,4 +11,5 @@ dependencies = [
     "datasets==2.21.0",
     "scikit-learn",
     "modal",
+    "matplotlib>=3.10.8",
 ]

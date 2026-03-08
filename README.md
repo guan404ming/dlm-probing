@@ -84,6 +84,18 @@ Each `chunk_off{offset}.npz` contains:
 | LLaDA | 0.809 (layer 24) | 0.786 (layer 24) |
 | Dream | 0.828 (layer 5) | 0.818 (layer 19) |
 
+#### Figure 1: Step x Layer AUC heatmap
+
+Stars mark the best layer per step. JSON Schema shows signal from step 0 (flat emergence), while GSM8K shows gradual emergence. LLaDA best layers stay in upper layers (L22-26), Dream migrates to lower layers during denoising.
+
+![Step x Layer AUC heatmap](assets/fig1_heatmap.png)
+
+#### Figure 2: AUC vs diffusion step
+
+Best AUC across layers at each step. JSON Schema is relatively flat (AUC ~0.80 from step 0), GSM8K rises gradually from ~0.71 to ~0.82.
+
+![AUC vs diffusion step](assets/fig2_auc_curve.png)
+
 ### Early exit (threshold=0.80)
 
 | | jsonschema | gsm8k |
