@@ -11,49 +11,6 @@ Probing classifiers on diffusion LLM hidden states to predict functional correct
 | `src/modal_adaptive_compute_sim.py` | Adaptive compute simulation. Uses step-0 probe to classify easy/hard, allocates fewer steps to easy instances. CPU-only. |
 | `src/modal_seed_rerank.py` | Seed reranking experiment (negative result). |
 
-## Data (Modal volume `probe-results`)
-
-All results organized as `{dataset}_{model}/`.
-
-```
-jsonschema_llada/
-  chunk_off{0,34,...,238}.npz        # 8 chunks, 272 instances total
-  midstep_probe_results.json
-  early_exit_results.json
-  adaptive_compute_results.json
-
-jsonschema_dream/
-  chunk_off{0,34,...,238}.npz        # 8 chunks, 272 instances total
-  midstep_probe_results.json
-  early_exit_results.json
-  adaptive_compute_results.json
-
-gsm8k_llada/
-  chunk_off{0,165,...,1155}.npz      # 8 chunks, 1319 instances total
-  midstep_probe_results.json
-  early_exit_results.json
-  adaptive_compute_results.json
-
-gsm8k_dream/
-  chunk_off{0,165,...,1155}.npz      # 8 chunks, 1319 instances total
-  midstep_probe_results.json
-  early_exit_results.json
-  adaptive_compute_results.json
-
-seed_rerank/
-  phase1_off*.npz, phase1_off*_ids.json
-  phase3_off*.json
-  probe_params.npz, instance_ids.json
-```
-
-### Chunk npz format
-
-Each `chunk_off{offset}.npz` contains:
-- `labels`: (n_instances,) int array, 1=functional, 0=not
-- `feat_s{step}_r{region}`: (n_instances, n_layers, hidden_dim) float32
-  - Steps: 0, 1, 4, 16, 32, 64, 127
-  - Regions: 0-3 (gen_length / 4 each, mean-pooled)
-
 ## Models
 
 | Key | Model | Mask ID | Layers |
