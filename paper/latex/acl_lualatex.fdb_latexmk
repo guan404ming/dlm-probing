@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex acl_lualatex"] 1772989458.86732 "acl_lualatex.aux" "acl_lualatex.bbl" "acl_lualatex" 1772989459.57749 0
+["bibtex acl_lualatex"] 1773019743.94526 "acl_lualatex.aux" "acl_lualatex.bbl" "acl_lualatex" 1773019745.25102 0
   "./acl_natbib.bst" 1772986904.14794 45186 3d1af46d62cc9172ef6e42b56c1cd613 ""
-  "./custom.bib" 1772989457.92623 5778 aeef3083975eb721cfc9ebdf20d8c8c4 ""
-  "acl_lualatex.aux" 1772989459.42541 835 13e53670dd417afc469a593e7bd9665a "pdflatex"
+  "./custom.bib" 1773019743.72394 5898 a1bb1a3d04ce0016afbc947c8f55870e ""
+  "acl_lualatex.aux" 1773019745.15313 847 abef737f1ffe8a45601c8cb15f622ae7 "pdflatex"
   (generated)
   "acl_lualatex.bbl"
   "acl_lualatex.blg"
   (rewritten before read)
-["pdflatex"] 1772989458.88686 "/Users/wchiu/Documents/GitHub/dllm-probing/paper/latex/acl_lualatex.tex" "acl_lualatex.pdf" "acl_lualatex" 1772989459.57785 2
+["pdflatex"] 1773019744.67346 "/Users/wchiu/Documents/GitHub/dllm-probing/paper/latex/acl_lualatex.tex" "acl_lualatex.pdf" "acl_lualatex" 1773019745.25126 2
   "/Users/wchiu/Documents/GitHub/dllm-probing/paper/latex/acl_lualatex.tex" 1772986904.14743 3050 ed94f7099826cfda939cecef7247d55b ""
   "/usr/local/texlive/2025basic/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2025basic/texmf-dist/fonts/tfm/adobe/helvetic/phvb.tfm" 1136768653 2300 14616918391efa49ac8b481a75fbdc1a ""
@@ -95,9 +95,9 @@
   "/usr/local/texlive/2025basic/texmf-var/web2c/pdftex/pdflatex.fmt" 1767166325 2663829 baf21fc084e9bd79d6d66e0d26962268 ""
   "/usr/local/texlive/2025basic/texmf.cnf" 1741448314 628 81d1ada0f601fb1ffa62f1323192d946 ""
   "acl.sty" 1772986904.14631 11615 e2c027f483aa40e577ed34264c8b0655 ""
-  "acl_lualatex.aux" 1772989459.42541 835 13e53670dd417afc469a593e7bd9665a "pdflatex"
-  "acl_lualatex.bbl" 0 -1 0 "bibtex acl_lualatex"
-  "acl_lualatex.out" 1772989459.42726 230 432eb692d5d289fef30b09eb29c573a6 "pdflatex"
+  "acl_lualatex.aux" 1773019745.15313 847 abef737f1ffe8a45601c8cb15f622ae7 "pdflatex"
+  "acl_lualatex.bbl" 1773019743.99146 84 ad44dd934fce130d8c35d95d8c9664ef "bibtex acl_lualatex"
+  "acl_lualatex.out" 1773019745.15382 230 432eb692d5d289fef30b09eb29c573a6 "pdflatex"
   "acl_lualatex.tex" 1772986904.14743 3050 ed94f7099826cfda939cecef7247d55b ""
   (generated)
   "acl_lualatex.aux"

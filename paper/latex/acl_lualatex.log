@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.12.31)  9 MAR 2026 01:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.12.31)  9 MAR 2026 09:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1137,7 +1137,20 @@ You may provide a definition with
 
 Package natbib Warning: Citation `Gusfield:97' on page 2 undefined on input line 88.
 
-No file acl_lualatex.bbl.
+(./acl_lualatex.bbl
+
+./acl_lualatex.bbl:4: LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.4 \end{thebibliography}
+                         
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+)
 
 Package natbib Warning: There were undefined citations.
 
@@ -1168,18 +1181,18 @@ Package rerunfilecheck Info: Checksums for `acl_lualatex.out':
 (rerunfilecheck)             After:  432EB692D5D289FEF30B09EB29C573A6;230.
  ) 
 Here is how much of TeX's memory you used:
- 14478 strings out of 474662
- 240174 string characters out of 5751108
- 709051 words of memory out of 5000000
- 37348 multiletter control sequences out of 15000+600000
+ 14485 strings out of 474662
+ 240325 string characters out of 5751108
+ 710051 words of memory out of 5000000
+ 37351 multiletter control sequences out of 15000+600000
  566031 words of font info for 74 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
  84i,10n,93p,1064b,497s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb>
-Output written on acl_lualatex.pdf (2 pages, 61653 bytes).
+Output written on acl_lualatex.pdf (2 pages, 62071 bytes).
 PDF statistics:
- 45 PDF objects out of 1000 (max. 8388607)
- 30 compressed objects within 1 object stream
- 5 named destinations out of 1000 (max. 500000)
+ 46 PDF objects out of 1000 (max. 8388607)
+ 31 compressed objects within 1 object stream
+ 6 named destinations out of 1000 (max. 500000)
  18945 words of extra memory for PDF output out of 20736 (max. 10000000)
 

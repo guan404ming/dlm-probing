@@ -41,12 +41,6 @@ Alexis Conneau, German Kruszewski, Guillaume Lample, Lo{\"\i}c Barrault, and
 \newblock In \emph{Proceedings of the 56th Annual Meeting of the Association
   for Computational Linguistics (Volume 1: Long Papers)}, pages 2126--2136.
 
-\bibitem[{{Dream-org}(2025)}]{dream2025}
-{Dream-org}. 2025.
-\newblock \href {https://arxiv.org/abs/2504.16915} {Dream 7b: A diffusion
-  reasoning model with enhanced accuracy and mastery}.
-\newblock \emph{arXiv preprint arXiv:2504.16915}.
-
 \bibitem[{Elbayad et~al.(2020)Elbayad, Gu, Grave, and Auli}]{elbayad2020depth}
 Maha Elbayad, Jiatao Gu, Edouard Grave, and Michael Auli. 2020.
 \newblock \href {https://openreview.net/forum?id=SJg7KhVKPH} {Depth-adaptive
@@ -124,5 +118,13 @@ Ziming Wang, Jiahao Luo, Haowei Tang, and Tian Gao. 2025.
 \newblock \href {https://arxiv.org/abs/2505.11229} {Time is a feature: Temporal
   oscillation in discrete diffusion language models}.
 \newblock \emph{arXiv preprint arXiv:2505.11229}.
+
+\bibitem[{Ye et~al.(2025)Ye, Gong, Lin, Zhuo, Chen, Jiang, Li, Liu, and
+  Liu}]{ye2025dream}
+Jiacheng Ye, Jiahui Gong, Yanru Lin, Ting~Hin Zhuo, Tong Chen, Xin Jiang,
+  Zhenguo Li, Qun Liu, and Lingpeng Liu. 2025.
+\newblock \href {https://arxiv.org/abs/2504.16915} {Dream: Diffusion reasoning
+  with enhanced accuracy and mastery}.
+\newblock \emph{arXiv preprint arXiv:2504.16915}.
 
 \end{thebibliography}

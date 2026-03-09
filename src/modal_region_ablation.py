@@ -36,7 +36,7 @@ DATASET_CFGS = {
 
 @app.function(
     image=image,
-    timeout=3600,
+    timeout=86400,
     volumes={"/results": RESULTS_VOL},
 )
 def run_region_ablation(dataset_key: str, model_key: str, n_chunks: int, total: int):
