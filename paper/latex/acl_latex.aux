@@ -210,10 +210,11 @@
 \@LN{165}{1}
 \@LN{166}{1}
 \@LN{167}{1}
-\citation{wang2025time}
 \@LN@col{1}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces AUC heatmaps (layer $\times $ step) for predicting functional correctness. Stars mark the best layer per step. JSON schema shows strong signal from step~0, while GSM8K shows gradual emergence. Note the layer migration pattern in Dream (top-right, bottom-right).}}{3}{figure.caption.12}\protected@file@percent }
 \newlabel{fig:heatmap}{{1}{3}{AUC heatmaps (layer $\times $ step) for predicting functional correctness. Stars mark the best layer per step. JSON schema shows strong signal from step~0, while GSM8K shows gradual emergence. Note the layer migration pattern in Dream (top-right, bottom-right)}{figure.caption.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Best AUC across layers at each denoising step. JSON schema is flat ($\approx $0.80 from step~0), while GSM8K rises from $\approx $0.71 to $\approx $0.82.}}{3}{figure.caption.13}\protected@file@percent }
+\newlabel{fig:auc_curve}{{2}{3}{Best AUC across layers at each denoising step. JSON schema is flat ($\approx $0.80 from step~0), while GSM8K rises from $\approx $0.71 to $\approx $0.82}{figure.caption.13}{}}
 \@LN{168}{2}
 \@LN{169}{2}
 \@LN{170}{2}
@@ -233,7 +234,11 @@
 \@LN{184}{2}
 \@LN{185}{2}
 \@LN{186}{2}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Best layer (by AUC) at each denoising step. Bold values highlight Dream's migration to lower layers on JSON schema. No migration occurs on GSM8K.}}{3}{table.caption.14}\protected@file@percent }
+\newlabel{tab:best_layer}{{2}{3}{Best layer (by AUC) at each denoising step. Bold values highlight Dream's migration to lower layers on JSON schema. No migration occurs on GSM8K}{table.caption.14}{}}
 \@LN{187}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Divergent Layer Dynamics}{3}{subsection.5.2}\protected@file@percent }
 \@LN{188}{2}
 \@LN{189}{2}
 \@LN{190}{2}
@@ -245,13 +250,7 @@
 \@LN{196}{2}
 \@LN{197}{2}
 \@LN{198}{2}
-\@LN@col{2}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Best AUC across layers at each denoising step. JSON schema is flat ($\approx $0.80 from step~0), while GSM8K rises from $\approx $0.71 to $\approx $0.82.}}{3}{figure.caption.13}\protected@file@percent }
-\newlabel{fig:auc_curve}{{2}{3}{Best AUC across layers at each denoising step. JSON schema is flat ($\approx $0.80 from step~0), while GSM8K rises from $\approx $0.71 to $\approx $0.82}{figure.caption.13}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Best layer (by AUC) at each denoising step. Bold values highlight Dream's migration to lower layers on JSON schema. No migration occurs on GSM8K.}}{3}{table.caption.14}\protected@file@percent }
-\newlabel{tab:best_layer}{{2}{3}{Best layer (by AUC) at each denoising step. Bold values highlight Dream's migration to lower layers on JSON schema. No migration occurs on GSM8K}{table.caption.14}{}}
 \@LN{199}{2}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Divergent Layer Dynamics}{3}{subsection.5.2}\protected@file@percent }
 \@LN{200}{2}
 \@LN{201}{2}
 \@LN{202}{2}
@@ -268,6 +267,7 @@
 \@LN{213}{2}
 \@LN{214}{2}
 \@LN{215}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Selective Generation}{3}{subsection.5.3}\protected@file@percent }
 \@LN{216}{2}
 \@LN{217}{2}
 \@LN{218}{2}
@@ -278,19 +278,20 @@
 \@LN{223}{2}
 \@LN{224}{2}
 \@LN{225}{2}
-\@LN{226}{2}
 \citation{wang2025time}
 \@LN@col{1}
 \@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Selective generation results ($\tau = 0.80$). Compute saved is the fraction of denoising steps avoided by skipping instances predicted to fail (no output is produced for skipped instances). Clf.\ acc is the fraction of instances for which the probe correctly predicts functional vs.\ non-functional.}}{4}{table.caption.15}\protected@file@percent }
 \newlabel{tab:early_exit}{{3}{4}{Selective generation results ($\tau = 0.80$). Compute saved is the fraction of denoising steps avoided by skipping instances predicted to fail (no output is produced for skipped instances). Clf.\ acc is the fraction of instances for which the probe correctly predicts functional vs.\ non-functional}{table.caption.15}{}}
+\@LN{226}{3}
 \@LN{227}{3}
 \@LN{228}{3}
 \@LN{229}{3}
 \@LN{230}{3}
 \@LN{231}{3}
 \@LN{232}{3}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{4}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why does step-0 signal exist?}{4}{section*.16}\protected@file@percent }
 \@LN{233}{3}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Selective Generation}{4}{subsection.5.3}\protected@file@percent }
 \@LN{234}{3}
 \@LN{235}{3}
 \@LN{236}{3}
@@ -308,10 +309,9 @@
 \@LN{248}{3}
 \@LN{249}{3}
 \@LN{250}{3}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{4}{section.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Why does step-0 signal exist?}{4}{section*.16}\protected@file@percent }
 \@LN{251}{3}
 \@LN{252}{3}
+\@writefile{toc}{\contentsline {paragraph}{Relationship to temporal oscillation.}{4}{section*.17}\protected@file@percent }
 \@LN{253}{3}
 \@LN{254}{3}
 \@LN{255}{3}
@@ -325,16 +325,17 @@
 \@LN{262}{3}
 \@LN{263}{3}
 \@LN{264}{3}
+\@writefile{toc}{\contentsline {paragraph}{Layer dynamics and training origin.}{4}{section*.18}\protected@file@percent }
 \@LN{265}{3}
 \@LN{266}{3}
 \@LN{267}{3}
 \@LN{268}{3}
 \@LN{269}{3}
-\@writefile{toc}{\contentsline {paragraph}{Relationship to temporal oscillation.}{4}{section*.17}\protected@file@percent }
 \@LN{270}{3}
 \@LN{271}{3}
 \@LN{272}{3}
 \@LN{273}{3}
+\@writefile{toc}{\contentsline {paragraph}{Practical implications.}{4}{section*.19}\protected@file@percent }
 \@LN{274}{3}
 \@LN{275}{3}
 \@LN{276}{3}
@@ -346,7 +347,7 @@
 \@LN{282}{3}
 \@LN{283}{3}
 \@LN{284}{3}
-\@writefile{toc}{\contentsline {paragraph}{Layer dynamics and training origin.}{4}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{4}{section.7}\protected@file@percent }
 \@LN{285}{3}
 \@LN{286}{3}
 \@LN{287}{3}
@@ -361,7 +362,6 @@
 \@LN{296}{3}
 \@LN{297}{3}
 \@LN{298}{3}
-\@writefile{toc}{\contentsline {paragraph}{Practical implications.}{4}{section*.19}\protected@file@percent }
 \@LN{299}{3}
 \@LN{300}{3}
 \@LN{301}{3}
@@ -372,6 +372,8 @@
 \@LN{306}{3}
 \@LN{307}{3}
 \@LN{308}{3}
+\@LN{309}{3}
+\citation{belinkov2022probing}
 \bibdata{custom}
 \bibcite{austin2021d3pm}{{1}{2021}{{Austin et~al.}}{{Austin, Johnson, Ho, Tarlow, and van~den Berg}}}
 \bibcite{azaria2023internal}{{2}{2023}{{Azaria and Mitchell}}{{}}}
@@ -384,10 +386,7 @@
 \bibcite{mundler2025constrained}{{9}{2025}{{M{\"u}ndler et~al.}}{{M{\"u}ndler, Dekoninck, and Vechev}}}
 \bibcite{nie2025llada}{{10}{2025}{{Nie et~al.}}{{Nie, Zhu, You, Zhang, and Ou}}}
 \bibcite{pedregosa2011scikit}{{11}{2011}{{Pedregosa et~al.}}{{Pedregosa, Varoquaux, Gramfort, Michel, Thirion, Grisel, Blondel, Prettenhofer, Weiss, Dubourg et~al.}}}
-\bibcite{sahoo2024simple}{{12}{2024}{{Sahoo et~al.}}{{Sahoo, Arriola, Schiff, Gokaslan, Marroquin, Chiu, Rush, and Kuleshov}}}
 \@LN@col{1}
-\@LN{309}{4}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{5}{section.7}\protected@file@percent }
 \@LN{310}{4}
 \@LN{311}{4}
 \@LN{312}{4}
@@ -437,9 +436,9 @@
 \@LN{356}{4}
 \@LN{357}{4}
 \@LN{358}{4}
-\@LN@col{2}
 \@LN{359}{4}
 \@LN{360}{4}
+\@LN@col{2}
 \@LN{361}{4}
 \@LN{362}{4}
 \@LN{363}{4}
@@ -492,6 +491,7 @@
 \@LN{410}{4}
 \@LN{411}{4}
 \@LN{412}{4}
+\bibcite{sahoo2024simple}{{12}{2024}{{Sahoo et~al.}}{{Sahoo, Arriola, Schiff, Gokaslan, Marroquin, Chiu, Rush, and Kuleshov}}}
 \bibcite{schuster2022confident}{{13}{2022}{{Schuster et~al.}}{{Schuster, Fisch, Gupta, Dehghani, Bahri, Tran, Tay, and Metzler}}}
 \bibcite{shnaidman2025steering}{{14}{2025}{{Shnaidman et~al.}}{{Shnaidman, Marek, Karpas, and Herzig}}}
 \bibcite{tenney2019bert}{{15}{2019}{{Tenney et~al.}}{{Tenney, Das, and Pavlick}}}
@@ -525,66 +525,66 @@
 \@LN{437}{5}
 \@LN{438}{5}
 \@LN{439}{5}
-\@writefile{toc}{\contentsline {section}{\numberline {A}Generation and Probing Details}{6}{appendix.A}\protected@file@percent }
-\newlabel{sec:appendix_generation}{{A}{6}{Generation and Probing Details}{appendix.A}{}}
-\@writefile{toc}{\contentsline {paragraph}{Denoising procedure.}{6}{section*.22}\protected@file@percent }
 \@LN{440}{5}
 \@LN{441}{5}
 \@LN{442}{5}
 \@LN{443}{5}
 \@LN{444}{5}
 \@LN{445}{5}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Generation and Probing Details}{6}{appendix.A}\protected@file@percent }
+\newlabel{sec:appendix_generation}{{A}{6}{Generation and Probing Details}{appendix.A}{}}
+\@writefile{toc}{\contentsline {paragraph}{Denoising procedure.}{6}{section*.22}\protected@file@percent }
 \@LN{446}{5}
 \@LN{447}{5}
 \@LN{448}{5}
 \@LN{449}{5}
 \@LN{450}{5}
 \@LN{451}{5}
-\@writefile{toc}{\contentsline {paragraph}{Prompt construction.}{6}{section*.23}\protected@file@percent }
 \@LN{452}{5}
 \@LN{453}{5}
 \@LN{454}{5}
 \@LN{455}{5}
 \@LN{456}{5}
 \@LN{457}{5}
+\@writefile{toc}{\contentsline {paragraph}{Prompt construction.}{6}{section*.23}\protected@file@percent }
 \@LN{458}{5}
-\@writefile{toc}{\contentsline {paragraph}{Hidden state extraction.}{6}{section*.24}\protected@file@percent }
 \@LN{459}{5}
 \@LN{460}{5}
 \@LN{461}{5}
 \@LN{462}{5}
 \@LN{463}{5}
-\@LN@col{2}
 \@LN{464}{5}
+\@LN@col{2}
+\@writefile{toc}{\contentsline {paragraph}{Hidden state extraction.}{6}{section*.24}\protected@file@percent }
 \@LN{465}{5}
 \@LN{466}{5}
 \@LN{467}{5}
-\@writefile{toc}{\contentsline {paragraph}{Probe pipeline.}{6}{section*.25}\protected@file@percent }
 \@LN{468}{5}
 \@LN{469}{5}
 \@LN{470}{5}
 \@LN{471}{5}
 \@LN{472}{5}
 \@LN{473}{5}
+\@writefile{toc}{\contentsline {paragraph}{Probe pipeline.}{6}{section*.25}\protected@file@percent }
 \@LN{474}{5}
 \@LN{475}{5}
 \@LN{476}{5}
-\@writefile{toc}{\contentsline {paragraph}{Computational resources.}{6}{section*.26}\protected@file@percent }
 \@LN{477}{5}
 \@LN{478}{5}
 \@LN{479}{5}
 \@LN{480}{5}
 \@LN{481}{5}
 \@LN{482}{5}
+\@writefile{toc}{\contentsline {paragraph}{Computational resources.}{6}{section*.26}\protected@file@percent }
 \@LN{483}{5}
-\@writefile{toc}{\contentsline {section}{\numberline {B}Selective Generation Details}{6}{appendix.B}\protected@file@percent }
-\newlabel{sec:appendix_early_exit}{{B}{6}{Selective Generation Details}{appendix.B}{}}
 \@LN{484}{5}
 \@LN{485}{5}
 \@LN{486}{5}
 \@LN{487}{5}
 \@LN{488}{5}
 \@LN{489}{5}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Selective Generation Details}{6}{appendix.B}\protected@file@percent }
+\newlabel{sec:appendix_early_exit}{{B}{6}{Selective Generation Details}{appendix.B}{}}
 \@LN{490}{5}
 \@LN{491}{5}
 \@LN{492}{5}
@@ -595,29 +595,48 @@
 \@LN{497}{5}
 \@LN{498}{5}
 \@LN{499}{5}
-\@writefile{toc}{\contentsline {section}{\numberline {C}Length Control Probe}{6}{appendix.C}\protected@file@percent }
-\newlabel{sec:appendix_length}{{C}{6}{Length Control Probe}{appendix.C}{}}
 \@LN{500}{5}
 \@LN{501}{5}
 \@LN{502}{5}
 \@LN{503}{5}
 \@LN{504}{5}
 \@LN{505}{5}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Length Control Probe}{6}{appendix.C}\protected@file@percent }
+\newlabel{sec:appendix_length}{{C}{6}{Length Control Probe}{appendix.C}{}}
 \@LN{506}{5}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Best AUC for correctness, length control, and length-matched correctness probes. After controlling for length, correctness AUC drops modestly but remains well above chance.}}{6}{table.5}\protected@file@percent }
-\newlabel{tab:length_control}{{5}{6}{Best AUC for correctness, length control, and length-matched correctness probes. After controlling for length, correctness AUC drops modestly but remains well above chance}{table.5}{}}
+\@LN{507}{5}
+\@LN{508}{5}
+\@LN{509}{5}
+\@LN{510}{5}
+\@LN{511}{5}
+\@LN{512}{5}
 \@LN@col{1}
 \@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Selective generation results across thresholds. ``Saved'' is the fraction of denoising steps avoided by skipping instances predicted to fail. ``Clf.\ acc'' is the fraction of instances for which the probe correctly predicts functional vs.\ non-functional (same metric as Table~\ref {tab:early_exit}).}}{7}{table.caption.27}\protected@file@percent }
 \newlabel{tab:early_exit_full}{{4}{7}{Selective generation results across thresholds. ``Saved'' is the fraction of denoising steps avoided by skipping instances predicted to fail. ``Clf.\ acc'' is the fraction of instances for which the probe correctly predicts functional vs.\ non-functional (same metric as Table~\ref {tab:early_exit})}{table.caption.27}{}}
-\@LN{507}{6}
-\@LN{508}{6}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Best AUC for correctness, length control, and length-matched correctness probes. After controlling for length, correctness AUC drops modestly but remains well above chance.}}{7}{table.5}\protected@file@percent }
+\newlabel{tab:length_control}{{5}{7}{Best AUC for correctness, length control, and length-matched correctness probes. After controlling for length, correctness AUC drops modestly but remains well above chance}{table.5}{}}
+\@LN{513}{6}
+\@LN{514}{6}
 \@writefile{toc}{\contentsline {section}{\numberline {D}Spatial Pooling Ablation}{7}{appendix.D}\protected@file@percent }
 \newlabel{sec:appendix_region}{{D}{7}{Spatial Pooling Ablation}{appendix.D}{}}
-\@LN{509}{6}
-\@LN{510}{6}
-\@LN{511}{6}
+\@LN{515}{6}
+\@LN{516}{6}
+\@LN{517}{6}
 \@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Best AUC by number of position regions. Spread is less than 0.02 within each configuration.}}{7}{table.6}\protected@file@percent }
 \newlabel{tab:region_ablation}{{6}{7}{Best AUC by number of position regions. Spread is less than 0.02 within each configuration}{table.6}{}}
-\@LN{512}{6}
+\@LN{518}{6}
+\@LN{519}{6}
+\@writefile{toc}{\contentsline {section}{\numberline {E}AR Baseline Probe}{7}{appendix.E}\protected@file@percent }
+\newlabel{sec:appendix_ar}{{E}{7}{AR Baseline Probe}{appendix.E}{}}
+\@LN{520}{6}
+\@LN{521}{6}
+\@LN{522}{6}
+\@LN{523}{6}
 \@LN@col{2}
+\@LN{524}{6}
+\@LN{525}{6}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces AR vs.\ dLLM step-0 probe AUC. The AR probe uses only the last prompt token; dLLM probes use mean-pooled generation region hidden states at step~0. Sub-A predicts dLLM labels; Sub-B predicts AR's own labels.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:ar_probe}{{7}{7}{AR vs.\ dLLM step-0 probe AUC. The AR probe uses only the last prompt token; dLLM probes use mean-pooled generation region hidden states at step~0. Sub-A predicts dLLM labels; Sub-B predicts AR's own labels}{table.7}{}}
+\@LN{526}{6}
+\@LN{527}{6}
 \gdef \@abspage@last{7}

