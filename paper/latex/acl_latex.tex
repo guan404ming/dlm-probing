@@ -70,6 +70,7 @@ Given a dLLM with $L$ layers, we run 128-step denoising and extract hidden state
 At each checkpoint, we obtain the full hidden state tensor of shape $(L, \text{gen\_length}, d)$.
 We partition the generation region into 4 equal-length position regions and mean-pool within each region, yielding features of shape $(L, 4, d)$ per instance per step.
 We choose 4 regions to align with LLaDA's block length of 32 tokens (gen\_length / block\_length = 4 for JSON schema's 128-token blocks) while keeping the number of features manageable given the limited sample sizes.
+An ablation over 1, 2, and 4 regions shows best AUC varies by less than 0.02 across configurations (Appendix~\ref{sec:appendix_region}).
 
 \paragraph{Probe training.}
 For each (step, layer, region) triple, we reduce dimensionality with PCA to 64 components, apply standard scaling, and train a logistic regression classifier to predict functional correctness \citep{pedregosa2011scikit}.
@@ -82,8 +83,8 @@ For math reasoning (GSM8K), an output is correct if the extracted numeric answer
 
 \paragraph{Early exit.}
 We simulate early stopping by training a per-step probe (using the best layer and region from the full analysis).
-At inference time, if the probe's confidence exceeds a threshold $\tau$ at step $t$, we halt denoising and use the current output.
-We report the fraction of compute saved and the resulting accuracy.
+At inference time, if the probe's confidence exceeds a threshold $\tau$ at step $t$, we halt denoising and use the probe's binary prediction ($\hat{y} = \mathbb{1}[p \geq 0.5]$) as the correctness forecast.
+We report the fraction of compute saved and the probe's classification accuracy.
 
 \section{Experimental Setup}
 
@@ -265,12 +266,8 @@ We study only two models (LLaDA-8B, Dream-7B) and two tasks (JSON schema validat
 Broader coverage across more architectures (e.g., MDLM, SEDD) and tasks (e.g., code generation, translation) is needed to establish generality.
 Both models are in the 7--8B parameter range; it is unclear whether our findings hold for smaller or larger diffusion LLMs.
 
-The probe may partially rely on surface heuristics correlated with correctness, such as output length or formatting patterns, rather than deeper semantic features.
-Disentangling these factors is an important direction for future work.
-
-All experiments use a single random seed for generation.
-While our seed reranking experiment suggests that instance difficulty dominates over seed choice, probing results on hidden states from multiple seeds would strengthen this conclusion.
-Testing across different model scales would also help establish whether these findings generalize beyond the 7--8B parameter range.
+A control probe trained to predict reference output length (binary median split) achieves higher AUC (0.86--0.99) than the correctness probe (0.78--0.84) across all configurations (Appendix~\ref{sec:appendix_length}), indicating that hidden states encode output length more strongly than functional correctness.
+The length-correctness correlation is moderate ($|r| \leq 0.37$, $r^2 \leq 0.14$), suggesting partial but not full confounding; disentangling length-related signal from genuine correctness signal is an important direction for future work.
 
 \bibliography{custom}
 
@@ -326,7 +323,7 @@ Table~\ref{tab:early_exit_full} shows results across a range of thresholds for a
   \begin{tabular}{lcccc}
     \toprule
     $\tau$ & \multicolumn{2}{c}{\textbf{JSON Schema}} & \multicolumn{2}{c}{\textbf{GSM8K}} \\
-    & Saved & Acc & Saved & Acc \\
+    & Saved & Clf.\ acc & Saved & Clf.\ acc \\
     \midrule
     \multicolumn{5}{l}{\textit{LLaDA-8B}} \\
     0.60 & 99.2\% & 64.0\% & 83.4\% & 67.2\% \\
@@ -341,8 +338,60 @@ Table~\ref{tab:early_exit_full} shows results across a range of thresholds for a
     0.90 & 87.3\% & 74.6\% & 6.2\% & 74.8\% \\
     \bottomrule
   \end{tabular}
-  \caption{Early exit results across thresholds. ``Saved'' is the fraction of denoising steps avoided. ``Acc'' is functional correctness accuracy.}
+  \caption{Early exit results across thresholds. ``Saved'' is the fraction of denoising steps avoided. ``Clf.\ acc'' is the fraction of instances for which the probe correctly predicts functional vs.\ non-functional (same metric as Table~\ref{tab:early_exit}).}
   \label{tab:early_exit_full}
+\end{table}
+
+\section{Length Control Probe}
+\label{sec:appendix_length}
+
+To test whether the correctness probe relies on output length as a surface heuristic, we train a control probe with the same pipeline (PCA + StandardScaler + LogisticRegression, 5-fold CV) but predict a binary length label (whether the reference output exceeds the median length) instead of functional correctness.
+Table~\ref{tab:length_control} reports the best AUC across all layers and steps for each probe type.
+
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabular}{lcc}
+    \toprule
+    & \textbf{Correctness} & \textbf{Length} \\
+    \midrule
+    \multicolumn{3}{l}{\textit{JSON Schema}} \\
+    ~~LLaDA & 0.84 & 0.98 \\
+    ~~Dream & 0.84 & 0.99 \\
+    \midrule
+    \multicolumn{3}{l}{\textit{GSM8K}} \\
+    ~~LLaDA & 0.78 & 0.86 \\
+    ~~Dream & 0.82 & 0.87 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Best AUC for correctness vs.\ length control probes. The length probe achieves higher AUC in all cases, indicating that hidden states encode output length more strongly than functional correctness. Pearson correlation between length and correctness labels: $|r| = 0.15$--$0.37$.}
+  \label{tab:length_control}
+\end{table}
+
+\section{Spatial Pooling Ablation}
+\label{sec:appendix_region}
+
+We test whether the number of position regions affects probe quality by pooling the 4 extracted regions into 1 (global average), 2 (pairwise average), or 4 (concatenation) groups.
+Table~\ref{tab:region_ablation} reports the best AUC across all layers and steps for each configuration.
+
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabular}{lccc}
+    \toprule
+    & \textbf{1 region} & \textbf{2 regions} & \textbf{4 regions} \\
+    \midrule
+    \multicolumn{4}{l}{\textit{JSON Schema}} \\
+    ~~LLaDA & 0.848 & 0.854 & 0.840 \\
+    ~~Dream & 0.846 & 0.828 & 0.847 \\
+    \midrule
+    \multicolumn{4}{l}{\textit{GSM8K}} \\
+    ~~LLaDA & 0.784 & 0.788 & --- \\
+    ~~Dream & 0.817 & 0.815 & --- \\
+    \bottomrule
+  \end{tabular}
+  \caption{Best AUC by number of position regions. Performance varies by less than 0.02 within each configuration, confirming that spatial pooling granularity has minimal impact. GSM8K 4-region results are omitted due to computational timeout from high feature dimensionality.}
+  \label{tab:region_ablation}
 \end{table}
 
 \end{document}

@@ -13,3 +13,8 @@ dependencies = [
     "modal",
     "matplotlib>=3.10.8",
 ]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.5",
+]
