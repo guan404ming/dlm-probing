@@ -1,89 +1,51 @@
-# Probe Experiments
+# Probing Functional Correctness in Diffusion Language Models
 
-Probing classifiers on diffusion LLM hidden states to predict functional correctness.
+First probing study of diffusion LLM hidden states. Linear classifiers on intermediate denoising steps predict whether outputs will be functionally correct.
 
-## Scripts
+## Key Findings
 
-| Script | Description |
-|---|---|
-| `src/modal_midstep_probe.py` | Mid-step probing (generation + feature extraction + probe training). Supports `--dataset` and `--model` flags, multi-GPU via `--chunks`. |
-| `src/modal_early_exit_sim.py` | Early exit simulation. Uses per-step probe confidence to decide when to stop. CPU-only. |
-| `src/modal_adaptive_compute_sim.py` | Adaptive compute simulation. Uses step-0 probe to classify easy/hard, allocates fewer steps to easy instances. CPU-only. |
-| `src/modal_seed_rerank.py` | Seed reranking experiment (negative result). |
+1. **Step-0 signal exists** (AUC 0.61-0.80). Prompt encoding alone predicts correctness before any denoising.
+2. **Task-dependent emergence.** Structural tasks (JSON) show flat profiles from step 0, reasoning tasks (GSM8K, MBPP, ARC) show gradual buildup.
+3. **Divergent layer dynamics.** LLaDA concentrates signal in upper layers (L22-28). Dream migrates from upper to lower layers on simple tasks.
+4. **Selective generation.** Per-step probe confidence identifies likely failures, avoiding 36-98% of wasted compute.
+5. **Seed reranking fails.** Probe captures instance difficulty, not seed quality.
 
 ## Models
 
-| Key | Model | Mask ID | Layers |
-|---|---|---|---|
-| `llada` | GSAI-ML/LLaDA-8B-Instruct | 126336 | 33 |
-| `dream` | Dream-org/Dream-v0-Instruct-7B | 151666 | 29 |
+| Key | Model | Layers |
+|---|---|---|
+| `llada` | GSAI-ML/LLaDA-8B-Instruct | 33 |
+| `dream` | Dream-org/Dream-v0-Instruct-7B | 29 |
 
 ## Datasets
 
-| Key | Source | N instances | Gen length | Correctness check |
+| Key | Source | N | Gen length | Correctness check |
 |---|---|---|---|---|
 | `jsonschema` | eth-sri/json-mode-eval-extended | 272 | 256 | JSON parse + reference match |
-| `gsm8k` | openai/gsm8k (test) | 1319 | 512 | Numeric answer match (####) |
+| `gsm8k` | openai/gsm8k (test) | 1,319 | 512 | Numeric answer match |
 | `mbpp` | google-research-datasets/mbpp (sanitized test) | 257 | 256 | Code execution + test assertions |
-| `arc` | allenai/ai2_arc (ARC-Challenge test) | 1172 | 256 | Answer letter match (A/B/C/D) |
+| `arc` | allenai/ai2_arc (ARC-Challenge test) | 1,172 | 256 | Answer letter match |
 
-## Key Results
+## Results
 
-### Baseline functional rates (seed=0, 128 steps)
+### AUC heatmaps (layer x step)
 
-| | jsonschema | gsm8k |
-|---|---|---|
-| LLaDA | 48.5% (132/272) | 66.3% (875/1319) |
-| Dream | 46.0% (125/272) | 61.5% (811/1319) |
-
-### Mid-step probe AUC (best layer, final step)
-
-| | jsonschema | gsm8k |
-|---|---|---|
-| LLaDA | 0.809 (layer 24) | 0.786 (layer 24) |
-| Dream | 0.828 (layer 5) | 0.818 (layer 19) |
-
-#### Figure 1: Step x Layer AUC heatmap
-
-Stars mark the best layer per step. JSON Schema shows signal from step 0 (flat emergence), while GSM8K shows gradual emergence. LLaDA best layers stay in upper layers (L22-26), Dream migrates to lower layers during denoising.
+Stars mark the best layer per step. JSON schema shows strong signal from step 0 (flat emergence), while GSM8K shows gradual buildup. Dream's best layer migrates from upper to lower layers on JSON schema.
 
 ![Step x Layer AUC heatmap](assets/fig1_heatmap.png)
 
-#### Figure 2: AUC vs diffusion step
+### AUC vs. denoising step
 
-Best AUC across layers at each step. JSON Schema is relatively flat (AUC ~0.80 from step 0), GSM8K rises gradually from ~0.71 to ~0.82.
+Best AUC across layers at each step. JSON schema is flat (~0.80 from step 0), while GSM8K, MBPP, and ARC rise gradually.
 
 ![AUC vs diffusion step](assets/fig2_auc_curve.png)
 
-### Early exit (threshold=0.80)
+## Method
 
-| | jsonschema | gsm8k |
-|---|---|---|
-| LLaDA | 98.4% saved, 73.5% acc | 61.3% saved, 73.5% acc |
-| Dream | 96.7% saved, 72.4% acc | 36.0% saved, 73.5% acc |
-
-### Adaptive compute (conf=0.75, easy=32 steps)
-
-| | jsonschema | gsm8k |
-|---|---|---|
-| LLaDA | 30.1% saved, 72.5% easy precision | 33.5% saved, 80.0% easy precision |
-| Dream | 23.2% saved, 65.5% easy precision | 22.3% saved, 76.3% easy precision |
-
-Step-0 probe classifies instances as easy (P(func) >= threshold) or hard.
-Easy instances get fewer denoising steps. "Easy precision" = fraction of
-probe-predicted-easy instances that are actually functional.
-
-### Seed reranking (negative result)
-
-Train probe on seed=0 step-1 hidden states (layer 23, mean-pooled) to predict
-functional@1. Score 5 seeds at step 1, pick best, run full 128-step denoising.
-
-| | Baseline | Rerank | Probe train acc |
-|---|---|---|---|
-| LLaDA | 48.5% (132/272) | 48.5% (+0.0%) | 85.7% |
-| Dream | 46.0% (125/272) | 46.0% (+0.0%) | 84.6% |
-
-Probe learns instance difficulty, not seed quality.
+- **Probe:** PCA(64) + StandardScaler + LogisticRegression, 5-fold stratified CV
+- **Steps:** 7 checkpoints (0, 1, 4, 16, 32, 64, 127) during 128-step denoising
+- **Regions:** Generation region split into 4 equal-length position regions, mean-pooled
+- **Metric:** AUC (control probes on shuffled labels yield ~0.50)
 
 ## Usage
 
@@ -91,7 +53,7 @@ Probe learns instance difficulty, not seed quality.
 # Mid-step probe (8x A100)
 .venv/bin/modal run src/modal_midstep_probe.py --dataset jsonschema --model llada --chunks 8
 
-# Early exit simulation (CPU)
+# Selective generation simulation (CPU)
 .venv/bin/modal run src/modal_early_exit_sim.py --dataset gsm8k --model dream --chunks 8
 
 # Adaptive compute simulation (CPU)
