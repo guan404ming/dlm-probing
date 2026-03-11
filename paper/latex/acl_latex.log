@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.12.31)  11 MAR 2026 11:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.12.31)  11 MAR 2026 13:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -446,24 +446,24 @@ File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 ) (./acl_latex.aux)
 \openout1 = `acl_latex.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
 
 (/usr/local/texlive/2025basic/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -533,25 +533,25 @@ e
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring ON on input line 25.
+Package hyperref Info: Link coloring ON on input line 38.
 (./acl_latex.out) (./acl_latex.out)
 \@outlinefile=\write3
 \openout3 = `acl_latex.out'.
 
-LaTeX Info: Redefining \microtypecontext on input line 25.
-Package microtype Info: Applying patch `item' on input line 25.
-Package microtype Info: Applying patch `toc' on input line 25.
-Package microtype Info: Applying patch `eqnum' on input line 25.
-Package microtype Info: Applying patch `footnote' on input line 25.
-Package microtype Info: Applying patch `verbatim' on input line 25.
-LaTeX Info: Redefining \microtypesetup on input line 25.
+LaTeX Info: Redefining \microtypecontext on input line 38.
+Package microtype Info: Applying patch `item' on input line 38.
+Package microtype Info: Applying patch `toc' on input line 38.
+Package microtype Info: Applying patch `eqnum' on input line 38.
+Package microtype Info: Applying patch `footnote' on input line 38.
+Package microtype Info: Applying patch `verbatim' on input line 38.
+LaTeX Info: Redefining \microtypesetup on input line 38.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 25.
+LaTeX Info: Redefining \showhyphens on input line 38.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -567,7 +567,7 @@ tim
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+lasy on input line 26
+LaTeX Font Info:    Trying to load font information for U+lasy on input line 39
 .
 
 (/usr/local/texlive/2025basic/texmf-dist/tex/latex/base/ulasy.fd
@@ -582,7 +582,7 @@ usr/local/texlive/2025basic/texmf-dist/fonts/enc/dvips/base/8r.enc}
 
 
 ]
-Underfull \hbox (badness 1337) in paragraph at lines 70--75
+Underfull \hbox (badness 1337) in paragraph at lines 83--88
 \OMS/cmsy/m/n/10.95 f\OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.
 95 1\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 4\OML/cmm/m/it/10.95 ; \OT1/cmr/m/
 n/10.95 16\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 32\OML/cmm/m/it/10.95 ; \OT1
@@ -593,44 +593,54 @@ n/10.95 16\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 32\OML/cmm/m/it/10.95 ; \OT1
 
 
 
-Underfull \vbox (badness 4995) has occurred while \output is active []
+Underfull \vbox (badness 2538) has occurred while \output is active []
 
 
 
 [2]
-Overfull \hbox (0.51247pt too wide) in paragraph at lines 138--139
+Overfull \hbox (0.51247pt too wide) in paragraph at lines 151--152
 \T1/ptm/m/n/10.95 (-20) denoising-dependent sig-nal: step-0 AUC is $\OMS/cmsy/m
 /n/10.95 ^^Y \OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 61$\T1
 /ptm/m/n/10.95 (-20) --
  []
 
-<fig1_heatmap.png, id=177, 487.3407pt x 554.3109pt>
+<fig1_heatmap.png, id=182, 487.3407pt x 309.0747pt>
 File: fig1_heatmap.png Graphic file (type png)
 <use fig1_heatmap.png>
-Package pdftex.def Info: fig1_heatmap.png  used on input line 148.
-(pdftex.def)             Requested size: 219.08614pt x 249.1923pt.
-<fig2_auc_curve.png, id=179, 726.5544pt x 221.628pt>
+Package pdftex.def Info: fig1_heatmap.png  used on input line 161.
+(pdftex.def)             Requested size: 219.08614pt x 138.94556pt.
+<fig2_auc_curve.png, id=186, 726.5544pt x 221.628pt>
 File: fig2_auc_curve.png Graphic file (type png)
 <use fig2_auc_curve.png>
-Package pdftex.def Info: fig2_auc_curve.png  used on input line 155.
+Package pdftex.def Info: fig2_auc_curve.png  used on input line 168.
 (pdftex.def)             Requested size: 219.08614pt x 66.83046pt.
 
 
 
-Underfull \vbox (badness 7740) has occurred while \output is active []
-
-
 
 [3 <./fig1_heatmap.png> <./fig2_auc_curve.png>]
-Overfull \hbox (4.83897pt too wide) in paragraph at lines 181--194
+Overfull \hbox (4.83897pt too wide) in paragraph at lines 194--207
  [][] 
  []
 
 
 
 
+Overfull \hbox (1.36435pt too wide) in paragraph at lines 236--239
+\T1/ptm/m/n/10.95 (-20) signal is not a length confound: AUC drops by 0.00--
+ []
 
-[4] (./acl_latex.bbl
+
+Underfull \vbox (badness 4441) has occurred while \output is active []
+
+
+
+[4]
+Underfull \hbox (badness 5189) in paragraph at lines 248--251
+[]\T1/ptm/m/n/10.95 (+20) We study only two mod-els (LLaDA-8B,
+ []
+
+(./acl_latex.bbl
 
 
 Underfull \hbox (badness 2027) in paragraph at lines 76--80
@@ -652,19 +662,19 @@ Underfull \hbox (badness 1616) in paragraph at lines 89--93
 
 [5])
 LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 26
-2.
+9.
  (/usr/local/texlive/2025basic/texmf-dist/tex/latex/inconsolata/t1zi4.fd
 File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 10.95pt on input line 262.
+(Font)              scaled to size 10.95pt on input line 269.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `zi4' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
 ! Undefined control sequence.
-l.271 ...nstruct the feature matrix $X \in \mathbb
+l.278 ...nstruct the feature matrix $X \in \mathbb
                                                   {R}^{n \times d}$ and apply:
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -674,44 +684,56 @@ and I'll forget about whatever was undefined.
 
 
 
+<fig3_heatmap_appendix.png, id=268, 487.3407pt x 309.0747pt>
+File: fig3_heatmap_appendix.png Graphic file (type png)
+<use fig3_heatmap_appendix.png>
+Package pdftex.def Info: fig3_heatmap_appendix.png  used on input line 295.
+(pdftex.def)             Requested size: 219.08614pt x 138.94556pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 296--296
+[]\T1/ptm/m/n/10 (+20) Figure 3: |AUC heatmaps for MBPP and
+ []
+
+
+Underfull \hbox (badness 2443) in paragraph at lines 296--296
+[]\T1/ptm/m/n/10 (+20) . Both show grad-ual emer-gence
+ []
+
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 289.
-See the caption package documentation for explanation.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 332.
+(caption)                particular \caption on input line 306.
 See the caption package documentation for explanation.
 
 
 
 [6{/usr/local/texlive/2025basic/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.
-enc}]
+enc} <./fig3_heatmap_appendix.png>]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 364.
+(caption)                particular \caption on input line 349.
 See the caption package documentation for explanation.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 398.
+(caption)                particular \caption on input line 381.
 See the caption package documentation for explanation.
-
-
-Underfull \vbox (badness 4454) has occurred while \output is active []
 
 
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 433.
+(caption)                particular \caption on input line 415.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (7.89572pt too wide) in paragraph at lines 436--447
+Overfull \hbox (7.89572pt too wide) in paragraph at lines 417--428
  [] 
  []
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 439.
+See the caption package documentation for explanation.
 
 
 
@@ -721,16 +743,16 @@ LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `acl_latex.out' has not changed.
-(rerunfilecheck)             Checksum: 8736125B19E0836AF80F2784F0C7FC7E;2195.
+(rerunfilecheck)             Checksum: 7ED9F71B8BA8F7AB6F99A5943C08D7A6;2338.
  ) 
 Here is how much of TeX's memory you used:
- 15464 strings out of 474662
- 247003 string characters out of 5751108
- 708202 words of memory out of 5000000
- 37862 multiletter control sequences out of 15000+600000
- 628559 words of font info for 319 fonts, out of 8000000 for 9000
- 319 hyphenation exceptions out of 8191
- 84i,10n,93p,1006b,649s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 15492 strings out of 474662
+ 247460 string characters out of 5751108
+ 707643 words of memory out of 5000000
+ 37876 multiletter control sequences out of 15000+600000
+ 628949 words of font info for 325 fonts, out of 8000000 for 9000
+ 322 hyphenation exceptions out of 8191
+ 84i,10n,93p,1006b,638s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/inconsolata/Incon
 solata-zi4r.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmmi10.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public
@@ -744,10 +766,10 @@ fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2025basic/texmf-dist/fo
 nts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/t
 ype1/urw/times/utmr8a.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/
 urw/times/utmri8a.pfb>
-Output written on acl_latex.pdf (7 pages, 554663 bytes).
+Output written on acl_latex.pdf (7 pages, 578204 bytes).
 PDF statistics:
- 360 PDF objects out of 1000 (max. 8388607)
- 319 compressed objects within 4 object streams
- 72 named destinations out of 1000 (max. 500000)
- 70283 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 373 PDF objects out of 1000 (max. 8388607)
+ 329 compressed objects within 4 object streams
+ 74 named destinations out of 1000 (max. 500000)
+ 70296 words of extra memory for PDF output out of 74296 (max. 10000000)
 

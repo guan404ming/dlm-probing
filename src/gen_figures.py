@@ -55,22 +55,24 @@ def load_results():
     return data
 
 
-def fig1_heatmap(data, out_path="assets/fig1_heatmap.pdf"):
-    """Step x Layer AUC heatmap, 4x2 grid (4 datasets x 2 models)."""
+def _heatmap_grid(data, keys, out_path, nrows=2):
+    """Step x Layer AUC heatmap grid."""
     mpl.rcParams.update({"font.size": 8, "font.family": "serif"})
 
-    fig, axes = plt.subplots(4, 2, figsize=(7, 9))
+    ncols = len(keys) // nrows
+    fig, axes = plt.subplots(nrows, ncols, figsize=(7, 2.3 * nrows))
+    if nrows == 1:
+        axes = axes.reshape(1, -1)
 
     vmin, vmax = 0.5, 0.85
 
-    for idx, key in enumerate(PANEL_ORDER):
-        ax = axes[idx // 2][idx % 2]
+    for idx, key in enumerate(keys):
+        ax = axes[idx // ncols][idx % ncols]
         d = data[key]
         steps = d["checkpoint_steps"]
         n_layers = d["n_layers"]
         sla = d["step_layer_auc"]
 
-        # Build matrix: rows=steps, cols=layers
         matrix = np.zeros((len(steps), n_layers))
         for i, s in enumerate(steps):
             aucs = sla[str(s)]
@@ -86,7 +88,6 @@ def fig1_heatmap(data, out_path="assets/fig1_heatmap.pdf"):
         ax.set_yticklabels(steps)
         ax.set_ylabel("Diffusion step")
 
-        # Show every 4th layer
         layer_ticks = list(range(0, n_layers, 4))
         ax.set_xticks(layer_ticks)
         ax.set_xticklabels(layer_ticks)
@@ -94,7 +95,6 @@ def fig1_heatmap(data, out_path="assets/fig1_heatmap.pdf"):
 
         ax.set_title(PANEL_TITLES[key], fontsize=9)
 
-        # Mark best layer per step
         for i in range(len(steps)):
             best_l = int(np.argmax(matrix[i]))
             ax.plot(best_l, i, "k*", markersize=5)
@@ -107,6 +107,24 @@ def fig1_heatmap(data, out_path="assets/fig1_heatmap.pdf"):
     fig.savefig(out_path.replace(".pdf", ".png"), bbox_inches="tight", dpi=300)
     print(f"Saved {out_path}")
     plt.close(fig)
+
+
+def fig1_heatmap(data):
+    """Main paper: JSON Schema + GSM8K (2x2)."""
+    keys = [
+        ("jsonschema", "llada"), ("jsonschema", "dream"),
+        ("gsm8k", "llada"), ("gsm8k", "dream"),
+    ]
+    _heatmap_grid(data, keys, "assets/fig1_heatmap.pdf", nrows=2)
+
+
+def fig3_heatmap_appendix(data):
+    """Appendix: MBPP + ARC (2x2)."""
+    keys = [
+        ("mbpp", "llada"), ("mbpp", "dream"),
+        ("arc", "llada"), ("arc", "dream"),
+    ]
+    _heatmap_grid(data, keys, "assets/fig3_heatmap_appendix.pdf", nrows=2)
 
 
 def fig2_auc_curve(data, out_path="assets/fig2_auc_curve.pdf"):
@@ -169,4 +187,5 @@ if __name__ == "__main__":
     data = load_results()
     fig1_heatmap(data)
     fig2_auc_curve(data)
+    fig3_heatmap_appendix(data)
     print("Done.")

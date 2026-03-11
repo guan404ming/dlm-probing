@@ -92,11 +92,12 @@ Shen Nie, Fengqi Zhu, Chao You, Xiaojun Zhang, and Zhenguo Ou. 2025.
 \newblock \emph{arXiv preprint arXiv:2502.09992}.
 
 \bibitem[{Pedregosa et~al.(2011)Pedregosa, Varoquaux, Gramfort, Michel,
-  Thirion, Grisel, Blondel, Prettenhofer, Weiss, Dubourg
-  et~al.}]{pedregosa2011scikit}
+  Thirion, Grisel, Blondel, Prettenhofer, Weiss, Dubourg, Vanderplas, Passos,
+  Cournapeau, Brucher, Perrot, and Duchesnay}]{pedregosa2011scikit}
 Fabian Pedregosa, Ga{\"e}l Varoquaux, Alexandre Gramfort, Vincent Michel,
   Bertrand Thirion, Olivier Grisel, Mathieu Blondel, Peter Prettenhofer, Ron
-  Weiss, Vincent Dubourg, and 1 others. 2011.
+  Weiss, Vincent Dubourg, Jake Vanderplas, Alexandre Passos, David Cournapeau,
+  Matthieu Brucher, Matthieu Perrot, and {\'E}douard Duchesnay. 2011.
 \newblock Scikit-learn: Machine learning in {Python}.
 \newblock \emph{Journal of Machine Learning Research}, 12:2825--2830.
 
