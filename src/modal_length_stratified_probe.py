@@ -26,6 +26,8 @@ N_REGIONS = 4
 DATASET_CFGS = {
     "jsonschema": {"gen_length": 256, "total": 272},
     "gsm8k": {"gen_length": 512, "total": 1319},
+    "mbpp": {"gen_length": 256, "total": 257},
+    "arc": {"gen_length": 256, "total": 1172},
 }
 
 
@@ -42,6 +44,15 @@ def get_reference_lengths(dataset_key, total):
         ds = load_dataset("openai/gsm8k", "main", split="test")
         instances = list(ds)
         lengths = [len(inst["answer"]) for inst in instances[:total]]
+    elif dataset_key == "mbpp":
+        ds = load_dataset("google-research-datasets/mbpp", "sanitized", split="test")
+        instances = list(ds)
+        lengths = [len(inst["code"]) for inst in instances[:total]]
+    elif dataset_key == "arc":
+        ds = load_dataset("allenai/ai2_arc", "ARC-Challenge", split="test")
+        instances = list(ds)
+        # Use question + choices length as reference
+        lengths = [len(inst["question"]) for inst in instances[:total]]
     else:
         raise ValueError(f"Unknown dataset: {dataset_key}")
 

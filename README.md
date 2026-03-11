@@ -24,6 +24,8 @@ Probing classifiers on diffusion LLM hidden states to predict functional correct
 |---|---|---|---|---|
 | `jsonschema` | eth-sri/json-mode-eval-extended | 272 | 256 | JSON parse + reference match |
 | `gsm8k` | openai/gsm8k (test) | 1319 | 512 | Numeric answer match (####) |
+| `mbpp` | google-research-datasets/mbpp (sanitized test) | 257 | 256 | Code execution + test assertions |
+| `arc` | allenai/ai2_arc (ARC-Challenge test) | 1172 | 256 | Answer letter match (A/B/C/D) |
 
 ## Key Results
 

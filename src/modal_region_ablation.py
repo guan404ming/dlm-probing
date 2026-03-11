@@ -31,6 +31,8 @@ N_REGIONS = 4
 DATASET_CFGS = {
     "jsonschema": {"gen_length": 256, "total": 272},
     "gsm8k": {"gen_length": 512, "total": 1319},
+    "mbpp": {"gen_length": 256, "total": 257},
+    "arc": {"gen_length": 256, "total": 1172},
 }
 
 

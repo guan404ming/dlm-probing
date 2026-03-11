@@ -50,6 +50,24 @@ gsm8k_dream/
   midstep_probe_results.json
   early_exit_results.json
   adaptive_compute_results.json
+
+mbpp_llada/
+  chunk_off{0,33,...,231}.npz        # 8 chunks, 257 instances total
+  midstep_probe_results.json
+  probe_std_results.json
+
+mbpp_dream/
+  chunk_off{0,33,...,231}.npz        # 8 chunks, 257 instances total
+  midstep_probe_results.json
+  probe_std_results.json
+
+arc_llada/
+  chunk_off{0,147,...,1029}.npz      # 8 chunks, 1172 instances total
+  midstep_probe_results.json
+
+arc_dream/
+  chunk_off{0,147,...,1029}.npz      # 8 chunks, 1172 instances total
+  midstep_probe_results.json
 ```
 
 ### Chunk npz format

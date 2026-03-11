@@ -34,6 +34,8 @@ MODEL_NAME = "Qwen/Qwen2.5-7B-Instruct"
 DATASET_CFGS = {
     "jsonschema": {"gen_length": 256, "total": 272},
     "gsm8k": {"gen_length": 512, "total": 1319},
+    "mbpp": {"gen_length": 256, "total": 257},
+    "arc": {"gen_length": 256, "total": 1172},
 }
 
 
@@ -44,6 +46,12 @@ def load_instances(dataset_key, offset, limit):
         all_insts = sorted(list(ds), key=lambda x: x["instance_id"])
     elif dataset_key == "gsm8k":
         ds = load_dataset("openai/gsm8k", "main", split="test")
+        all_insts = list(ds)
+    elif dataset_key == "mbpp":
+        ds = load_dataset("google-research-datasets/mbpp", "sanitized", split="test")
+        all_insts = list(ds)
+    elif dataset_key == "arc":
+        ds = load_dataset("allenai/ai2_arc", "ARC-Challenge", split="test")
         all_insts = list(ds)
     else:
         raise ValueError(f"Unknown dataset: {dataset_key}")
@@ -58,18 +66,38 @@ def build_system_prompt(dataset_key, instance):
             "Here's the JSON schema you must adhere to:\n"
             f"<schema>\n{schema}\n</schema>\n"
         )
-    else:
+    elif dataset_key == "gsm8k":
         return (
             "Solve the math problem step by step. "
             "End your answer with #### followed by the final numeric answer."
+        )
+    elif dataset_key == "mbpp":
+        return (
+            "Write a Python function to solve the given task. "
+            "Return only the function definition."
+        )
+    else:  # arc
+        return (
+            "Answer the multiple choice question. Think step by step, "
+            "then give your final answer as #### followed by a single letter (A, B, C, or D)."
         )
 
 
 def build_user_prompt(dataset_key, instance):
     if dataset_key == "jsonschema":
         return instance["input"]
-    else:
+    elif dataset_key == "gsm8k":
         return instance["question"]
+    elif dataset_key == "mbpp":
+        tests = "\n".join(instance["test_list"])
+        return f"{instance['prompt']}\n\nTest cases:\n{tests}"
+    else:  # arc
+        q = instance["question"]
+        choices = instance["choices"]
+        labels = choices["label"]
+        texts = choices["text"]
+        choice_str = "\n".join(f"{l}. {t}" for l, t in zip(labels, texts))
+        return f"{q}\n\n{choice_str}"
 
 
 def check_functional(dataset_key, instance, output_text):
@@ -94,7 +122,7 @@ def check_functional(dataset_key, instance, output_text):
         except (json_mod.JSONDecodeError, ValueError):
             return False
 
-    else:  # gsm8k
+    elif dataset_key == "gsm8k":
         pred = _extract_gsm8k_answer(output_text)
         gold = _extract_gsm8k_gold(instance["answer"])
         if pred is None:
@@ -103,6 +131,58 @@ def check_functional(dataset_key, instance, output_text):
             return float(pred) == float(gold)
         except ValueError:
             return pred.strip() == gold.strip()
+
+    elif dataset_key == "mbpp":
+        return _check_mbpp(output_text, instance)
+
+    else:  # arc
+        return _check_arc(output_text, instance)
+
+
+def _check_mbpp(output_text, instance):
+    """Check MBPP correctness by executing code + test assertions."""
+    import subprocess
+    import tempfile
+    import os
+
+    code = output_text.strip()
+    # Strip markdown fences
+    if "```python" in code:
+        code = code.split("```python", 1)[-1]
+    if "```" in code:
+        code = code.split("```")[0]
+    code = code.strip()
+
+    tests = "\n".join(instance["test_list"])
+    full_code = f"{code}\n\n{tests}\n"
+
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w", suffix=".py", delete=False
+        ) as f:
+            f.write(full_code)
+            tmp = f.name
+        result = subprocess.run(
+            ["python", tmp],
+            capture_output=True,
+            timeout=10,
+        )
+        os.unlink(tmp)
+        return result.returncode == 0
+    except Exception:
+        return False
+
+
+def _check_arc(output_text, instance):
+    """Check ARC correctness by extracting answer letter."""
+    gold = instance["answerKey"].strip().upper()
+    m = re.search(r"####\s*([A-Da-d])", output_text)
+    if m:
+        return m.group(1).upper() == gold
+    matches = re.findall(r"\b([A-Da-d])\b", output_text)
+    if matches:
+        return matches[-1].upper() == gold
+    return False
 
 
 def _extract_gsm8k_answer(text):

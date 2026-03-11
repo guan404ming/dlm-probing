@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.12.31)  9 MAR 2026 23:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.12.31)  11 MAR 2026 11:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -593,70 +593,78 @@ n/10.95 16\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 32\OML/cmm/m/it/10.95 ; \OT1
 
 
 
+Underfull \vbox (badness 4995) has occurred while \output is active []
+
+
 
 [2]
-<fig1_heatmap.png, id=166, 493.3632pt x 334.851pt>
+Overfull \hbox (0.51247pt too wide) in paragraph at lines 138--139
+\T1/ptm/m/n/10.95 (-20) denoising-dependent sig-nal: step-0 AUC is $\OMS/cmsy/m
+/n/10.95 ^^Y \OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 61$\T1
+/ptm/m/n/10.95 (-20) --
+ []
+
+<fig1_heatmap.png, id=177, 487.3407pt x 554.3109pt>
 File: fig1_heatmap.png Graphic file (type png)
 <use fig1_heatmap.png>
-Package pdftex.def Info: fig1_heatmap.png  used on input line 140.
-(pdftex.def)             Requested size: 219.08614pt x 148.69398pt.
-<fig2_auc_curve.png, id=168, 457.9509pt x 227.1687pt>
+Package pdftex.def Info: fig1_heatmap.png  used on input line 148.
+(pdftex.def)             Requested size: 219.08614pt x 249.1923pt.
+<fig2_auc_curve.png, id=179, 726.5544pt x 221.628pt>
 File: fig2_auc_curve.png Graphic file (type png)
 <use fig2_auc_curve.png>
-Package pdftex.def Info: fig2_auc_curve.png  used on input line 147.
-(pdftex.def)             Requested size: 219.08614pt x 108.67923pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Package pdftex.def Info: fig2_auc_curve.png  used on input line 155.
+(pdftex.def)             Requested size: 219.08614pt x 66.83046pt.
 
 
+
+Underfull \vbox (badness 7740) has occurred while \output is active []
 
 
 
 [3 <./fig1_heatmap.png> <./fig2_auc_curve.png>]
-
-
-
-[4]
-Underfull \hbox (badness 1014) in paragraph at lines 258--261
-\T1/ptm/m/n/10.95 (+20) 7B) and two tasks (JSON schema val-i-da-tion,
+Overfull \hbox (4.83897pt too wide) in paragraph at lines 181--194
+ [][] 
  []
 
 
 
-(./acl_latex.bbl
-Underfull \hbox (badness 2027) in paragraph at lines 59--63
+
+
+[4] (./acl_latex.bbl
+
+
+Underfull \hbox (badness 2027) in paragraph at lines 76--80
 []\T1/ptm/m/n/10 (+20) Aaron Lou, Chen-lin Meng, and Ste-fano Er-mon.
  []
 
 
-Underfull \hbox (badness 3724) in paragraph at lines 66--70
+Underfull \hbox (badness 3724) in paragraph at lines 83--87
 \T1/ptm/m/n/10 (+20) with context-free gram-mars[][].  \T1/ptm/m/it/10 (+20) ar
 Xiv preprint
  []
 
 
-Underfull \hbox (badness 1616) in paragraph at lines 72--76
+Underfull \hbox (badness 1616) in paragraph at lines 89--93
 \T1/ptm/m/n/10 (+20) and Zhen-guo Ou. 2025.  [][]LLaDA: Large lan-
  []
 
 
 
 [5])
-LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 28
-6.
+LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 26
+2.
  (/usr/local/texlive/2025basic/texmf-dist/tex/latex/inconsolata/t1zi4.fd
 File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 10.95pt on input line 286.
+(Font)              scaled to size 10.95pt on input line 262.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `zi4' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-
 ! Undefined control sequence.
-l.295 ...nstruct the feature matrix $X \in \mathbb
+l.271 ...nstruct the feature matrix $X \in \mathbb
                                                   {R}^{n \times d}$ and apply:
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -665,8 +673,15 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
+
+
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 354.
+(caption)                particular \caption on input line 289.
+See the caption package documentation for explanation.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 332.
 See the caption package documentation for explanation.
 
 
@@ -675,18 +690,26 @@ See the caption package documentation for explanation.
 enc}]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 380.
+(caption)                particular \caption on input line 364.
 See the caption package documentation for explanation.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 398.
+See the caption package documentation for explanation.
+
+
+Underfull \vbox (badness 4454) has occurred while \output is active []
 
 
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 407.
+(caption)                particular \caption on input line 433.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (6.39827pt too wide) in paragraph at lines 410--421
+Overfull \hbox (7.89572pt too wide) in paragraph at lines 436--447
  [] 
  []
 
@@ -698,21 +721,21 @@ LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `acl_latex.out' has not changed.
-(rerunfilecheck)             Checksum: D4D7B308A3CBBC97266C2F69FE7C5B86;2046.
+(rerunfilecheck)             Checksum: 8736125B19E0836AF80F2784F0C7FC7E;2195.
  ) 
 Here is how much of TeX's memory you used:
- 15421 strings out of 474662
- 246469 string characters out of 5751108
- 707102 words of memory out of 5000000
- 37848 multiletter control sequences out of 15000+600000
- 619219 words of font info for 301 fonts, out of 8000000 for 9000
+ 15464 strings out of 474662
+ 247003 string characters out of 5751108
+ 708202 words of memory out of 5000000
+ 37862 multiletter control sequences out of 15000+600000
+ 628559 words of font info for 319 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
- 84i,10n,93p,1006b,668s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,10n,93p,1006b,649s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/inconsolata/Incon
 solata-zi4r.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmmi10.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/
+/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/
 public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025basic/texmf-dist/fon
@@ -721,10 +744,10 @@ fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2025basic/texmf-dist/fo
 nts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/t
 ype1/urw/times/utmr8a.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/
 urw/times/utmri8a.pfb>
-Output written on acl_latex.pdf (7 pages, 445576 bytes).
+Output written on acl_latex.pdf (7 pages, 554663 bytes).
 PDF statistics:
- 344 PDF objects out of 1000 (max. 8388607)
- 302 compressed objects within 4 object streams
- 70 named destinations out of 1000 (max. 500000)
- 57987 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 360 PDF objects out of 1000 (max. 8388607)
+ 319 compressed objects within 4 object streams
+ 72 named destinations out of 1000 (max. 500000)
+ 70283 words of extra memory for PDF output out of 74296 (max. 10000000)
 

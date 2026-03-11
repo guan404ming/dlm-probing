@@ -4,7 +4,7 @@ Runs LLaDA or Dream diffusion generation, captures hidden states at 7
 checkpoints, mean-pools into 4 position regions, trains per-layer probes
 to predict functional correctness.
 
-Supported datasets: jsonschema (272 instances), gsm8k (1319 instances).
+Supported datasets: jsonschema (272), gsm8k (1319), mbpp (257), arc (1172).
 Supported models: llada (LLaDA-8B-Instruct), dream (Dream-v0-Instruct-7B).
 
 Usage:
@@ -42,6 +42,8 @@ MODEL_CFGS = {
 DATASET_CFGS = {
     "jsonschema": {"gen_length": 256, "total": 272},
     "gsm8k": {"gen_length": 512, "total": 1319},
+    "mbpp": {"gen_length": 256, "total": 257},
+    "arc": {"gen_length": 256, "total": 1172},
 }
 
 STEPS = 128
@@ -61,6 +63,12 @@ def load_instances(dataset_key, offset, limit):
     elif dataset_key == "gsm8k":
         ds = load_dataset("openai/gsm8k", "main", split="test")
         all_insts = list(ds)
+    elif dataset_key == "mbpp":
+        ds = load_dataset("google-research-datasets/mbpp", "sanitized", split="test")
+        all_insts = sorted(list(ds), key=lambda x: x["task_id"])
+    elif dataset_key == "arc":
+        ds = load_dataset("allenai/ai2_arc", "ARC-Challenge", split="test")
+        all_insts = list(ds)
     else:
         raise ValueError(f"Unknown dataset: {dataset_key}")
     return all_insts[offset:offset + limit]
@@ -74,18 +82,39 @@ def build_system_prompt(dataset_key, instance):
             "Here's the JSON schema you must adhere to:\n"
             f"<schema>\n{schema}\n</schema>\n"
         )
-    else:
+    elif dataset_key == "gsm8k":
         return (
             "Solve the math problem step by step. "
             "End your answer with #### followed by the final numeric answer."
+        )
+    elif dataset_key == "mbpp":
+        return (
+            "You are an expert Python programmer. "
+            "Write a Python function that solves the given task. "
+            "Output only the function definition, no explanations."
+        )
+    else:  # arc
+        return (
+            "Answer the multiple choice question. "
+            "Think step by step, then give your final answer as "
+            "#### followed by a single letter (A, B, C, or D)."
         )
 
 
 def build_user_prompt(dataset_key, instance):
     if dataset_key == "jsonschema":
         return instance["input"]
-    else:
+    elif dataset_key == "gsm8k":
         return instance["question"]
+    elif dataset_key == "mbpp":
+        tests_str = "\n".join(instance["test_list"])
+        return f"{instance['prompt']}\n\nYour code should pass these tests:\n{tests_str}"
+    else:  # arc
+        choices = instance["choices"]
+        choices_str = "\n".join(
+            f"{label}. {text}" for label, text in zip(choices["label"], choices["text"])
+        )
+        return f"{instance['question']}\n\n{choices_str}"
 
 
 def build_prompt_llada(tokenizer, model, dataset_key, instance):
@@ -156,7 +185,7 @@ def check_functional(dataset_key, instance, output_text):
         except (json_mod.JSONDecodeError, ValueError):
             return False
 
-    else:  # gsm8k
+    elif dataset_key == "gsm8k":
         pred = _extract_gsm8k_answer(output_text)
         gold = _extract_gsm8k_gold(instance["answer"])
         if pred is None:
@@ -165,6 +194,12 @@ def check_functional(dataset_key, instance, output_text):
             return float(pred) == float(gold)
         except ValueError:
             return pred.strip() == gold.strip()
+
+    elif dataset_key == "mbpp":
+        return _check_mbpp(output_text, instance)
+
+    else:  # arc
+        return _check_arc(output_text, instance)
 
 
 def _extract_gsm8k_answer(text):
@@ -182,6 +217,63 @@ def _extract_gsm8k_gold(answer_text):
     if m:
         return m.group(1).replace(",", "")
     raise ValueError(f"No answer found in: {answer_text}")
+
+
+def _extract_code(text):
+    """Extract Python code from model output, handling markdown fences."""
+    # Try to extract from ```python ... ``` block
+    m = re.search(r"```(?:python)?\s*\n(.*?)```", text, re.DOTALL)
+    if m:
+        return m.group(1).strip()
+    # Otherwise use the full text (model may output bare code)
+    return text.strip()
+
+
+def _check_mbpp(output_text, instance):
+    """Check MBPP correctness by executing code + test assertions."""
+    import signal
+
+    code = _extract_code(output_text)
+    test_imports = instance.get("test_imports", "") or ""
+    if isinstance(test_imports, list):
+        test_imports = "\n".join(test_imports)
+    tests = instance["test_list"]
+
+    # Build execution string: imports + generated code + tests
+    exec_code = ""
+    if test_imports:
+        exec_code += test_imports + "\n"
+    exec_code += code + "\n"
+    for test in tests:
+        exec_code += test + "\n"
+
+    def _timeout_handler(signum, frame):
+        raise TimeoutError()
+
+    old_handler = signal.signal(signal.SIGALRM, _timeout_handler)
+    signal.alarm(10)  # 10 second timeout
+    try:
+        exec(exec_code, {"__builtins__": __builtins__}, {})
+        return True
+    except Exception:
+        return False
+    finally:
+        signal.alarm(0)
+        signal.signal(signal.SIGALRM, old_handler)
+
+
+def _check_arc(output_text, instance):
+    """Check ARC correctness by extracting answer letter."""
+    gold = instance["answerKey"].strip().upper()
+    # Try #### format first (matches system prompt instruction)
+    m = re.search(r"####\s*([A-Da-d])", output_text)
+    if m:
+        return m.group(1).upper() == gold
+    # Fallback: last standalone letter A-D
+    matches = re.findall(r"\b([A-Da-d])\b", output_text)
+    if matches:
+        return matches[-1].upper() == gold
+    return False
 
 
 # ---- Hidden states ----
@@ -386,18 +478,19 @@ def run_chunk(dataset_key: str, model_key: str, offset: int, limit: int):
         else:
             x, step_features = generate_dream(x, gen_start, attn_mask)
 
-        # Fill missing captures
-        for s in CHECKPOINT_STEPS:
-            if s not in step_features:
-                if model_key == "llada":
-                    out = model(x, output_hidden_states=True)
-                else:
-                    with torch.no_grad():
-                        out = model(x, "full", None, output_hidden_states=True)
-                step_features[s] = capture_hidden_states(
-                    out.hidden_states, gen_start, GEN_LENGTH, N_REGIONS, region_size,
-                )
-                break
+        # Fill missing captures using final state
+        missing = [s for s in CHECKPOINT_STEPS if s not in step_features]
+        if missing:
+            if model_key == "llada":
+                out = model(x, output_hidden_states=True)
+            else:
+                with torch.no_grad():
+                    out = model(x, "full", None, output_hidden_states=True)
+            final_hs = capture_hidden_states(
+                out.hidden_states, gen_start, GEN_LENGTH, N_REGIONS, region_size,
+            )
+            for s in missing:
+                step_features[s] = final_hs
 
         # Check correctness
         output_text = tokenizer.batch_decode(
@@ -420,6 +513,9 @@ def run_chunk(dataset_key: str, model_key: str, offset: int, limit: int):
     total_time = time.monotonic() - t_start
 
     # Stack and save
+    if not labels:
+        print(f"WARNING: no instances processed for offset={offset}")
+        return f"Chunk off={offset}: 0 samples (skipped)"
     for s in CHECKPOINT_STEPS:
         for r in range(N_REGIONS):
             features[s][r] = np.stack(features[s][r])

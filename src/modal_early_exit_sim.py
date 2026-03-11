@@ -46,7 +46,7 @@ def run_early_exit_sim(dataset_key: str, model_key: str, n_chunks: int, total: i
 
     RESULTS_VOL.reload()
 
-    gen_lengths = {"jsonschema": 256, "gsm8k": 512}
+    gen_lengths = {"jsonschema": 256, "gsm8k": 512, "mbpp": 256, "arc": 256}
     gen_length = gen_lengths[dataset_key]
     region_size = gen_length // N_REGIONS
     chunk_size = (total + n_chunks - 1) // n_chunks
@@ -268,7 +268,7 @@ def main(
     chunks: int = 8,
     total: int = 0,
 ):
-    totals = {"jsonschema": 272, "gsm8k": 1319}
+    totals = {"jsonschema": 272, "gsm8k": 1319, "mbpp": 257, "arc": 1172}
     if total <= 0:
         total = totals[dataset]
     print(f"Early exit simulation: dataset={dataset}, model={model}, total={total}")
