@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.12.31)  11 MAR 2026 13:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.12.31)  11 MAR 2026 13:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -438,6 +438,17 @@ LaTeX Info: Redefining \] on input line 2954.
 )
 \@LN@amsmath@ams@eqpen=\count317
 
+(/usr/local/texlive/2025basic/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/local/texlive/2025basic/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup5
+\symAMSb=\mathgroup6
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
 (/usr/local/texlive/2025basic/texmf-dist/tex/latex/l3backend/l3backend-pdftex.d
 ef
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
@@ -446,24 +457,24 @@ File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 ) (./acl_latex.aux)
 \openout1 = `acl_latex.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
 
 (/usr/local/texlive/2025basic/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -482,15 +493,8 @@ LaTeX Font Info:    ... okay on input line 38.
 (/usr/local/texlive/2025basic/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.s
 ty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
- (/usr/local/texlive/2025basic/texmf-dist/tex/latex/grfext/grfext.sty
-Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
-)
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
-Package grfext Info: Graphics extension search list:
-(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
-G,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 504.
 
 (/usr/local/texlive/2025basic/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
@@ -533,25 +537,25 @@ e
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring ON on input line 38.
+Package hyperref Info: Link coloring ON on input line 39.
 (./acl_latex.out) (./acl_latex.out)
 \@outlinefile=\write3
 \openout3 = `acl_latex.out'.
 
-LaTeX Info: Redefining \microtypecontext on input line 38.
-Package microtype Info: Applying patch `item' on input line 38.
-Package microtype Info: Applying patch `toc' on input line 38.
-Package microtype Info: Applying patch `eqnum' on input line 38.
-Package microtype Info: Applying patch `footnote' on input line 38.
-Package microtype Info: Applying patch `verbatim' on input line 38.
-LaTeX Info: Redefining \microtypesetup on input line 38.
+LaTeX Info: Redefining \microtypecontext on input line 39.
+Package microtype Info: Applying patch `item' on input line 39.
+Package microtype Info: Applying patch `toc' on input line 39.
+Package microtype Info: Applying patch `eqnum' on input line 39.
+Package microtype Info: Applying patch `footnote' on input line 39.
+Package microtype Info: Applying patch `verbatim' on input line 39.
+LaTeX Info: Redefining \microtypesetup on input line 39.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 38.
+LaTeX Info: Redefining \showhyphens on input line 39.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -567,11 +571,29 @@ tim
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+lasy on input line 39
+LaTeX Font Info:    Trying to load font information for U+lasy on input line 40
 .
 
 (/usr/local/texlive/2025basic/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
+)
+LaTeX Font Info:    Trying to load font information for U+msa on input line 40.
+
+
+(/usr/local/texlive/2025basic/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+(/usr/local/texlive/2025basic/texmf-dist/tex/latex/microtype/mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 40.
+
+
+(/usr/local/texlive/2025basic/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+(/usr/local/texlive/2025basic/texmf-dist/tex/latex/microtype/mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 
 
@@ -582,7 +604,7 @@ usr/local/texlive/2025basic/texmf-dist/fonts/enc/dvips/base/8r.enc}
 
 
 ]
-Underfull \hbox (badness 1337) in paragraph at lines 83--88
+Underfull \hbox (badness 1337) in paragraph at lines 84--89
 \OMS/cmsy/m/n/10.95 f\OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.
 95 1\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 4\OML/cmm/m/it/10.95 ; \OT1/cmr/m/
 n/10.95 16\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 32\OML/cmm/m/it/10.95 ; \OT1
@@ -598,7 +620,7 @@ Underfull \vbox (badness 2538) has occurred while \output is active []
 
 
 [2]
-Overfull \hbox (0.51247pt too wide) in paragraph at lines 151--152
+Overfull \hbox (0.51247pt too wide) in paragraph at lines 152--153
 \T1/ptm/m/n/10.95 (-20) denoising-dependent sig-nal: step-0 AUC is $\OMS/cmsy/m
 /n/10.95 ^^Y \OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 61$\T1
 /ptm/m/n/10.95 (-20) --
@@ -607,26 +629,26 @@ Overfull \hbox (0.51247pt too wide) in paragraph at lines 151--152
 <fig1_heatmap.png, id=182, 487.3407pt x 309.0747pt>
 File: fig1_heatmap.png Graphic file (type png)
 <use fig1_heatmap.png>
-Package pdftex.def Info: fig1_heatmap.png  used on input line 161.
+Package pdftex.def Info: fig1_heatmap.png  used on input line 162.
 (pdftex.def)             Requested size: 219.08614pt x 138.94556pt.
 <fig2_auc_curve.png, id=186, 726.5544pt x 221.628pt>
 File: fig2_auc_curve.png Graphic file (type png)
 <use fig2_auc_curve.png>
-Package pdftex.def Info: fig2_auc_curve.png  used on input line 168.
+Package pdftex.def Info: fig2_auc_curve.png  used on input line 169.
 (pdftex.def)             Requested size: 219.08614pt x 66.83046pt.
 
 
 
 
 [3 <./fig1_heatmap.png> <./fig2_auc_curve.png>]
-Overfull \hbox (4.83897pt too wide) in paragraph at lines 194--207
+Overfull \hbox (4.83897pt too wide) in paragraph at lines 195--208
  [][] 
  []
 
 
 
 
-Overfull \hbox (1.36435pt too wide) in paragraph at lines 236--239
+Overfull \hbox (1.36435pt too wide) in paragraph at lines 237--240
 \T1/ptm/m/n/10.95 (-20) signal is not a length confound: AUC drops by 0.00--
  []
 
@@ -636,7 +658,7 @@ Underfull \vbox (badness 4441) has occurred while \output is active []
 
 
 [4]
-Underfull \hbox (badness 5189) in paragraph at lines 248--251
+Underfull \hbox (badness 5189) in paragraph at lines 249--252
 []\T1/ptm/m/n/10.95 (+20) We study only two mod-els (LLaDA-8B,
  []
 
@@ -661,47 +683,37 @@ Underfull \hbox (badness 1616) in paragraph at lines 89--93
 
 
 [5])
-LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 26
-9.
+LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 27
+0.
  (/usr/local/texlive/2025basic/texmf-dist/tex/latex/inconsolata/t1zi4.fd
 File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 10.95pt on input line 269.
+(Font)              scaled to size 10.95pt on input line 270.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `zi4' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-! Undefined control sequence.
-l.278 ...nstruct the feature matrix $X \in \mathbb
-                                                  {R}^{n \times d}$ and apply:
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
 
 <fig3_heatmap_appendix.png, id=268, 487.3407pt x 309.0747pt>
 File: fig3_heatmap_appendix.png Graphic file (type png)
 <use fig3_heatmap_appendix.png>
-Package pdftex.def Info: fig3_heatmap_appendix.png  used on input line 295.
+Package pdftex.def Info: fig3_heatmap_appendix.png  used on input line 296.
 (pdftex.def)             Requested size: 219.08614pt x 138.94556pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 296--296
+Underfull \hbox (badness 10000) in paragraph at lines 297--297
 []\T1/ptm/m/n/10 (+20) Figure 3: |AUC heatmaps for MBPP and
  []
 
 
-Underfull \hbox (badness 2443) in paragraph at lines 296--296
+Underfull \hbox (badness 2443) in paragraph at lines 297--297
 []\T1/ptm/m/n/10 (+20) . Both show grad-ual emer-gence
  []
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 306.
+(caption)                particular \caption on input line 307.
 See the caption package documentation for explanation.
 
 
@@ -710,29 +722,29 @@ See the caption package documentation for explanation.
 enc} <./fig3_heatmap_appendix.png>]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 349.
+(caption)                particular \caption on input line 350.
 See the caption package documentation for explanation.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 381.
+(caption)                particular \caption on input line 382.
 See the caption package documentation for explanation.
 
 
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 415.
+(caption)                particular \caption on input line 416.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (7.89572pt too wide) in paragraph at lines 417--428
+Overfull \hbox (7.89572pt too wide) in paragraph at lines 418--429
  [] 
  []
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 439.
+(caption)                particular \caption on input line 440.
 See the caption package documentation for explanation.
 
 
@@ -746,11 +758,11 @@ Package rerunfilecheck Info: File `acl_latex.out' has not changed.
 (rerunfilecheck)             Checksum: 7ED9F71B8BA8F7AB6F99A5943C08D7A6;2338.
  ) 
 Here is how much of TeX's memory you used:
- 15492 strings out of 474662
- 247460 string characters out of 5751108
- 707643 words of memory out of 5000000
- 37876 multiletter control sequences out of 15000+600000
- 628949 words of font info for 325 fonts, out of 8000000 for 9000
+ 16015 strings out of 474662
+ 253518 string characters out of 5751108
+ 707466 words of memory out of 5000000
+ 38378 multiletter control sequences out of 15000+600000
+ 632245 words of font info for 341 fonts, out of 8000000 for 9000
  322 hyphenation exceptions out of 8191
  84i,10n,93p,1006b,638s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/inconsolata/Incon
@@ -762,14 +774,15 @@ public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025basic/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2025basic/texmf-dist/
-fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2025basic/texmf-dist/fo
-nts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/t
-ype1/urw/times/utmr8a.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/
-urw/times/utmri8a.pfb>
-Output written on acl_latex.pdf (7 pages, 578204 bytes).
+fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2025basic/te
+xmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2025basic/texm
+f-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2025basic/texmf-dis
+t/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2025basic/texmf-dist/fon
+ts/type1/urw/times/utmri8a.pfb>
+Output written on acl_latex.pdf (7 pages, 581140 bytes).
 PDF statistics:
- 373 PDF objects out of 1000 (max. 8388607)
- 329 compressed objects within 4 object streams
+ 378 PDF objects out of 1000 (max. 8388607)
+ 332 compressed objects within 4 object streams
  74 named destinations out of 1000 (max. 500000)
  70296 words of extra memory for PDF output out of 74296 (max. 10000000)
 

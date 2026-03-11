@@ -175,7 +175,7 @@ def fig2_auc_curve(data, out_path="assets/fig2_auc_curve.pdf"):
         ax.set_ylim(0.55, 0.90)
 
     axes[0].set_ylabel("Best AUC (across layers)")
-    axes[-1].legend(loc="lower right", fontsize=8)
+    axes[-1].legend(loc="upper right", fontsize=8)
 
     fig.savefig(out_path, bbox_inches="tight", dpi=300)
     fig.savefig(out_path.replace(".pdf", ".png"), bbox_inches="tight", dpi=300)
