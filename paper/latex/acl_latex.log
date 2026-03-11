@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.12.31)  11 MAR 2026 13:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.12.31)  11 MAR 2026 22:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -626,17 +626,20 @@ Overfull \hbox (0.51247pt too wide) in paragraph at lines 152--153
 /ptm/m/n/10.95 (-20) --
  []
 
-<fig1_heatmap.png, id=182, 487.3407pt x 309.0747pt>
+<fig1_heatmap.png, id=190, 487.3407pt x 309.0747pt>
 File: fig1_heatmap.png Graphic file (type png)
 <use fig1_heatmap.png>
 Package pdftex.def Info: fig1_heatmap.png  used on input line 162.
 (pdftex.def)             Requested size: 219.08614pt x 138.94556pt.
-<fig2_auc_curve.png, id=186, 726.5544pt x 221.628pt>
+<fig2_auc_curve.png, id=194, 726.5544pt x 221.628pt>
 File: fig2_auc_curve.png Graphic file (type png)
 <use fig2_auc_curve.png>
 Package pdftex.def Info: fig2_auc_curve.png  used on input line 169.
 (pdftex.def)             Requested size: 219.08614pt x 66.83046pt.
 
+
+
+Underfull \vbox (badness 5637) has occurred while \output is active []
 
 
 
@@ -651,9 +654,6 @@ Overfull \hbox (4.83897pt too wide) in paragraph at lines 195--208
 Overfull \hbox (1.36435pt too wide) in paragraph at lines 237--240
 \T1/ptm/m/n/10.95 (-20) signal is not a length confound: AUC drops by 0.00--
  []
-
-
-Underfull \vbox (badness 4441) has occurred while \output is active []
 
 
 
@@ -684,19 +684,19 @@ Underfull \hbox (badness 1616) in paragraph at lines 89--93
 
 [5])
 LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 27
-0.
+1.
  (/usr/local/texlive/2025basic/texmf-dist/tex/latex/inconsolata/t1zi4.fd
 File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 10.95pt on input line 270.
+(Font)              scaled to size 10.95pt on input line 271.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `zi4' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
 
-<fig3_heatmap_appendix.png, id=268, 487.3407pt x 309.0747pt>
+<fig3_heatmap_appendix.png, id=277, 487.3407pt x 309.0747pt>
 File: fig3_heatmap_appendix.png Graphic file (type png)
 <use fig3_heatmap_appendix.png>
 Package pdftex.def Info: fig3_heatmap_appendix.png  used on input line 296.
@@ -748,21 +748,41 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 See the caption package documentation for explanation.
 
 
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 474.
+See the caption package documentation for explanation.
 
-[7] (./acl_latex.aux)
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[7]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 508.
+See the caption package documentation for explanation.
+
+
+
+
+
+[8
+
+] (./acl_latex.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `acl_latex.out' has not changed.
-(rerunfilecheck)             Checksum: 7ED9F71B8BA8F7AB6F99A5943C08D7A6;2338.
+(rerunfilecheck)             Checksum: 68788724D20E3B3E3142842109AC57EE;2657.
  ) 
 Here is how much of TeX's memory you used:
- 16015 strings out of 474662
- 253518 string characters out of 5751108
- 707466 words of memory out of 5000000
- 38378 multiletter control sequences out of 15000+600000
- 632245 words of font info for 341 fonts, out of 8000000 for 9000
+ 16030 strings out of 474662
+ 253692 string characters out of 5751108
+ 711818 words of memory out of 5000000
+ 38385 multiletter control sequences out of 15000+600000
+ 632375 words of font info for 343 fonts, out of 8000000 for 9000
  322 hyphenation exceptions out of 8191
  84i,10n,93p,1006b,638s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/inconsolata/Incon
@@ -774,15 +794,16 @@ public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025basic/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2025basic/texmf-dist/
-fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2025basic/te
-xmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2025basic/texm
-f-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2025basic/texmf-dis
-t/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2025basic/texmf-dist/fon
-ts/type1/urw/times/utmri8a.pfb>
-Output written on acl_latex.pdf (7 pages, 581140 bytes).
+fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2025basic/texmf-di
+st/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2025basic
+/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2025basic/t
+exmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2025basic/texmf-
+dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2025basic/texmf-dist/
+fonts/type1/urw/times/utmri8a.pfb>
+Output written on acl_latex.pdf (8 pages, 590655 bytes).
 PDF statistics:
- 378 PDF objects out of 1000 (max. 8388607)
- 332 compressed objects within 4 object streams
- 74 named destinations out of 1000 (max. 500000)
- 70296 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 399 PDF objects out of 1000 (max. 8388607)
+ 350 compressed objects within 4 object streams
+ 79 named destinations out of 1000 (max. 500000)
+ 70312 words of extra memory for PDF output out of 74296 (max. 10000000)
 

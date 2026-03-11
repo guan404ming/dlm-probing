@@ -155,7 +155,7 @@ All four tasks have above-chance step-0 signal, but JSON schema gains only $\Del
 Standard deviations across 5-fold CV are $\leq 0.05$ for all configurations, indicating stable estimates.
 Because dLLMs process all generation positions jointly via bidirectional attention, correctness-relevant information is available across the full output region from step~0.
 
-Seed reranking at step~1 yields +0.0\% improvement for both models, confirming that the probe captures instance-level difficulty rather than seed-specific quality.
+We also tested whether the probe could select better random seeds: scoring 5 seeds per instance at step~1 and running full denoising only for the top-scoring seed yields +0.0\% improvement for both models on JSON schema, confirming that the step-0/1 signal reflects instance-level difficulty rather than seed-specific trajectory quality.
 
 \begin{figure}[t]
   \centering
@@ -205,7 +205,7 @@ Table~\ref{tab:early_exit} shows results with a confidence threshold of $\tau = 
     ~~Clf.\ accuracy & 72.4\% & 73.5\% & 70.0\% & 75.9\% \\
     \bottomrule
   \end{tabular}
-  \caption{Selective generation results ($\tau = 0.80$). Compute saved is the fraction of denoising steps avoided by skipping instances predicted to fail (no output is produced for skipped instances). Clf.\ acc is the fraction of instances for which the probe correctly predicts functional vs.\ non-functional.}
+  \caption{Selective generation results ($\tau = 0.80$). Compute saved is the fraction of denoising steps avoided by skipping instances predicted to fail (no output is produced for skipped instances). Classification accuracy (Clf.\ acc) is the fraction of instances for which the probe correctly predicts functional vs.\ non-functional.}
   \label{tab:early_exit}
 \end{table}
 
@@ -248,9 +248,9 @@ The selective generation analysis is a simulation on states from full 128-step g
 
 We study only two models (LLaDA-8B, \mbox{Dream-7B}) and four tasks; broader coverage across architectures (e.g., MDLM, SEDD) and model scales is needed.
 LLaDA and Dream use different unmasking schedules (block-based vs.\ global linear), so the same step index does not correspond to the same fraction of tokens unmasked across models, complicating direct cross-model temporal comparisons in Figures~\ref{fig:heatmap} and~\ref{fig:auc_curve}.
-A length control probe achieves higher AUC than the correctness probe in most settings (Appendix~\ref{sec:appendix_length}); after length matching, correctness AUC drops modestly but remains well above chance. Other surface-level confounders (prompt length, formatting tokens) are not controlled for.
+A length control probe achieves higher AUC than the correctness probe in most settings (Appendix~\ref{sec:appendix_length}); after length matching, correctness AUC drops modestly but remains well above chance. Prompt-length-matched probes similarly show only 0.02 average AUC drop (Appendix~\ref{sec:appendix_prompt_length}). Other surface-level confounders (formatting tokens) are not controlled for.
 
-Probe selection (best layer and region) uses the same cross-validation splits as evaluation rather than a nested protocol, which may yield mildly optimistic estimates. However, the main qualitative patterns are visible across broad layer ranges in Figure~\ref{fig:heatmap}, not only at the selected configuration.
+Probe selection (best layer and region) uses the same cross-validation splits as evaluation. A nested CV reanalysis (Appendix~\ref{sec:appendix_nested_cv}) shows AUC drops by only 0.01 on average (max 0.07), confirming that the main patterns are not artifacts of selection bias.
 We do not compare against simpler confidence heuristics such as token-level entropy, which could serve as a non-probe baseline.
 
 \bibliography{custom}
@@ -267,7 +267,7 @@ Within each block, the model selects the most confident tokens to unmask at each
 Dream uses a global linear schedule: at step $i$, the fraction of tokens to unmask is determined by a linearly decreasing timestep schedule from $t=1$ to $t=\epsilon$, and the most confident masked tokens are unmasked globally.
 
 \paragraph{Prompt construction.}
-For JSON schema, we prepend a system prompt containing the target schema and append \texttt{\`{}\`{}\`{}json\textbackslash{}n} as a generation prefix.
+For JSON schema, we prepend a system prompt containing the target schema and append a JSON code-fence marker as a generation prefix.
 For GSM8K, the system prompt instructs the model to solve step-by-step and end with \texttt{\#\#\#\#} followed by the numeric answer.
 Both models use their respective chat templates.
 
@@ -458,6 +458,74 @@ We pool the 4 extracted regions into 1 (global average), 2 (pairwise average), o
     \multicolumn{4}{l}{\textit{ARC-Challenge}} \\
     ~~LLaDA & 0.747 & 0.740 & 0.744 \\
     ~~Dream & 0.710 & 0.711 & 0.716 \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+\linenumbers
+
+\section{Nested Cross-Validation}
+\label{sec:appendix_nested_cv}
+
+To verify that probe selection does not inflate reported AUC, we rerun all experiments with nested cross-validation: an inner 3-fold CV on training data selects the best (layer, region), and the outer 5-fold evaluates on held-out data.
+
+\nolinenumbers
+\begin{center}
+  \small
+  \captionof{table}{AUC drop from nested vs.\ standard CV. Average drop is 0.01; all qualitative patterns are preserved.}
+  \label{tab:nested_cv}
+  \begin{tabular}{lcc}
+    \toprule
+    & \textbf{Avg Drop} & \textbf{Max Drop} \\
+    \midrule
+    \multicolumn{3}{l}{\textit{JSON Schema}} \\
+    ~~LLaDA & 0.005 & 0.050 \\
+    ~~Dream & 0.035 & 0.072 \\
+    \midrule
+    \multicolumn{3}{l}{\textit{GSM8K}} \\
+    ~~LLaDA & 0.009 & 0.019 \\
+    ~~Dream & 0.008 & 0.014 \\
+    \midrule
+    \multicolumn{3}{l}{\textit{MBPP}} \\
+    ~~LLaDA & 0.025 & 0.053 \\
+    ~~Dream & 0.021 & 0.038 \\
+    \midrule
+    \multicolumn{3}{l}{\textit{ARC-Challenge}} \\
+    ~~LLaDA & 0.002 & 0.015 \\
+    ~~Dream & 0.005 & 0.031 \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+\linenumbers
+
+\section{Prompt Length Control}
+\label{sec:appendix_prompt_length}
+
+We re-train correctness probes on subsamples where functional and non-functional instances have matched prompt length distributions (binned matching, 10 quantile bins).
+
+\nolinenumbers
+\begin{center}
+  \small
+  \captionof{table}{AUC after controlling for prompt length. Average drop is 0.02.}
+  \label{tab:prompt_length}
+  \begin{tabular}{lccc}
+    \toprule
+    & \textbf{Original} & \textbf{Prompt-matched} & \textbf{Drop} \\
+    \midrule
+    \multicolumn{4}{l}{\textit{JSON Schema}} \\
+    ~~LLaDA & 0.80 & 0.75 & 0.052 \\
+    ~~Dream & 0.82 & 0.80 & 0.022 \\
+    \midrule
+    \multicolumn{4}{l}{\textit{GSM8K}} \\
+    ~~LLaDA & 0.78 & 0.77 & 0.015 \\
+    ~~Dream & 0.82 & 0.80 & 0.017 \\
+    \midrule
+    \multicolumn{4}{l}{\textit{MBPP}} \\
+    ~~LLaDA & 0.81 & 0.86 & $-$0.046 \\
+    ~~Dream & 0.88 & 0.85 & 0.028 \\
+    \midrule
+    \multicolumn{4}{l}{\textit{ARC-Challenge}} \\
+    ~~LLaDA & 0.73 & 0.70 & 0.030 \\
+    ~~Dream & 0.71 & 0.68 & 0.029 \\
     \bottomrule
   \end{tabular}
 \end{center}
