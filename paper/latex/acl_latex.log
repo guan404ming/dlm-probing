@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.12.31)  11 MAR 2026 22:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.12.31)  13 MAR 2026 18:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -615,7 +615,15 @@ n/10.95 16\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 32\OML/cmm/m/it/10.95 ; \OT1
 
 
 
-Underfull \vbox (badness 2538) has occurred while \output is active []
+Underfull \hbox (badness 3769) in paragraph at lines 112--118
+\T1/ptm/m/n/10.95 (+20) tural to reasoning-heavy com-plex-ity, test-ing
+ []
+
+
+Underfull \hbox (badness 1137) in paragraph at lines 112--118
+\T1/ptm/m/n/10.95 (+20) by task type: (1) \T1/ptm/b/n/10.95 (+20) JSON schema v
+al-i-da-tion
+ []
 
 
 
@@ -644,16 +652,11 @@ Underfull \vbox (badness 5637) has occurred while \output is active []
 
 
 [3 <./fig1_heatmap.png> <./fig2_auc_curve.png>]
-Overfull \hbox (4.83897pt too wide) in paragraph at lines 195--208
+Overfull \hbox (7.84505pt too wide) in paragraph at lines 195--208
  [][] 
  []
 
 
-
-
-Overfull \hbox (1.36435pt too wide) in paragraph at lines 237--240
-\T1/ptm/m/n/10.95 (-20) signal is not a length confound: AUC drops by 0.00--
- []
 
 
 
@@ -699,21 +702,21 @@ Package microtype Info: Loading generic protrusion settings for font family
 <fig3_heatmap_appendix.png, id=277, 487.3407pt x 309.0747pt>
 File: fig3_heatmap_appendix.png Graphic file (type png)
 <use fig3_heatmap_appendix.png>
-Package pdftex.def Info: fig3_heatmap_appendix.png  used on input line 296.
+Package pdftex.def Info: fig3_heatmap_appendix.png  used on input line 297.
 (pdftex.def)             Requested size: 219.08614pt x 138.94556pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 297--297
+Underfull \hbox (badness 10000) in paragraph at lines 298--298
 []\T1/ptm/m/n/10 (+20) Figure 3: |AUC heatmaps for MBPP and
  []
 
 
-Underfull \hbox (badness 2443) in paragraph at lines 297--297
+Underfull \hbox (badness 2443) in paragraph at lines 298--298
 []\T1/ptm/m/n/10 (+20) . Both show grad-ual emer-gence
  []
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 307.
+(caption)                particular \caption on input line 308.
 See the caption package documentation for explanation.
 
 
@@ -722,34 +725,34 @@ See the caption package documentation for explanation.
 enc} <./fig3_heatmap_appendix.png>]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 350.
+(caption)                particular \caption on input line 351.
 See the caption package documentation for explanation.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 382.
+(caption)                particular \caption on input line 383.
 See the caption package documentation for explanation.
 
 
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 416.
+(caption)                particular \caption on input line 417.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (7.89572pt too wide) in paragraph at lines 418--429
+Overfull \hbox (4.39471pt too wide) in paragraph at lines 419--430
  [] 
  []
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 440.
+(caption)                particular \caption on input line 441.
 See the caption package documentation for explanation.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 474.
+(caption)                particular \caption on input line 475.
 See the caption package documentation for explanation.
 
 
@@ -760,7 +763,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [7]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 508.
+(caption)                particular \caption on input line 509.
 See the caption package documentation for explanation.
 
 
@@ -778,11 +781,11 @@ Package rerunfilecheck Info: File `acl_latex.out' has not changed.
 (rerunfilecheck)             Checksum: 68788724D20E3B3E3142842109AC57EE;2657.
  ) 
 Here is how much of TeX's memory you used:
- 16030 strings out of 474662
- 253692 string characters out of 5751108
- 711818 words of memory out of 5000000
+ 16024 strings out of 474662
+ 253641 string characters out of 5751108
+ 711817 words of memory out of 5000000
  38385 multiletter control sequences out of 15000+600000
- 632375 words of font info for 343 fonts, out of 8000000 for 9000
+ 632020 words of font info for 339 fonts, out of 8000000 for 9000
  322 hyphenation exceptions out of 8191
  84i,10n,93p,1006b,638s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/inconsolata/Incon
@@ -800,7 +803,7 @@ st/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2025basic
 exmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2025basic/texmf-
 dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2025basic/texmf-dist/
 fonts/type1/urw/times/utmri8a.pfb>
-Output written on acl_latex.pdf (8 pages, 590655 bytes).
+Output written on acl_latex.pdf (8 pages, 591760 bytes).
 PDF statistics:
  399 PDF objects out of 1000 (max. 8388607)
  350 compressed objects within 4 object streams

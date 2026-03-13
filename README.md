@@ -1,6 +1,6 @@
 # Probing Functional Correctness in Diffusion Language Models
 
-First probing study of diffusion LLM hidden states. Linear classifiers on intermediate denoising steps predict whether outputs will be functionally correct.
+First probing study of diffusion language model (DLM) hidden states. Linear classifiers on intermediate denoising steps predict whether outputs will be functionally correct.
 
 ## Key Findings
 
