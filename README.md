@@ -55,6 +55,7 @@ Scripts are organized by purpose:
 - `src/core/` — Main experiments and baselines
 - `src/ablations/` — Length, region, std ablations
 - `src/applications/` — Early exit, seed rerank, rebuttal
+- `src/utils/` — Data processing and result comparison
 
 **Core experiments:**
 ```bash
