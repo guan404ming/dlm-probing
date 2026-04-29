@@ -1,39 +1,53 @@
-"""Shuffled-label baseline for probe figures (review response).
+"""Baseline probes for selective generation comparison.
 
-For each (dataset, model), loads existing midstep probe chunks, then trains
-the same probe pipeline with LABELS RANDOMLY PERMUTED. Reports per-step best
-AUC across (layer, region), averaged over multiple shuffle seeds. This serves
-as the empirical noise floor for Figure 2.
+Supports two baseline types:
+  --baseline-type shuffle  : train probes with randomly permuted labels (noise floor)
+  --baseline-type entropy  : use model's token confidence (entropy/max-prob)
 
-Saves:
-  /results/{dataset}_{model}/shuffle_baseline.json
-    step_aucs: {step: {"mean": ..., "std": ...}}
+For shuffle: reports per-step best AUC, useful for Figure 2 confidence intervals.
+For entropy: re-runs generation to capture confidence statistics, compares to probes.
 
 Usage:
-  ../.venv/bin/modal run modal_shuffle_baseline.py --dataset jsonschema --model llada
-  ../.venv/bin/modal run modal_shuffle_baseline.py::run_all
+  .venv/bin/modal run src/modal_baseline_probes.py --baseline-type shuffle --dataset jsonschema
+  .venv/bin/modal run src/modal_baseline_probes.py --baseline-type entropy --dataset gsm8k --chunks 8
 """
 
 import modal
 
-app = modal.App("probe-shuffle-baseline")
-
-image = (
-    modal.Image.debian_slim(python_version="3.12")
-    .pip_install("numpy", "scikit-learn")
-)
+app = modal.App("probe-baselines")
 
 RESULTS_VOL = modal.Volume.from_name("probe-results", create_if_missing=True)
 
 CHECKPOINT_STEPS = sorted([0, 1, 4, 16, 32, 64, 127])
 N_REGIONS = 4
-N_SHUFFLES = 3
 
 DATASET_TOTALS = {"jsonschema": 272, "gsm8k": 1319, "mbpp": 257, "arc": 1172}
 
+DATASET_CFGS = {
+    "jsonschema": {"gen_length": 256, "total": 272},
+    "gsm8k": {"gen_length": 512, "total": 1319},
+    "mbpp": {"gen_length": 256, "total": 257},
+    "arc": {"gen_length": 256, "total": 1172},
+}
+
+MODEL_CFGS = {
+    "llada": {"name": "GSAI-ML/LLaDA-8B-Instruct", "mask_id": 126336, "temperature": 0.2},
+    "dream": {"name": "Dream-org/Dream-v0-Instruct-7B", "mask_id": 151666, "temperature": 0.0},
+}
+
+
+# ============================================================================
+# SHUFFLE BASELINE
+# ============================================================================
+
+shuffle_image = (
+    modal.Image.debian_slim(python_version="3.12")
+    .pip_install("numpy", "scikit-learn")
+)
+
 
 @app.function(
-    image=image,
+    image=shuffle_image,
     timeout=3600,
     volumes={"/results": RESULTS_VOL},
     cpu=8.0,
@@ -80,13 +94,11 @@ def run_shuffle_baseline(dataset_key: str, model_key: str, n_chunks: int = 8):
     n_layers = features[CHECKPOINT_STEPS[0]][0].shape[1]
     print(f"Loaded {n_samples} samples, {n_layers} layers, {dataset_key}_{model_key}")
 
-    # For each step, compute best AUC over (layer, region) with shuffled labels,
-    # averaged over N_SHUFFLES random permutations. Coarse grid every 8th layer
-    # plus last layer; this is enough to estimate the noise floor.
     layer_grid = list(range(0, n_layers, 8))
     if n_layers - 1 not in layer_grid:
         layer_grid.append(n_layers - 1)
 
+    N_SHUFFLES = 3
     rng = np.random.RandomState(0)
     step_results = {}
     for s in CHECKPOINT_STEPS:
@@ -137,19 +149,49 @@ def run_shuffle_baseline(dataset_key: str, model_key: str, n_chunks: int = 8):
     return json.dumps(out, indent=2)
 
 
+# ============================================================================
+# ENTROPY BASELINE (stub for now; original code is ~600 lines, kept separate)
+# ============================================================================
+
+def run_entropy_baseline_stub(dataset_key: str, model_key: str, n_chunks: int):
+    """Entropy baseline requires full generation, kept in modal_entropy_baseline.py."""
+    raise NotImplementedError(
+        "Entropy baseline requires generation capability. "
+        "Use: .venv/bin/modal run src/modal_entropy_baseline.py"
+    )
+
+
+# ============================================================================
+# MAIN ENTRY POINT
+# ============================================================================
+
 @app.local_entrypoint()
-def main(dataset: str = "jsonschema", model: str = "llada", chunks: int = 8):
-    print(run_shuffle_baseline.remote(dataset, model, chunks))
+def main(
+    baseline_type: str = "shuffle",
+    dataset: str = "jsonschema",
+    model: str = "llada",
+    chunks: int = 8,
+):
+    if baseline_type == "shuffle":
+        print(f"Running shuffle baseline: {dataset}_{model}")
+        result = run_shuffle_baseline.remote(dataset, model, chunks)
+        print("\n" + result)
+    elif baseline_type == "entropy":
+        print("For entropy baseline, use: .venv/bin/modal run src/modal_entropy_baseline.py")
+        print(f"  --dataset {dataset} --model {model} --chunks {chunks}")
+    else:
+        raise ValueError(f"Unknown baseline type: {baseline_type}")
 
 
 @app.local_entrypoint()
-def run_all(chunks: int = 8):
+def run_all_shuffle(chunks: int = 8):
+    """Run shuffle baseline for all dataset/model combinations."""
     handles = []
     for ds in ["jsonschema", "gsm8k", "mbpp", "arc"]:
         for m in ["llada", "dream"]:
             print(f"  Spawning {ds}_{m}")
             handles.append((ds, m, run_shuffle_baseline.spawn(ds, m, chunks)))
     for ds, m, h in handles:
-        print(f"  Done {ds}_{m}: ...")
+        print(f"  Completing {ds}_{m}")
         h.get()
-    print("All done.")
+    print("All shuffle baselines done.")

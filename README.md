@@ -48,3 +48,30 @@ Best AUC across layers at each step. JSON schema is flat (~0.80 from step 0), wh
 - **Steps:** 7 checkpoints (0, 1, 4, 16, 32, 64, 127) during 128-step denoising
 - **Regions:** Generation region split into 4 equal-length position regions, mean-pooled
 - **Metric:** AUC (control probes on shuffled labels yield ~0.50)
+
+## Scripts
+
+Scripts are organized by purpose:
+- `src/core/` — Main experiments and baselines
+- `src/ablations/` — Length, region, std ablations
+- `src/applications/` — Early exit, seed rerank, rebuttal
+
+**Core experiments:**
+```bash
+.venv/bin/modal run src/core/modal_midstep_probe.py --dataset jsonschema --model llada --chunks 8
+.venv/bin/modal run src/core/modal_ar_probe.py --dataset jsonschema --chunks 4
+.venv/bin/modal run src/core/modal_baseline_probes.py --baseline-type shuffle --dataset gsm8k
+```
+
+**Ablations:**
+```bash
+.venv/bin/modal run src/ablations/modal_length_ablation_probe.py --dataset arc --mode output_matched
+.venv/bin/modal run src/ablations/modal_region_ablation.py --dataset jsonschema --model llada
+.venv/bin/modal run src/ablations/modal_probe_with_std.py --dataset gsm8k --model dream
+```
+
+**Applications:**
+```bash
+.venv/bin/modal run src/applications/modal_early_exit_sim.py --dataset jsonschema
+.venv/bin/modal run src/applications/modal_seed_rerank.py --dataset gsm8k --model llada
+```
