@@ -275,6 +275,9 @@ A length control probe achieves higher AUC than the correctness probe in most se
 Probe selection (best layer and region) uses the same cross-validation splits as evaluation. A nested CV reanalysis (Appendix~\ref{sec:appendix_nested_cv}) shows AUC drops by only 0.01 on average (max 0.07), confirming that the main patterns are not artifacts of selection bias.
 The filtering simulation in \S\ref{sec:selective_gen} treats the probe as free at inference time; deploying the same procedure live would incur additional cost from a forward pass at each candidate exit step plus probe evaluation, and would require calibrating the threshold $\tau$ on a held-out development split rather than via cross-validation as we do here.
 
+\section*{Acknowledgements}
+We thank Modal for providing compute credits that supported the experiments in this work.
+
 \bibliography{custom}
 
 \appendix
