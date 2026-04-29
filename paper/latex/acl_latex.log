@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.12)  29 APR 2026 16:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.12)  29 APR 2026 17:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -569,6 +569,11 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `zi4' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
+LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
+(Font)              scaled to size 10.95pt on input line 63.
+
+Underfull \vbox (badness 2245) has occurred while \output is active []
+
  [1{/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/
 local/texlive/2026/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2
 026/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}
@@ -584,16 +589,11 @@ n/10.95 16\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 32\OML/cmm/m/it/10.95 ; \OT1
 5 g$\T1/ptm/m/n/10.95 (+20) . At each check-point,
  []
 
-
-Underfull \vbox (badness 3039) has occurred while \output is active []
-
-<fig1_heatmap.png, id=149, 888.1983pt x 198.2607pt>
+<fig1_heatmap.png, id=155, 888.1983pt x 198.2607pt>
 File: fig1_heatmap.png Graphic file (type png)
 <use fig1_heatmap.png>
 Package pdftex.def Info: fig1_heatmap.png  used on input line 115.
 (pdftex.def)             Requested size: 455.24411pt x 101.61682pt.
-LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 10.95pt on input line 125.
 
 Underfull \hbox (badness 10000) in paragraph at lines 124--130
  []\T1/ptm/b/n/10.95 (+20) Datasets.[] \T1/ptm/m/n/10.95 (+20) We se-lect four 
@@ -640,20 +640,20 @@ Overfull \hbox (0.51247pt too wide) in paragraph at lines 164--165
 /ptm/m/n/10.95 (-20) --
  []
 
-<fig2_auc_curve.png, id=193, 783.8886pt x 266.9172pt>
+<fig2_auc_curve.png, id=198, 783.8886pt x 266.9172pt>
 File: fig2_auc_curve.png Graphic file (type png)
 <use fig2_auc_curve.png>
 Package pdftex.def Info: fig2_auc_curve.png  used on input line 174.
 (pdftex.def)             Requested size: 455.24411pt x 155.01164pt.
-[3 <./fig1_heatmap.png>] [4 <./fig2_auc_curve.png>]
+[3 <./fig1_heatmap.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [5]
+ [4 <./fig2_auc_curve.png>] [5]
 Underfull \hbox (badness 5189) in paragraph at lines 270--274
 []\T1/ptm/m/n/10.95 (+20) We study only two mod-els (LLaDA-8B,
  []
 
-(./acl_latex.bbl [6]
+(./acl_latex.bbl
 Underfull \hbox (badness 2027) in paragraph at lines 76--80
 []\T1/ptm/m/n/10 (+20) Aaron Lou, Chen-lin Meng, and Ste-fano Er-mon.
  []
@@ -664,7 +664,7 @@ Underfull \hbox (badness 3724) in paragraph at lines 83--87
 Xiv preprint
  []
 
-
+[6]
 Underfull \hbox (badness 1616) in paragraph at lines 89--93
 \T1/ptm/m/n/10 (+20) and Zhen-guo Ou. 2025.  [][]LLaDA: Large lan-
  []
@@ -673,7 +673,7 @@ Underfull \hbox (badness 1616) in paragraph at lines 89--93
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
 (Font)              scaled to size 9.0pt on input line 302.
  [7]
-<fig3_heatmap_appendix.png, id=297, 888.1983pt x 198.2607pt>
+<fig3_heatmap_appendix.png, id=303, 888.1983pt x 198.2607pt>
 File: fig3_heatmap_appendix.png Graphic file (type png)
 <use fig3_heatmap_appendix.png>
 Package pdftex.def Info: fig3_heatmap_appendix.png  used on input line 337.
@@ -697,12 +697,12 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 423.
 See the caption package documentation for explanation.
 
-[8]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 458.
 See the caption package documentation for explanation.
 
+[8]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 482.
@@ -712,6 +712,10 @@ See the caption package documentation for explanation.
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 516.
 See the caption package documentation for explanation.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
@@ -730,10 +734,6 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 See the caption package documentation for explanation.
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 659.
 See the caption package documentation for explanation.
@@ -747,13 +747,13 @@ Package rerunfilecheck Info: File `acl_latex.out' has not changed.
 (rerunfilecheck)             Checksum: A586385DFEA884C633A18A73DF4BADD4;3121.
  ) 
 Here is how much of TeX's memory you used:
- 15725 strings out of 467525
- 246912 string characters out of 5418982
+ 15734 strings out of 467525
+ 246987 string characters out of 5418982
  721152 words of memory out of 5000000
  43962 multiletter control sequences out of 15000+600000
- 692712 words of font info for 340 fonts, out of 8000000 for 9000
+ 693102 words of font info for 346 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 90i,10n,93p,1006b,604s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,10n,93p,1006b,608s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/inconsolata/Inconsolat
 a-zi4r.pfb></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmmi10.pf
 b></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/
@@ -767,10 +767,10 @@ cmsy8.pfb></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmsy9.pfb>
 r/local/texlive/2026/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/te
 xlive/2026/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2026
 /texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on acl_latex.pdf (10 pages, 693784 bytes).
+Output written on acl_latex.pdf (10 pages, 693775 bytes).
 PDF statistics:
- 422 PDF objects out of 1000 (max. 8388607)
- 369 compressed objects within 4 object streams
+ 424 PDF objects out of 1000 (max. 8388607)
+ 371 compressed objects within 4 object streams
  88 named destinations out of 1000 (max. 500000)
  61112 words of extra memory for PDF output out of 61914 (max. 10000000)
 

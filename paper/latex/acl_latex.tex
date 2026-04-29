@@ -45,9 +45,8 @@
 
 \begin{abstract}
 Diffusion language models generate text by iteratively denoising all tokens in parallel, but when and where their hidden states encode whether the output will be functionally correct remains unknown.
-We present the first probing study of DLM internals, training linear classifiers on hidden states extracted at intermediate denoising steps to predict functional correctness.
-Across two models (LLaDA-8B, \mbox{Dream-7B}) and four tasks (JSON schema validation, math reasoning, code generation, science QA), we find that (1) DLMs uniquely accumulate correctness signal across denoising steps (AUC gains of 0.08--0.11 on reasoning tasks), a capacity absent in single-pass AR decoding; (2) the step-0 representation already carries above-chance signal (AUC 0.61--0.80), but this is comparable to an AR probe on the same prompt and reflects prompt difficulty rather than diffusion-specific computation; (3) signal emergence is task-dependent, with structural tasks showing flat profiles and reasoning tasks showing gradual buildup; and (4) the two models exhibit distinct layer dynamics, with LLaDA concentrating signal in upper layers while Dream redistributes signal toward lower layers on simple tasks.
-We further demonstrate that per-step probe confidence can identify instances likely to fail, enabling offline filtering that avoids 36--98\% of wasted compute depending on the task and outperforms confidence heuristics built on the model's own softmax distribution.
+We present the first probing study of DLM internals, training linear classifiers on hidden states to predict functional correctness.
+Across two models (LLaDA-8B, Dream-7B) and four tasks, we find that DLMs uniquely accumulate correctness signal across denoising steps (AUC gains of 0.08--0.11 on reasoning tasks), absent in single-pass AR decoding. However, step-0 signal reflects prompt difficulty rather than diffusion-specific computation. Signal emergence is task-dependent: structural tasks show flat profiles while reasoning tasks show gradual buildup. The two models exhibit distinct layer dynamics, with LLaDA concentrating signal in upper layers while Dream redistributes toward lower layers. We further show that probe confidence can identify likely failures, enabling selective generation that avoids 36--98\% of wasted compute.
 \end{abstract}
 
 \section{Introduction}
@@ -61,6 +60,7 @@ However, no analogous study exists for diffusion language models, whose bidirect
 
 We address this gap with the first probing study of DLM hidden states.
 Our contributions are: (1) DLMs uniquely accumulate correctness signal across iterative denoising, a capacity absent in single-pass AR decoding: while step-0 hidden states already carry above-chance signal comparable to an AR probe on the same prompt (and thus largely attributable to prompt difficulty rather than diffusion), DLMs gain a further $0.08$--$0.11$ AUC through subsequent denoising on reasoning tasks; (2) we identify task-dependent emergence patterns, with structural tasks showing flat AUC profiles from step~0 and reasoning/code tasks requiring iterative refinement; and (3) we observe distinct layer dynamics between LLaDA and Dream, with LLaDA concentrating signal in upper layers while Dream redistributes signal toward lower layers on simple tasks.
+Code and data are available at \url{https://github.com/guan404ming/dllm-probing}.
 
 \section{Background}
 

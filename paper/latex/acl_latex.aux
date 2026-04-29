@@ -8,9 +8,6 @@
 \citation{nie2025llada}
 \citation{ye2025dream}
 \citation{belinkov2022probing,conneau2018cram}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2}Background}{1}{section.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Diffusion language models.}{1}{section*.1}\protected@file@percent }
 \citation{tenney2019bert}
 \citation{geva2023dissecting}
 \citation{azaria2023internal}
@@ -18,13 +15,16 @@
 \citation{shnaidman2025steering}
 \citation{wang2025time}
 \citation{mundler2025constrained}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background}{1}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Diffusion language models.}{1}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Probing classifiers.}{1}{section*.2}\protected@file@percent }
 \citation{pedregosa2011scikit}
 \citation{nie2025llada}
 \citation{ye2025dream}
 \citation{cobbe2021gsm8k}
 \citation{austin2021program}
 \citation{clark2018arc}
-\@writefile{toc}{\contentsline {paragraph}{Probing classifiers.}{2}{section*.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Related work.}{2}{section*.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Hidden state extraction.}{2}{section*.4}\protected@file@percent }
@@ -48,9 +48,9 @@
 \newlabel{fig:auc_curve}{{2}{4}{Best AUC across layers at each denoising step (x-axis annotated with cumulative \% of generation tokens unmasked). JSON schema is flat ($\approx $0.80 from step~0), while GSM8K, MBPP, and ARC show gradual emergence. Dashed grey trace is the shuffled-label control (mean AUC across both models, averaged over 3 random label permutations); the dotted line marks chance ($0.50$). Standard deviations across 5-fold CV are $\leq 0.05$ for all probe points}{figure.caption.13}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Filtering Hopeless Instances (Offline)}{4}{subsection.5.3}\protected@file@percent }
 \newlabel{sec:selective_gen}{{5.3}{4}{Filtering Hopeless Instances (Offline)}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Comparison to confidence heuristics.}{4}{section*.15}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Filtering simulation ($\tau = 0.80$). \emph  {Compute saved}: fraction of denoising steps avoided by skipping instances the probe predicts will fail (no output is produced for skipped instances). \emph  {Clf.\ accuracy}: fraction of instances for which the probe correctly predicts functional vs.\ non-functional. \emph  {Majority acc.}: trivial baseline that always predicts the majority class. Lift over majority is large for JSON ($+19$--$22\%$) and MBPP ($+7$--$15\%$) but only marginal for ARC ($+1.4\%$ on Dream).}}{4}{table.caption.14}\protected@file@percent }
 \newlabel{tab:early_exit}{{2}{4}{Filtering simulation ($\tau = 0.80$). \emph {Compute saved}: fraction of denoising steps avoided by skipping instances the probe predicts will fail (no output is produced for skipped instances). \emph {Clf.\ accuracy}: fraction of instances for which the probe correctly predicts functional vs.\ non-functional. \emph {Majority acc.}: trivial baseline that always predicts the majority class. Lift over majority is large for JSON ($+19$--$22\%$) and MBPP ($+7$--$15\%$) but only marginal for ARC ($+1.4\%$ on Dream)}{table.caption.14}{}}
-\@writefile{toc}{\contentsline {paragraph}{Comparison to confidence heuristics.}{4}{section*.15}\protected@file@percent }
 \citation{wang2025time}
 \@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{5}{section.6}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Why does step-0 signal exist?}{5}{section*.16}\protected@file@percent }
@@ -85,7 +85,7 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Schematic prompt examples after each model's chat template is applied (special tokens shown as plain words for readability; the actual tokens used are model-specific control tokens). The generation region (128--512 masked tokens) is appended after the final assistant marker. Both models share the same system/user content; only the wrapping tokens differ.}}{7}{figure.caption.23}\protected@file@percent }
 \newlabel{fig:prompt_examples}{{3}{7}{Schematic prompt examples after each model's chat template is applied (special tokens shown as plain words for readability; the actual tokens used are model-specific control tokens). The generation region (128--512 masked tokens) is appended after the final assistant marker. Both models share the same system/user content; only the wrapping tokens differ}{figure.caption.23}{}}
 \@writefile{toc}{\contentsline {paragraph}{Hidden state extraction.}{7}{section*.24}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Probe pipeline.}{8}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Probe pipeline.}{7}{section*.25}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Computational resources.}{8}{section*.26}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {B}Additional Heatmaps}{8}{appendix.B}\protected@file@percent }
 \newlabel{sec:appendix_heatmap}{{B}{8}{Additional Heatmaps}{appendix.B}{}}
@@ -101,12 +101,12 @@
 \newlabel{sec:appendix_length}{{E}{8}{Length Control Probe}{appendix.E}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Best AUC for correctness, length control, and length-matched correctness probes. After controlling for length, correctness AUC drops modestly but remains well above chance.}}{8}{table.5}\protected@file@percent }
 \newlabel{tab:length_control}{{5}{8}{Best AUC for correctness, length control, and length-matched correctness probes. After controlling for length, correctness AUC drops modestly but remains well above chance}{table.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {F}AR Baseline Probe}{8}{appendix.F}\protected@file@percent }
+\newlabel{sec:appendix_ar}{{F}{8}{AR Baseline Probe}{appendix.F}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces AR vs.\ DLM step-0 probe AUC.}}{8}{table.6}\protected@file@percent }
+\newlabel{tab:ar_probe}{{6}{8}{AR vs.\ DLM step-0 probe AUC}{table.6}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces AUC heatmaps for MBPP and \mbox  {ARC-Challenge}. Both show gradual emergence similar to GSM8K. ARC has the weakest overall signal (AUC $\leq $ 0.75).}}{9}{figure.caption.27}\protected@file@percent }
 \newlabel{fig:heatmap_appendix}{{4}{9}{AUC heatmaps for MBPP and \mbox {ARC-Challenge}. Both show gradual emergence similar to GSM8K. ARC has the weakest overall signal (AUC $\leq $ 0.75)}{figure.caption.27}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {F}AR Baseline Probe}{9}{appendix.F}\protected@file@percent }
-\newlabel{sec:appendix_ar}{{F}{9}{AR Baseline Probe}{appendix.F}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces AR vs.\ DLM step-0 probe AUC.}}{9}{table.6}\protected@file@percent }
-\newlabel{tab:ar_probe}{{6}{9}{AR vs.\ DLM step-0 probe AUC}{table.6}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {G}Spatial Pooling Ablation}{9}{appendix.G}\protected@file@percent }
 \newlabel{sec:appendix_region}{{G}{9}{Spatial Pooling Ablation}{appendix.G}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Best AUC by number of position regions. Spread is less than 0.03 within each configuration.}}{9}{table.7}\protected@file@percent }
