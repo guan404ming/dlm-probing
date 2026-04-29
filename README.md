@@ -1,14 +1,16 @@
 # Probing Functional Correctness in Diffusion Language Models
 
+Accepted to ACL 2026 SRW. 🎉
+
 First probing study of diffusion language model (DLM) hidden states. Linear classifiers on intermediate denoising steps predict whether outputs will be functionally correct.
 
 ## Key Findings
 
-1. **Step-0 signal exists** (AUC 0.61-0.80). Prompt encoding alone predicts correctness before any denoising.
-2. **Task-dependent emergence.** Structural tasks (JSON) show flat profiles from step 0, reasoning tasks (GSM8K, MBPP, ARC) show gradual buildup.
-3. **Divergent layer dynamics.** LLaDA concentrates signal in upper layers (L22-28). Dream migrates from upper to lower layers on simple tasks.
-4. **Selective generation.** Per-step probe confidence identifies likely failures, avoiding 36-98% of wasted compute.
-5. **Seed reranking fails.** Probe captures instance difficulty, not seed quality.
+1. **Correctness signal emerges across denoising steps** (+0.08-0.11 AUC on reasoning tasks). Unlike AR models, DLMs accumulate additional signal through iterative refinement on GSM8K, MBPP, and ARC.
+2. **Step-0 signal is prompt difficulty, not diffusion-specific** (AUC 0.61-0.80). Initial hidden states already carry above-chance correctness information, comparable to AR probes on the same prompt.
+3. **Task-dependent emergence patterns.** Structural tasks (JSON) remain flat (~0.80 from step 0), reasoning tasks show gradual buildup (0.08-0.11 AUC gain).
+4. **Distinct layer dynamics.** LLaDA concentrates signal in upper layers (L22-28). Dream migrates from upper to lower layers on JSON schema.
+5. **Offline filtering avoids wasted compute.** Per-step probe confidence identifies likely failures, skipping 36-98% of generations depending on task.
 
 ## Models
 
@@ -46,16 +48,3 @@ Best AUC across layers at each step. JSON schema is flat (~0.80 from step 0), wh
 - **Steps:** 7 checkpoints (0, 1, 4, 16, 32, 64, 127) during 128-step denoising
 - **Regions:** Generation region split into 4 equal-length position regions, mean-pooled
 - **Metric:** AUC (control probes on shuffled labels yield ~0.50)
-
-## Usage
-
-```bash
-# Mid-step probe (8x A100)
-.venv/bin/modal run src/modal_midstep_probe.py --dataset jsonschema --model llada --chunks 8
-
-# Selective generation simulation (CPU)
-.venv/bin/modal run src/modal_early_exit_sim.py --dataset gsm8k --model dream --chunks 8
-
-# Adaptive compute simulation (CPU)
-.venv/bin/modal run src/modal_adaptive_compute_sim.py --dataset gsm8k --model llada --chunks 8
-```
