@@ -1,6 +1,6 @@
 # Probing Functional Correctness in Diffusion Language Models
 
-Accepted to ACL 2026 SRW. 🎉
+Accepted to ACL 2026 SRW. Go check out our [paper](paper.pdf)! 🎉
 
 First probing study of diffusion language model (DLM) hidden states. Linear classifiers on intermediate denoising steps predict whether outputs will be functionally correct.
 

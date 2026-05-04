@@ -2,3 +2,7 @@
 __pycache__/
 *.pyc
 .ruff_cache/
+
+paper/
+texput.log
+.DS_Store
