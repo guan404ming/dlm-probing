@@ -276,7 +276,7 @@ Probe selection (best layer and region) uses the same cross-validation splits as
 The filtering simulation in \S\ref{sec:selective_gen} treats the probe as free at inference time; deploying the same procedure live would incur additional cost from a forward pass at each candidate exit step plus probe evaluation, and would require calibrating the threshold $\tau$ on a held-out development split rather than via cross-validation as we do here.
 
 \section*{Acknowledgements}
-We thank Modal for providing compute credits that supported the experiments in this work. Funding to attend this conference was provided by the Carnegie Mellon University Graduate Student Assembly / Office of the Provost Conference Funding.
+We thank Modal for the compute credits that supported the experiments in this work.
 
 \bibliography{custom}
 
@@ -312,6 +312,13 @@ A complete prompt example for each task is shown in Figure~\ref{fig:prompt_examp
 \label{fig:prompt_examples}
 \end{figure}
 
+\begin{figure*}[!t]
+  \centering
+  \includegraphics[width=\textwidth]{fig3_heatmap_appendix.png}
+  \caption{AUC heatmaps for MBPP and \mbox{ARC-Challenge}. Both show gradual emergence similar to GSM8K. ARC has the weakest overall signal (AUC $\leq$ 0.75).}
+  \label{fig:heatmap_appendix}
+\end{figure*}
+
 \paragraph{Hidden state extraction.}
 At each of the 7 checkpoint steps $\{0, 1, 4, 16, 32, 64, 127\}$, we run a forward pass with \mbox{\texttt{output\_hidden\_states=True}} and extract the full hidden state tensor across all layers.
 The generation region is partitioned into 4 equal-length position regions, and we mean-pool within each region, producing a feature vector of dimension $d$ (4096 for LLaDA, 3584 for Dream) per layer per region per instance.
@@ -334,13 +341,6 @@ Total compute: approximately 30 A100-hours across all experiments.
 \label{sec:appendix_heatmap}
 
 Figure~\ref{fig:heatmap_appendix} extends the heatmaps to MBPP and ARC. Per-model best-layer ranges (LLaDA MBPP L15--31; ARC L18--28 for both models) confirm that the JSON-schema downward migration in \S\ref{sec:divergent_layer} does not occur on these tasks. ARC's heatmaps are visibly washed out (most cells $\leq 0.65$), consistent with the high majority-class baseline ($\geq 74\%$) limiting headroom.
-
-\begin{figure*}[h!]
-  \centering
-  \includegraphics[width=\textwidth]{fig3_heatmap_appendix.png}
-  \caption{AUC heatmaps for MBPP and \mbox{ARC-Challenge}. Both show gradual emergence similar to GSM8K. ARC has the weakest overall signal (AUC $\leq$ 0.75).}
-  \label{fig:heatmap_appendix}
-\end{figure*}
 
 \section{Best Layer per Step}
 \label{sec:appendix_layer}

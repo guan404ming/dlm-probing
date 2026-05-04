@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.12)  29 APR 2026 19:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.12)  4 MAY 2026 18:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -672,16 +672,12 @@ Underfull \hbox (badness 1616) in paragraph at lines 89--93
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
 (Font)              scaled to size 9.0pt on input line 305.
- [7]
-<fig3_heatmap_appendix.png, id=304, 888.1983pt x 198.2607pt>
+<fig3_heatmap_appendix.png, id=282, 888.1983pt x 198.2607pt>
 File: fig3_heatmap_appendix.png Graphic file (type png)
 <use fig3_heatmap_appendix.png>
-Package pdftex.def Info: fig3_heatmap_appendix.png  used on input line 340.
+Package pdftex.def Info: fig3_heatmap_appendix.png  used on input line 317.
 (pdftex.def)             Requested size: 455.24411pt x 101.61682pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
+ [7]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 351.
@@ -697,12 +693,12 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 426.
 See the caption package documentation for explanation.
 
+[8 <./fig3_heatmap_appendix.png>]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 461.
 See the caption package documentation for explanation.
 
-[8]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 485.
@@ -714,15 +710,11 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 See the caption package documentation for explanation.
 
 
-Underfull \vbox (badness 4913) has occurred while \output is active []
-
-
-
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 553.
 See the caption package documentation for explanation.
 
-[9 <./fig3_heatmap_appendix.png>]
+[9]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 593.
@@ -749,11 +741,11 @@ Package rerunfilecheck Info: File `acl_latex.out' has not changed.
 Here is how much of TeX's memory you used:
  15735 strings out of 467525
  246998 string characters out of 5418982
- 720152 words of memory out of 5000000
+ 718152 words of memory out of 5000000
  43962 multiletter control sequences out of 15000+600000
  693102 words of font info for 346 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 90i,10n,93p,1006b,606s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,10n,93p,1006b,645s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/inconsolata/Inconsolat
 a-zi4r.pfb></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmmi10.pf
 b></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/
@@ -767,7 +759,7 @@ cmsy8.pfb></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmsy9.pfb>
 r/local/texlive/2026/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/te
 xlive/2026/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2026
 /texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on acl_latex.pdf (10 pages, 693857 bytes).
+Output written on acl_latex.pdf (10 pages, 693859 bytes).
 PDF statistics:
  425 PDF objects out of 1000 (max. 8388607)
  372 compressed objects within 4 object streams

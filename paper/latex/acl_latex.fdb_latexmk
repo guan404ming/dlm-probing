@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex acl_latex"] 1777455653.57191 "acl_latex.aux" "acl_latex.bbl" "acl_latex" 1777455656.83941 0
+["bibtex acl_latex"] 1777476496.56009 "acl_latex.aux" "acl_latex.bbl" "acl_latex" 1777476499.76337 0
   "./acl_natbib.bst" 1772986904.14794 45186 3d1af46d62cc9172ef6e42b56c1cd613 ""
   "./custom.bib" 1773204722.56102 6782 da28b6851c70862e1633a3162366affd ""
-  "acl_latex.aux" 1777455656.43474 17840 1541c89e647e6f1dba18053cb12a9b9e "pdflatex"
+  "acl_latex.aux" 1777476499.3032 17840 5fb549d56593c20d17143b4d2d635529 "pdflatex"
   (generated)
   "acl_latex.bbl"
   "acl_latex.blg"
   (rewritten before read)
-["pdflatex"] 1777455653.78615 "acl_latex.tex" "acl_latex.pdf" "acl_latex" 1777455656.83975 0
+["pdflatex"] 1777476496.7308 "acl_latex.tex" "acl_latex.pdf" "acl_latex" 1777476499.76358 0
   "/Users/wchiu/Library/texmf/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/Users/wchiu/Library/texmf/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
   "/Users/wchiu/Library/texmf/fonts/tfm/public/amsfonts/cmextra/cmex9.tfm" 1246382020 996 a18840b13b499c08ac2de96a99eda4bc ""
@@ -145,10 +145,10 @@
   "/usr/local/texlive/2026/texmf-var/web2c/pdftex/pdflatex.fmt" 1775991724 3636774 2dff1e7806e63022778e6514705eadd3 ""
   "/usr/local/texlive/2026/texmf.cnf" 1774209515 577 648cd9f92f9c0eac486f4c71c85cfbbe ""
   "acl.sty" 1772986904.14631 11615 e2c027f483aa40e577ed34264c8b0655 ""
-  "acl_latex.aux" 1777455656.43474 17840 1541c89e647e6f1dba18053cb12a9b9e "pdflatex"
-  "acl_latex.bbl" 1777455653.7807 7518 13687f8ad7f67b98e2e78ad855304777 "bibtex acl_latex"
-  "acl_latex.out" 1777455656.43636 3121 a586385dfea884c633a18a73df4badd4 "pdflatex"
-  "acl_latex.tex" 1777455646.29193 44938 9ecca41e2c05bd30d8afa16508ec5175 ""
+  "acl_latex.aux" 1777476499.3032 17840 5fb549d56593c20d17143b4d2d635529 "pdflatex"
+  "acl_latex.bbl" 1777476496.72695 7518 13687f8ad7f67b98e2e78ad855304777 "bibtex acl_latex"
+  "acl_latex.out" 1777476499.30511 3121 a586385dfea884c633a18a73df4badd4 "pdflatex"
+  "acl_latex.tex" 1777476478.36636 45202 fe08936ab1a680af5fb08090dfeb06f6 ""
   "fig1_heatmap.png" 1777451528.93025 132934 d81f5f3f36ef7e8e7ecf323eb5a81e78 ""
   "fig2_auc_curve.png" 1777450808.86019 223321 b4aca33645e41eb500474936d34c6c0c ""
   "fig3_heatmap_appendix.png" 1777450993.91002 124862 ac9a502eae1cf17f29762a854852b338 ""
