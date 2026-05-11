@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.12)  4 MAY 2026 18:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.12)  11 MAY 2026 21:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -570,10 +570,15 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 10.95pt on input line 63.
+(Font)              scaled to size 10.0pt on input line 50.
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 7
+0.
 
-Underfull \vbox (badness 2245) has occurred while \output is active []
-
+(/Users/wchiu/Library/texmf/tex/latex/psnfss/ts1ptm.fd
+File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
+)
+LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
+(Font)              scaled to size 10.95pt on input line 72.
  [1{/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/
 local/texlive/2026/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2
 026/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}
@@ -581,188 +586,198 @@ local/texlive/2026/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2
 
 
 ]
-Underfull \hbox (badness 1337) in paragraph at lines 88--93
-\OMS/cmsy/m/n/10.95 f\OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.
-95 1\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 4\OML/cmm/m/it/10.95 ; \OT1/cmr/m/
-n/10.95 16\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 32\OML/cmm/m/it/10.95 ; \OT1
-/cmr/m/n/10.95 64\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 127\OMS/cmsy/m/n/10.9
-5 g$\T1/ptm/m/n/10.95 (+20) . At each check-point,
- []
-
-<fig1_heatmap.png, id=155, 888.1983pt x 198.2607pt>
-File: fig1_heatmap.png Graphic file (type png)
-<use fig1_heatmap.png>
-Package pdftex.def Info: fig1_heatmap.png  used on input line 115.
-(pdftex.def)             Requested size: 455.24411pt x 101.61682pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 124--130
- []\T1/ptm/b/n/10.95 (+20) Datasets.[] \T1/ptm/m/n/10.95 (+20) We se-lect four 
-tasks span-ning
+Underfull \hbox (badness 10000) in paragraph at lines 80--81
+\T1/ptm/m/n/10.95 (+20) Code and fig-ures: [][]$\T1/zi4/m/n/10.95 https : / / g
+ithub . com /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 124--130
-\T1/ptm/m/n/10.95 (+20) struc-tural to reasoning-heavy com-plex-ity,
+Underfull \hbox (badness 4024) in paragraph at lines 95--97
+ []\T1/ptm/b/n/10.95 (+20) Data.[] \T1/ptm/m/n/10.95 (+20) We reuse cached hid-
+den states and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 124--130
-\T1/ptm/m/n/10.95 (+20) test-ing whether it-er-a-tive de-nois-ing con-
+Underfull \hbox (badness 1371) in paragraph at lines 102--106
+\OML/cmm/m/it/10.95 h \OMS/cmsy/m/n/10.95 2 \U/msb/m/n/10.95 R[]$ \T1/ptm/m/n/1
+0.95 (+20) per sam-ple and en-code it: $\OML/cmm/m/it/10.95 z \OT1/cmr/m/n/10.9
+5 =
  []
 
 
-Underfull \hbox (badness 1565) in paragraph at lines 124--130
-\T1/ptm/m/n/10.95 (+20) tributes dif-fer-ently by task type: (1) \T1/ptm/b/n/10
-.95 (+20) JSON
+Underfull \hbox (badness 2088) in paragraph at lines 102--106
+[] [][]  [] [] \OMS/cmsy/m/n/10.95 2 \U/msb/m/n/10.95 R[]$\T1/ptm/m/n/10.95 (+2
+0) ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 124--130
-\T1/ptm/b/n/10.95 (+20) schema val-i-da-tion \T1/ptm/m/n/10.95 (+20) (272 in-st
-ances from
+Underfull \hbox (badness 1226) in paragraph at lines 108--112
+\T1/ptm/m/n/10.95 (+20) and pass sets at a cell. Fea-ture $\OML/cmm/m/it/10.95 
+i$\T1/ptm/m/n/10.95 (+20) 's en-rich-
  []
 
+<../figures/fig1_trajectory.pdf, id=119, 240.30621pt x 187.56297pt>
+File: ../figures/fig1_trajectory.pdf Graphic file (type pdf)
+<use ../figures/fig1_trajectory.pdf>
+Package pdftex.def Info: ../figures/fig1_trajectory.pdf  used on input line 128
+.
+(pdftex.def)             Requested size: 208.13115pt x 162.45439pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 124--130
-\T1/zi4/m/n/10.95 eth-sri/json-mode-eval-extended\T1/ptm/m/n/10.95 (+20) , an
+Underfull \hbox (badness 6542) in paragraph at lines 134--138
+ []\T1/ptm/b/n/10.95 (+20) Mid-denoising peak.[] \T1/ptm/m/n/10.95 (+20) Fig-ur
+e [][]1[][] shows the
  []
 
-
-Underfull \hbox (badness 7451) in paragraph at lines 124--130
-\T1/ptm/m/n/10.95 (+20) ex-ten-sion of \T1/zi4/m/n/10.95 NousResearch/json-mode
--eval
- []
-
-[2]
-Overfull \hbox (0.51247pt too wide) in paragraph at lines 164--165
-\T1/ptm/m/n/10.95 (-20) denoising-dependent sig-nal: step-0 AUC is $\OMS/cmsy/m
-/n/10.95 ^^Y \OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 61$\T1
-/ptm/m/n/10.95 (-20) --
- []
-
-<fig2_auc_curve.png, id=198, 783.8886pt x 266.9172pt>
-File: fig2_auc_curve.png Graphic file (type png)
-<use fig2_auc_curve.png>
-Package pdftex.def Info: fig2_auc_curve.png  used on input line 174.
-(pdftex.def)             Requested size: 455.24411pt x 155.01164pt.
-[3 <./fig1_heatmap.png>]
+[2 <../figures/fig1_trajectory.pdf>]
+<../figures/fig2_cross.pdf, id=212, 438.92567pt x 175.74332pt>
+File: ../figures/fig2_cross.pdf Graphic file (type pdf)
+<use ../figures/fig2_cross.pdf>
+Package pdftex.def Info: ../figures/fig2_cross.pdf  used on input line 141.
+(pdftex.def)             Requested size: 455.24411pt x 182.28334pt.
+<../figures/fig3_steering.pdf, id=217, 228.14421pt x 181.77887pt>
+File: ../figures/fig3_steering.pdf Graphic file (type pdf)
+<use ../figures/fig3_steering.pdf>
+Package pdftex.def Info: ../figures/fig3_steering.pdf  used on input line 163.
+(pdftex.def)             Requested size: 208.13115pt x 165.83507pt.
+ [3]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [4 <./fig2_auc_curve.png>] [5]
-Underfull \hbox (badness 5189) in paragraph at lines 270--274
-[]\T1/ptm/m/n/10.95 (+20) We study only two mod-els (LLaDA-8B,
+ [4 <../figures/fig2_cross.pdf> <../figures/fig3_steering.pdf>] (./acl_latex.bb
+l
+Underfull \hbox (badness 2884) in paragraph at lines 56--60
+\T1/ptm/m/n/10 (+20) els via sparse au-toen-coders[][].  \T1/ptm/m/it/10 (+20) 
+arXiv preprint
  []
 
-(./acl_latex.bbl
-Underfull \hbox (badness 2027) in paragraph at lines 76--80
+[5]
+Underfull \hbox (badness 2027) in paragraph at lines 69--73
 []\T1/ptm/m/n/10 (+20) Aaron Lou, Chen-lin Meng, and Ste-fano Er-mon.
  []
 
-[6]
-Underfull \hbox (badness 3724) in paragraph at lines 83--87
-\T1/ptm/m/n/10 (+20) with context-free gram-mars[][].  \T1/ptm/m/it/10 (+20) ar
-Xiv preprint
- []
 
-
-Underfull \hbox (badness 1616) in paragraph at lines 89--93
+Underfull \hbox (badness 1616) in paragraph at lines 80--84
 \T1/ptm/m/n/10 (+20) and Zhen-guo Ou. 2025.  [][]LLaDA: Large lan-
  []
 
 )
+<../figures/fig4_feature_drift.pdf, id=350, 485.98314pt x 167.27118pt>
+File: ../figures/fig4_feature_drift.pdf Graphic file (type pdf)
+<use ../figures/fig4_feature_drift.pdf>
+Package pdftex.def Info: ../figures/fig4_feature_drift.pdf  used on input line 
+264.
+(pdftex.def)             Requested size: 208.13115pt x 71.63678pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Overfull \hbox (6.14992pt too wide) in paragraph at lines 292--303
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 9.0pt on input line 305.
-<fig3_heatmap_appendix.png, id=282, 888.1983pt x 198.2607pt>
-File: fig3_heatmap_appendix.png Graphic file (type png)
-<use fig3_heatmap_appendix.png>
-Package pdftex.def Info: fig3_heatmap_appendix.png  used on input line 317.
-(pdftex.def)             Requested size: 455.24411pt x 101.61682pt.
- [7]
+(Font)              scaled to size 9.0pt on input line 327.
 
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 351.
-See the caption package documentation for explanation.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 394.
-See the caption package documentation for explanation.
+LaTeX Warning: File `fig3_heatmap_appendix.png' not found on input line 339.
 
 
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 426.
-See the caption package documentation for explanation.
+! Package pdftex.def Error: File `fig3_heatmap_appendix.png' not found: using d
+raft setting.
 
-[8 <./fig3_heatmap_appendix.png>]
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.339 ...th=\textwidth]{fig3_heatmap_appendix.png}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 461.
-See the caption package documentation for explanation.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 485.
-See the caption package documentation for explanation.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 519.
-See the caption package documentation for explanation.
+[6 <../figures/fig4_feature_drift.pdf>]
+Underfull \vbox (badness 3792) has occurred while \output is active []
 
 
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 553.
-See the caption package documentation for explanation.
 
-[9]
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 593.
-See the caption package documentation for explanation.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 623.
-See the caption package documentation for explanation.
+Underfull \hbox (badness 5504) in paragraph at lines 442--444
+ []\T1/ptm/b/n/10.95 (+20) MBPP.[] \T1/ptm/m/n/10.95 (+20) We ex-tract the firs
+t \T1/zi4/m/n/10.95 def\T1/ptm/m/n/10.95 (+20) -block or
+ []
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 450--451
+ []\T1/ptm/b/n/10.95 (+20) GSM8K.[] \T1/ptm/m/n/10.95 (+20) We ex-tract the pat
+-tern
+ []
 
 
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 662.
-See the caption package documentation for explanation.
+Underfull \hbox (badness 1675) in paragraph at lines 450--451
+\T1/zi4/m/n/10.95 ####\s*([-\d.]+) \T1/ptm/m/n/10.95 (+20) and com-pare to the 
+gold
+ []
 
-[10] (./acl_latex.aux)
+
+Underfull \hbox (badness 2376) in paragraph at lines 450--451
+\T1/ptm/m/n/10.95 (+20) nu-meric an-swer af-ter strip-ping com-mas and
+ []
+
+
+Underfull \vbox (badness 2343) has occurred while \output is active []
+
+ [8]
+[9
+
+] (./acl_latex.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `acl_latex.out' has not changed.
-(rerunfilecheck)             Checksum: A586385DFEA884C633A18A73DF4BADD4;3121.
+(rerunfilecheck)             Checksum: CAAAF8AAE990212D13952743F33074CE;1803.
  ) 
 Here is how much of TeX's memory you used:
- 15735 strings out of 467525
- 246998 string characters out of 5418982
- 718152 words of memory out of 5000000
- 43962 multiletter control sequences out of 15000+600000
- 693102 words of font info for 346 fonts, out of 8000000 for 9000
+ 15768 strings out of 467525
+ 248375 string characters out of 5418982
+ 712374 words of memory out of 5000000
+ 44002 multiletter control sequences out of 15000+600000
+ 696339 words of font info for 344 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 90i,10n,93p,1006b,645s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,10n,93p,1006b,600s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/inconsolata/Inconsolat
-a-zi4r.pfb></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmmi10.pf
-b></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/
-wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmmi9.pfb></Users/wchiu/Libr
-ary/texmf/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/wchiu/Library/texmf/
-fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/wchiu/Library/texmf/fonts/type1
-/public/amsfonts/cm/cmr9.pfb></Users/wchiu/Library/texmf/fonts/type1/public/ams
-fonts/cm/cmsy10.pfb></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/
-cmsy8.pfb></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmsy9.pfb>
-</Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/symbols/msbm10.pfb></us
-r/local/texlive/2026/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/te
-xlive/2026/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2026
-/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on acl_latex.pdf (10 pages, 693859 bytes).
+a-zi4r.pfb></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmex10.pf
+b></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users
+/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmmi6.pfb></Users/wchiu/Lib
+rary/texmf/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/wchiu/Library/texmf
+/fonts/type1/public/amsfonts/cm/cmmi9.pfb></Users/wchiu/Library/texmf/fonts/typ
+e1/public/amsfonts/cm/cmr10.pfb></Users/wchiu/Library/texmf/fonts/type1/public/
+amsfonts/cm/cmr6.pfb></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm
+/cmr7.pfb></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmr8.pfb><
+/Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmr9.pfb></Users/wchi
+u/Library/texmf/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/wchiu/Library
+/texmf/fonts/type1/public/amsfonts/cm/cmsy8.pfb></Users/wchiu/Library/texmf/fon
+ts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2026/texmf-dist
+/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/typ
+e1/urw/times/utmr8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/tim
+es/utmri8a.pfb>
+Output written on acl_latex.pdf (9 pages, 323966 bytes).
 PDF statistics:
- 425 PDF objects out of 1000 (max. 8388607)
- 372 compressed objects within 4 object streams
- 89 named destinations out of 1000 (max. 500000)
- 61112 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 566 PDF objects out of 1000 (max. 8388607)
+ 338 compressed objects within 4 object streams
+ 84 named destinations out of 1000 (max. 500000)
+ 67701 words of extra memory for PDF output out of 74296 (max. 10000000)
 

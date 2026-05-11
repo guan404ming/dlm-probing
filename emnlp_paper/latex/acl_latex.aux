@@ -3,130 +3,109 @@
 \providecommand\hyper@newdestlabel[2]{}
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
-\citation{austin2021d3pm,sahoo2024simple,lou2024discrete}
-\citation{tenney2019bert,geva2023dissecting,azaria2023internal}
-\citation{nie2025llada}
-\citation{ye2025dream}
-\citation{belinkov2022probing,conneau2018cram}
-\citation{tenney2019bert}
-\citation{geva2023dissecting}
-\citation{azaria2023internal}
-\citation{schuster2022confident,elbayad2020depth}
-\citation{shnaidman2025steering}
-\citation{wang2025time}
-\citation{mundler2025constrained}
+\citation{austin2021d3pm,sahoo2024simple,lou2024discrete,nie2025llada,ye2025dream}
+\citation{cunningham2024sae,bricken2023monosemanticity,gao2024scaling}
+\citation{dlmscope2026}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2}Background}{1}{section.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Diffusion language models.}{1}{section*.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Probing classifiers.}{1}{section*.2}\protected@file@percent }
-\citation{pedregosa2011scikit}
+\@writefile{toc}{\contentsline {paragraph}{Contributions.}{1}{section*.1}\protected@file@percent }
 \citation{nie2025llada}
 \citation{ye2025dream}
-\citation{cobbe2021gsm8k}
+\citation{dlmscope2026}
+\citation{makhzani2014topk,gao2024scaling}
+\citation{qwen2.5}
 \citation{austin2021program}
+\citation{cobbe2021gsm8k}
 \citation{clark2018arc}
-\@writefile{toc}{\contentsline {paragraph}{Related work.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Setup}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Diffusion language models.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{DLM-Scope SAEs.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data.}{2}{section*.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Hidden state extraction.}{2}{section*.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Probe training.}{2}{section*.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Functional correctness.}{2}{section*.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Selective generation.}{2}{section*.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{2}{section.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Models.}{2}{section*.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Datasets.}{2}{section*.10}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces AUC heatmaps (layer $\times $ step) for JSON schema and GSM8K. Each cell shows the best AUC across the 4 position regions for that (layer, step) pair. Stars mark the best layer per step. JSON schema shows strong signal from step~0; GSM8K shows gradual emergence. Note Dream's layer migration on JSON schema. Per-cell standard deviations across 5-fold CV are $\leq 0.05$. MBPP and ARC heatmaps in Appendix~\ref {sec:appendix_heatmap}.}}{3}{figure.caption.8}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Per-step SAE encoding.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fail-vs-pass enrichment.}{2}{section*.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces LLaDA-8B / MBPP: KMeans silhouette on the top-20 fail-enriched features (solid) vs.\ permutation null mean (dashed) across denoising steps. The gold band marks the SAE training noise range ($\mathrm  {dlm\_t}\!\in \![0.05,0.5]\!\approx \!$ step 64--122). The signal-to-null gap is $\!\le \!0$ at steps 0--16, jumps to $+0.18$ at step 32, peaks at $+0.31$ at step 64 (the only step with $p{<}0.05$, marked with a star), and falls back to $+0.18$ at step 127.}}{2}{figure.caption.9}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:heatmap}{{1}{3}{AUC heatmaps (layer $\times $ step) for JSON schema and GSM8K. Each cell shows the best AUC across the 4 position regions for that (layer, step) pair. Stars mark the best layer per step. JSON schema shows strong signal from step~0; GSM8K shows gradual emergence. Note Dream's layer migration on JSON schema. Per-cell standard deviations across 5-fold CV are $\leq 0.05$. MBPP and ARC heatmaps in Appendix~\ref {sec:appendix_heatmap}}{figure.caption.8}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Baseline functional correctness rates (seed=0, 128 denoising steps).}}{3}{table.caption.12}\protected@file@percent }
-\newlabel{tab:baselines}{{1}{3}{Baseline functional correctness rates (seed=0, 128 denoising steps)}{table.caption.12}{}}
-\@writefile{toc}{\contentsline {paragraph}{Baseline functional rates.}{3}{section*.11}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{3}{section.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Task-Dependent Emergence}{3}{subsection.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Divergent Layer Dynamics}{3}{subsection.5.2}\protected@file@percent }
-\newlabel{sec:divergent_layer}{{5.2}{3}{Divergent Layer Dynamics}{subsection.5.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Best AUC across layers at each denoising step (x-axis annotated with cumulative \% of generation tokens unmasked). JSON schema is flat ($\approx $0.80 from step~0), while GSM8K, MBPP, and ARC show gradual emergence. Dashed grey trace is the shuffled-label control (mean AUC across both models, averaged over 3 random label permutations); the dotted line marks chance ($0.50$). Standard deviations across 5-fold CV are $\leq 0.05$ for all probe points.}}{4}{figure.caption.13}\protected@file@percent }
-\newlabel{fig:auc_curve}{{2}{4}{Best AUC across layers at each denoising step (x-axis annotated with cumulative \% of generation tokens unmasked). JSON schema is flat ($\approx $0.80 from step~0), while GSM8K, MBPP, and ARC show gradual emergence. Dashed grey trace is the shuffled-label control (mean AUC across both models, averaged over 3 random label permutations); the dotted line marks chance ($0.50$). Standard deviations across 5-fold CV are $\leq 0.05$ for all probe points}{figure.caption.13}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Filtering Hopeless Instances (Offline)}{4}{subsection.5.3}\protected@file@percent }
-\newlabel{sec:selective_gen}{{5.3}{4}{Filtering Hopeless Instances (Offline)}{subsection.5.3}{}}
-\@writefile{toc}{\contentsline {paragraph}{Comparison to confidence heuristics.}{4}{section*.15}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Filtering simulation ($\tau = 0.80$). \emph  {Compute saved}: fraction of denoising steps avoided by skipping instances the probe predicts will fail (no output is produced for skipped instances). \emph  {Clf.\ accuracy}: fraction of instances for which the probe correctly predicts functional vs.\ non-functional. \emph  {Majority acc.}: trivial baseline that always predicts the majority class. Lift over majority is large for JSON ($+19$--$22\%$) and MBPP ($+7$--$15\%$) but only marginal for ARC ($+1.4\%$ on Dream).}}{4}{table.caption.14}\protected@file@percent }
-\newlabel{tab:early_exit}{{2}{4}{Filtering simulation ($\tau = 0.80$). \emph {Compute saved}: fraction of denoising steps avoided by skipping instances the probe predicts will fail (no output is produced for skipped instances). \emph {Clf.\ accuracy}: fraction of instances for which the probe correctly predicts functional vs.\ non-functional. \emph {Majority acc.}: trivial baseline that always predicts the majority class. Lift over majority is large for JSON ($+19$--$22\%$) and MBPP ($+7$--$15\%$) but only marginal for ARC ($+1.4\%$ on Dream)}{table.caption.14}{}}
+\newlabel{fig:trajectory}{{1}{2}{LLaDA-8B / MBPP: KMeans silhouette on the top-20 fail-enriched features (solid) vs.\ permutation null mean (dashed) across denoising steps. The gold band marks the SAE training noise range ($\mathrm {dlm\_t}\!\in \![0.05,0.5]\!\approx \!$ step 64--122). The signal-to-null gap is $\!\le \!0$ at steps 0--16, jumps to $+0.18$ at step 32, peaks at $+0.31$ at step 64 (the only step with $p{<}0.05$, marked with a star), and falls back to $+0.18$ at step 127}{figure.caption.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cluster discriminability with permutation null.}{2}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Steering.}{2}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{2}{section.4}\protected@file@percent }
+\newlabel{sec:trajectory}{{4}{2}{Results}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Mid-denoising peak.}{2}{section*.10}\protected@file@percent }
+\newlabel{sec:cross}{{4}{3}{Cross-model and cross-task replication}{section*.12}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-model and cross-task replication.}{3}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Top-feature drift and persistence.}{3}{section*.13}\protected@file@percent }
+\newlabel{sec:steer}{{4}{3}{Steering null result}{section*.15}{}}
+\@writefile{toc}{\contentsline {paragraph}{Steering null result.}{3}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{3}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Statistical vs.\ causal features.}{3}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why does the silhouette peak mid-denoising?}{3}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for SAE training.}{3}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{3}{section.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Trajectory shape replicates across condition. Each panel plots observed silhouette and permutation null mean across denoising steps. \emph  {Left} (LLaDA-8B / MBPP) and \emph  {middle} (Dream-7B / MBPP): peak at step 64, post-peak fall-back; Dream's signal collapses below null at step 127. \emph  {Right} (LLaDA-8B / JSON schema): step-64 peak plus an additional early-formation shoulder at steps 4--16, paralleling the probe paper's structural-vs-reasoning split.}}{4}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:cross}{{2}{4}{Trajectory shape replicates across condition. Each panel plots observed silhouette and permutation null mean across denoising steps. \emph {Left} (LLaDA-8B / MBPP) and \emph {middle} (Dream-7B / MBPP): peak at step 64, post-peak fall-back; Dream's signal collapses below null at step 127. \emph {Right} (LLaDA-8B / JSON schema): step-64 peak plus an additional early-formation shoulder at steps 4--16, paralleling the probe paper's structural-vs-reasoning split}{figure.caption.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Five steering conditions on LLaDA-8B / MBPP cluster-1 fails ($n{=}8$) and a pass regression control ($n{=}3$). Conditions: baseline (no intervention); suppress \texttt  {f15601} at step 64 (SAE training window); suppress \texttt  {f15601} at step 16 (pre-peak); suppress the top-5 fail features at step 64; reverse intervention ($\alpha \!=\!-5$) adding \texttt  {f15601} at step 64. No condition converts any fail$\to $pass or pass$\to $fail.}}{4}{figure.caption.14}\protected@file@percent }
+\newlabel{fig:steering}{{3}{4}{Five steering conditions on LLaDA-8B / MBPP cluster-1 fails ($n{=}8$) and a pass regression control ($n{=}3$). Conditions: baseline (no intervention); suppress \texttt {f15601} at step 64 (SAE training window); suppress \texttt {f15601} at step 16 (pre-peak); suppress the top-5 fail features at step 64; reverse intervention ($\alpha \!=\!-5$) adding \texttt {f15601} at step 64. No condition converts any fail$\to $pass or pass$\to $fail}{figure.caption.14}{}}
+\@writefile{toc}{\contentsline {paragraph}{SAE training distribution.}{4}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Permutation test interpretation.}{4}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Steering coverage.}{4}{section*.22}\protected@file@percent }
 \citation{wang2025time}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{5}{section.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Why does step-0 signal exist?}{5}{section*.16}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Relationship to temporal oscillation.}{5}{section*.17}\protected@file@percent }
-\newlabel{sec:layer_dynamics_discussion}{{6}{5}{Layer dynamics and training origin}{section*.18}{}}
-\@writefile{toc}{\contentsline {paragraph}{Layer dynamics and training origin.}{5}{section*.18}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{5}{section.7}\protected@file@percent }
 \bibdata{custom}
 \bibcite{austin2021d3pm}{{1}{2021{a}}{{Austin et~al.}}{{Austin, Johnson, Ho, Tarlow, and van~den Berg}}}
 \bibcite{austin2021program}{{2}{2021{b}}{{Austin et~al.}}{{Austin, Odena, Nye, Bosma, Michalewski, Dohan, Jiang, Cai, Terry, Le, and Sutton}}}
-\bibcite{azaria2023internal}{{3}{2023}{{Azaria and Mitchell}}{{}}}
-\bibcite{belinkov2022probing}{{4}{2022}{{Belinkov}}{{}}}
-\bibcite{clark2018arc}{{5}{2018}{{Clark et~al.}}{{Clark, Cowhey, Etzioni, Khot, Sabharwal, Schoenick, and Tafjord}}}
-\bibcite{cobbe2021gsm8k}{{6}{2021}{{Cobbe et~al.}}{{Cobbe, Kosaraju, Bavarian, Chen, Jun, Kaiser, Plappert, Tworek, Hilton, Nakano, Hesse, and Schulman}}}
-\bibcite{conneau2018cram}{{7}{2018}{{Conneau et~al.}}{{Conneau, Kruszewski, Lample, Barrault, and Baroni}}}
-\bibcite{elbayad2020depth}{{8}{2020}{{Elbayad et~al.}}{{Elbayad, Gu, Grave, and Auli}}}
-\bibcite{geva2023dissecting}{{9}{2023}{{Geva et~al.}}{{Geva, Bastings, Filippova, and Globerson}}}
-\bibcite{lou2024discrete}{{10}{2024}{{Lou et~al.}}{{Lou, Meng, and Ermon}}}
-\bibcite{mundler2025constrained}{{11}{2025}{{M{\"u}ndler et~al.}}{{M{\"u}ndler, Dekoninck, and Vechev}}}
-\bibcite{nie2025llada}{{12}{2025}{{Nie et~al.}}{{Nie, Zhu, You, Zhang, and Ou}}}
-\bibcite{pedregosa2011scikit}{{13}{2011}{{Pedregosa et~al.}}{{Pedregosa, Varoquaux, Gramfort, Michel, Thirion, Grisel, Blondel, Prettenhofer, Weiss, Dubourg, Vanderplas, Passos, Cournapeau, Brucher, Perrot, and Duchesnay}}}
-\bibcite{sahoo2024simple}{{14}{2024}{{Sahoo et~al.}}{{Sahoo, Arriola, Schiff, Gokaslan, Marroquin, Chiu, Rush, and Kuleshov}}}
-\bibcite{schuster2022confident}{{15}{2022}{{Schuster et~al.}}{{Schuster, Fisch, Gupta, Dehghani, Bahri, Tran, Tay, and Metzler}}}
-\bibcite{shnaidman2025steering}{{16}{2025}{{Shnaidman et~al.}}{{Shnaidman, Marek, Karpas, and Herzig}}}
-\bibcite{tenney2019bert}{{17}{2019}{{Tenney et~al.}}{{Tenney, Das, and Pavlick}}}
-\bibcite{wang2025time}{{18}{2025}{{Wang et~al.}}{{Wang, Luo, Tang, and Gao}}}
-\bibcite{ye2025dream}{{19}{2025}{{Ye et~al.}}{{Ye, Gong, Lin, Zhuo, Chen, Jiang, Li, Liu, and Liu}}}
-\@writefile{toc}{\contentsline {section}{\numberline {A}Generation and Probing Details}{7}{appendix.A}\protected@file@percent }
-\newlabel{sec:appendix_generation}{{A}{7}{Generation and Probing Details}{appendix.A}{}}
-\@writefile{toc}{\contentsline {paragraph}{Denoising procedure.}{7}{section*.22}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Prompt construction.}{7}{section*.23}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Schematic prompt examples after each model's chat template is applied (special tokens shown as plain words for readability; the actual tokens used are model-specific control tokens). The generation region (128--512 masked tokens) is appended after the final assistant marker. Both models share the same system/user content; only the wrapping tokens differ.}}{7}{figure.caption.24}\protected@file@percent }
-\newlabel{fig:prompt_examples}{{3}{7}{Schematic prompt examples after each model's chat template is applied (special tokens shown as plain words for readability; the actual tokens used are model-specific control tokens). The generation region (128--512 masked tokens) is appended after the final assistant marker. Both models share the same system/user content; only the wrapping tokens differ}{figure.caption.24}{}}
-\@writefile{toc}{\contentsline {paragraph}{Hidden state extraction.}{7}{section*.26}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Probe pipeline.}{7}{section*.27}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces AUC heatmaps for MBPP and \mbox  {ARC-Challenge}. Both show gradual emergence similar to GSM8K. ARC has the weakest overall signal (AUC $\leq $ 0.75).}}{8}{figure.caption.25}\protected@file@percent }
-\newlabel{fig:heatmap_appendix}{{4}{8}{AUC heatmaps for MBPP and \mbox {ARC-Challenge}. Both show gradual emergence similar to GSM8K. ARC has the weakest overall signal (AUC $\leq $ 0.75)}{figure.caption.25}{}}
-\@writefile{toc}{\contentsline {paragraph}{Computational resources.}{8}{section*.28}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {B}Additional Heatmaps}{8}{appendix.B}\protected@file@percent }
-\newlabel{sec:appendix_heatmap}{{B}{8}{Additional Heatmaps}{appendix.B}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {C}Best Layer per Step}{8}{appendix.C}\protected@file@percent }
-\newlabel{sec:appendix_layer}{{C}{8}{Best Layer per Step}{appendix.C}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Best layer (by AUC) at each denoising step. Bold values highlight Dream's migration to lower layers on JSON schema. Other tasks show no such migration.}}{8}{table.3}\protected@file@percent }
-\newlabel{tab:best_layer}{{3}{8}{Best layer (by AUC) at each denoising step. Bold values highlight Dream's migration to lower layers on JSON schema. Other tasks show no such migration}{table.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {D}Selective Generation Details}{8}{appendix.D}\protected@file@percent }
-\newlabel{sec:appendix_early_exit}{{D}{8}{Selective Generation Details}{appendix.D}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Selective generation results across thresholds (\%). ``Sv'' is compute saved by skipping instances predicted to fail. ``Ac'' is classification accuracy.}}{8}{table.4}\protected@file@percent }
-\newlabel{tab:early_exit_full}{{4}{8}{Selective generation results across thresholds (\%). ``Sv'' is compute saved by skipping instances predicted to fail. ``Ac'' is classification accuracy}{table.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {E}Length Control Probe}{8}{appendix.E}\protected@file@percent }
-\newlabel{sec:appendix_length}{{E}{8}{Length Control Probe}{appendix.E}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Best AUC for correctness, length control, and length-matched correctness probes. After controlling for length, correctness AUC drops modestly but remains well above chance.}}{8}{table.5}\protected@file@percent }
-\newlabel{tab:length_control}{{5}{9}{Best AUC for correctness, length control, and length-matched correctness probes. After controlling for length, correctness AUC drops modestly but remains well above chance}{table.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {F}AR Baseline Probe}{9}{appendix.F}\protected@file@percent }
-\newlabel{sec:appendix_ar}{{F}{9}{AR Baseline Probe}{appendix.F}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces AR vs.\ DLM step-0 probe AUC.}}{9}{table.6}\protected@file@percent }
-\newlabel{tab:ar_probe}{{6}{9}{AR vs.\ DLM step-0 probe AUC}{table.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {G}Spatial Pooling Ablation}{9}{appendix.G}\protected@file@percent }
-\newlabel{sec:appendix_region}{{G}{9}{Spatial Pooling Ablation}{appendix.G}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Best AUC by number of position regions. Spread is less than 0.03 within each configuration.}}{9}{table.7}\protected@file@percent }
-\newlabel{tab:region_ablation}{{7}{9}{Best AUC by number of position regions. Spread is less than 0.03 within each configuration}{table.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {H}Nested Cross-Validation}{9}{appendix.H}\protected@file@percent }
-\newlabel{sec:appendix_nested_cv}{{H}{9}{Nested Cross-Validation}{appendix.H}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces AUC drop from nested vs.\ standard CV. Average drop is 0.01; all qualitative patterns are preserved.}}{9}{table.8}\protected@file@percent }
-\newlabel{tab:nested_cv}{{8}{9}{AUC drop from nested vs.\ standard CV. Average drop is 0.01; all qualitative patterns are preserved}{table.8}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {I}Prompt Length Control}{9}{appendix.I}\protected@file@percent }
-\newlabel{sec:appendix_prompt_length}{{I}{9}{Prompt Length Control}{appendix.I}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces AUC after controlling for prompt length. Average drop is 0.02.}}{9}{table.9}\protected@file@percent }
-\newlabel{tab:prompt_length}{{9}{9}{AUC after controlling for prompt length. Average drop is 0.02}{table.9}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {J}Entropy / Confidence Baseline}{9}{appendix.J}\protected@file@percent }
-\newlabel{sec:appendix_entropy}{{J}{9}{Entropy / Confidence Baseline}{appendix.J}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Best per-step AUC across checkpoints. Probe is the hidden-state logistic regression from \S  \ref {sec:selective_gen}; the other three columns use only the model's softmax distribution at each step.}}{10}{table.10}\protected@file@percent }
-\newlabel{tab:entropy_auc}{{10}{10}{Best per-step AUC across checkpoints. Probe is the hidden-state logistic regression from \S \ref {sec:selective_gen}; the other three columns use only the model's softmax distribution at each step}{table.10}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Filtering simulation at $\tau = 0.80$, formatted as compute-saved\%~/~accuracy\%. Probe column matches Table~\ref {tab:early_exit}.}}{10}{table.11}\protected@file@percent }
-\newlabel{tab:entropy_filter}{{11}{10}{Filtering simulation at $\tau = 0.80$, formatted as compute-saved\%~/~accuracy\%. Probe column matches Table~\ref {tab:early_exit}}{table.11}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {K}Shallow-Feature Control}{10}{appendix.K}\protected@file@percent }
-\newlabel{sec:appendix_shallow}{{K}{10}{Shallow-Feature Control}{appendix.K}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Hidden-state probe vs.\ shallow-feature probe (logistic regression on output length, format markers, and ARC predicted letter). Probe column is the best per-step AUC across checkpoints; shallow is mean AUC over 5 folds.}}{10}{table.12}\protected@file@percent }
-\newlabel{tab:shallow_control}{{12}{10}{Hidden-state probe vs.\ shallow-feature probe (logistic regression on output length, format markers, and ARC predicted letter). Probe column is the best per-step AUC across checkpoints; shallow is mean AUC over 5 folds}{table.12}{}}
-\gdef \@abspage@last{10}
+\bibcite{bricken2023monosemanticity}{{3}{2023}{{Bricken et~al.}}{{Bricken, Templeton, Batson, Chen, Jermyn, Conerly, Turner, Anil, Denison, Askell et~al.}}}
+\bibcite{clark2018arc}{{4}{2018}{{Clark et~al.}}{{Clark, Cowhey, Etzioni, Khot, Sabharwal, Schoenick, and Tafjord}}}
+\bibcite{cobbe2021gsm8k}{{5}{2021}{{Cobbe et~al.}}{{Cobbe, Kosaraju, Bavarian, Chen, Jun, Kaiser, Plappert, Tworek, Hilton, Nakano, Hesse, and Schulman}}}
+\bibcite{cunningham2024sae}{{6}{2024}{{Cunningham et~al.}}{{Cunningham, Ewart, Riggs, Huben, and Sharkey}}}
+\bibcite{dlmscope2026}{{7}{2026}{{DLM-Scope Authors}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{Cluster $K$ and choice of metric.}{5}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-model comparison.}{5}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Task coverage.}{5}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sample size and seed dependence.}{5}{section*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Causal interpretation.}{5}{section*.27}\protected@file@percent }
+\bibcite{gao2024scaling}{{8}{2024}{{Gao et~al.}}{{Gao, Goh, Sutskever, Lin, Bills, and Wu}}}
+\bibcite{lou2024discrete}{{9}{2024}{{Lou et~al.}}{{Lou, Meng, and Ermon}}}
+\bibcite{makhzani2014topk}{{10}{2014}{{Makhzani and Frey}}{{}}}
+\bibcite{nie2025llada}{{11}{2025}{{Nie et~al.}}{{Nie, Zhu, You, Zhang, and Ou}}}
+\bibcite{sahoo2024simple}{{12}{2024}{{Sahoo et~al.}}{{Sahoo, Arriola, Schiff, Gokaslan, Marroquin, Chiu, Rush, and Kuleshov}}}
+\bibcite{qwen2.5}{{13}{2024}{{Team}}{{}}}
+\bibcite{wang2025time}{{14}{2025}{{Wang et~al.}}{{Wang, Luo, Tang, and Gao}}}
+\bibcite{ye2025dream}{{15}{2025}{{Ye et~al.}}{{Ye, Gong, Lin, Zhuo, Chen, Jiang, Li, Liu, and Liu}}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Top-Feature Persistence Across Steps}{6}{appendix.A}\protected@file@percent }
+\newlabel{sec:appendix_persist}{{A}{6}{Top-Feature Persistence Across Steps}{appendix.A}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Twelve-cell Grid}{6}{appendix.B}\protected@file@percent }
+\newlabel{sec:appendix_grid}{{B}{6}{Twelve-cell Grid}{appendix.B}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Left: pairwise Jaccard of top-20 fail features between denoising steps. Right: enrichment trajectory of \texttt  {f15601} (persistent peak), \texttt  {f5561} (OOD early only), and \texttt  {f11265} (final only).}}{6}{figure.caption.30}\protected@file@percent }
+\newlabel{fig:drift_app}{{4}{6}{Left: pairwise Jaccard of top-20 fail features between denoising steps. Right: enrichment trajectory of \texttt {f15601} (persistent peak), \texttt {f5561} (OOD early only), and \texttt {f11265} (final only)}{figure.caption.30}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces LLaDA-8B / MBPP per-step diagnose summary.}}{6}{table.caption.31}\protected@file@percent }
+\newlabel{tab:persist}{{1}{6}{LLaDA-8B / MBPP per-step diagnose summary}{table.caption.31}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Generation and Probing Details}{6}{appendix.C}\protected@file@percent }
+\newlabel{sec:appendix_generation}{{C}{6}{Generation and Probing Details}{appendix.C}{}}
+\@writefile{toc}{\contentsline {paragraph}{Denoising procedure.}{6}{section*.33}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Prompt construction.}{6}{section*.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hidden state extraction.}{6}{section*.37}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Silhouette / permutation $p$ at (SAE-layer, step 64) per condition. Bold $p<0.05$. Only two cells reach significance, but trajectory shape (peak at step 64, post-peak collapse) replicates qualitatively across all DLM cells.}}{7}{table.caption.32}\protected@file@percent }
+\newlabel{tab:grid}{{2}{7}{Silhouette / permutation $p$ at (SAE-layer, step 64) per condition. Bold $p<0.05$. Only two cells reach significance, but trajectory shape (peak at step 64, post-peak collapse) replicates qualitatively across all DLM cells}{table.caption.32}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Schematic prompt examples after each model's chat template is applied (special tokens shown as plain words for readability; the actual tokens used are model-specific control tokens). The generation region (128--512 masked tokens) is appended after the final assistant marker. Both models share the same system/user content; only the wrapping tokens differ.}}{7}{figure.caption.35}\protected@file@percent }
+\newlabel{fig:prompt_examples}{{5}{7}{Schematic prompt examples after each model's chat template is applied (special tokens shown as plain words for readability; the actual tokens used are model-specific control tokens). The generation region (128--512 masked tokens) is appended after the final assistant marker. Both models share the same system/user content; only the wrapping tokens differ}{figure.caption.35}{}}
+\@writefile{toc}{\contentsline {paragraph}{Steering hook implementation.}{7}{section*.38}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Computational resources.}{7}{section*.39}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {D}Cross-condition Trajectory Tables}{7}{appendix.D}\protected@file@percent }
+\newlabel{sec:appendix_cross_tables}{{D}{7}{Cross-condition Trajectory Tables}{appendix.D}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Dream-7B / MBPP per-step diagnose summary. The signal-to-null gap peaks at step 64 ($+0.146$) and collapses below zero at step 127, mirroring LLaDA. Top-20 Jaccard $s_{32}\to s_{64}$ is $12/20$ (peak overlap) and $s_{64}\to s_{127}$ is $2/20$ (post-peak drift).}}{7}{table.caption.40}\protected@file@percent }
+\newlabel{tab:dream_traj}{{3}{7}{Dream-7B / MBPP per-step diagnose summary. The signal-to-null gap peaks at step 64 ($+0.146$) and collapses below zero at step 127, mirroring LLaDA. Top-20 Jaccard $s_{32}\to s_{64}$ is $12/20$ (peak overlap) and $s_{64}\to s_{127}$ is $2/20$ (post-peak drift)}{table.caption.40}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces LLaDA-8B / JSON schema per-step diagnose summary. The structural-task profile has positive signal-to-null gap at steps 4--16 (early shoulder), drops at step 32, then recovers at steps 64--127 under a different feature \texttt  {f14288}. Top-20 Jaccard between steps 32 and 64 is $1/20$, indicating disjoint early and late feature sets.}}{7}{table.caption.41}\protected@file@percent }
+\newlabel{tab:jsonschema_traj}{{4}{7}{LLaDA-8B / JSON schema per-step diagnose summary. The structural-task profile has positive signal-to-null gap at steps 4--16 (early shoulder), drops at step 32, then recovers at steps 64--127 under a different feature \texttt {f14288}. Top-20 Jaccard between steps 32 and 64 is $1/20$, indicating disjoint early and late feature sets}{table.caption.41}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Single-feature vs.\ Raw-probe AUC}{7}{appendix.E}\protected@file@percent }
+\newlabel{sec:appendix_auc_compare}{{E}{7}{Single-feature vs.\ Raw-probe AUC}{appendix.E}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {F}Functional Correctness Definitions}{7}{appendix.F}\protected@file@percent }
+\newlabel{sec:appendix_correctness}{{F}{7}{Functional Correctness Definitions}{appendix.F}{}}
+\@writefile{toc}{\contentsline {paragraph}{MBPP.}{7}{section*.43}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces AUC heatmaps for MBPP and \mbox  {ARC-Challenge}. Both show gradual emergence similar to GSM8K. ARC has the weakest overall signal (AUC $\leq $ 0.75).}}{8}{figure.caption.36}\protected@file@percent }
+\newlabel{fig:heatmap_appendix}{{6}{8}{AUC heatmaps for MBPP and \mbox {ARC-Challenge}. Both show gradual emergence similar to GSM8K. ARC has the weakest overall signal (AUC $\leq $ 0.75)}{figure.caption.36}{}}
+\@writefile{toc}{\contentsline {paragraph}{JSON schema.}{8}{section*.44}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{GSM8K.}{8}{section*.45}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{ARC-Challenge.}{8}{section*.46}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Per-cell 5-fold cross-validated AUC predicting functional correctness from top-$N$ SAE features (logistic regression, per-fold selection on training folds only) vs.\ raw-probe baseline (PCA-64 + LR on the SAE-layer hidden state). Bold marks the per-cell maximum.}}{9}{table.caption.42}\protected@file@percent }
+\newlabel{tab:auc_compare}{{5}{9}{Per-cell 5-fold cross-validated AUC predicting functional correctness from top-$N$ SAE features (logistic regression, per-fold selection on training folds only) vs.\ raw-probe baseline (PCA-64 + LR on the SAE-layer hidden state). Bold marks the per-cell maximum}{table.caption.42}{}}
+\gdef \@abspage@last{9}
