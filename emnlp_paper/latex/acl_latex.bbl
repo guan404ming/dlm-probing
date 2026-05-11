@@ -1,4 +1,4 @@
-\begin{thebibliography}{15}
+\begin{thebibliography}{20}
 \providecommand{\natexlab}[1]{#1}
 
 \bibitem[{Austin et~al.(2021{\natexlab{a}})Austin, Johnson, Ho, Tarlow, and
@@ -27,6 +27,11 @@ Trenton Bricken, Adly Templeton, Joshua Batson, Brian Chen, Adam Jermyn, Tom
   learning.
 \newblock \emph{Anthropic Transformer Circuits Thread}.
 
+\bibitem[{Chiu(2026)}]{chiu2026probe}
+Guan-Ming Chiu. 2026.
+\newblock Probing functional correctness in diffusion language models.
+\newblock In \emph{Proceedings of the ACL 2026 Student Research Workshop}.
+
 \bibitem[{Clark et~al.(2018)Clark, Cowhey, Etzioni, Khot, Sabharwal, Schoenick,
   and Tafjord}]{clark2018arc}
 Peter Clark, Isaac Cowhey, Oren Etzioni, Tushar Khot, Ashish Sabharwal, Carissa
@@ -52,11 +57,13 @@ Hoagy Cunningham, Aidan Ewart, Logan Riggs, Robert Huben, and Lee Sharkey.
   models.
 \newblock \emph{International Conference on Learning Representations}.
 
-\bibitem[{{DLM-Scope Authors}(2026)}]{dlmscope2026}
-{DLM-Scope Authors}. 2026.
-\newblock \href {https://arxiv.org/abs/2602.05859} {{DLM-Scope}: Mechanistic
-  interpretability of diffusion language models via sparse autoencoders}.
-\newblock \emph{arXiv preprint arXiv:2602.05859}.
+\bibitem[{Galichin et~al.(2025)Galichin, Dontsov, Druzhinina, Razzhigaev,
+  Rogov, Tutubalina, and Oseledets}]{galichin2025reasoning}
+Andrey Galichin, Alexey Dontsov, Polina Druzhinina, Anton Razzhigaev, Oleg~Y.
+  Rogov, Elena Tutubalina, and Ivan Oseledets. 2025.
+\newblock {I} have covered all the bases here: Interpreting reasoning features
+  in large language models via sparse autoencoders.
+\newblock \emph{arXiv preprint arXiv:2503.18878}.
 
 \bibitem[{Gao et~al.(2024)Gao, Goh, Sutskever, Lin, Bills, and
   Wu}]{gao2024scaling}
@@ -64,6 +71,17 @@ Leo Gao, Gabriel Goh, Ilya Sutskever, Stephanie Lin, Steven Bills, and Jeff Wu.
   2024.
 \newblock Scaling and evaluating sparse autoencoders.
 \newblock \emph{arXiv preprint arXiv:2406.04093}.
+
+\bibitem[{He et~al.(2025)He, Zhao et~al.}]{he2025saif}
+Zirui He, Haiyan Zhao, and 1 others. 2025.
+\newblock {SAIF}: A sparse autoencoder framework for interpreting and steering
+  instruction following of language models.
+\newblock \emph{arXiv preprint arXiv:2502.11356}.
+
+\bibitem[{Korznikov et~al.(2025)}]{korznikov2025roguescalpel}
+Anton Korznikov and 1 others. 2025.
+\newblock The rogue scalpel: Activation steering compromises {LLM} safety.
+\newblock \emph{arXiv preprint arXiv:2509.22067}.
 
 \bibitem[{Lou et~al.(2024)Lou, Meng, and Ermon}]{lou2024discrete}
 Aaron Lou, Chenlin Meng, and Stefano Ermon. 2024.
@@ -82,6 +100,14 @@ Shen Nie, Fengqi Zhu, Chao You, Xiaojun Zhang, and Zhenguo Ou. 2025.
   diffusion with m{A}sking}.
 \newblock \emph{arXiv preprint arXiv:2502.09992}.
 
+\bibitem[{O'Brien et~al.(2024)O'Brien, Majercak, Fernandes, Edgar, Chen, Nori,
+  Carignan, Horvitz, and Poursabzi-Sangdeh}]{obrien2024refusal}
+Kyle O'Brien, David Majercak, Xavier Fernandes, Richard Edgar, Jingya Chen,
+  Harsha Nori, Dean Carignan, Eric Horvitz, and Forough Poursabzi-Sangdeh.
+  2024.
+\newblock Steering language model refusal with sparse autoencoders.
+\newblock \emph{arXiv preprint arXiv:2411.11296}.
+
 \bibitem[{Sahoo et~al.(2024)Sahoo, Arriola, Schiff, Gokaslan, Marroquin, Chiu,
   Rush, and Kuleshov}]{sahoo2024simple}
 Subham~Sekhar Sahoo, Marianne Arriola, Yair Schiff, Aaron Gokaslan, Edgar
@@ -94,6 +120,14 @@ Subham~Sekhar Sahoo, Marianne Arriola, Yair Schiff, Aaron Gokaslan, Edgar
 Qwen Team. 2024.
 \newblock Qwen2.5 technical report.
 \newblock \emph{arXiv preprint arXiv:2412.15115}.
+
+\bibitem[{Wang et~al.(2026)Wang, Jiang, Wan, Yang, Kong, and
+  Zou}]{dlmscope2026}
+Xu~Wang, Bingqing Jiang, Yu~Wan, Baosong Yang, Lingpeng Kong, and Difan Zou.
+  2026.
+\newblock \href {https://arxiv.org/abs/2602.05859} {{DLM-Scope}: Mechanistic
+  interpretability of diffusion language models via sparse autoencoders}.
+\newblock \emph{arXiv preprint arXiv:2602.05859}.
 
 \bibitem[{Wang et~al.(2025)Wang, Luo, Tang, and Gao}]{wang2025time}
 Ziming Wang, Jiahao Luo, Haowei Tang, and Tian Gao. 2025.

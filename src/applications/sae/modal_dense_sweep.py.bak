@@ -1,0 +1,634 @@
+"""Dense step sweep around the mid-denoising peak.
+
+Regenerates LLaDA-MBPP or Dream-MBPP hidden states at fine-grained checkpoint
+steps {48, 52, 56, 60, 64, 68, 72, 76, 80}, encodes through the DLM-Scope
+Mask-SAE, and computes per-step silhouette + permutation null on the top-20
+fail-enriched features (matching modal_sae_diagnose.py).
+
+Output: /results/mbpp_{model}_dense/dense_sweep_results.json with per-step
+silhouette, null mean, p-value, top-1 fail feature.
+
+Usage:
+  .venv/bin/modal run src/applications/sae/modal_dense_sweep.py --model llada
+  .venv/bin/modal run src/applications/sae/modal_dense_sweep.py --model dream
+"""
+
+import modal
+
+app = modal.App("sae-dense-sweep")
+
+image = (
+    modal.Image.debian_slim(python_version="3.12")
+    .apt_install("git", "curl", "build-essential")
+    .pip_install(
+        "torch>=2.0",
+        "transformers==4.52.2",
+        "accelerate>=0.30",
+        "numpy",
+        "datasets==2.21.0",
+        "huggingface_hub",
+        "scikit-learn",
+    )
+)
+
+RESULTS_VOL = modal.Volume.from_name("probe-results", create_if_missing=True)
+HF_CACHE_VOL = modal.Volume.from_name("hf-cache", create_if_missing=True)
+
+MODEL_CFGS = {
+    "llada": {
+        "name": "GSAI-ML/LLaDA-8B-Instruct",
+        "mask_id": 126336,
+        "temperature": 0.2,
+        "sae_repo": "AwesomeInterpretability/llada-mask-topk-sae",
+        "sae_path": "resid_post_layer_26/trainer_2",
+        "sae_layer": 26,
+    },
+    "dream": {
+        "name": "Dream-org/Dream-v0-Instruct-7B",
+        "mask_id": 151666,
+        "temperature": 0.0,
+        "sae_repo": "AwesomeInterpretability/dlm-mask-topk-sae",
+        "sae_path": "saes_mask_Dream-org_Dream-v0-Base-7B_top_k/resid_post_layer_23/trainer_2",
+        "sae_layer": 23,
+    },
+}
+
+GEN_LENGTH = 256
+STEPS = 128
+BLOCK_LENGTH = 32
+N_REGIONS = 4
+PHASE_STEPS = {
+    "plateau": sorted({48, 52, 56, 60, 64, 68, 72, 76, 80}),
+    "post": sorted({84, 92, 100, 108, 116, 124}),
+}
+DENSE_STEPS = PHASE_STEPS["plateau"]  # default; overridden per phase below
+TOP_N_FEATURES = 20
+N_PERMUTATIONS = 1000
+
+
+# ---- Dataset / prompt / correctness helpers (subset of modal_midstep_probe) ----
+
+def load_mbpp(offset, limit):
+    from datasets import load_dataset
+    ds = load_dataset(
+        "google-research-datasets/mbpp", "sanitized", split="test",
+    )
+    all_insts = sorted(list(ds), key=lambda x: x["task_id"])
+    return all_insts[offset:offset + limit]
+
+
+SYS_PROMPT_MBPP = (
+    "You are an expert Python programmer. "
+    "Write a Python function that solves the given task. "
+    "Output only the function definition, no explanations."
+)
+
+
+def _build_messages(instance):
+    tests_str = "\n".join(instance["test_list"])
+    user = f"{instance['prompt']}\n\nYour code should pass these tests:\n{tests_str}"
+    return [
+        {"role": "system", "content": SYS_PROMPT_MBPP},
+        {"role": "user", "content": user},
+    ]
+
+
+def build_prompt_llada(tokenizer, model, instance):
+    import torch
+    messages = _build_messages(instance)
+    text = tokenizer.apply_chat_template(
+        messages, tokenize=False, add_generation_prompt=True,
+    )
+    ids = tokenizer(text)["input_ids"]
+    return torch.tensor(ids, device=model.device).unsqueeze(0)
+
+
+def build_prompt_dream(tokenizer, model, instance):
+    messages = _build_messages(instance)
+    inputs = tokenizer.apply_chat_template(
+        messages, return_tensors="pt", return_dict=True,
+        add_generation_prompt=True,
+    )
+    return (
+        inputs.input_ids.to(model.device),
+        inputs.attention_mask.to(model.device)
+        if "attention_mask" in inputs else None,
+    )
+
+
+def check_mbpp(instance, output_text):
+    """Match original _check_mbpp from modal_midstep_probe.py."""
+    import re
+    import signal
+
+    # Extract code: ```python ... ``` if present, else full text
+    m = re.search(r"```(?:python)?\s*\n(.*?)```", output_text, re.DOTALL)
+    code = m.group(1).strip() if m else output_text.strip()
+
+    test_imports = instance.get("test_imports", "") or ""
+    if isinstance(test_imports, list):
+        test_imports = "\n".join(test_imports)
+    full = test_imports + "\n" + code + "\n" + "\n".join(instance["test_list"])
+
+    def handler(signum, frame):
+        raise TimeoutError()
+
+    signal.signal(signal.SIGALRM, handler)
+    signal.alarm(10)
+    try:
+        exec_globals = {}
+        exec(full, exec_globals)
+        signal.alarm(0)
+        return True
+    except Exception:
+        signal.alarm(0)
+        return False
+
+
+def capture_hidden_states(hs_tuple, gen_start, gen_length, n_regions, region_size):
+    import numpy as np
+    n_layers = len(hs_tuple)
+    feats = np.zeros((n_layers, n_regions, hs_tuple[0].shape[-1]), dtype=np.float32)
+    for li in range(n_layers):
+        h = hs_tuple[li][0, gen_start:gen_start + gen_length]
+        for r in range(n_regions):
+            rs = r * region_size
+            re_ = rs + region_size
+            feats[li, r] = h[rs:re_].float().mean(dim=0).cpu().detach().numpy()
+    return feats
+
+
+# ---- Generation function ----
+
+@app.function(
+    image=image,
+    gpu="A100",
+    timeout=7200,
+    volumes={"/results": RESULTS_VOL, "/hf-cache": HF_CACHE_VOL},
+)
+def run_chunk(model_key: str, offset: int, limit: int, seed: int = 0, phase: str = "plateau"):
+    """Generate MBPP with dense checkpoint steps, save features + labels."""
+    dense_steps = PHASE_STEPS[phase]
+    import os
+    import time
+
+    import numpy as np
+    import torch
+    import torch.nn.functional as F
+    from transformers import AutoTokenizer, AutoModel
+
+    os.environ["HF_HOME"] = "/hf-cache"
+    cfg = MODEL_CFGS[model_key]
+    MODEL_NAME = cfg["name"]
+    MASK_ID = cfg["mask_id"]
+    TEMPERATURE = cfg["temperature"]
+    region_size = GEN_LENGTH // N_REGIONS
+    target_steps = set(DENSE_STEPS)
+
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, trust_remote_code=True)
+    model = AutoModel.from_pretrained(
+        MODEL_NAME, device_map="auto", torch_dtype=torch.bfloat16,
+        trust_remote_code=True,
+    ).eval()
+
+    instances = load_mbpp(offset, limit)
+
+    # LLaDA helpers
+    def add_gumbel_noise(logits, temperature=1.0):
+        if temperature == 0:
+            return logits
+        noise = torch.rand_like(logits, dtype=torch.float64)
+        noise = -torch.log(-torch.log(noise + 1e-20) + 1e-20)
+        return logits.to(torch.float64) + noise * temperature
+
+    def get_num_transfer_tokens(mask_index, steps):
+        mask_num = mask_index.sum(dim=1, keepdim=True)
+        base = mask_num // steps
+        remainder = mask_num % steps
+        return torch.where(
+            torch.arange(steps, device=mask_index.device).unsqueeze(0) < remainder,
+            base + 1, base,
+        )
+
+    def generate_llada(x, gen_start):
+        num_blocks = GEN_LENGTH // BLOCK_LENGTH
+        steps_per_block = STEPS // num_blocks
+        global_step = 0
+        step_features = {}
+        for nb in range(num_blocks):
+            bs = gen_start + nb * BLOCK_LENGTH
+            be = gen_start + (nb + 1) * BLOCK_LENGTH
+            block_mask = (x[:, bs:be] == MASK_ID)
+            n_tr = get_num_transfer_tokens(block_mask, steps_per_block)
+            for si in range(steps_per_block):
+                need_hs = global_step in target_steps
+                out = model(x, output_hidden_states=need_hs)
+                logits = out.logits
+                if need_hs and getattr(out, "hidden_states", None):
+                    step_features[global_step] = capture_hidden_states(
+                        out.hidden_states, gen_start, GEN_LENGTH,
+                        N_REGIONS, region_size,
+                    )
+                logits_n = add_gumbel_noise(logits, temperature=TEMPERATURE)
+                n_transfer = n_tr[0, si].item()
+                if n_transfer == 0:
+                    global_step += 1
+                    continue
+                mask_index = x == MASK_ID
+                x0 = torch.argmax(logits_n, dim=-1)
+                p = F.softmax(logits.to(torch.float64), dim=-1)
+                x0_p = torch.squeeze(
+                    torch.gather(p, dim=-1, index=torch.unsqueeze(x0, -1)), -1
+                )
+                x0_p[:, :bs] = -np.inf
+                x0_p[:, be:] = -np.inf
+                x0 = torch.where(mask_index, x0, x)
+                conf = torch.where(mask_index, x0_p, -np.inf)
+                n_unmask = min(
+                    n_transfer,
+                    mask_index[0, bs:be].sum().item(),
+                )
+                if n_unmask > 0:
+                    _, idx = torch.topk(conf[0], k=n_unmask)
+                    x[0, idx] = x0[0, idx]
+                global_step += 1
+        return x, step_features
+
+    def generate_dream(x, gen_start, attn_mask):
+        EPS = 1e-3
+        if attn_mask is not None and torch.any(attn_mask == 0.0):
+            attn_mask = F.pad(
+                attn_mask, (0, x.shape[1] - attn_mask.shape[1]), value=1.0
+            )
+            tok_idx = attn_mask.long().cumsum(-1) - 1
+            tok_idx.masked_fill_(attn_mask == 0, 1)
+            attn_mask = torch.logical_and(
+                attn_mask.unsqueeze(1).unsqueeze(-2),
+                attn_mask.unsqueeze(1).unsqueeze(-1),
+            )
+        else:
+            tok_idx = None
+            attn_mask = "full"
+        timesteps = torch.linspace(1, EPS, STEPS + 1, device=x.device)
+        step_features = {}
+        with torch.no_grad():
+            for i in range(STEPS):
+                mask_index = x == MASK_ID
+                need_hs = i in target_steps
+                out = model(x, attn_mask, tok_idx, output_hidden_states=need_hs)
+                logits = out.logits
+                logits = torch.cat([logits[:, :1], logits[:, :-1]], dim=1)
+                if need_hs and getattr(out, "hidden_states", None):
+                    step_features[i] = capture_hidden_states(
+                        out.hidden_states, gen_start, GEN_LENGTH,
+                        N_REGIONS, region_size,
+                    )
+                mask_logits = logits[mask_index]
+                t = timesteps[i]
+                s = timesteps[i + 1]
+                conf, x0 = mask_logits.max(dim=-1)
+                num_mask = mask_index.sum() / mask_index.shape[0]
+                n_tt = (
+                    int(num_mask * (1 - s / t)) if i < STEPS - 1 else int(num_mask)
+                )
+                full_conf = torch.full_like(
+                    x, -torch.inf, device=model.device, dtype=logits.dtype,
+                )
+                full_conf[mask_index] = conf
+                if n_tt > 0:
+                    _, tr_idx = torch.topk(full_conf, n_tt)
+                    x_ = torch.zeros_like(x) + MASK_ID
+                    x_[mask_index] = x0.clone()
+                    rows = (
+                        torch.arange(x.size(0), device=model.device)
+                        .unsqueeze(1).expand_as(tr_idx)
+                    )
+                    x[rows, tr_idx] = x_[rows, tr_idx]
+        return x, step_features
+
+    # Main loop
+    features = {s: {r: [] for r in range(N_REGIONS)} for s in DENSE_STEPS}
+    labels = []
+
+    print(f"Chunk offset={offset}, limit={limit}, model={model_key}")
+    t_start = time.monotonic()
+
+    for i, inst in enumerate(instances):
+        if model_key == "llada":
+            prompt_ids = build_prompt_llada(tokenizer, model, inst)
+            attn_mask = None
+        else:
+            prompt_ids, attn_mask = build_prompt_dream(tokenizer, model, inst)
+        gen_start = prompt_ids.shape[1]
+
+        torch.manual_seed(seed)
+        t0 = time.monotonic()
+        x = torch.full(
+            (1, gen_start + GEN_LENGTH), MASK_ID,
+            dtype=torch.long, device=model.device,
+        )
+        x[:, :gen_start] = prompt_ids.clone()
+
+        if model_key == "llada":
+            x, sf = generate_llada(x, gen_start)
+        else:
+            x, sf = generate_dream(x, gen_start, attn_mask)
+
+        # Fill missing with final state (shouldn't happen for dense steps in range)
+        missing = [s for s in DENSE_STEPS if s not in sf]
+        if missing:
+            print(f"  WARN: missing steps {missing}")
+
+        output_text = tokenizer.batch_decode(
+            x[:, gen_start:], skip_special_tokens=True,
+        )[0]
+        labels.append(int(check_mbpp(inst, output_text)))
+
+        for s in DENSE_STEPS:
+            if s in sf:
+                for r in range(N_REGIONS):
+                    features[s][r].append(sf[s][:, r, :])
+
+        elapsed = time.monotonic() - t0
+        if (i + 1) % 10 == 0 or i == len(instances) - 1:
+            print(
+                f"  [{i+1}/{len(instances)}] "
+                f"pass={sum(labels)}/{len(labels)}, t={elapsed:.1f}s"
+            )
+
+    total_time = time.monotonic() - t_start
+    for s in DENSE_STEPS:
+        for r in range(N_REGIONS):
+            if features[s][r]:
+                features[s][r] = np.stack(features[s][r])
+
+    suffix = "" if seed == 0 else f"_seed{seed}"
+    out_dir = f"/results/mbpp_{model_key}_dense{suffix}"
+    os.makedirs(out_dir, exist_ok=True)
+    import numpy as np
+    np.savez_compressed(
+        f"{out_dir}/chunk_off{offset}.npz",
+        labels=np.array(labels),
+        **{
+            f"feat_s{s}_r{r}": features[s][r]
+            for s in DENSE_STEPS
+            for r in range(N_REGIONS)
+            if isinstance(features[s][r], np.ndarray)
+        },
+    )
+
+    n_func = sum(labels)
+    summary = (
+        f"Chunk off={offset}: {len(labels)} samples, {n_func} pass "
+        f"({100*n_func/len(labels):.1f}%), {total_time:.0f}s"
+    )
+    print(summary)
+    RESULTS_VOL.commit()
+    return summary
+
+
+# ---- TopK SAE loader ----
+
+class TopKSAE:
+    def __init__(self, d_in, d_sae, k):
+        import torch
+        self.d_in = d_in
+        self.d_sae = d_sae
+        self.k = k
+        self._torch = torch
+        self.W_enc = None
+        self.b_enc = None
+        self.W_dec = None
+        self.b_dec = None
+
+    def load_from_state_dict(self, state):
+        torch = self._torch
+
+        def pick(*cands):
+            for c in cands:
+                if c in state:
+                    return state[c]
+            return None
+
+        W_enc = pick("encoder.weight", "W_enc", "encoder.W")
+        b_enc = pick("encoder.bias", "b_enc")
+        W_dec = pick("decoder.weight", "W_dec", "decoder.W")
+        b_dec = pick("b_dec", "decoder.bias", "pre_bias")
+        assert W_enc is not None and W_dec is not None
+        self.W_enc = W_enc.cuda().float()
+        self.b_enc = (
+            b_enc.cuda().float() if b_enc is not None
+            else torch.zeros(self.d_sae, device="cuda")
+        )
+        self.W_dec = W_dec.cuda().float()
+        self.b_dec = (
+            b_dec.cuda().float() if b_dec is not None
+            else torch.zeros(self.d_in, device="cuda")
+        )
+        if self.W_enc.shape == (self.d_sae, self.d_in):
+            self._enc_op = "in_at_wt"
+        elif self.W_enc.shape == (self.d_in, self.d_sae):
+            self._enc_op = "in_at_w"
+        else:
+            raise ValueError(f"Bad W_enc shape {self.W_enc.shape}")
+
+    def encode(self, x):
+        torch = self._torch
+        x = x - self.b_dec
+        if self._enc_op == "in_at_wt":
+            pre = x @ self.W_enc.T + self.b_enc
+        else:
+            pre = x @ self.W_enc + self.b_enc
+        topk_vals, topk_idx = pre.topk(self.k, dim=-1)
+        topk_vals = topk_vals.relu()
+        sparse = torch.zeros_like(pre)
+        sparse.scatter_(-1, topk_idx, topk_vals)
+        return sparse
+
+
+# ---- Analyze per dense step ----
+
+@app.function(
+    image=image,
+    gpu="A100",
+    timeout=3600,
+    volumes={"/results": RESULTS_VOL, "/hf-cache": HF_CACHE_VOL},
+)
+def analyze(model_key: str, n_chunks: int, total: int, seed: int = 0):
+    import json
+    import os
+
+    import numpy as np
+    import torch
+    from huggingface_hub import hf_hub_download
+    from sklearn.cluster import KMeans
+    from sklearn.metrics import silhouette_score
+
+    os.environ["HF_HOME"] = "/hf-cache"
+    RESULTS_VOL.reload()
+    cfg = MODEL_CFGS[model_key]
+    SAE_LAYER = cfg["sae_layer"]
+
+    ae_local = hf_hub_download(
+        repo_id=cfg["sae_repo"],
+        filename=f"{cfg['sae_path']}/ae.pt",
+        cache_dir="/hf-cache",
+    )
+    cfg_local = hf_hub_download(
+        repo_id=cfg["sae_repo"],
+        filename=f"{cfg['sae_path']}/config.json",
+        cache_dir="/hf-cache",
+    )
+    with open(cfg_local) as f:
+        sae_cfg = json.load(f)
+    d_in = sae_cfg["trainer"]["activation_dim"]
+    d_sae = sae_cfg["trainer"]["dict_size"]
+    k = sae_cfg["trainer"]["k"]
+    sae = TopKSAE(d_in=d_in, d_sae=d_sae, k=k)
+    sae.load_from_state_dict(
+        torch.load(ae_local, map_location="cpu", weights_only=True)
+    )
+    print(f"SAE loaded: d_in={d_in} d_sae={d_sae} k={k} layer={SAE_LAYER}")
+
+    suffix = "" if seed == 0 else f"_seed{seed}"
+    in_dir = f"/results/mbpp_{model_key}_dense{suffix}"
+    chunk_size = (total + n_chunks - 1) // n_chunks
+
+    all_labels = []
+    region_feats = {s: {r: [] for r in range(N_REGIONS)} for s in DENSE_STEPS}
+
+    for i in range(n_chunks):
+        offset = i * chunk_size
+        path = f"{in_dir}/chunk_off{offset}.npz"
+        if not os.path.exists(path):
+            print(f"WARN: missing {path}")
+            continue
+        data = np.load(path)
+        all_labels.append(data["labels"])
+        for s in DENSE_STEPS:
+            for r in range(N_REGIONS):
+                region_feats[s][r].append(data[f"feat_s{s}_r{r}"])
+
+    labels = np.concatenate(all_labels).astype(int)
+    n_samples = len(labels)
+    n_fail = int((labels == 0).sum())
+    n_pass = int(labels.sum())
+    print(f"Loaded {n_samples}: {n_pass} pass, {n_fail} fail")
+
+    per_step = []
+    for s in DENSE_STEPS:
+        sae_acts = []
+        for r in range(N_REGIONS):
+            feats_r = np.concatenate(region_feats[s][r])
+            x = feats_r[:, SAE_LAYER, :].astype(np.float32)
+            with torch.no_grad():
+                z = sae.encode(torch.from_numpy(x).cuda()).cpu().numpy()
+                sae_acts.append(z)
+        sae_mean = np.mean(sae_acts, axis=0)
+
+        active = (sae_mean > 0).astype(np.float32)
+        p_fail = active[labels == 0].mean(axis=0)
+        p_pass = active[labels == 1].mean(axis=0)
+        enr = p_fail - p_pass
+        fail_top = np.argsort(enr)[::-1][:TOP_N_FEATURES]
+        fail_idx = np.where(labels == 0)[0]
+        fail_sig = sae_mean[fail_idx][:, fail_top]
+
+        best = None
+        for K in [2, 3, 4, 5]:
+            if len(fail_idx) <= K:
+                continue
+            km = KMeans(n_clusters=K, random_state=42, n_init=10)
+            cids = km.fit_predict(fail_sig)
+            try:
+                sil = float(silhouette_score(fail_sig, cids))
+            except ValueError:
+                sil = -1.0
+            if best is None or sil > best["silhouette"]:
+                best = {"K": K, "silhouette": sil}
+
+        rng = np.random.RandomState(42)
+        null_sils = []
+        if best["K"] >= 2 and n_fail >= 4:
+            for _ in range(N_PERMUTATIONS):
+                perm = rng.permutation(labels)
+                fi = np.where(perm == 0)[0]
+                if len(fi) < best["K"] + 1:
+                    null_sils.append(-1.0)
+                    continue
+                pf = active[perm == 0].mean(axis=0)
+                pp = active[perm == 1].mean(axis=0)
+                ftop_p = np.argsort(pf - pp)[::-1][:TOP_N_FEATURES]
+                sig_p = sae_mean[fi][:, ftop_p]
+                try:
+                    cids_p = KMeans(
+                        n_clusters=best["K"], random_state=42, n_init=5
+                    ).fit_predict(sig_p)
+                    null_sils.append(float(silhouette_score(sig_p, cids_p)))
+                except ValueError:
+                    null_sils.append(-1.0)
+            null = np.array(null_sils)
+            p_val = float((null >= best["silhouette"]).mean())
+            null_mean = float(null.mean())
+        else:
+            p_val = None
+            null_mean = None
+
+        top1 = {
+            "feature_id": int(fail_top[0]),
+            "enrichment": round(float(enr[fail_top[0]]), 4),
+        }
+        per_step.append({
+            "step": s,
+            "best_K": best["K"],
+            "silhouette": round(best["silhouette"], 4),
+            "null_mean": (round(null_mean, 4) if null_mean is not None else None),
+            "p_value": (round(p_val, 4) if p_val is not None else None),
+            "gap": (round(best["silhouette"] - null_mean, 4)
+                    if null_mean is not None else None),
+            "top1": top1,
+        })
+        print(
+            f"  step {s}: K={best['K']} sil={best['silhouette']:.3f} "
+            f"null={null_mean:.3f} p={p_val:.4f} top1=f{top1['feature_id']}"
+        )
+
+    results = {
+        "model": model_key,
+        "dataset": "mbpp",
+        "sae_layer": SAE_LAYER,
+        "n_samples": n_samples,
+        "n_pass": n_pass,
+        "n_fail": n_fail,
+        "dense_steps": DENSE_STEPS,
+        "per_step": per_step,
+    }
+    out_path = f"{in_dir}/dense_sweep_results.json"
+    with open(out_path, "w") as f:
+        json.dump(results, f, indent=2)
+    RESULTS_VOL.commit()
+    print(f"\nSaved {out_path}")
+    return json.dumps(results, indent=2)
+
+
+@app.local_entrypoint()
+def main(model: str = "llada", chunks: int = 8, total: int = 257, seed: int = 0):
+    if model not in MODEL_CFGS:
+        raise ValueError(f"model must be llada or dream, got {model}")
+    chunk_size = (total + chunks - 1) // chunks
+    print(
+        f"Dense sweep: model={model}, total={total}, seed={seed}, "
+        f"chunks={chunks}, chunk_size={chunk_size}, steps={DENSE_STEPS}"
+    )
+    handles = []
+    for i in range(chunks):
+        off = i * chunk_size
+        limit = min(chunk_size, total - off)
+        if limit <= 0:
+            break
+        print(f"  Chunk {i}: off={off}, limit={limit}")
+        handles.append(run_chunk.spawn(model, off, limit, seed))
+    for h in handles:
+        print(f"  Done: {h.get()}")
+    print("\nAll chunks generated. Running per-step SAE diagnose...")
+    print(analyze.remote(model, chunks, total, seed))
