@@ -6,10 +6,10 @@
 \citation{austin2021d3pm,sahoo2024simple,lou2024discrete,nie2025llada,ye2025dream}
 \citation{cunningham2024sae,bricken2023monosemanticity,gao2024scaling}
 \citation{dlmscope2026}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Contributions.}{1}{section*.1}\protected@file@percent }
 \citation{nie2025llada}
 \citation{ye2025dream}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contributions.}{1}{section*.1}\protected@file@percent }
 \citation{dlmscope2026}
 \citation{makhzani2014topk,gao2024scaling}
 \citation{qwen2.5}
@@ -17,95 +17,80 @@
 \citation{cobbe2021gsm8k}
 \citation{clark2018arc}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Background and Setup}{2}{section.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Diffusion language models.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{DLMs.}{2}{section*.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{DLM-Scope SAEs.}{2}{section*.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Data.}{2}{section*.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
 \newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
 \@writefile{toc}{\contentsline {paragraph}{Per-step SAE encoding.}{2}{section*.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Fail-vs-pass enrichment.}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cluster discriminability with permutation null.}{2}{section*.7}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces LLaDA-8B / MBPP: KMeans silhouette on the top-20 fail-enriched features (solid) vs.\ permutation null mean (dashed) across denoising steps. The gold band marks the SAE training noise range ($\mathrm  {dlm\_t}\!\in \![0.05,0.5]\!\approx \!$ step 64--122). The signal-to-null gap is $\!\le \!0$ at steps 0--16, jumps to $+0.18$ at step 32, peaks at $+0.31$ at step 64 (the only step with $p{<}0.05$, marked with a star), and falls back to $+0.18$ at step 127.}}{2}{figure.caption.9}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:trajectory}{{1}{2}{LLaDA-8B / MBPP: KMeans silhouette on the top-20 fail-enriched features (solid) vs.\ permutation null mean (dashed) across denoising steps. The gold band marks the SAE training noise range ($\mathrm {dlm\_t}\!\in \![0.05,0.5]\!\approx \!$ step 64--122). The signal-to-null gap is $\!\le \!0$ at steps 0--16, jumps to $+0.18$ at step 32, peaks at $+0.31$ at step 64 (the only step with $p{<}0.05$, marked with a star), and falls back to $+0.18$ at step 127}{figure.caption.9}{}}
-\@writefile{toc}{\contentsline {paragraph}{Cluster discriminability with permutation null.}{2}{section*.7}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Steering.}{2}{section*.8}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {4}Results}{2}{section.4}\protected@file@percent }
 \newlabel{sec:trajectory}{{4}{2}{Results}{section.4}{}}
 \@writefile{toc}{\contentsline {paragraph}{Mid-denoising peak.}{2}{section*.10}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Trajectory shape replicates across condition. Each panel plots observed silhouette and permutation null mean across denoising steps. \emph  {Left} (LLaDA-8B / MBPP) and \emph  {middle} (Dream-7B / MBPP): peak at step 64, post-peak fall-back; Dream's signal collapses below null at step 127. \emph  {Right} (LLaDA-8B / JSON schema): step-64 peak plus an additional early-formation shoulder at steps 4--16, paralleling the probe paper's structural-vs-reasoning split.}}{3}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:cross}{{2}{3}{Trajectory shape replicates across condition. Each panel plots observed silhouette and permutation null mean across denoising steps. \emph {Left} (LLaDA-8B / MBPP) and \emph {middle} (Dream-7B / MBPP): peak at step 64, post-peak fall-back; Dream's signal collapses below null at step 127. \emph {Right} (LLaDA-8B / JSON schema): step-64 peak plus an additional early-formation shoulder at steps 4--16, paralleling the probe paper's structural-vs-reasoning split}{figure.caption.11}{}}
 \newlabel{sec:cross}{{4}{3}{Cross-model and cross-task replication}{section*.12}{}}
 \@writefile{toc}{\contentsline {paragraph}{Cross-model and cross-task replication.}{3}{section*.12}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Top-feature drift and persistence.}{3}{section*.13}\protected@file@percent }
 \newlabel{sec:steer}{{4}{3}{Steering null result}{section*.15}{}}
 \@writefile{toc}{\contentsline {paragraph}{Steering null result.}{3}{section*.15}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{3}{section.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Statistical vs.\ causal features.}{3}{section*.16}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Why does the silhouette peak mid-denoising?}{3}{section*.17}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Implications for SAE training.}{3}{section*.18}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{3}{section.6}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Trajectory shape replicates across condition. Each panel plots observed silhouette and permutation null mean across denoising steps. \emph  {Left} (LLaDA-8B / MBPP) and \emph  {middle} (Dream-7B / MBPP): peak at step 64, post-peak fall-back; Dream's signal collapses below null at step 127. \emph  {Right} (LLaDA-8B / JSON schema): step-64 peak plus an additional early-formation shoulder at steps 4--16, paralleling the probe paper's structural-vs-reasoning split.}}{4}{figure.caption.11}\protected@file@percent }
-\newlabel{fig:cross}{{2}{4}{Trajectory shape replicates across condition. Each panel plots observed silhouette and permutation null mean across denoising steps. \emph {Left} (LLaDA-8B / MBPP) and \emph {middle} (Dream-7B / MBPP): peak at step 64, post-peak fall-back; Dream's signal collapses below null at step 127. \emph {Right} (LLaDA-8B / JSON schema): step-64 peak plus an additional early-formation shoulder at steps 4--16, paralleling the probe paper's structural-vs-reasoning split}{figure.caption.11}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Five steering conditions on LLaDA-8B / MBPP cluster-1 fails ($n{=}8$) and a pass regression control ($n{=}3$). Conditions: baseline (no intervention); suppress \texttt  {f15601} at step 64 (SAE training window); suppress \texttt  {f15601} at step 16 (pre-peak); suppress the top-5 fail features at step 64; reverse intervention ($\alpha \!=\!-5$) adding \texttt  {f15601} at step 64. No condition converts any fail$\to $pass or pass$\to $fail.}}{4}{figure.caption.14}\protected@file@percent }
-\newlabel{fig:steering}{{3}{4}{Five steering conditions on LLaDA-8B / MBPP cluster-1 fails ($n{=}8$) and a pass regression control ($n{=}3$). Conditions: baseline (no intervention); suppress \texttt {f15601} at step 64 (SAE training window); suppress \texttt {f15601} at step 16 (pre-peak); suppress the top-5 fail features at step 64; reverse intervention ($\alpha \!=\!-5$) adding \texttt {f15601} at step 64. No condition converts any fail$\to $pass or pass$\to $fail}{figure.caption.14}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Five steering conditions on LLaDA-8B / MBPP cluster-1 fails ($n{=}8$) and a pass regression control ($n{=}3$). Conditions: baseline (no intervention); suppress \texttt  {f15601} at step 64 (SAE training window); suppress \texttt  {f15601} at step 16 (pre-peak); suppress the top-5 fail features at step 64; reverse intervention ($\alpha \!=\!-5$) adding \texttt  {f15601} at step 64. No condition converts any fail$\to $pass or pass$\to $fail.}}{3}{figure.caption.14}\protected@file@percent }
+\newlabel{fig:steering}{{3}{3}{Five steering conditions on LLaDA-8B / MBPP cluster-1 fails ($n{=}8$) and a pass regression control ($n{=}3$). Conditions: baseline (no intervention); suppress \texttt {f15601} at step 64 (SAE training window); suppress \texttt {f15601} at step 16 (pre-peak); suppress the top-5 fail features at step 64; reverse intervention ($\alpha \!=\!-5$) adding \texttt {f15601} at step 64. No condition converts any fail$\to $pass or pass$\to $fail}{figure.caption.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Statistical vs.\ causal features.}{4}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why does the silhouette peak mid-denoising?}{4}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for SAE training.}{4}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{4}{section.6}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{SAE training distribution.}{4}{section*.20}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Permutation test interpretation.}{4}{section*.21}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Steering coverage.}{4}{section*.22}\protected@file@percent }
 \citation{wang2025time}
 \bibdata{custom}
-\bibcite{austin2021d3pm}{{1}{2021{a}}{{Austin et~al.}}{{Austin, Johnson, Ho, Tarlow, and van~den Berg}}}
-\bibcite{austin2021program}{{2}{2021{b}}{{Austin et~al.}}{{Austin, Odena, Nye, Bosma, Michalewski, Dohan, Jiang, Cai, Terry, Le, and Sutton}}}
-\bibcite{bricken2023monosemanticity}{{3}{2023}{{Bricken et~al.}}{{Bricken, Templeton, Batson, Chen, Jermyn, Conerly, Turner, Anil, Denison, Askell et~al.}}}
-\bibcite{clark2018arc}{{4}{2018}{{Clark et~al.}}{{Clark, Cowhey, Etzioni, Khot, Sabharwal, Schoenick, and Tafjord}}}
-\bibcite{cobbe2021gsm8k}{{5}{2021}{{Cobbe et~al.}}{{Cobbe, Kosaraju, Bavarian, Chen, Jun, Kaiser, Plappert, Tworek, Hilton, Nakano, Hesse, and Schulman}}}
-\bibcite{cunningham2024sae}{{6}{2024}{{Cunningham et~al.}}{{Cunningham, Ewart, Riggs, Huben, and Sharkey}}}
-\bibcite{dlmscope2026}{{7}{2026}{{DLM-Scope Authors}}{{}}}
 \@writefile{toc}{\contentsline {paragraph}{Cluster $K$ and choice of metric.}{5}{section*.23}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Cross-model comparison.}{5}{section*.24}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Task coverage.}{5}{section*.25}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Sample size and seed dependence.}{5}{section*.26}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Causal interpretation.}{5}{section*.27}\protected@file@percent }
-\bibcite{gao2024scaling}{{8}{2024}{{Gao et~al.}}{{Gao, Goh, Sutskever, Lin, Bills, and Wu}}}
-\bibcite{lou2024discrete}{{9}{2024}{{Lou et~al.}}{{Lou, Meng, and Ermon}}}
-\bibcite{makhzani2014topk}{{10}{2014}{{Makhzani and Frey}}{{}}}
-\bibcite{nie2025llada}{{11}{2025}{{Nie et~al.}}{{Nie, Zhu, You, Zhang, and Ou}}}
-\bibcite{sahoo2024simple}{{12}{2024}{{Sahoo et~al.}}{{Sahoo, Arriola, Schiff, Gokaslan, Marroquin, Chiu, Rush, and Kuleshov}}}
-\bibcite{qwen2.5}{{13}{2024}{{Team}}{{}}}
-\bibcite{wang2025time}{{14}{2025}{{Wang et~al.}}{{Wang, Luo, Tang, and Gao}}}
-\bibcite{ye2025dream}{{15}{2025}{{Ye et~al.}}{{Ye, Gong, Lin, Zhuo, Chen, Jiang, Li, Liu, and Liu}}}
-\@writefile{toc}{\contentsline {section}{\numberline {A}Top-Feature Persistence Across Steps}{6}{appendix.A}\protected@file@percent }
-\newlabel{sec:appendix_persist}{{A}{6}{Top-Feature Persistence Across Steps}{appendix.A}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {B}Twelve-cell Grid}{6}{appendix.B}\protected@file@percent }
-\newlabel{sec:appendix_grid}{{B}{6}{Twelve-cell Grid}{appendix.B}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Left: pairwise Jaccard of top-20 fail features between denoising steps. Right: enrichment trajectory of \texttt  {f15601} (persistent peak), \texttt  {f5561} (OOD early only), and \texttt  {f11265} (final only).}}{6}{figure.caption.30}\protected@file@percent }
-\newlabel{fig:drift_app}{{4}{6}{Left: pairwise Jaccard of top-20 fail features between denoising steps. Right: enrichment trajectory of \texttt {f15601} (persistent peak), \texttt {f5561} (OOD early only), and \texttt {f11265} (final only)}{figure.caption.30}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces LLaDA-8B / MBPP per-step diagnose summary.}}{6}{table.caption.31}\protected@file@percent }
-\newlabel{tab:persist}{{1}{6}{LLaDA-8B / MBPP per-step diagnose summary}{table.caption.31}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {C}Generation and Probing Details}{6}{appendix.C}\protected@file@percent }
-\newlabel{sec:appendix_generation}{{C}{6}{Generation and Probing Details}{appendix.C}{}}
-\@writefile{toc}{\contentsline {paragraph}{Denoising procedure.}{6}{section*.33}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Prompt construction.}{6}{section*.34}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Hidden state extraction.}{6}{section*.37}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Silhouette / permutation $p$ at (SAE-layer, step 64) per condition. Bold $p<0.05$. Only two cells reach significance, but trajectory shape (peak at step 64, post-peak collapse) replicates qualitatively across all DLM cells.}}{7}{table.caption.32}\protected@file@percent }
-\newlabel{tab:grid}{{2}{7}{Silhouette / permutation $p$ at (SAE-layer, step 64) per condition. Bold $p<0.05$. Only two cells reach significance, but trajectory shape (peak at step 64, post-peak collapse) replicates qualitatively across all DLM cells}{table.caption.32}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Schematic prompt examples after each model's chat template is applied (special tokens shown as plain words for readability; the actual tokens used are model-specific control tokens). The generation region (128--512 masked tokens) is appended after the final assistant marker. Both models share the same system/user content; only the wrapping tokens differ.}}{7}{figure.caption.35}\protected@file@percent }
-\newlabel{fig:prompt_examples}{{5}{7}{Schematic prompt examples after each model's chat template is applied (special tokens shown as plain words for readability; the actual tokens used are model-specific control tokens). The generation region (128--512 masked tokens) is appended after the final assistant marker. Both models share the same system/user content; only the wrapping tokens differ}{figure.caption.35}{}}
-\@writefile{toc}{\contentsline {paragraph}{Steering hook implementation.}{7}{section*.38}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Computational resources.}{7}{section*.39}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {D}Cross-condition Trajectory Tables}{7}{appendix.D}\protected@file@percent }
-\newlabel{sec:appendix_cross_tables}{{D}{7}{Cross-condition Trajectory Tables}{appendix.D}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Dream-7B / MBPP per-step diagnose summary. The signal-to-null gap peaks at step 64 ($+0.146$) and collapses below zero at step 127, mirroring LLaDA. Top-20 Jaccard $s_{32}\to s_{64}$ is $12/20$ (peak overlap) and $s_{64}\to s_{127}$ is $2/20$ (post-peak drift).}}{7}{table.caption.40}\protected@file@percent }
-\newlabel{tab:dream_traj}{{3}{7}{Dream-7B / MBPP per-step diagnose summary. The signal-to-null gap peaks at step 64 ($+0.146$) and collapses below zero at step 127, mirroring LLaDA. Top-20 Jaccard $s_{32}\to s_{64}$ is $12/20$ (peak overlap) and $s_{64}\to s_{127}$ is $2/20$ (post-peak drift)}{table.caption.40}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces LLaDA-8B / JSON schema per-step diagnose summary. The structural-task profile has positive signal-to-null gap at steps 4--16 (early shoulder), drops at step 32, then recovers at steps 64--127 under a different feature \texttt  {f14288}. Top-20 Jaccard between steps 32 and 64 is $1/20$, indicating disjoint early and late feature sets.}}{7}{table.caption.41}\protected@file@percent }
-\newlabel{tab:jsonschema_traj}{{4}{7}{LLaDA-8B / JSON schema per-step diagnose summary. The structural-task profile has positive signal-to-null gap at steps 4--16 (early shoulder), drops at step 32, then recovers at steps 64--127 under a different feature \texttt {f14288}. Top-20 Jaccard between steps 32 and 64 is $1/20$, indicating disjoint early and late feature sets}{table.caption.41}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {E}Single-feature vs.\ Raw-probe AUC}{7}{appendix.E}\protected@file@percent }
-\newlabel{sec:appendix_auc_compare}{{E}{7}{Single-feature vs.\ Raw-probe AUC}{appendix.E}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Top-Feature Persistence Across Steps}{5}{appendix.A}\protected@file@percent }
+\newlabel{sec:appendix_persist}{{A}{5}{Top-Feature Persistence Across Steps}{appendix.A}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Left: pairwise Jaccard of top-20 fail features between denoising steps. Right: enrichment trajectory of \texttt  {f15601} (persistent peak), \texttt  {f5561} (OOD early only), and \texttt  {f11265} (final only).}}{5}{figure.caption.29}\protected@file@percent }
+\newlabel{fig:drift_app}{{4}{5}{Left: pairwise Jaccard of top-20 fail features between denoising steps. Right: enrichment trajectory of \texttt {f15601} (persistent peak), \texttt {f5561} (OOD early only), and \texttt {f11265} (final only)}{figure.caption.29}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces LLaDA-8B / MBPP per-step diagnose summary.}}{5}{table.caption.30}\protected@file@percent }
+\newlabel{tab:persist}{{1}{5}{LLaDA-8B / MBPP per-step diagnose summary}{table.caption.30}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Twelve-cell Grid}{5}{appendix.B}\protected@file@percent }
+\newlabel{sec:appendix_grid}{{B}{5}{Twelve-cell Grid}{appendix.B}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Generation and Probing Details}{5}{appendix.C}\protected@file@percent }
+\newlabel{sec:appendix_generation}{{C}{5}{Generation and Probing Details}{appendix.C}{}}
+\@writefile{toc}{\contentsline {paragraph}{Denoising procedure.}{5}{section*.32}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Silhouette / permutation $p$ at (SAE-layer, step 64) per condition. Bold $p<0.05$. Only two cells reach significance, but trajectory shape (peak at step 64, post-peak collapse) replicates qualitatively across all DLM cells.}}{6}{table.caption.31}\protected@file@percent }
+\newlabel{tab:grid}{{2}{6}{Silhouette / permutation $p$ at (SAE-layer, step 64) per condition. Bold $p<0.05$. Only two cells reach significance, but trajectory shape (peak at step 64, post-peak collapse) replicates qualitatively across all DLM cells}{table.caption.31}{}}
+\@writefile{toc}{\contentsline {paragraph}{Prompt construction.}{6}{section*.33}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Schematic prompt examples after each model's chat template is applied (special tokens shown as plain words for readability; the actual tokens used are model-specific control tokens). The generation region (128--512 masked tokens) is appended after the final assistant marker. Both models share the same system/user content; only the wrapping tokens differ.}}{6}{figure.caption.34}\protected@file@percent }
+\newlabel{fig:prompt_examples}{{5}{6}{Schematic prompt examples after each model's chat template is applied (special tokens shown as plain words for readability; the actual tokens used are model-specific control tokens). The generation region (128--512 masked tokens) is appended after the final assistant marker. Both models share the same system/user content; only the wrapping tokens differ}{figure.caption.34}{}}
+\@writefile{toc}{\contentsline {paragraph}{Hidden state extraction.}{6}{section*.36}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Steering hook implementation.}{6}{section*.37}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Computational resources.}{6}{section*.38}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {D}Cross-condition Trajectory Tables}{6}{appendix.D}\protected@file@percent }
+\newlabel{sec:appendix_cross_tables}{{D}{6}{Cross-condition Trajectory Tables}{appendix.D}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Dream-7B / MBPP per-step diagnose summary. The signal-to-null gap peaks at step 64 ($+0.146$) and collapses below zero at step 127, mirroring LLaDA. Top-20 Jaccard $s_{32}\to s_{64}$ is $12/20$ (peak overlap) and $s_{64}\to s_{127}$ is $2/20$ (post-peak drift).}}{6}{table.caption.39}\protected@file@percent }
+\newlabel{tab:dream_traj}{{3}{6}{Dream-7B / MBPP per-step diagnose summary. The signal-to-null gap peaks at step 64 ($+0.146$) and collapses below zero at step 127, mirroring LLaDA. Top-20 Jaccard $s_{32}\to s_{64}$ is $12/20$ (peak overlap) and $s_{64}\to s_{127}$ is $2/20$ (post-peak drift)}{table.caption.39}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Single-feature vs.\ Raw-probe AUC}{6}{appendix.E}\protected@file@percent }
+\newlabel{sec:appendix_auc_compare}{{E}{6}{Single-feature vs.\ Raw-probe AUC}{appendix.E}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces AUC heatmaps for MBPP and \mbox  {ARC-Challenge}. Both show gradual emergence similar to GSM8K. ARC has the weakest overall signal (AUC $\leq $ 0.75).}}{7}{figure.caption.35}\protected@file@percent }
+\newlabel{fig:heatmap_appendix}{{6}{7}{AUC heatmaps for MBPP and \mbox {ARC-Challenge}. Both show gradual emergence similar to GSM8K. ARC has the weakest overall signal (AUC $\leq $ 0.75)}{figure.caption.35}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {F}Functional Correctness Definitions}{7}{appendix.F}\protected@file@percent }
 \newlabel{sec:appendix_correctness}{{F}{7}{Functional Correctness Definitions}{appendix.F}{}}
-\@writefile{toc}{\contentsline {paragraph}{MBPP.}{7}{section*.43}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces AUC heatmaps for MBPP and \mbox  {ARC-Challenge}. Both show gradual emergence similar to GSM8K. ARC has the weakest overall signal (AUC $\leq $ 0.75).}}{8}{figure.caption.36}\protected@file@percent }
-\newlabel{fig:heatmap_appendix}{{6}{8}{AUC heatmaps for MBPP and \mbox {ARC-Challenge}. Both show gradual emergence similar to GSM8K. ARC has the weakest overall signal (AUC $\leq $ 0.75)}{figure.caption.36}{}}
-\@writefile{toc}{\contentsline {paragraph}{JSON schema.}{8}{section*.44}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{GSM8K.}{8}{section*.45}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{ARC-Challenge.}{8}{section*.46}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Per-cell 5-fold cross-validated AUC predicting functional correctness from top-$N$ SAE features (logistic regression, per-fold selection on training folds only) vs.\ raw-probe baseline (PCA-64 + LR on the SAE-layer hidden state). Bold marks the per-cell maximum.}}{9}{table.caption.42}\protected@file@percent }
-\newlabel{tab:auc_compare}{{5}{9}{Per-cell 5-fold cross-validated AUC predicting functional correctness from top-$N$ SAE features (logistic regression, per-fold selection on training folds only) vs.\ raw-probe baseline (PCA-64 + LR on the SAE-layer hidden state). Bold marks the per-cell maximum}{table.caption.42}{}}
-\gdef \@abspage@last{9}
+\@writefile{toc}{\contentsline {paragraph}{MBPP.}{7}{section*.42}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{JSON schema.}{7}{section*.43}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{GSM8K.}{7}{section*.44}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{ARC-Challenge.}{7}{section*.45}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces LLaDA-8B / JSON schema per-step diagnose summary. The structural-task profile has positive signal-to-null gap at steps 4--16 (early shoulder), drops at step 32, then recovers at steps 64--127 under a different feature \texttt  {f14288}. Top-20 Jaccard between steps 32 and 64 is $1/20$, indicating disjoint early and late feature sets.}}{8}{table.caption.40}\protected@file@percent }
+\newlabel{tab:jsonschema_traj}{{4}{8}{LLaDA-8B / JSON schema per-step diagnose summary. The structural-task profile has positive signal-to-null gap at steps 4--16 (early shoulder), drops at step 32, then recovers at steps 64--127 under a different feature \texttt {f14288}. Top-20 Jaccard between steps 32 and 64 is $1/20$, indicating disjoint early and late feature sets}{table.caption.40}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Per-cell 5-fold cross-validated AUC predicting functional correctness from top-$N$ SAE features (logistic regression, per-fold selection on training folds only) vs.\ raw-probe baseline (PCA-64 + LR on the SAE-layer hidden state). Bold marks the per-cell maximum.}}{8}{table.caption.41}\protected@file@percent }
+\newlabel{tab:auc_compare}{{5}{8}{Per-cell 5-fold cross-validated AUC predicting functional correctness from top-$N$ SAE features (logistic regression, per-fold selection on training folds only) vs.\ raw-probe baseline (PCA-64 + LR on the SAE-layer hidden state). Bold marks the per-cell maximum}{table.caption.41}{}}
+\gdef \@abspage@last{8}

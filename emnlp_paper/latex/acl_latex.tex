@@ -31,7 +31,7 @@
 }
 \makeatother
 
-\title{Tracing Functional Correctness in Diffusion Language Models with Sparse Autoencoders}
+\title{Tracing Functional Correctness in DLMs with Sparse Autoencoders}
 
 \author{Guan-Ming Chiu \\
   National Taiwan University \\
@@ -81,7 +81,7 @@ Code and figures: \url{https://github.com/guan404ming/dllm-probing}.
 
 \section{Background and Setup}
 
-\paragraph{Diffusion language models.}
+\paragraph{DLMs.}
 LLaDA-8B \citep{nie2025llada} and Dream-7B \citep{ye2025dream} are open-weight masked DLMs that iteratively denoise a $\!\le\! 256$-token generation region over $T{=}128$ steps conditioned on a fully visible prompt.
 LLaDA unmasks block-by-block (block length 32, $T/8$ sub-steps per block); Dream uses a global linear schedule.
 
