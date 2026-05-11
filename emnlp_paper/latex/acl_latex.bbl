@@ -1,0 +1,112 @@
+\begin{thebibliography}{15}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Austin et~al.(2021{\natexlab{a}})Austin, Johnson, Ho, Tarlow, and
+  van~den Berg}]{austin2021d3pm}
+Jacob Austin, Daniel~D. Johnson, Jonathan Ho, Danny Tarlow, and Rianne van~den
+  Berg. 2021{\natexlab{a}}.
+\newblock Structured denoising diffusion models in discrete state-spaces.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~34, pages 17981--17993.
+
+\bibitem[{Austin et~al.(2021{\natexlab{b}})Austin, Odena, Nye, Bosma,
+  Michalewski, Dohan, Jiang, Cai, Terry, Le, and Sutton}]{austin2021program}
+Jacob Austin, Augustus Odena, Maxwell Nye, Maarten Bosma, Henryk Michalewski,
+  David Dohan, Ellen Jiang, Carrie Cai, Michael Terry, Quoc Le, and Charles
+  Sutton. 2021{\natexlab{b}}.
+\newblock \href {https://arxiv.org/abs/2108.07732} {Program synthesis with
+  large language models}.
+\newblock \emph{arXiv preprint arXiv:2108.07732}.
+
+\bibitem[{Bricken et~al.(2023)Bricken, Templeton, Batson, Chen, Jermyn,
+  Conerly, Turner, Anil, Denison, Askell et~al.}]{bricken2023monosemanticity}
+Trenton Bricken, Adly Templeton, Joshua Batson, Brian Chen, Adam Jermyn, Tom
+  Conerly, Nick Turner, Cem Anil, Carson Denison, Amanda Askell, and 1 others.
+  2023.
+\newblock Towards monosemanticity: Decomposing language models with dictionary
+  learning.
+\newblock \emph{Anthropic Transformer Circuits Thread}.
+
+\bibitem[{Clark et~al.(2018)Clark, Cowhey, Etzioni, Khot, Sabharwal, Schoenick,
+  and Tafjord}]{clark2018arc}
+Peter Clark, Isaac Cowhey, Oren Etzioni, Tushar Khot, Ashish Sabharwal, Carissa
+  Schoenick, and Oyvind Tafjord. 2018.
+\newblock \href {https://arxiv.org/abs/1803.05457} {Think you have solved
+  question answering? try {ARC}, the {AI2} reasoning challenge}.
+\newblock \emph{arXiv preprint arXiv:1803.05457}.
+
+\bibitem[{Cobbe et~al.(2021)Cobbe, Kosaraju, Bavarian, Chen, Jun, Kaiser,
+  Plappert, Tworek, Hilton, Nakano, Hesse, and Schulman}]{cobbe2021gsm8k}
+Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz
+  Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano,
+  Christopher Hesse, and John Schulman. 2021.
+\newblock \href {https://arxiv.org/abs/2110.14168} {Training verifiers to solve
+  math word problems}.
+\newblock \emph{arXiv preprint arXiv:2110.14168}.
+
+\bibitem[{Cunningham et~al.(2024)Cunningham, Ewart, Riggs, Huben, and
+  Sharkey}]{cunningham2024sae}
+Hoagy Cunningham, Aidan Ewart, Logan Riggs, Robert Huben, and Lee Sharkey.
+  2024.
+\newblock Sparse autoencoders find highly interpretable features in language
+  models.
+\newblock \emph{International Conference on Learning Representations}.
+
+\bibitem[{{DLM-Scope Authors}(2026)}]{dlmscope2026}
+{DLM-Scope Authors}. 2026.
+\newblock \href {https://arxiv.org/abs/2602.05859} {{DLM-Scope}: Mechanistic
+  interpretability of diffusion language models via sparse autoencoders}.
+\newblock \emph{arXiv preprint arXiv:2602.05859}.
+
+\bibitem[{Gao et~al.(2024)Gao, Goh, Sutskever, Lin, Bills, and
+  Wu}]{gao2024scaling}
+Leo Gao, Gabriel Goh, Ilya Sutskever, Stephanie Lin, Steven Bills, and Jeff Wu.
+  2024.
+\newblock Scaling and evaluating sparse autoencoders.
+\newblock \emph{arXiv preprint arXiv:2406.04093}.
+
+\bibitem[{Lou et~al.(2024)Lou, Meng, and Ermon}]{lou2024discrete}
+Aaron Lou, Chenlin Meng, and Stefano Ermon. 2024.
+\newblock \href {https://arxiv.org/abs/2310.16834} {Discrete diffusion modeling
+  by estimating the ratios of the data distribution}.
+\newblock \emph{arXiv preprint arXiv:2310.16834}.
+
+\bibitem[{Makhzani and Frey(2014)}]{makhzani2014topk}
+Alireza Makhzani and Brendan Frey. 2014.
+\newblock k-sparse autoencoders.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Nie et~al.(2025)Nie, Zhu, You, Zhang, and Ou}]{nie2025llada}
+Shen Nie, Fengqi Zhu, Chao You, Xiaojun Zhang, and Zhenguo Ou. 2025.
+\newblock \href {https://arxiv.org/abs/2502.09992} {{LLaDA}: Large language
+  diffusion with m{A}sking}.
+\newblock \emph{arXiv preprint arXiv:2502.09992}.
+
+\bibitem[{Sahoo et~al.(2024)Sahoo, Arriola, Schiff, Gokaslan, Marroquin, Chiu,
+  Rush, and Kuleshov}]{sahoo2024simple}
+Subham~Sekhar Sahoo, Marianne Arriola, Yair Schiff, Aaron Gokaslan, Edgar
+  Marroquin, Justin~T Chiu, Alexander Rush, and Volodymyr Kuleshov. 2024.
+\newblock \href {https://arxiv.org/abs/2406.07524} {Simple and effective masked
+  diffusion language models}.
+\newblock \emph{arXiv preprint arXiv:2406.07524}.
+
+\bibitem[{Team(2024)}]{qwen2.5}
+Qwen Team. 2024.
+\newblock Qwen2.5 technical report.
+\newblock \emph{arXiv preprint arXiv:2412.15115}.
+
+\bibitem[{Wang et~al.(2025)Wang, Luo, Tang, and Gao}]{wang2025time}
+Ziming Wang, Jiahao Luo, Haowei Tang, and Tian Gao. 2025.
+\newblock \href {https://arxiv.org/abs/2505.11229} {Time is a feature: Temporal
+  oscillation in discrete diffusion language models}.
+\newblock \emph{arXiv preprint arXiv:2505.11229}.
+
+\bibitem[{Ye et~al.(2025)Ye, Gong, Lin, Zhuo, Chen, Jiang, Li, Liu, and
+  Liu}]{ye2025dream}
+Jiacheng Ye, Jiahui Gong, Yanru Lin, Ting~Hin Zhuo, Tong Chen, Xin Jiang,
+  Zhenguo Li, Qun Liu, and Lingpeng Liu. 2025.
+\newblock \href {https://arxiv.org/abs/2504.16915} {Dream: Diffusion reasoning
+  with enhanced accuracy and mastery}.
+\newblock \emph{arXiv preprint arXiv:2504.16915}.
+
+\end{thebibliography}

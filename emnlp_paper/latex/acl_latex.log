@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.12)  11 MAY 2026 21:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.12)  11 MAY 2026 23:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -418,7 +418,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count321
 )
-No file acl_latex.aux.
+(./acl_latex.aux)
 \openout1 = `acl_latex.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
@@ -439,6 +439,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 43.
 LaTeX Font Info:    ... okay on input line 43.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 43.
 LaTeX Font Info:    ... okay on input line 43.
+
 (/usr/local/texlive/2026/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count322
@@ -569,241 +570,119 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 10.0pt on input line 50.
+(Font)              scaled to size 10.0pt on input line 49.
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 6
+8.
 
-
-Package natbib Warning: Citation `austin2021d3pm' on page 1 undefined on input 
-line 58.
-
-
-Package natbib Warning: Citation `sahoo2024simple' on page 1 undefined on input
- line 58.
-
-
-Package natbib Warning: Citation `lou2024discrete' on page 1 undefined on input
- line 58.
-
-
-Package natbib Warning: Citation `nie2025llada' on page 1 undefined on input li
-ne 58.
-
-
-Package natbib Warning: Citation `ye2025dream' on page 1 undefined on input lin
-e 58.
-
-
-Package natbib Warning: Citation `cunningham2024sae' on page 1 undefined on inp
-ut line 62.
-
-
-Package natbib Warning: Citation `bricken2023monosemanticity' on page 1 undefin
-ed on input line 62.
-
-
-Package natbib Warning: Citation `gao2024scaling' on page 1 undefined on input 
-line 62.
-
-
-Package natbib Warning: Citation `dlmscope2026' on page 1 undefined on input li
-ne 63.
-
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 7
-0.
 (/Users/wchiu/Library/texmf/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
-
-LaTeX Warning: Reference `sec:trajectory' on page 1 undefined on input line 70.
-
-
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 10.95pt on input line 72.
-
-LaTeX Warning: Reference `sec:cross' on page 1 undefined on input line 73.
-
-
-LaTeX Warning: Reference `sec:steer' on page 1 undefined on input line 76.
+(Font)              scaled to size 10.95pt on input line 70.
+ [1{/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/
+local/texlive/2026/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2
+026/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 80--81
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 79--80
 \T1/ptm/m/n/10.95 (+20) Code and fig-ures: [][]$\T1/zi4/m/n/10.95 https : / / g
 ithub . com /
  []
 
 
-Package natbib Warning: Citation `nie2025llada' on page 1 undefined on input li
-ne 85.
-
-
-Package natbib Warning: Citation `ye2025dream' on page 1 undefined on input lin
-e 85.
-
-[1{/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/l
-ocal/texlive/2026/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/20
-26/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}
-
-
-
-]
-
-Package natbib Warning: Citation `dlmscope2026' on page 2 undefined on input li
-ne 89.
-
-
-Package natbib Warning: Citation `makhzani2014topk' on page 2 undefined on inpu
-t line 89.
-
-
-Package natbib Warning: Citation `gao2024scaling' on page 2 undefined on input 
-line 89.
-
-
-Package natbib Warning: Citation `qwen2.5' on page 2 undefined on input line 92
-.
-
-
-Underfull \hbox (badness 2181) in paragraph at lines 89--93
- []\T1/ptm/b/n/10.95 (+20) DLM-Scope SAEs.[] ? \T1/ptm/m/n/10.95 (+20) train To
-p-$\OML/cmm/m/it/10.95 K$ \T1/ptm/m/n/10.95 (+20) SAEs
- []
-
-
-Underfull \hbox (badness 1082) in paragraph at lines 89--93
-\T1/ptm/m/n/10.95 (+20) (\T1/ptm/b/n/10.95 (+20) ??\T1/ptm/m/n/10.95 (+20) ) on
- the resid-ual streams of LLaDA-8B
- []
-
-
-Package natbib Warning: Citation `austin2021program' on page 2 undefined on inp
-ut line 95.
-
-
-Package natbib Warning: Citation `cobbe2021gsm8k' on page 2 undefined on input 
-line 95.
-
-
-Package natbib Warning: Citation `clark2018arc' on page 2 undefined on input li
-ne 95.
-
-
-Underfull \hbox (badness 4024) in paragraph at lines 95--97
+Underfull \hbox (badness 4024) in paragraph at lines 94--96
  []\T1/ptm/b/n/10.95 (+20) Data.[] \T1/ptm/m/n/10.95 (+20) We reuse cached hid-
 den states and
  []
 
 
-Underfull \hbox (badness 1371) in paragraph at lines 102--106
+Underfull \hbox (badness 1371) in paragraph at lines 101--105
 \OML/cmm/m/it/10.95 h \OMS/cmsy/m/n/10.95 2 \U/msb/m/n/10.95 R[]$ \T1/ptm/m/n/1
 0.95 (+20) per sam-ple and en-code it: $\OML/cmm/m/it/10.95 z \OT1/cmr/m/n/10.9
 5 =
  []
 
 
-Underfull \hbox (badness 2088) in paragraph at lines 102--106
+Underfull \hbox (badness 2088) in paragraph at lines 101--105
 [] [][]  [] [] \OMS/cmsy/m/n/10.95 2 \U/msb/m/n/10.95 R[]$\T1/ptm/m/n/10.95 (+2
 0) ,
  []
 
 
-Underfull \hbox (badness 1226) in paragraph at lines 108--112
+Underfull \hbox (badness 1226) in paragraph at lines 107--111
 \T1/ptm/m/n/10.95 (+20) and pass sets at a cell. Fea-ture $\OML/cmm/m/it/10.95 
 i$\T1/ptm/m/n/10.95 (+20) 's en-rich-
  []
 
-<../figures/fig1_trajectory.pdf, id=69, 240.30621pt x 187.56297pt>
+<../figures/fig1_trajectory.pdf, id=123, 240.30621pt x 187.56297pt>
 File: ../figures/fig1_trajectory.pdf Graphic file (type pdf)
 <use ../figures/fig1_trajectory.pdf>
-Package pdftex.def Info: ../figures/fig1_trajectory.pdf  used on input line 128
+Package pdftex.def Info: ../figures/fig1_trajectory.pdf  used on input line 127
 .
 (pdftex.def)             Requested size: 208.13115pt x 162.45439pt.
 
-LaTeX Warning: Reference `fig:trajectory' on page 2 undefined on input line 134
-.
-
-
-LaTeX Warning: Reference `sec:appendix_persist' on page 2 undefined on input li
-ne 136.
-
-
-Underfull \hbox (badness 3323) in paragraph at lines 134--138
+Underfull \hbox (badness 6542) in paragraph at lines 133--137
  []\T1/ptm/b/n/10.95 (+20) Mid-denoising peak.[] \T1/ptm/m/n/10.95 (+20) Fig-ur
-e [] shows the
+e [][]1[][] shows the
  []
 
-<../figures/fig2_cross.pdf, id=70, 438.92567pt x 175.74332pt>
+[2 <../figures/fig1_trajectory.pdf>]
+<../figures/fig2_cross.pdf, id=215, 499.12283pt x 239.42511pt>
 File: ../figures/fig2_cross.pdf Graphic file (type pdf)
 <use ../figures/fig2_cross.pdf>
-Package pdftex.def Info: ../figures/fig2_cross.pdf  used on input line 141.
-(pdftex.def)             Requested size: 455.24411pt x 182.28334pt.
+Package pdftex.def Info: ../figures/fig2_cross.pdf  used on input line 140.
+(pdftex.def)             Requested size: 455.24411pt x 218.38864pt.
 
-LaTeX Warning: Reference `fig:cross' on page 2 undefined on input line 150.
+Underfull \hbox (badness 1320) in paragraph at lines 153--164
+\T1/ptm/m/n/10.95 (+20) re-ports the full $\OT1/cmr/m/n/10.95 2[]4$ \T1/ptm/m/n
+/10.95 (+20) tra-jec-tory grid (full nu-
+ []
 
-
-LaTeX Warning: Reference `sec:appendix_grid' on page 2 undefined on input line 
-154.
-
-[2 <../figures/fig1_trajectory.pdf>]
-
-LaTeX Warning: Reference `fig:drift_app' on page 3 undefined on input line 159.
-
-
-
-LaTeX Warning: Reference `sec:appendix_persist' on page 3 undefined on input li
-ne 159.
-
-<../figures/fig3_steering.pdf, id=152, 228.14421pt x 181.77887pt>
+<../figures/fig3_steering.pdf, id=222, 228.14421pt x 181.77887pt>
 File: ../figures/fig3_steering.pdf Graphic file (type pdf)
 <use ../figures/fig3_steering.pdf>
-Package pdftex.def Info: ../figures/fig3_steering.pdf  used on input line 163.
+Package pdftex.def Info: ../figures/fig3_steering.pdf  used on input line 172.
 (pdftex.def)             Requested size: 208.13115pt x 165.83507pt.
-
-LaTeX Warning: Reference `fig:steering' on page 3 undefined on input line 173.
-
-
-Underfull \vbox (badness 2057) has occurred while \output is active []
-
- [3 <../figures/fig2_cross.pdf> <../figures/fig3_steering.pdf>] [4]
-
-LaTeX Warning: Reference `fig:cross' on page 5 undefined on input line 232.
+[3] [4 <../figures/fig2_cross.pdf>] (./acl_latex.bbl [5 <../figures/fig3_steeri
+ng.pdf>]
+Underfull \hbox (badness 2884) in paragraph at lines 56--60
+\T1/ptm/m/n/10 (+20) els via sparse au-toen-coders[][].  \T1/ptm/m/it/10 (+20) 
+arXiv preprint
+ []
 
 
-Package natbib Warning: Citation `wang2025time' on page 5 undefined on input li
-ne 242.
-
-No file acl_latex.bbl.
-
-LaTeX Warning: Reference `fig:drift_app' on page 5 undefined on input line 259.
+Underfull \hbox (badness 2027) in paragraph at lines 69--73
+[]\T1/ptm/m/n/10 (+20) Aaron Lou, Chen-lin Meng, and Ste-fano Er-mon.
+ []
 
 
+Underfull \hbox (badness 1616) in paragraph at lines 80--84
+\T1/ptm/m/n/10 (+20) and Zhen-guo Ou. 2025.  [][]LLaDA: Large lan-
+ []
 
-LaTeX Warning: Reference `tab:persist' on page 5 undefined on input line 260.
-
-<../figures/fig4_feature_drift.pdf, id=256, 485.98314pt x 167.27118pt>
+)
+<../figures/fig4_feature_drift.pdf, id=371, 485.98314pt x 167.27118pt>
 File: ../figures/fig4_feature_drift.pdf Graphic file (type pdf)
 <use ../figures/fig4_feature_drift.pdf>
 Package pdftex.def Info: ../figures/fig4_feature_drift.pdf  used on input line 
-264.
+273.
 (pdftex.def)             Requested size: 208.13115pt x 71.63678pt.
 
-LaTeX Warning: Reference `tab:grid' on page 5 undefined on input line 289.
-
-
-Overfull \hbox (6.14992pt too wide) in paragraph at lines 292--303
+Overfull \hbox (6.14992pt too wide) in paragraph at lines 301--312
  [][] 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[5 <../figures/fig4_feature_drift.pdf>]
-
-LaTeX Warning: Reference `fig:prompt_examples' on page 6 undefined on input lin
-e 320.
-
+[6 <../figures/fig4_feature_drift.pdf>]
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 9.0pt on input line 327.
+(Font)              scaled to size 9.0pt on input line 336.
 
-LaTeX Warning: File `fig3_heatmap_appendix.png' not found on input line 339.
+
+LaTeX Warning: File `fig3_heatmap_appendix.png' not found on input line 348.
 
 
 ! Package pdftex.def Error: File `fig3_heatmap_appendix.png' not found: using d
@@ -813,110 +692,93 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.339 ...th=\textwidth]{fig3_heatmap_appendix.png}
+l.348 ...th=\textwidth]{fig3_heatmap_appendix.png}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-LaTeX Warning: Reference `sec:method' on page 6 undefined on input line 347.
-
-
-LaTeX Warning: Reference `tab:dream_traj' on page 6 undefined on input line 362
-.
-
-
-LaTeX Warning: Reference `tab:jsonschema_traj' on page 6 undefined on input lin
-e 362.
-
-
-LaTeX Warning: Reference `fig:cross' on page 6 undefined on input line 362.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-LaTeX Warning: Reference `tab:auc_compare' on page 6 undefined on input line 40
-3.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-LaTeX Warning: Reference `sec:steer' on page 6 undefined on input line 406.
-
-[6]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Underfull \hbox (badness 5504) in paragraph at lines 442--444
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \hbox (badness 5504) in paragraph at lines 515--517
  []\T1/ptm/b/n/10.95 (+20) MBPP.[] \T1/ptm/m/n/10.95 (+20) We ex-tract the firs
 t \T1/zi4/m/n/10.95 def\T1/ptm/m/n/10.95 (+20) -block or
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 450--451
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 523--524
  []\T1/ptm/b/n/10.95 (+20) GSM8K.[] \T1/ptm/m/n/10.95 (+20) We ex-tract the pat
 -tern
  []
 
 
-Underfull \hbox (badness 1675) in paragraph at lines 450--451
+Underfull \hbox (badness 1675) in paragraph at lines 523--524
 \T1/zi4/m/n/10.95 ####\s*([-\d.]+) \T1/ptm/m/n/10.95 (+20) and com-pare to the 
 gold
  []
 
 
-Underfull \hbox (badness 2376) in paragraph at lines 450--451
+Underfull \hbox (badness 2376) in paragraph at lines 523--524
 \T1/ptm/m/n/10.95 (+20) nu-meric an-swer af-ter strip-ping com-mas and
  []
 
 
-Package natbib Warning: There were undefined citations.
+Underfull \vbox (badness 3724) has occurred while \output is active []
 
-[7] [8
-
-] (./acl_latex.aux)
+ [8]
+[9] (./acl_latex.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package rerunfilecheck Info: File `acl_latex.out' has not changed.
-(rerunfilecheck)             Checksum: CAAAF8AAE990212D13952743F33074CE;1803.
+(rerunfilecheck)             Checksum: 9C595BB0BC523690A92DBC105F91BC00;1974.
  ) 
 Here is how much of TeX's memory you used:
- 15682 strings out of 467525
- 246740 string characters out of 5418982
- 702349 words of memory out of 5000000
- 43953 multiletter control sequences out of 15000+600000
- 695695 words of font info for 334 fonts, out of 8000000 for 9000
+ 15806 strings out of 467525
+ 248959 string characters out of 5418982
+ 721931 words of memory out of 5000000
+ 44024 multiletter control sequences out of 15000+600000
+ 698757 words of font info for 355 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 90i,10n,93p,1006b,516s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,11n,93p,1006b,590s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/inconsolata/Inconsolat
-a-zi4r.pfb></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmex10.pf
-b></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users
-/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmmi6.pfb></Users/wchiu/Lib
-rary/texmf/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/wchiu/Library/texmf
-/fonts/type1/public/amsfonts/cm/cmmi9.pfb></Users/wchiu/Library/texmf/fonts/typ
-e1/public/amsfonts/cm/cmr10.pfb></Users/wchiu/Library/texmf/fonts/type1/public/
-amsfonts/cm/cmr6.pfb></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm
-/cmr7.pfb></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmr8.pfb><
-/Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmr9.pfb></Users/wchi
-u/Library/texmf/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/wchiu/Library
-/texmf/fonts/type1/public/amsfonts/cm/cmsy8.pfb></Users/wchiu/Library/texmf/fon
-ts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2026/texmf-dist
-/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/typ
-e1/urw/times/utmr8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/tim
-es/utmri8a.pfb>
-Output written on acl_latex.pdf (8 pages, 313496 bytes).
+a-zi4r.pfb></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmbx9.pfb
+></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/
+wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/wchiu/Lib
+rary/texmf/fonts/type1/public/amsfonts/cm/cmmi6.pfb></Users/wchiu/Library/texmf
+/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/wchiu/Library/texmf/fonts/typ
+e1/public/amsfonts/cm/cmmi9.pfb></Users/wchiu/Library/texmf/fonts/type1/public/
+amsfonts/cm/cmr10.pfb></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/c
+m/cmr6.pfb></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmr8.pfb>
+</Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmr9.pfb></Users/wch
+iu/Library/texmf/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/wchiu/Librar
+y/texmf/fonts/type1/public/amsfonts/cm/cmsy8.pfb></Users/wchiu/Library/texmf/fo
+nts/type1/public/amsfonts/cm/cmsy9.pfb></Users/wchiu/Library/texmf/fonts/type1/
+public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2026/texmf-dist/fonts/ty
+pe1/urw/times/utmb8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/ti
+mes/utmr8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/times/utmri8
+a.pfb>
+Output written on acl_latex.pdf (9 pages, 342517 bytes).
 PDF statistics:
- 461 PDF objects out of 1000 (max. 8388607)
- 235 compressed objects within 3 object streams
- 67 named destinations out of 1000 (max. 500000)
- 67701 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 600 PDF objects out of 1000 (max. 8388607)
+ 351 compressed objects within 4 object streams
+ 88 named destinations out of 1000 (max. 500000)
+ 71293 words of extra memory for PDF output out of 74296 (max. 10000000)
 

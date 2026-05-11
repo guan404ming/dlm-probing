@@ -130,7 +130,59 @@ def fig1_trajectory():
 
 
 def fig2_cross():
-    """3-panel cross-condition trajectory."""
+    """2x4 cross-model x cross-task trajectory matrix."""
+    steps = [4, 16, 32, 64, 127]
+    datasets = ["mbpp", "jsonschema", "gsm8k", "arc"]
+    dataset_titles = {
+        "mbpp": "MBPP (code)",
+        "jsonschema": "JSON schema",
+        "gsm8k": "GSM8K (math)",
+        "arc": "ARC (sci. QA)",
+    }
+    models = ["llada", "dream"]
+    fig, axes = plt.subplots(2, 4, figsize=(7.0, 3.4), sharey=True, sharex=True)
+    for ri, model in enumerate(models):
+        for ci, dataset in enumerate(datasets):
+            ax = axes[ri, ci]
+            traj = load_trajectory(model, dataset, steps)
+            if not traj:
+                ax.set_title(f"{model}/{dataset} (no data)")
+                continue
+            xs = [t["step"] for t in traj]
+            sil = [t["silhouette"] for t in traj]
+            null = [t["null_mean"] for t in traj]
+            ax.axvspan(64, 122, color="gold", alpha=0.12, zorder=0)
+            ax.plot(xs, sil, "o-", color="#1f5fa8", lw=1.3, ms=3,
+                    label="silhouette")
+            ax.plot(xs, null, "s--", color="#999999", lw=0.9, ms=2.5,
+                    label="null")
+            sig_x = [t["step"] for t in traj if (t["p_value"] or 1) < 0.05]
+            sig_y = [t["silhouette"] for t in traj if (t["p_value"] or 1) < 0.05]
+            ax.scatter(sig_x, sig_y, marker="*", s=80, color="#d62728", zorder=10)
+            # Mark peak step
+            gaps = [(t["step"], t["silhouette"] - t["null_mean"]) for t in traj]
+            peak_step = max(gaps, key=lambda x: x[1])[0]
+            ax.axvline(peak_step, color="#d62728", lw=0.8, ls=":", alpha=0.7)
+            if ri == 0:
+                ax.set_title(dataset_titles[dataset], fontsize=9)
+            if ci == 0:
+                ax.set_ylabel(f"{model.title()}\nsilhouette", fontsize=9)
+            if ri == 1:
+                ax.set_xlabel("step", fontsize=8)
+            ax.set_xscale("symlog", linthresh=2)
+            ax.set_xticks([4, 16, 32, 64, 127])
+            ax.set_xticklabels(["4", "16", "32", "64", "127"], fontsize=7)
+            ax.set_ylim(0.0, 0.85)
+            ax.grid(True, ls=":", alpha=0.4)
+    axes[0, 0].legend(loc="lower right", framealpha=0.9, fontsize=6.5)
+    fig.tight_layout()
+    fig.savefig(FIG_DIR / "fig2_cross.pdf")
+    plt.close(fig)
+    print(f"saved {FIG_DIR / 'fig2_cross.pdf'}")
+
+
+def _fig2_cross_legacy():
+    """Original 3-panel (kept for reference)."""
     panels = [
         ("LLaDA mbpp (code)", "llada", "mbpp",
          [0, 1, 4, 16, 32, 64, 127]),

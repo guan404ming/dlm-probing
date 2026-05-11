@@ -22,7 +22,7 @@ import os
 import subprocess
 
 STEPS_LLADA = [0, 1, 4, 16, 32, 64, 127]
-STEPS_DREAM = [32, 64, 127]
+STEPS_DREAM = [0, 1, 4, 16, 32, 64, 127]
 TOP_N = 20
 
 

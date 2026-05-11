@@ -45,12 +45,10 @@
 
 \begin{abstract}
 Prior probing of diffusion language models (DLMs) shows that aggregate hidden-state signal predicting functional correctness accumulates monotonically through denoising.
-Using DLM-Scope sparse autoencoders, we trace the \emph{same} signal feature by feature and find a different shape: failure-discriminative cluster structure \emph{peaks} at mid-denoising and \emph{degrades} by the final state.
-On LLaDA-8B / MBPP at layer 26, KMeans silhouette on the top-20 fail-enriched features rises from below the permutation null at steps 0--16 to $0.66$ at step 64 ($p{=}0.033$), then falls back to $0.60$ by step 127, with only $5/20$ top features overlapping between the peak and the final state.
-A single persistent feature (\texttt{f15601}) emerges at step 32 and dominates the trajectory.
-The shape replicates on Dream-7B / MBPP and on LLaDA-8B / JSON schema.
+Using DLM-Scope sparse autoencoders, we trace the \emph{same} signal feature by feature across two DLMs and four tasks, and find that the trajectory shape is \emph{task-dependent} rather than universal: KMeans silhouette on the top-20 fail-enriched features peaks at mid-denoising (step 64) for code and structural tasks (MBPP, JSON schema) and at late denoising (step 127) for math and science reasoning (GSM8K, ARC).
+On LLaDA-8B / MBPP the peak reaches silhouette $0.66$ ($p{=}0.033$ vs.\ permutation null), driven by a persistent feature (\texttt{f15601}, $+0.385$ enrichment) that emerges at step 32.
+The peak step replicates across LLaDA-8B and Dream-7B on $3/4$ tasks, with the corresponding probe-paper task-dependent emergence pattern visible feature by feature.
 A four-window steering sweep on \texttt{f15601}, multi-feature ablation on the top-5 fail features, and reverse intervention all fail to flip fail$\leftrightarrow$pass, indicating that statistically discriminative SAE features are correlates rather than causal controllers of functional correctness.
-Our findings sharpen the prior probe-based account by showing \emph{when} failure is concentrated in sparse features, and motivate SAE training that spans the full denoising trajectory.
 \end{abstract}
 
 \section{Introduction}
@@ -67,12 +65,13 @@ We use these same SAEs to trace the failure-discriminative signal feature by fea
 The feature-level picture differs from the scalar account.
 \begin{itemize}
 \setlength{\itemsep}{0pt}
-\item \textbf{Mid-denoising peak (\S\ref{sec:trajectory}).}
+\item \textbf{Task-dependent trajectory peak (\S\ref{sec:trajectory}).}
 On LLaDA-8B / MBPP, KMeans silhouette on the top-20 fail-enriched features rises from below the permutation null at steps 0--16, to $0.66$ at step 64 ($p{=}0.033$, the only step that crosses $p{<}0.05$), then falls back to $0.60$ at step 127.
 A single persistent feature, \texttt{f15601}, emerges at step 32 and remains the dominant fail marker through step 127.
-\item \textbf{Cross-condition replication (\S\ref{sec:cross}).}
-Dream-7B / MBPP reproduces the peak at step 64 and collapses below the null by step 127.
-LLaDA-8B / JSON schema follows the same step-64 peak with an additional early-formation shoulder at steps 4--16, paralleling the probe paper's structural-vs-reasoning split.
+\item \textbf{Cross-model $\times$ cross-task replication (\S\ref{sec:cross}).}
+Across the $2{\times}4$ (model, task) grid the peak position is task-determined and replicates across DLMs on $3/4$ tasks: code (MBPP) and structural (JSON) tasks peak at mid-denoising (step 64); math (GSM8K) and---on Dream---science QA (ARC) peak at late denoising (step 127).
+Only ARC disagrees across models (LLaDA peaks at step 4).
+The task-determined peak position is the feature-level signature of the probe paper's structural-vs-reasoning emergence split.
 \item \textbf{Steering null result (\S\ref{sec:steer}).}
 A systematic intervention sweep---suppressing \texttt{f15601} at four windows (steps 0/16/32/64), multi-feature ablation of the top-5 fail features, and reverse intervention---fails to convert any fail$\to$pass on cluster-1 fails, and reverse intervention fails to convert pass$\to$fail.
 The cluster signature is robust but not causally controllable by sparse linear ablation.
@@ -139,19 +138,29 @@ The probe paper reports that aggregate raw-probe AUC \emph{monotonically} increa
 \begin{figure*}[t]
   \centering
   \includegraphics[width=\textwidth]{../figures/fig2_cross.pdf}
-  \caption{Trajectory shape replicates across condition. Each panel plots observed silhouette and permutation null mean across denoising steps.
-  \emph{Left} (LLaDA-8B / MBPP) and \emph{middle} (Dream-7B / MBPP): peak at step 64, post-peak fall-back; Dream's signal collapses below null at step 127.
-  \emph{Right} (LLaDA-8B / JSON schema): step-64 peak plus an additional early-formation shoulder at steps 4--16, paralleling the probe paper's structural-vs-reasoning split.}
+  \caption{Cross-model $\times$ cross-task trajectory grid. Each panel plots observed KMeans silhouette (solid blue) and permutation null mean (dashed grey) across denoising steps for one (model, task) cell;
+  red dotted vertical = peak step (max signal-to-null gap);
+  red star = $p{<}0.05$ permutation significance;
+  gold band = SAE training noise range.
+  Code (MBPP) and structural (JSON) tasks peak at mid-denoising (step 64) on both DLMs.
+  Math (GSM8K) and---on Dream---science QA (ARC) peak at late denoising (step 127).
+  The peak step is task-determined and replicates across LLaDA-8B and Dream-7B on three of four tasks; only ARC fails to replicate (LLaDA peak step 4, Dream step 127).}
   \label{fig:cross}
 \end{figure*}
 
-\paragraph{Cross-model and cross-task replication.}
+\paragraph{Cross-model $\times$ cross-task replication.}
 \label{sec:cross}
-Figure~\ref{fig:cross} extends the analysis to two further conditions.
-Dream-7B / MBPP follows the LLaDA shape: silhouette gap $+0.02$ at step 32, peaks at $+0.146$ at step 64, then collapses to $-0.034$ at step 127, with persistent peak feature \texttt{f15414} replacing \texttt{f15601}.
-LLaDA-8B / JSON schema again peaks at step 64 ($+0.139$) but additionally shows positive gap at steps 4--16 ($+0.076$, $+0.062$): the structural task has early-formed signal that the code task lacks.
-Early structural features at steps 4--16 (\texttt{f7356}, \texttt{f11910}, \texttt{f11566}) and the late peak feature \texttt{f14288} are disjoint: top-20 Jaccard between steps 32 and 64 is only $1/20$.
-A twelve-cell (model $\times$ dataset) grid in Appendix~\ref{sec:appendix_grid} confirms that only two cells reach $p{<}0.05$ at step 64 (LLaDA / MBPP and Qwen / JSON schema), but every DLM cell exhibits the same qualitative peak-then-degrade shape.
+Figure~\ref{fig:cross} reports the full $2{\times}4$ trajectory grid (full numeric table in Appendix~\ref{sec:appendix_grid_full}).
+Three archetypes emerge across cells.
+\textbf{Mid-denoising peak} (signal peaks at step 64): LLaDA-MBPP ($+0.31$), LLaDA-JSON ($+0.14$), Dream-JSON ($+0.23$), Dream-MBPP ($+0.15$).
+This is the shape of the persistent-feature trajectory described in \S\ref{sec:trajectory}: a fail-discriminative cluster crystallises during the middle of denoising and partially dissipates by step 127.
+\textbf{Late-denoising peak} (signal peaks at step 127): LLaDA-GSM8K ($+0.22$), Dream-GSM8K ($+0.16$), Dream-ARC ($+0.26$).
+Here the cluster signal is weak or below null in the SAE training window and only emerges near the final state, consistent with reasoning tasks requiring more denoising before the failure signature crystallises.
+\textbf{Early-decline} (LLaDA-ARC peaks at step 4, $+0.20$): an outlier where the cluster appears only at the OOD-early steps and decays thereafter.
+The peak position is \emph{task-determined and DLM-replicating}: three of four tasks (MBPP, JSON, GSM8K) have matching peak step across LLaDA and Dream; only ARC differs across models.
+At the feature level this mirrors the probe paper's structural-vs-reasoning emergence split---structural and code tasks form features mid-denoising; reasoning tasks form them late---now visible as a peak position rather than a continuous AUC curve.
+Appendix~\ref{sec:appendix_grid} summarises the 12 (DLM and AR) cells at step 64;
+across the full grid only two cells reach $p{<}0.05$ at any single step (LLaDA-MBPP step 64, Qwen-JSON step 64), but the cross-DLM peak-step agreement on $3/4$ tasks is itself the systematic claim.
 
 \paragraph{Top-feature drift and persistence.}
 On LLaDA-8B / MBPP, pairwise Jaccard of the top-20 sets is high among steps 0--4 ($\ge 0.48$, early-OOD regime), moderate between 32 and 64 ($0.29$, the peak regime), and falls to $0.14$ between 64 and 127.
@@ -356,45 +365,109 @@ All generation, encoding, and steering experiments use NVIDIA A100 (80GB) GPUs o
 Models are loaded in bfloat16; SAE weights cast to bfloat16 for the steering hook.
 Total compute: approximately 40 A100-hours across all reported experiments.
 
-\section{Cross-condition Trajectory Tables}
+\section{Full Cross-grid Trajectory}
+\label{sec:appendix_grid_full}
+
+Table~\ref{tab:grid_full} reports the signal-to-null gap (KMeans silhouette $-$ permutation null mean) at each of the five denoising checkpoints, for both DLMs $\times$ four tasks.
+The peak step per cell is bolded; cells with $p{<}0.05$ at the peak step are starred.
+
+\begin{table*}[h]
+  \centering\small
+  \setlength{\tabcolsep}{4pt}
+  \begin{tabular}{ll|rrrrr|l}
+    \toprule
+    model & task & $s{=}4$ & $s{=}16$ & $s{=}32$ & $s{=}64$ & $s{=}127$ & peak \\
+    \midrule
+    \multicolumn{8}{l}{\textit{LLaDA-8B}} \\
+    & mbpp & $-0.06$ & $-0.07$ & $+0.18$ & $\mathbf{+0.31}^{\star}$ & $+0.18$ & s64 \\
+    & jsonschema & $+0.08$ & $+0.06$ & $+0.01$ & $\mathbf{+0.14}$ & $+0.12$ & s64 \\
+    & gsm8k & $-0.01$ & $-0.05$ & $-0.08$ & $-0.00$ & $\mathbf{+0.22}$ & s127 \\
+    & arc & $\mathbf{+0.20}$ & $+0.13$ & $+0.14$ & $+0.08$ & $-0.14$ & s4 \\
+    \midrule
+    \multicolumn{8}{l}{\textit{Dream-7B}} \\
+    & mbpp & $+0.15$ & $+0.03$ & $+0.02$ & $\mathbf{+0.15}$ & $-0.03$ & s64 \\
+    & jsonschema & $+0.04$ & $+0.06$ & $+0.16$ & $\mathbf{+0.23}$ & $+0.17$ & s64 \\
+    & gsm8k & $+0.05$ & $+0.04$ & $+0.04$ & $+0.01$ & $\mathbf{+0.16}$ & s127 \\
+    & arc & $-0.14$ & $-0.05$ & $-0.02$ & $-0.15$ & $\mathbf{+0.26}$ & s127 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Signal-to-null gap (observed silhouette $-$ permutation null mean) at five denoising checkpoints across the $2{\times}4$ (DLM, task) grid.
+  Bold marks the peak step per cell. $\star$: $p{<}0.05$ on the permutation test at the peak step.
+  Cross-DLM peak-step agreement: MBPP (both s64), JSON (both s64), GSM8K (both s127); only ARC disagrees (LLaDA s4 vs Dream s127).}
+  \label{tab:grid_full}
+\end{table*}
+
+\section{Per-condition Trajectory Detail}
 \label{sec:appendix_cross_tables}
 
-Tables~\ref{tab:dream_traj} and~\ref{tab:jsonschema_traj} report the per-step silhouette, permutation null, $p$-value, and top fail feature for Dream-7B / MBPP and LLaDA-8B / JSON schema (the two conditions in Figure~\ref{fig:cross}).
+Tables~\ref{tab:dream_mbpp_traj}--\ref{tab:llada_arc_traj} report per-step silhouette, permutation null, $p$-value, and top fail feature for the conditions not detailed in Appendix~\ref{sec:appendix_persist}.
 
 \begin{table}[h]
   \centering\small
   \begin{tabular}{rrll}
     \toprule
-    step & best $K$ & silhouette / $p$ & top fail feat \\
+    step & $K$ & silhouette / $p$ & top fail feat \\
     \midrule
+    4 & 2 & 0.420 / 0.107 & f15414 ($+0.272$) \\
+    16 & 2 & 0.413 / 0.231 & f6326 ($+0.342$) \\
     32 & 2 & 0.451 / 0.407 & f10891 ($+0.408$) \\
     64 & 3 & 0.497 / 0.128 & f6326 ($+0.421$) \\
     127 & 2 & 0.333 / 0.460 & f15414 ($+0.270$) \\
     \bottomrule
   \end{tabular}
-  \caption{Dream-7B / MBPP per-step diagnose summary.
-  The signal-to-null gap peaks at step 64 ($+0.146$) and collapses below zero at step 127, mirroring LLaDA.
-  Top-20 Jaccard $s_{32}\to s_{64}$ is $12/20$ (peak overlap) and $s_{64}\to s_{127}$ is $2/20$ (post-peak drift).}
-  \label{tab:dream_traj}
+  \caption{Dream-7B / MBPP per-step diagnose. Peak at step 64; collapse below null at step 127.}
+  \label{tab:dream_mbpp_traj}
 \end{table}
 
 \begin{table}[h]
   \centering\small
   \begin{tabular}{rrll}
     \toprule
-    step & best $K$ & silhouette / $p$ & top fail feat \\
+    step & $K$ & silhouette / $p$ & top fail feat \\
     \midrule
-    4 & 2 & 0.372 / 0.193 & f5879 ($+0.317$) \\
-    16 & 2 & 0.398 / 0.230 & f7842 ($+0.278$) \\
-    32 & 2 & 0.517 / 0.481 & f4436 ($+0.264$) \\
-    64 & 2 & 0.582 / 0.198 & f14288 ($+0.226$) \\
-    127 & 3 & 0.467 / 0.184 & f14288 ($+0.313$) \\
+    4 & 2 & 0.344 / 0.256 & f6326 ($+0.427$) \\
+    16 & 2 & 0.401 / 0.213 & f10823 ($+0.433$) \\
+    32 & 2 & 0.572 / 0.121 & f6326 ($+0.419$) \\
+    64 & 2 & 0.773 / 0.135 & f6326 ($+0.420$) \\
+    127 & 3 & 0.475 / 0.109 & f233 ($+0.349$) \\
     \bottomrule
   \end{tabular}
-  \caption{LLaDA-8B / JSON schema per-step diagnose summary.
-  The structural-task profile has positive signal-to-null gap at steps 4--16 (early shoulder), drops at step 32, then recovers at steps 64--127 under a different feature \texttt{f14288}.
-  Top-20 Jaccard between steps 32 and 64 is $1/20$, indicating disjoint early and late feature sets.}
-  \label{tab:jsonschema_traj}
+  \caption{Dream-7B / JSON schema. Peak at step 64 with $+0.23$ signal-to-null gap (strongest cross-cell peak).}
+  \label{tab:dream_jsonschema_traj}
+\end{table}
+
+\begin{table}[h]
+  \centering\small
+  \begin{tabular}{rrll}
+    \toprule
+    step & $K$ & silhouette / $p$ & top fail feat \\
+    \midrule
+    4 & 3 & 0.190 / 0.394 & f2519 ($+0.197$) \\
+    16 & 3 & 0.175 / 0.629 & f13085 ($+0.192$) \\
+    32 & 2 & 0.255 / 0.661 & --- ($-$) \\
+    64 & 2 & 0.379 / 0.432 & --- ($-$) \\
+    127 & 2 & 0.701 / 0.197 & --- ($+0.224$ gap) \\
+    \bottomrule
+  \end{tabular}
+  \caption{LLaDA-8B / GSM8K. Signal is below null until step 127, where it spikes to silhouette $0.701$ ($+0.22$ gap). Math reasoning shows a late-emergence trajectory.}
+  \label{tab:llada_gsm8k_traj}
+\end{table}
+
+\begin{table}[h]
+  \centering\small
+  \begin{tabular}{rrll}
+    \toprule
+    step & $K$ & silhouette / $p$ & top fail feat \\
+    \midrule
+    4 & 2 & 0.627 / 0.079 & f4643 ($+0.186$) \\
+    16 & 2 & 0.532 / 0.227 & f3892 ($+0.243$) \\
+    32 & 2 & 0.480 / 0.155 & --- ($+0.142$ gap) \\
+    64 & 2 & 0.427 / 0.312 & --- ($+0.075$ gap) \\
+    127 & 2 & 0.316 / 0.784 & --- ($-0.142$ gap) \\
+    \bottomrule
+  \end{tabular}
+  \caption{LLaDA-8B / ARC. Anomalous early peak at step 4 (signal-to-null gap $+0.20$, only DLM cell with this shape).}
+  \label{tab:llada_arc_traj}
 \end{table}
 
 \section{Single-feature vs.\ Raw-probe AUC}
