@@ -18,6 +18,16 @@
 
 \hyphenation{com-ple-men-tary correct-ness sig-nal}
 
+% Tighten float/table/caption spacing to keep the layout compact.
+\setlength{\textfloatsep}{6pt plus 1pt minus 1pt}
+\setlength{\floatsep}{5pt plus 1pt minus 1pt}
+\setlength{\intextsep}{5pt plus 1pt minus 1pt}
+\setlength{\dbltextfloatsep}{6pt plus 1pt minus 1pt}
+\setlength{\dblfloatsep}{5pt plus 1pt minus 1pt}
+\setlength{\abovecaptionskip}{3pt}
+\setlength{\belowcaptionskip}{0pt}
+\renewcommand{\arraystretch}{0.96}
+
 % Stubs so the file compiles in both review (lineno active) and final (no lineno) modes.
 \providecommand{\linenumbers}{}
 \providecommand{\nolinenumbers}{}
@@ -49,10 +59,10 @@
 \begin{abstract}
 Prior probing of diffusion language models (DLMs) suggests that correctness signal grows monotonically through denoising.
 Using DLM-Scope sparse autoencoders, we instead trace the signal feature by feature across two DLMs and four tasks.
-Sparse fail-vs-pass concentration appears in task-dependent phases: code and structural tasks form a broad mid-denoising plateau, while reasoning tasks emerge only at the final state.
-On LLaDA-8B / MBPP, a dense step sweep across seeds confirms the plateau spans steps $48$--$116$ with multiple sub-steps reaching $p{<}0.05$ and a within-plateau hand-off from one persistent feature to another at the late phase.
+Sparse fail-vs-pass concentration appears in task-dependent phases. Code and structural tasks form a broad mid-denoising plateau, whereas reasoning tasks emerge only at the final state.
+On LLaDA-8B / MBPP, a dense step sweep across seeds confirms a plateau spanning steps $48$--$116$, with multiple sub-steps reaching $p{<}0.05$. Two persistent features hand off within the late plateau, marking an internal transition rather than feature swapping.
 The peak phase agrees across LLaDA-8B and Dream-7B on $3/4$ tasks, although most individual cross-grid cells do not reach per-step significance.
-However, single- and multi-feature steering fails to flip correctness in a small pilot intervention set, suggesting these sparse features are diagnostic under our current protocol rather than directly controllable knobs.
+However, single- and multi-feature steering fails to flip correctness in a small pilot. The sparse features therefore behave as diagnostic markers under our protocol, not as directly controllable knobs.
 \end{abstract}
 
 \section{Introduction}
@@ -75,8 +85,8 @@ Code and figures will be released on acceptance.
 
 \section{Related Work}
 
-Discrete diffusion and masked DLMs generate by iteratively denoising masked tokens rather than left-to-right continuation \citep{austin2021d3pm,sahoo2024simple,lou2024discrete,nie2025llada,ye2025dream}, and prior probing work on the same models and tasks studies aggregate hidden-state predictability and reports monotonic gains in correctness AUC through denoising.
-SAEs decompose residual streams into sparse named features and have been used primarily to interpret autoregressive LMs \citep{bricken2023monosemanticity,cunningham2024sae,gao2024scaling}; DLM-Scope extends this toolkit to DLMs with Top-$K$ SAEs \citep{makhzani2014topk,gao2024scaling} trained on masked-position residuals across mask rates $t\!\sim\!U(0,1)$ (\emph{Mask-SAE}), so the full denoising trajectory is in distribution \citep{dlmscope2026}.
+Discrete diffusion and masked DLMs generate text by iteratively denoising masked tokens rather than continuing left to right \citep{austin2021d3pm,sahoo2024simple,lou2024discrete,nie2025llada,ye2025dream}. Prior probing of the same models and tasks studies aggregate hidden-state predictability and reports monotonic gains in correctness AUC through denoising.
+SAEs decompose residual streams into sparse named features and have been used primarily to interpret autoregressive LMs \citep{bricken2023monosemanticity,cunningham2024sae,gao2024scaling}. DLM-Scope extends this toolkit to DLMs with Top-$K$ SAEs \citep{makhzani2014topk,gao2024scaling} trained on masked-position residuals across mask rates $t\!\sim\!U(0,1)$ (\emph{Mask-SAE}), keeping the full denoising trajectory in distribution \citep{dlmscope2026}.
 Recent AR SAE studies report both successful steering for refusal and instruction following \citep{obrien2024refusal,he2025saif} and cautions that contrastive features may track lexical correlates or that steering degrades unrelated capabilities \citep{galichin2025reasoning,korznikov2025roguescalpel}.
 We reuse the DLM-Scope SAEs to ask whether the scalar correctness trend on DLMs decomposes into temporally localised sparse features, treating the steering question as open rather than presumed causal.
 
@@ -116,7 +126,7 @@ We therefore interpret it as \emph{concentration of failure modes} in a selected
 We write \emph{fail$\to$pass} for a sample whose label flips from fail to pass after intervention, and \emph{pass$\to$fail} for the reverse pass-side regression.
 Given a target feature $i^\star$ and strength $\alpha$, a forward hook on the SAE layer's transformer block re-encodes the residual at every step $t \!\ge\! t_0$, reads $z_{i^\star}$, and in-place subtracts $\alpha \cdot z_{i^\star}\!\cdot\! W_{\mathrm{dec}}[:, i^\star]$.
 $\alpha\!<\!0$ amplifies the feature (reverse intervention); for multi-feature steering we sum contributions over a set of indices.
-A zero-out smoke test (force $h\!\leftarrow\!0$) confirms the hook propagates: it garbles trailing tokens but leaves the early-committed function body intact, consistent with LLaDA committing blocks 0--3 by step $\sim\!48$.
+A zero-out smoke test (force $h\!\leftarrow\!0$) confirms the hook propagates. It garbles trailing tokens but leaves the early-committed function body intact, consistent with LLaDA committing blocks 0--3 by step $\sim\!48$.
 
 \section{Results}
 \label{sec:trajectory}
@@ -134,7 +144,7 @@ A zero-out smoke test (force $h\!\leftarrow\!0$) confirms the hook propagates: i
   \caption{Cross-model $\times$ cross-task trajectory grid. Each panel plots signal-to-null gap (observed KMeans silhouette minus permutation null mean) across denoising steps for one (model, task) cell;
   red marker = peak gap step; black outline = $p{<}0.05$ permutation significance.
   Code (MBPP) and structural (JSON) tasks peak at mid-denoising (step 64) on both DLMs.
-  Math (GSM8K) and---on Dream---science QA (ARC) peak at late denoising (step 127).
+  Math (GSM8K), and on Dream science QA (ARC), peak at late denoising (step 127).
   The peak step shows task-level agreement across LLaDA-8B and Dream-7B on three of four tasks; only ARC disagrees (LLaDA peak step 4, Dream step 127).}
   \label{fig:cross}
 \end{figure*}
@@ -142,29 +152,29 @@ A zero-out smoke test (force $h\!\leftarrow\!0$) confirms the hook propagates: i
 \paragraph{Mid-denoising plateau.}
 Figure~\ref{fig:trajectory} reports a $21$-step trajectory for LLaDA-MBPP from a single generation run, with three seeds (Appendix~\ref{sec:appendix_seed}): anchors $\{0,1,4,16,32\}$, plateau dense $\{48,52,\ldots,80\}$, post-plateau dense $\{84,92,\ldots,124\}$, and final state $127$.
 Rather than a sharp peak at step 64, the trajectory shows a broad plateau spanning steps $48$--$116$: the signal-to-null gap stays in $[+0.19, +0.41]$ throughout this range and only collapses at step $124$ as the model approaches its final state.
-\texttt{f15601} is the top-1 fail-enriched feature at $7/9$ of the early-plateau dense steps and remains dominant through step $100$; in the late-plateau steps $108$--$116$ it is replaced by \texttt{f3892} as the top marker, indicating a within-plateau hand-off rather than feature swapping outside the plateau.
+\texttt{f15601} is the top-1 fail-enriched feature at $7/9$ of the early-plateau dense steps and remains dominant through step $100$. In the late-plateau steps $108$--$116$ it gives way to \texttt{f3892}, indicating a within-plateau hand-off rather than feature swapping outside the plateau.
 At steps $0$--$16$ the top fail feature changes every step (Appendix~\ref{sec:appendix_persist}), consistent with the residual stream not yet encoding committed-token decisions when most positions are still masked.
-\citet{chiu2026probe} reports that aggregate raw-probe AUC \emph{monotonically} increases over these same steps (for LLaDA / MBPP, from $\sim$$0.75$ at step 0 to $\sim$$0.84$ at step 64); the feature-level plateau is thus invisible to scalar probing.
+\citet{chiu2026probe} reports that aggregate raw-probe AUC \emph{monotonically} increases over these same steps (for LLaDA / MBPP, from $\sim$$0.75$ at step 0 to $\sim$$0.84$ at step 64). The feature-level plateau is therefore invisible to scalar probing.
 
 \paragraph{Cross-model $\times$ cross-task phase agreement.}
 \label{sec:cross}
-Figure~\ref{fig:cross} reports the full $2{\times}4$ trajectory grid (full numeric table in Appendix~\ref{sec:appendix_grid_full}).
+Figure~\ref{fig:cross} reports the full $2{\times}4$ trajectory grid.
 Three archetypes emerge across cells.
 \textbf{Mid-denoising peak} (signal peaks at step 64): LLaDA-MBPP ($+0.31$), LLaDA-JSON ($+0.14$), Dream-JSON ($+0.23$), Dream-MBPP ($+0.15$).
 This is the shape of the persistent-feature trajectory described in \S\ref{sec:trajectory}: a fail-discriminative cluster crystallises during the middle of denoising and partially dissipates by step 127.
 \textbf{Late-denoising peak} (signal peaks at step 127): LLaDA-GSM8K ($+0.22$), Dream-GSM8K ($+0.16$), Dream-ARC ($+0.26$).
 Here the cluster signal is weak or below null at mid-denoising and only emerges near the final state, consistent with reasoning tasks requiring more denoising before the failure signature crystallises.
 \textbf{Early-decline} (LLaDA-ARC peaks at step 4, $+0.20$): an outlier where the cluster appears only at the earliest steps and decays thereafter.
-The peak position shows \emph{task-level agreement across DLMs}: three of four tasks (MBPP, JSON, GSM8K) have matching peak step across LLaDA and Dream; only ARC differs across models.
-At the feature level this mirrors the structural-vs-reasoning emergence split of \citet{chiu2026probe}---structural and code tasks form features mid-denoising; reasoning tasks form them late---now visible as a peak position rather than a continuous AUC curve.
+The peak position shows \emph{task-level agreement across DLMs}. Three of four tasks (MBPP, JSON, GSM8K) share a peak step across LLaDA and Dream; only ARC differs.
+At the feature level this mirrors the structural-vs-reasoning emergence split of \citet{chiu2026probe}, in which structural and code tasks form features mid-denoising and reasoning tasks form them late. The split is now visible as a peak position rather than a continuous AUC curve.
 Appendix~\ref{sec:appendix_grid} summarises the 12 (DLM and AR) cells at step 64;
 across the full grid only two cells reach $p{<}0.05$ at any single step (LLaDA-MBPP step 64, Qwen-JSON step 64).
 Thus the cross-DLM result should be read as a descriptive phase-alignment claim, with statistical support strongest for the LLaDA-MBPP plateau.
 
 \paragraph{Top-feature drift and persistence.}
 On LLaDA-8B / MBPP, pairwise Jaccard of the top-20 sets is high among steps 0--4 ($\ge 0.48$, before committed-token information is available), moderate between 32 and 64 ($0.29$, the plateau regime), and falls to $0.14$ between 64 and 127.
-On the sparse 7-step grid, only \texttt{f15601} appears at all three peak-or-later steps; the dense sweep (Appendix~\ref{sec:appendix_dense}) sharpens this by showing \texttt{f15601} is the top-1 fail-enriched feature at 7 of 9 dense steps in $[48,80]$, supporting a persistent statistical marker rather than feature swapping inside the plateau.
-Outside the plateau, the sparse support reorganises as denoising commits different token blocks: early features are unstable, the compact failure marker \texttt{f15601} crystallises during 48--76, and the final state at step 127 spreads signal over a different set of atoms.
+On the sparse 7-step grid, only \texttt{f15601} appears at all three peak-or-later steps. The dense sweep (Appendix~\ref{sec:appendix_dense}) sharpens this finding by ranking \texttt{f15601} top-1 at 7 of 9 dense steps in $[48,80]$, supporting a persistent statistical marker rather than feature swapping inside the plateau.
+Outside the plateau, the sparse support reorganises as denoising commits different token blocks. Early features are unstable, the compact failure marker \texttt{f15601} crystallises during steps 48--76, and the final state at step 127 spreads signal over a different set of atoms.
 The temporal peak is therefore a concentration effect in sparse feature space, not merely a monotonic increase in correctness information.
 Full Jaccard matrix and per-feature enrichment trajectories are in Figure~\ref{fig:drift_app} (Appendix~\ref{sec:appendix_persist}).
 
@@ -195,13 +205,13 @@ We run five intervention conditions on cluster-1 fail cases and pass-side regres
 Suppressing the persistent peak feature \texttt{f15601} ($\alpha{=}5$) at the peak window (step 64) or before formation onset (step 16) yields \emph{zero} fail$\to$pass conversions and \emph{zero} pass$\to$fail regressions.
 Multi-feature suppression of the top-5 fail features at step 64 is also null.
 Reverse intervention ($\alpha{=}-5$, amplifying \texttt{f15601}) is null on pass-side cases as well.
-The hook does propagate---a separate zero-out test ($h{\leftarrow}0$ at $t\!\ge\!0$) destroys trailing generation while leaving the function body intact, consistent with LLaDA committing blocks 0--3 by step $\sim\!48$.
+The hook does propagate. A separate zero-out test ($h{\leftarrow}0$ at $t\!\ge\!0$) destroys trailing generation while leaving the function body intact, consistent with LLaDA committing blocks 0--3 by step $\sim\!48$.
 This pilot result does not rule out causal roles for these features, but it does show that correctness is not flipped by ablating one direction or a small set of directions under this intervention protocol.
 
 \section{Discussion}
 
 \paragraph{Statistical vs.\ causal features.}
-\texttt{f15601} fires on $65\%$ of LLaDA-8B / MBPP fails vs.\ $27\%$ of passes at step 64---a $\sim\!6.6\sigma$ per-feature effect---yet ablating it (or the top-5 fail features) in any of four intervention windows flips no label.
+\texttt{f15601} fires on $65\%$ of LLaDA-8B / MBPP fails versus $27\%$ of passes at step 64, a $\sim\!6.6\sigma$ per-feature effect. Yet ablating it, or the top-5 fail features, in any of four intervention windows flips no label.
 The cluster signature is useful as a diagnostic, but our intervention evidence is insufficient to treat this sparse direction as a knob that controls functional correctness.
 This contrasts with positive AR steering results on refusal and instruction following \citep{obrien2024refusal,he2025saif} but is consistent with reports that activation steering may degrade unrelated capabilities \citep{korznikov2025roguescalpel}.
 More decisive causal tests would need paired counterfactual replacements, multi-layer interventions, or attribution from output-level correctness back to the SAE layer.
@@ -216,7 +226,7 @@ This task-dependent timing also explains why a single intervention window is unl
 \section{Conclusion}
 
 Tracing functional-correctness signal feature by feature reveals temporal structure that scalar probes miss: sparse failure markers form task-dependent phases.
-Code and structural tasks form a mid-denoising plateau, while reasoning tasks peak at the final state; this peak-phase pattern agrees across LLaDA-8B and Dream-7B on three of four tasks, with strongest support on LLaDA-MBPP.
+Code and structural tasks form a mid-denoising plateau, whereas reasoning tasks peak at the final state. This peak-phase pattern agrees across LLaDA-8B and Dream-7B on three of four tasks, with strongest support on LLaDA-MBPP.
 In that cell, a 3-seed dense sweep confirms a steps $48$--$116$ plateau and a late hand-off from \texttt{f15601} to \texttt{f3892}.
 Pilot linear-feature interventions do not flip correctness, so these sparse features are currently diagnostic markers; causal control likely requires stronger interventions.
 
@@ -260,8 +270,8 @@ Functional correctness is verified across four tasks (MBPP, JSON schema, GSM8K, 
 Generalising the task-dependent peak finding to other open-ended tasks (instruction following, dialog, multi-turn reasoning) requires task-appropriate functional metrics and additional DLMs.
 
 \paragraph{Sample size and seed dependence.}
-Cluster sample sizes are limited by the number of fail cases per (model, dataset) cell: MBPP has $\sim$$140$ fails per DLM, but GSM8K has fewer than $250$ each.
-A three-seed sensitivity check on LLaDA-MBPP (Appendix~\ref{sec:appendix_seed}) shows pass/fail counts vary by at most $\pm 3$ samples and the plateau structure is preserved across seeds; the temporal-oscillation phenomenon noted in concurrent DLM work \citep{wang2025time} would primarily affect borderline samples, which our seed-stability check is consistent with.
+Cluster sample sizes are limited by the number of fail cases per (model, dataset) cell. MBPP has $\sim$$140$ fails per DLM, while GSM8K has fewer than $250$ each.
+A three-seed sensitivity check on LLaDA-MBPP (Appendix~\ref{sec:appendix_seed}) shows pass/fail counts vary by at most $\pm 3$ samples and the plateau structure is preserved across seeds. The temporal-oscillation phenomenon noted in concurrent DLM work \citep{wang2025time} would primarily affect borderline samples, which our seed-stability check is consistent with.
 
 \paragraph{Causal interpretation.}
 Even with the negative steering result, our conclusion that ``\texttt{f15601} is a diagnostic correlate rather than a directly controllable cause under our protocol'' is interpretation-dependent.
@@ -275,71 +285,45 @@ We leave such causal-mechanistic follow-up to future work.
 \section{Top-Feature Persistence Across Steps}
 \label{sec:appendix_persist}
 Figure~\ref{fig:drift_app} shows the pairwise Jaccard of top-20 fail features between denoising steps and the enrichment trajectory of three illustrative features for LLaDA-8B / MBPP.
-Table~\ref{tab:persist} reports the per-step silhouette, permutation $p$, and top fail-enriched feature.
-\texttt{f15601} is the only feature among the top-20 at all three peak-or-later steps (32, 64, 127).
+\texttt{f15601} is the only feature among the top-20 at all three peak-or-later steps (32, 64, 127), and is the top-1 fail-enriched feature at both step 32 ($+0.391$ enrichment) and step 64 ($+0.385$); on the sparse 7-grid only step 64 reaches $p<0.05$ (Figure~\ref{fig:trajectory} reports the dense sweep that locates the plateau).
 \begin{figure*}[t]
   \centering
   \includegraphics[width=0.92\textwidth]{../figures/fig4_feature_drift.pdf}
   \caption{Left: pairwise Jaccard of top-20 fail features between denoising steps. Right: enrichment trajectory of \texttt{f15601} (persistent peak), \texttt{f5561} (early only), and \texttt{f11265} (final only).}
   \label{fig:drift_app}
 \end{figure*}
-\begin{table}[H]
-  \centering\small
-  \begin{tabular}{rrll}
-    \toprule
-    step & best $K$ & silhouette / $p$ & top fail feat \\
-    \midrule
-    0 & 2 & 0.271 / 0.418 & f6421 ($+0.295$) \\
-    1 & 2 & 0.220 / 0.793 & f5561 ($+0.313$) \\
-    4 & 2 & 0.231 / 0.727 & f5561 ($+0.309$) \\
-    16 & 2 & 0.440 / 0.541 & f3892 ($+0.326$) \\
-    32 & 2 & 0.702 / 0.118 & f15601 ($+0.391$) \\
-    64 & 2 & 0.662 / \textbf{0.033} & f15601 ($+0.385$) \\
-    127 & 2 & 0.601 / 0.144 & f11265 ($+0.329$) \\
-    \bottomrule
-  \end{tabular}
-  \caption{LLaDA-8B / MBPP per-step diagnose summary.}
-  \label{tab:persist}
-\end{table}
 
 \section{Qualitative Cluster Inspection}
 \label{sec:appendix_cluster_examples}
 
 Table~\ref{tab:cluster_examples} shows illustrative LLaDA-MBPP failures from the two step-64 fail clusters.
 We re-generated the first ten fail samples from each cluster with the baseline LLaDA decoding setup and re-ran the MBPP tests.
-Cluster 0 yields 3 assertion failures, 2 syntax errors, 4 name errors, and 1 value error; cluster 1 yields 5 assertion failures, 4 name errors, and 1 type error.
 The examples are not intended as human-validated feature labels; they only show that both sparse clusters contain concrete functional failures, ranging from malformed code to plausible but semantically wrong implementations.
 
-\begin{table*}[t]
+\begin{table}[t]
   \centering\small
   \setlength{\tabcolsep}{4pt}
-  \resizebox{\textwidth}{!}{%
-  \begin{tabular}{cllp{0.38\textwidth}}
+  \renewcommand{\arraystretch}{1.05}
+  \begin{tabular}{@{}c p{0.30\columnwidth} p{0.55\columnwidth}@{}}
     \toprule
-    cluster & characteristic features & task & observed failure \\
+    \# & characteristic features & illustrative failures \\
     \midrule
     0 & \texttt{f11404}, \texttt{f9798}, \texttt{f189}, \texttt{f496}, \texttt{f8825}
-      & closest smaller number
-      & Generates a long case split that returns $n$ for small inputs instead of $n{-}1$, failing assertions. \\
-    0 & \texttt{f11404}, \texttt{f9798}, \texttt{f189}, \texttt{f496}, \texttt{f8825}
-      & unique element in sorted array
-      & Produces malformed pointer-update code with a syntax error. \\
+      & \emph{closest smaller number}: returns $n$ for small inputs instead of $n{-}1$, failing assertions.\newline
+        \emph{unique element in sorted array}: malformed pointer-update code, syntax error. \\
+    \addlinespace[2pt]
     1 & \texttt{f189}, \texttt{f492}, \texttt{f3320}, \texttt{f11404}, \texttt{f15601}
-      & remove first/last occurrence
-      & Removes only boundary characters and misses interior first/last occurrences, failing assertions. \\
-    1 & \texttt{f189}, \texttt{f492}, \texttt{f3320}, \texttt{f11404}, \texttt{f15601}
-      & lowercase underscore regex
-      & Uses \texttt{re.compile} without importing \texttt{re}, causing a \texttt{NameError}. \\
+      & \emph{remove first/last occurrence}: deletes only boundary characters, missing interior occurrences.\newline
+        \emph{lowercase underscore regex}: uses \texttt{re.compile} without importing \texttt{re}, \texttt{NameError}. \\
     \bottomrule
   \end{tabular}
-  }
-  \caption{Illustrative generated failures from LLaDA-MBPP step-64 fail clusters. Error-type counts are computed over 10 regenerated failures per cluster; full generated outputs and errors are saved in \texttt{mbpp\_llada/cluster\_failure\_examples.json} on the Modal \texttt{probe-results} volume.}
+  \caption{Illustrative generated failures from the two LLaDA-MBPP step-64 fail clusters. Error-type counts over 10 regenerated failures per cluster: cluster 0 has 3 assertion / 2 syntax / 4 name / 1 value error; cluster 1 has 5 assertion / 4 name / 1 type error.}
   \label{tab:cluster_examples}
-\end{table*}
+\end{table}
 
 \section{Step-64 Cross-grid Snapshot}
 \label{sec:appendix_grid}
-Table~\ref{tab:grid} summarises silhouette + permutation $p$ across the 4 datasets $\times$ 3 models grid at step 64, complementing the trajectory-shape claim in Appendix~\ref{sec:appendix_grid_full}.
+Table~\ref{tab:grid} summarises silhouette + permutation $p$ across the 4 datasets $\times$ 3 models grid at step 64, complementing the trajectory-shape claim in Figure~\ref{fig:cross}.
 \begin{table}[H]
   \centering\small
   \setlength{\tabcolsep}{3.2pt}
@@ -353,7 +337,7 @@ Table~\ref{tab:grid} summarises silhouette + permutation $p$ across the 4 datase
     arc & 0.43 / 0.312 & 0.18 / 0.882 & 0.13 / 0.343 \\
     \bottomrule
   \end{tabular}
-  \caption{Silhouette / permutation $p$ at step 64 per condition; bold $p<0.05$. Full trajectory in Table~\ref{tab:grid_full}.}
+  \caption{Silhouette / permutation $p$ at step 64 per condition; bold $p<0.05$. Full trajectory shown in Figure~\ref{fig:cross}.}
   \label{tab:grid}
 \end{table}
 
@@ -407,124 +391,20 @@ Generation uses seed $0$; both LLaDA and Dream commit the highest-confidence mas
 Hidden states are cached as bfloat16 tensors; SAE encoding reads from the dense residual cache on demand, so top-20 selection, KMeans, and permutation null are rerunnable without re-invoking either DLM.
 The permutation null uses $1000$ shuffles per cell with a fixed permutation seed offset, so silhouette $p$-values are themselves reproducible.
 
-\section{Full Cross-grid Trajectory}
-\label{sec:appendix_grid_full}
-
-Table~\ref{tab:grid_full} reports the signal-to-null gap (KMeans silhouette $-$ permutation null mean) at each of the five denoising checkpoints, for both DLMs $\times$ four tasks.
-The peak step per cell is bolded; the only DLM peak with $p{<}0.05$ is LLaDA-8B / MBPP at step 64.
-The table separates the trajectory-shape claim from per-step significance: modest gaps can still support the timing pattern when the same task peaks at the same denoising phase across both DLMs.
-
-\begin{table*}[t]
-  \centering\small
-  \setlength{\tabcolsep}{5pt}
-  \begin{tabular}{ll|rrrrr|l}
-    \toprule
-    model & task & $s{=}4$ & $s{=}16$ & $s{=}32$ & $s{=}64$ & $s{=}127$ & peak \\
-    \midrule
-    \multicolumn{8}{l}{\textit{LLaDA-8B}} \\
-    & mbpp & $-0.06$ & $-0.07$ & $+0.18$ & $\mathbf{+0.31}$ & $+0.18$ & s64 \\
-    & jsonschema & $+0.08$ & $+0.06$ & $+0.01$ & $\mathbf{+0.14}$ & $+0.12$ & s64 \\
-    & gsm8k & $-0.01$ & $-0.05$ & $-0.08$ & $-0.00$ & $\mathbf{+0.22}$ & s127 \\
-    & arc & $\mathbf{+0.20}$ & $+0.13$ & $+0.14$ & $+0.08$ & $-0.14$ & s4 \\
-    \midrule
-    \multicolumn{8}{l}{\textit{Dream-7B}} \\
-    & mbpp & $+0.15$ & $+0.03$ & $+0.02$ & $\mathbf{+0.15}$ & $-0.03$ & s64 \\
-    & jsonschema & $+0.04$ & $+0.06$ & $+0.16$ & $\mathbf{+0.23}$ & $+0.17$ & s64 \\
-    & gsm8k & $+0.05$ & $+0.04$ & $+0.04$ & $+0.01$ & $\mathbf{+0.16}$ & s127 \\
-    & arc & $-0.14$ & $-0.05$ & $-0.02$ & $-0.15$ & $\mathbf{+0.26}$ & s127 \\
-    \bottomrule
-  \end{tabular}
-  \caption{Signal-to-null gap (observed silhouette $-$ permutation null mean) at five denoising checkpoints across the $2{\times}4$ (DLM, task) grid.
-  Bold marks the peak step per cell.
-  Cross-DLM peak-step agreement: MBPP (both s64), JSON (both s64), GSM8K (both s127); only ARC disagrees (LLaDA s4 vs Dream s127).}
-  \label{tab:grid_full}
-\end{table*}
-
-\section{Per-condition Trajectory Detail}
-\label{sec:appendix_cross_tables}
-
-Table~\ref{tab:cross_traj} reports per-step silhouette, permutation $p$-value, and top fail feature for the four (DLM, task) conditions not detailed in Appendix~\ref{sec:appendix_persist}.
-Two patterns are worth flagging.
-Dream-7B / JSON schema concentrates on \texttt{f6326}, which is the top-1 fail-enriched feature at four of five checkpoint steps; this mirrors the persistent-feature behaviour seen for \texttt{f15601} on LLaDA-MBPP and supports the cross-DLM peak-step claim at the feature level.
-In LLaDA-8B / GSM8K and LLaDA-8B / ARC after step 32 no single feature surfaces as a stable top-1 marker (dashes in the table); the cluster signal there is spread across multiple weakly-enriched features rather than concentrated on one atom, consistent with the negative single-feature steering result in \S\ref{sec:steer}.
-
-\begin{table}[H]
-  \centering\small
-  \setlength{\tabcolsep}{4pt}
-  \begin{tabular}{rrll}
-    \toprule
-    step & $K$ & silhouette / $p$ & top fail feat \\
-    \midrule
-    \multicolumn{4}{l}{\textit{Dream-7B / MBPP} (peak s64; below null at s127)} \\
-    4 & 2 & 0.420 / 0.107 & f15414 ($+0.272$) \\
-    16 & 2 & 0.413 / 0.231 & f6326 ($+0.342$) \\
-    32 & 2 & 0.451 / 0.407 & f10891 ($+0.408$) \\
-    64 & 3 & 0.497 / 0.128 & f6326 ($+0.421$) \\
-    127 & 2 & 0.333 / 0.460 & f15414 ($+0.270$) \\
-    \midrule
-    \multicolumn{4}{l}{\textit{Dream-7B / JSON schema} (peak s64, $+0.23$ gap)} \\
-    4 & 2 & 0.344 / 0.256 & f6326 ($+0.427$) \\
-    16 & 2 & 0.401 / 0.213 & f10823 ($+0.433$) \\
-    32 & 2 & 0.572 / 0.121 & f6326 ($+0.419$) \\
-    64 & 2 & 0.773 / 0.135 & f6326 ($+0.420$) \\
-    127 & 3 & 0.475 / 0.109 & f233 ($+0.349$) \\
-    \midrule
-    \multicolumn{4}{l}{\textit{LLaDA-8B / GSM8K} (late peak; s127 spike $+0.22$ gap)} \\
-    4 & 3 & 0.190 / 0.394 & f2519 ($+0.197$) \\
-    16 & 3 & 0.175 / 0.629 & f13085 ($+0.192$) \\
-    32 & 2 & 0.255 / 0.661 & --- ($-$) \\
-    64 & 2 & 0.379 / 0.432 & --- ($-$) \\
-    127 & 2 & 0.701 / 0.197 & --- ($+0.224$ gap) \\
-    \midrule
-    \multicolumn{4}{l}{\textit{LLaDA-8B / ARC} (anomalous s4 peak, $+0.20$ gap)} \\
-    4 & 2 & 0.627 / 0.079 & f4643 ($+0.186$) \\
-    16 & 2 & 0.532 / 0.227 & f3892 ($+0.243$) \\
-    32 & 2 & 0.480 / 0.155 & --- ($+0.142$ gap) \\
-    64 & 2 & 0.427 / 0.312 & --- ($+0.075$ gap) \\
-    127 & 2 & 0.316 / 0.784 & --- ($-0.142$ gap) \\
-    \bottomrule
-  \end{tabular}
-  \caption{Per-step diagnose for the four (DLM, task) conditions complementing Table~\ref{tab:persist}. Dashes mark no single feature surfaces as the top-1 marker (cluster persists across multiple weakly-enriched features).}
-  \label{tab:cross_traj}
-\end{table}
-
 \section{Single-feature vs.\ Raw-probe AUC}
 \label{sec:appendix_auc_compare}
 
-We compare the cross-validated AUC of (i) the single most-fail-enriched SAE feature, (ii) top-$N$ SAE features (logistic regression with per-fold selection), and (iii) a raw-probe baseline (PCA-64 + LR on the same hidden state) across all 12 cells (Table~\ref{tab:auc_compare}).
+We compare the cross-validated AUC of (i) the single most-fail-enriched SAE feature, (ii) top-$N$ SAE features (logistic regression with per-fold selection), and (iii) a raw-probe baseline (PCA-64 + LR on the same hidden state) across all 12 cells (Figure~\ref{fig:auc_compare}).
 Raw-probe AUC dominates in 11 of 12 cells; the only SAE wins (Qwen / MBPP, Dream / ARC) are cells where the raw probe is itself near chance.
 Top-20 SAE features recover roughly $85$--$95\%$ of the raw-probe AUC, suggesting sparse atoms carry most but not all of the signal in the dense residual.
 This complements the negative steering finding (\S\ref{sec:steer}): even at optimal feature selection, sparse linear features under-represent the information that determines correctness.
 
-\begin{table}[!b]
-  \centering\scriptsize
-  \setlength{\tabcolsep}{3pt}
-  \begin{tabular}{llcccc}
-    \toprule
-    model & dataset & top-1 & top-5 & top-20 & raw \\
-    \midrule
-    \multicolumn{6}{l}{\textit{LLaDA-8B}} \\
-    & mbpp & 0.59 & 0.73 & 0.73 & \textbf{0.82} \\
-    & jsonschema & 0.67 & 0.66 & 0.69 & \textbf{0.81} \\
-    & gsm8k & 0.69 & 0.71 & 0.72 & \textbf{0.77} \\
-    & arc & 0.61 & 0.65 & 0.66 & \textbf{0.71} \\
-    \midrule
-    \multicolumn{6}{l}{\textit{Dream-7B}} \\
-    & mbpp & 0.70 & 0.69 & 0.73 & \textbf{0.82} \\
-    & jsonschema & 0.68 & 0.74 & 0.78 & \textbf{0.80} \\
-    & gsm8k & 0.57 & 0.61 & 0.66 & \textbf{0.70} \\
-    & arc & 0.49 & 0.54 & 0.56 & \textbf{0.57} \\
-    \midrule
-    \multicolumn{6}{l}{\textit{Qwen-2.5-7B (AR baseline)}} \\
-    & mbpp & 0.57 & \textbf{0.66} & 0.59 & 0.61 \\
-    & jsonschema & 0.59 & 0.66 & 0.71 & \textbf{0.75} \\
-    & gsm8k & 0.59 & 0.66 & 0.71 & \textbf{0.75} \\
-    & arc & 0.56 & 0.59 & 0.65 & \textbf{0.74} \\
-    \bottomrule
-  \end{tabular}
-  \caption{Per-cell 5-fold cross-validated AUC at step 64 predicting functional correctness from top-$N$ SAE features (logistic regression, per-fold top-$N$ selection fitted on training folds only) vs.\ raw-probe baseline (PCA-64 fitted on training folds only + LR, applied to the \emph{same} SAE-layer hidden state). Bold marks the per-cell maximum.}
-  \label{tab:auc_compare}
-\end{table}
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=0.96\textwidth]{../figures/fig5_auc_compare.pdf}
+  \caption{Per-cell 5-fold cross-validated AUC at step 64 predicting functional correctness from top-$N$ SAE features (logistic regression with per-fold top-$N$ selection) versus a raw-probe baseline (PCA-64 + LR on the same SAE-layer hidden state). A star marks the per-cell winner; raw probe wins in 11 of 12 cells.}
+  \label{fig:auc_compare}
+\end{figure*}
 
 \section{Dense Temporal Sweep on MBPP}
 \label{sec:appendix_dense}
@@ -532,155 +412,51 @@ This complements the negative steering finding (\S\ref{sec:steer}): even at opti
 We re-generate MBPP on both DLMs and capture hidden states at $9$ dense checkpoints in $[48, 80]$ (every $4$ steps) and an additional $6$ checkpoints in $[84, 124]$ (every $8$ steps), then run the same TopK-SAE encoding, top-20 fail enrichment, KMeans silhouette, and permutation null pipeline as the main 7-point grid.
 This sweep was requested as a robustness check against sparse-sampling artefacts.
 Generation uses seed $0$ throughout; counts are LLaDA $115/142$ and Dream $125/132$ pass/fail. Three seeds confirm stability (Appendix~\ref{sec:appendix_seed}).
-Table~\ref{tab:dense_sweep} shows per-step silhouette, permutation null mean, gap, $p$-value, and top-1 fail feature for the $[48,80]$ plateau region; Appendix~\ref{sec:appendix_seed} reports the $[84,124]$ post-plateau region across three seeds.
-
-\begin{table}[H]
-  \centering\tiny
-  \setlength{\tabcolsep}{2pt}
-  \begin{tabular}{rrrrrl}
-    \toprule
-    step & sil & null & gap & $p$ & top-1 \\
-    \midrule
-    \multicolumn{6}{l}{\textit{LLaDA-8B / MBPP}} \\
-    48 & 0.680 & 0.400 & $+0.280$ & \textbf{0.037} & f15601 \\
-    52 & 0.728 & 0.392 & $+0.336$ & \textbf{0.006} & f2144 \\
-    56 & 0.708 & 0.376 & $+0.331$ & \textbf{0.012} & f15601 \\
-    60 & 0.627 & 0.362 & $+0.266$ & \textbf{0.050} & f2144 \\
-    64 & 0.609 & 0.355 & $+0.253$ & 0.081 & f15601 \\
-    68 & 0.719 & 0.350 & $+0.369$ & \textbf{0.005} & f15601 \\
-    72 & 0.709 & 0.338 & $+0.371$ & \textbf{0.014} & f15601 \\
-    76 & 0.710 & 0.359 & $+0.351$ & \textbf{0.026} & f15601 \\
-    80 & 0.583 & 0.364 & $+0.219$ & 0.121 & f15601 \\
-    \midrule
-    \multicolumn{6}{l}{\textit{Dream-7B / MBPP}} \\
-    48 & 0.452 & 0.347 & $+0.105$ & 0.152 & f10891 \\
-    52 & 0.450 & 0.344 & $+0.106$ & 0.171 & f10891 \\
-    56 & 0.476 & 0.342 & $+0.134$ & 0.121 & f11613 \\
-    60 & 0.470 & 0.355 & $+0.114$ & 0.164 & f14029 \\
-    64 & 0.462 & 0.354 & $+0.107$ & 0.177 & f6326 \\
-    68 & 0.506 & 0.350 & $+0.156$ & 0.108 & f6326 \\
-    72 & 0.516 & 0.442 & $+0.074$ & 0.252 & f6326 \\
-    76 & 0.525 & 0.441 & $+0.084$ & 0.258 & f6326 \\
-    80 & 0.495 & 0.452 & $+0.043$ & 0.321 & f14029 \\
-    \bottomrule
-  \end{tabular}
-  \caption{Dense step sweep ($48$--$80$ every $4$ steps) on LLaDA-MBPP and Dream-MBPP. Bold $p<0.05$. On LLaDA, 7 of 9 sub-steps reach $p<0.05$ and \texttt{f15601} is top-1 at 7 of 9 steps, confirming a broad plateau rather than a single-step peak.}
-  \label{tab:dense_sweep}
-\end{table}
-
-Three findings.
-\textbf{Plateau structure.} On LLaDA-MBPP the gap stays above $+0.19$ throughout $[48, 116]$ with multiple significant sub-steps across three seeds; step 64 (the only $p{<}0.05$ point on the sparse 7-grid) sits in the middle of this plateau rather than at a sharp peak. The sparse-grid claim that step 64 is the unique peak should thus be read as ``step 64 is a representative point in the plateau''.
+Figure~\ref{fig:dense_compare} plots the signal-to-null gap per step for both DLMs across the $[48,80]$ plateau region; Appendix~\ref{sec:appendix_seed} reports the $[84,124]$ post-plateau region across three seeds.
+Four findings emerge.
+\textbf{Plateau structure.} On LLaDA-MBPP the gap stays above $+0.19$ throughout $[48, 116]$ with multiple significant sub-steps across three seeds. Step 64 (the only $p{<}0.05$ point on the sparse 7-grid) sits in the middle of this plateau rather than at a sharp peak. The sparse-grid claim that step 64 is the unique peak should therefore be read as ``step 64 is a representative point in the plateau''.
 \textbf{Late collapse.} The signal collapses sharply at step $124$ ($\sim$$3$ steps before the final state), consistent with the residual stream re-organising as the generation completes block-by-block commits.
-\textbf{Plateau feature hand-off.} \texttt{f15601} (LLaDA) is the top-1 fail-enriched feature at most dense steps in $[48, 100]$; it is replaced by \texttt{f3892} at the late-plateau steps $108$--$116$. Dream-MBPP also shows a persistent top-1 (\texttt{f6326}) at $[60, 76]$.
+\textbf{Plateau feature hand-off.} \texttt{f15601} (LLaDA) is the top-1 fail-enriched feature at most dense steps in $[48, 100]$ and is replaced by \texttt{f3892} at the late-plateau steps $108$--$116$. Dream-MBPP also shows a persistent top-1 marker (\texttt{f6326}) over $[60, 76]$, so a similar within-plateau hand-off behaviour appears across DLMs even when the plateau itself is weaker.
+\textbf{Cross-DLM concentration.} Dream-MBPP shows the same temporal shape (a flat region across the middle of denoising) but at a much lower concentration: the gap never exceeds $+0.16$ and no sub-step reaches $p<0.05$ under the same permutation null. The LLaDA $\times$ MBPP combination is therefore not a generic property of code generation but a model-specific point where the residual stream factors fail-vs-pass information into a small set of sparse features. This is consistent with LLaDA's block-wise unmasking committing the function-signature block early, exposing fail-mode tokens at a denoising phase when later positions remain uncertain. We return to this contrast in \S\ref{sec:cross}.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.95\columnwidth]{../figures/fig6_dense_compare.pdf}
+  \caption{Dense step sweep ($48$--$80$ every $4$ steps) on LLaDA-MBPP and Dream-MBPP. Hollow red rings mark LLaDA sub-steps with permutation $p<0.05$; 7 of 9 sub-steps are significant on LLaDA, none reach significance on Dream. \texttt{f15601} (LLaDA) and \texttt{f6326} (Dream) are top-1 at most plateau steps.}
+  \label{fig:dense_compare}
+\end{figure}
 
 \section{Seed Sensitivity}
 \label{sec:appendix_seed}
 
-We re-run the LLaDA-MBPP dense sweep (Appendix~\ref{sec:appendix_dense}) with two additional generation seeds (seed $1$ and seed $2$).
+We re-run the LLaDA-MBPP dense sweep (Appendix~\ref{sec:appendix_dense}) with two additional generation seeds.
 Pass/fail counts vary by at most $\pm 3$ samples across seeds (seed $0$: $115/142$, seed $1$: $112/145$, seed $2$: $116/141$).
-Table~\ref{tab:seed_sweep} reports per-step gap and $p$-value for each seed and the top-1 fail-enriched feature.
-
-\begin{table}[H]
-  \centering\scriptsize
-  \setlength{\tabcolsep}{2pt}
-  \begin{tabular}{r|rr|rr|rr|c}
-    \toprule
-    & \multicolumn{2}{c|}{seed 0} & \multicolumn{2}{c|}{seed 1} & \multicolumn{2}{c|}{seed 2} & top-1 \\
-    step & gap & $p$ & gap & $p$ & gap & $p$ & majority \\
-    \midrule
-    0 & $+0.20$ & \textbf{.02} & $+0.08$ & .15 & $+0.02$ & .35 & mixed \\
-    1 & $+0.04$ & .15 & $+0.01$ & .40 & $+0.03$ & .20 & f5561/f6421 \\
-    4 & $-0.11$ & .91 & $-0.09$ & .84 & $-0.09$ & .87 & mixed \\
-    16 & $-0.16$ & .69 & $-0.05$ & .54 & $-0.15$ & .67 & mixed \\
-    32 & $+0.14$ & .18 & $+0.20$ & .10 & $+0.19$ & .11 & f15601 \\
-    \midrule
-    48 & $+0.28$ & \textbf{.04} & $+0.31$ & \textbf{.01} & $+0.28$ & \textbf{.04} & f15601 \\
-    52 & $+0.34$ & \textbf{.01} & $+0.31$ & \textbf{.02} & $+0.33$ & \textbf{.002} & f2144/f15601 \\
-    56 & $+0.33$ & \textbf{.01} & $+0.31$ & \textbf{.02} & $+0.33$ & \textbf{.01} & f15601 \\
-    60 & $+0.27$ & \textbf{.05} & $+0.31$ & \textbf{.02} & $+0.32$ & \textbf{.02} & f2144 \\
-    64 & $+0.25$ & .08 & $+0.25$ & .09 & $+0.28$ & \textbf{.05} & mixed \\
-    68 & $+0.37$ & \textbf{.005} & $+0.33$ & \textbf{.02} & $+0.34$ & \textbf{.03} & f15601 \\
-    72 & $+0.37$ & \textbf{.01} & $+0.36$ & \textbf{.01} & $+0.37$ & \textbf{.02} & f15601 \\
-    76 & $+0.35$ & \textbf{.03} & $+0.32$ & \textbf{.04} & $+0.34$ & \textbf{.04} & f15601 \\
-    80 & $+0.22$ & .12 & $+0.22$ & .11 & $+0.25$ & .13 & f15601 \\
-    \midrule
-    84 & $+0.24$ & .10 & $+0.20$ & .15 & $+0.24$ & .12 & f15601/f2087 \\
-    92 & $+0.23$ & .08 & $+0.19$ & .15 & $+0.19$ & .19 & f15601/f2087 \\
-    100 & $+0.20$ & .16 & $+0.28$ & .09 & $+0.25$ & .14 & f15601/f2087 \\
-    108 & $+0.33$ & .08 & $+0.24$ & .14 & $+0.36$ & \textbf{.05} & f3892 \\
-    116 & $+0.41$ & \textbf{$<$.001} & $+0.22$ & .15 & $+0.30$ & .10 & f3892 \\
-    124 & $+0.00$ & .46 & $+0.13$ & .23 & $+0.19$ & .19 & f14728/f12454 \\
-    127 & $+0.14$ & .20 & $+0.14$ & .20 & $+0.17$ & .19 & f15601/f11265 \\
-    \bottomrule
-  \end{tabular}
-  \caption{Full $21$-step sweep across three seeds on LLaDA-MBPP (anchors $\{0,1,4,16,32\}$, plateau $\{48$--$80\}$, post-plateau $\{84$--$124\}$, final state $127$); all from a single new-prompt generation run so fail/pass sets are identical within each seed. Bold $p<0.05$. The plateau spans steps $48$--$116$ with $\ge\!7$ sub-steps significant in each seed; pre-plateau steps $1$--$16$ show no signal and step $4$ has negative gap (residual stream below random structure); step $124$ collapses just before the final state.}
-  \label{tab:seed_sweep}
-\end{table}
+The plateau structure is preserved: each seed reaches $p<0.05$ at $\ge\!7$ of $9$ dense sub-steps in $[48,80]$, with $\texttt{f15601}$ as the majority top-1 fail-enriched feature across $48$--$80$ and $\texttt{f3892}$ taking over at $108$--$116$.
+The 3-seed gap-versus-step overlay is shown in Figure~\ref{fig:trajectory}; per-seed numerical traces (gap, $p$-value, top-1 feature at every checkpoint) are released with the code.
 
 \section{Intervention Effect Size}
 \label{sec:appendix_effect}
 
-The negative steering result in \S\ref{sec:steer} could be artefactual if the intervention failed to meaningfully perturb the SAE-layer residual.
-We log per-step activation of the target feature ($a_{\text{target}}$), the L2 norm of the steering delta ($\|\Delta h\|$), and its ratio to the hidden state norm ($\|\Delta h\| / \|h\|$) for $n{=}8$ cluster-1 fail cases under each intervention condition.
-Table~\ref{tab:effect_size} reports averages.
-
-\begin{table}[H]
-  \centering\small
-  \setlength{\tabcolsep}{3pt}
-  \begin{tabular}{lrrr}
-    \toprule
-    condition & $a_{\text{target}}$ & $\|\Delta h\|$ & ratio \\
-    \midrule
-    baseline ($\alpha{=}0$) & 9.47 & 0.00 & 0\% \\
-    suppress \texttt{f15601} s64 & 9.43 & 185 & 4.4\% \\
-    suppress \texttt{f15601} s16 & 9.27 & 183 & 4.4\% \\
-    suppress top-5 s64 & 47.4 & 624 & 14.8\% \\
-    reverse \texttt{f15601} s64 & 9.43 & 185 & 4.4\% \\
-    \bottomrule
-  \end{tabular}
-  \caption{Effect-size diagnostics on $n{=}8$ cluster-1 fail samples per condition. All four active conditions induce $\|\Delta h\| \ge 180$ ($\ge 4\%$ of $\|h\|$); the top-5 combined condition reaches $14.8\%$. Despite measurable perturbation, no condition flips any label.}
-  \label{tab:effect_size}
-\end{table}
-
-The intervention is therefore not silent: $\|\Delta h\|$ ranges from $4.4\%$ of $\|h\|$ for single-feature suppression to $14.8\%$ for the top-5 combined condition, and $\texttt{f15601}$ is reliably active ($a_{\text{target}} \approx 9.4$) during the intervention window in all sampled cases.
-The null steering result is consistent with functional correctness being distributively encoded such that perturbing a sparse direction at the SAE-layer residual does not propagate into a label flip, even when that perturbation reaches $\sim$$15\%$ of the residual norm.
+For $n{=}8$ cluster-1 fail samples per condition, the SAE-layer residual perturbation reaches $\|\Delta h\|/\|h\|{=}4.4\%$ for single-feature suppression of \texttt{f15601} at s64 and s16 ($\|\Delta h\|{=}185$, $a_{\text{target}}{\approx}9.43$), $14.8\%$ for the top-5 combined suppression at s64 ($\|\Delta h\|{=}624$, $a_{\text{target}}{=}47.4$), and $4.4\%$ for the reverse intervention at s64 ($\alpha{=}-5$).
+The target feature is reliably active during every intervention window, so the null steering result is consistent with functional correctness being distributively encoded: perturbing a sparse direction at the SAE-layer residual does not propagate into a label flip, even when that perturbation reaches $\sim$$15\%$ of the residual norm.
 
 \section{Post-hoc Selection Sensitivity}
 \label{sec:appendix_sensitivity}
 
-We reanalyse cached LLaDA-MBPP plateau residuals (seed $0$) at the strongest plateau steps and report three robustness checks (Table~\ref{tab:sensitivity}).
-\textbf{(a) Top-$N$}: silhouette + permutation across $N\!\in\!\{10,20,30,50\}$. Step $68$ remains $p<0.05$ at all four; step $64$ degrades for $N\!\ge\!30$, marking step $68$ as the more robust plateau point.
-\textbf{(b) Clustering method}: at $N{=}20$, KMeans, Agglomerative (Ward), and HDBSCAN ($\min$\_$\text{size}{=}5$) all recover $K{=}2$ with near-identical silhouette.
-\textbf{(c) Labels-hidden}: clustering the full $257$-sample fail+pass set at $K{=}2$ with the same top-$20$ features (selected via labels, but the cluster itself is unsupervised) gives ARI $\approx 0$, confirming the silhouette signal measures within-fail sub-structure rather than fail/pass separability.
+We reanalyse cached LLaDA-MBPP plateau residuals (seed $0$) at the strongest plateau steps and report three robustness checks.
+\textbf{(a) Top-$N$.}
+Figure~\ref{fig:topN_sensitivity} plots the signal-to-null gap as $N$ varies over $\{10,20,30,50\}$.
+Step $68$ remains $p<0.05$ at every $N$, while step $64$ degrades for $N\!\ge\!30$, marking step $68$ as the more robust plateau point.
+\textbf{(b) Clustering method.} At $N{=}20$, KMeans, Agglomerative (Ward), and HDBSCAN ($\min\_\text{size}{=}5$) all recover $K{=}2$ with near-identical silhouette at both steps ($0.609$ / $0.719$ for step 64 / 68; HDBSCAN drops $11$ samples as noise).
+\textbf{(c) Labels-hidden.}
+Clustering the full $257$-sample fail+pass set at $K{=}2$ with the same top-$20$ features (selected via labels, cluster unsupervised) gives ARI $\approx -0.007$ at both steps ($p>0.85$), confirming the silhouette signal measures within-fail sub-structure rather than fail/pass separability.
 
-\begin{table}[H]
-  \centering\scriptsize
-  \setlength{\tabcolsep}{2pt}
-  \resizebox{\columnwidth}{!}{%
-  \begin{tabular}{l|cccc|cccc}
-    \toprule
-     & \multicolumn{4}{c|}{step 64} & \multicolumn{4}{c}{step 68} \\
-     & sil & null & gap & $p$ & sil & null & gap & $p$ \\
-    \midrule
-    \multicolumn{9}{l}{\textit{(a) Top-$N$ sweep, KMeans best-$K$}} \\
-    $N{=}10$ & 0.711 & 0.366 & $+0.34$ & \textbf{.019} & 0.739 & 0.363 & $+0.38$ & \textbf{.015} \\
-    $N{=}20$ & 0.609 & 0.355 & $+0.25$ & .081 & 0.719 & 0.350 & $+0.37$ & \textbf{.005} \\
-    $N{=}30$ & 0.590 & 0.385 & $+0.20$ & .110 & 0.665 & 0.374 & $+0.29$ & \textbf{.016} \\
-    $N{=}50$ & 0.568 & 0.443 & $+0.12$ & .192 & 0.644 & 0.416 & $+0.23$ & \textbf{.009} \\
-    \midrule
-    \multicolumn{9}{l}{\textit{(b) Clustering method, $N{=}20$}} \\
-    KMeans & \multicolumn{4}{c|}{$K{=}2$, sil $= 0.609$} & \multicolumn{4}{c}{$K{=}2$, sil $= 0.719$} \\
-    Agglo. Ward & \multicolumn{4}{c|}{$K{=}2$, sil $= 0.609$} & \multicolumn{4}{c}{$K{=}2$, sil $= 0.719$} \\
-    HDBSCAN & \multicolumn{4}{c|}{$K{=}2$, sil $= 0.610$ (11 noise)} & \multicolumn{4}{c}{$K{=}2$, sil $= 0.712$ (11 noise)} \\
-    \midrule
-    \multicolumn{9}{l}{\textit{(c) Labels-hidden: $K{=}2$ KMeans on full $n{=}257$ at $N{=}20$}} \\
-    ARI / $p$ & \multicolumn{4}{c|}{$-0.007$ / $0.865$} & \multicolumn{4}{c}{$-0.007$ / $0.905$} \\
-    \bottomrule
-  \end{tabular}
-  }
-  \caption{Sensitivity at LLaDA-MBPP plateau steps. (a) Step $68$ is robust across $N$; (b) three clustering methods agree on $K{=}2$ and silhouette; (c) labels-hidden ARI $\approx 0$ confirms the cluster signal is within-fail sub-structure, not fail/pass separability.}
-  \label{tab:sensitivity}
-\end{table}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\columnwidth]{../figures/fig7_topN_sensitivity.pdf}
+  \caption{Signal-to-null gap as the top-$N$ fail-feature cutoff is varied at LLaDA-MBPP plateau steps 64 and 68. Hollow rings mark $p<0.05$. Step 68 is robust across $N$; step 64 only reaches significance at $N{=}10$.}
+  \label{fig:topN_sensitivity}
+\end{figure}
 
 \section{Functional Correctness Definitions}
 \label{sec:appendix_correctness}

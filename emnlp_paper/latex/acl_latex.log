@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.12)  12 MAY 2026 17:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.12)  15 MAY 2026 00:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -459,24 +459,24 @@ File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 (./acl_latex.aux)
 \openout1 = `acl_latex.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
 
 (/usr/local/texlive/2026/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -538,18 +538,18 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring ON on input line 45.
+Package hyperref Info: Link coloring ON on input line 55.
 (./acl_latex.out) (./acl_latex.out)
 \@outlinefile=\write3
 \openout3 = `acl_latex.out'.
 
-LaTeX Info: Redefining \microtypecontext on input line 45.
-Package microtype Info: Applying patch `item' on input line 45.
-Package microtype Info: Applying patch `toc' on input line 45.
-Package microtype Info: Applying patch `eqnum' on input line 45.
-Package microtype Info: Applying patch `footnote' on input line 45.
-Package microtype Info: Applying patch `verbatim' on input line 45.
-LaTeX Info: Redefining \microtypesetup on input line 45.
+LaTeX Info: Redefining \microtypecontext on input line 55.
+Package microtype Info: Applying patch `item' on input line 55.
+Package microtype Info: Applying patch `toc' on input line 55.
+Package microtype Info: Applying patch `eqnum' on input line 55.
+Package microtype Info: Applying patch `footnote' on input line 55.
+Package microtype Info: Applying patch `verbatim' on input line 55.
+LaTeX Info: Redefining \microtypesetup on input line 55.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -572,13 +572,13 @@ tim
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+lasy on input line 46
+LaTeX Font Info:    Trying to load font information for U+lasy on input line 56
 .
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 46.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 56.
 
 
 (/Users/wchiu/Library/texmf/tex/latex/amsfonts/umsa.fd
@@ -587,7 +587,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 46.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 56.
 
 
 (/Users/wchiu/Library/texmf/tex/latex/amsfonts/umsb.fd
@@ -596,26 +596,26 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 (/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 6
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 7
 7.
 
 (/Users/wchiu/Library/texmf/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
-LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 68
+LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 78
 .
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/inconsolata/t1zi4.fd
 File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 10.95pt on input line 68.
+(Font)              scaled to size 10.95pt on input line 78.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `zi4' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-Underfull \hbox (badness 1019) in paragraph at lines 69--71
+Underfull \hbox (badness 1019) in paragraph at lines 79--81
 \T1/ptm/m/n/10.95 (+20) LLaDA-8B and Dream-7B on $\OT1/cmr/m/n/10.95 3\OML/cmm/
 m/it/10.95 =\OT1/cmr/m/n/10.95 4$ \T1/ptm/m/n/10.95 (+20) tasks,
  []
@@ -626,68 +626,68 @@ ocal/texlive/2026/texmf-dist/fonts/enc/dvips/base/8r.enc}
 
 
 {/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}]
-Underfull \hbox (badness 4024) in paragraph at lines 92--94
+Underfull \hbox (badness 4024) in paragraph at lines 102--104
  []\T1/ptm/b/n/10.95 (+20) Data.[] \T1/ptm/m/n/10.95 (+20) We reuse cached hid-
 den states and
  []
 
 
-Underfull \hbox (badness 1371) in paragraph at lines 96--101
+Underfull \hbox (badness 1371) in paragraph at lines 106--111
 \OML/cmm/m/it/10.95 h \OMS/cmsy/m/n/10.95 2 \U/msb/m/n/10.95 R[]$ \T1/ptm/m/n/1
 0.95 (+20) per sam-ple and en-code it: $\OML/cmm/m/it/10.95 z \OT1/cmr/m/n/10.9
 5 =
  []
 
 
-Underfull \hbox (badness 2088) in paragraph at lines 96--101
+Underfull \hbox (badness 2088) in paragraph at lines 106--111
 [] [][]  [] [] \OMS/cmsy/m/n/10.95 2 \U/msb/m/n/10.95 R[]$\T1/ptm/m/n/10.95 (+2
 0) ,
  []
 
 
-Underfull \hbox (badness 1226) in paragraph at lines 103--107
+Underfull \hbox (badness 1226) in paragraph at lines 113--117
 \T1/ptm/m/n/10.95 (+20) and pass sets at a cell. Fea-ture $\OML/cmm/m/it/10.95 
 i$\T1/ptm/m/n/10.95 (+20) 's en-rich-
  []
 
 
-Underfull \hbox (badness 1275) in paragraph at lines 116--120
+Underfull \hbox (badness 1275) in paragraph at lines 126--130
  []\T1/ptm/b/n/10.95 (+20) Steering.[] \T1/ptm/m/n/10.95 (+20) We write \T1/ptm
 /m/it/10.95 (+20) fail$\OMS/cmsy/m/n/10.95 !$\T1/ptm/m/it/10.95 (+20) pass \T1/
 ptm/m/n/10.95 (+20) for a sam-ple
  []
 
-<../figures/fig1_trajectory.pdf, id=166, 249.3315pt x 173.448pt>
+<../figures/fig1_trajectory.pdf, id=160, 250.29463pt x 181.26154pt>
 File: ../figures/fig1_trajectory.pdf Graphic file (type pdf)
 <use ../figures/fig1_trajectory.pdf>
-Package pdftex.def Info: ../figures/fig1_trajectory.pdf  used on input line 126
+Package pdftex.def Info: ../figures/fig1_trajectory.pdf  used on input line 136
 .
-(pdftex.def)             Requested size: 208.13115pt x 144.78754pt.
-<../figures/fig2_cross.pdf, id=169, 517.64859pt x 228.61362pt>
+(pdftex.def)             Requested size: 208.13115pt x 150.73466pt.
+<../figures/fig2_cross.pdf, id=163, 517.65pt x 253.04915pt>
 File: ../figures/fig2_cross.pdf Graphic file (type pdf)
 <use ../figures/fig2_cross.pdf>
-Package pdftex.def Info: ../figures/fig2_cross.pdf  used on input line 133.
-(pdftex.def)             Requested size: 455.24411pt x 201.062pt.
+Package pdftex.def Info: ../figures/fig2_cross.pdf  used on input line 143.
+(pdftex.def)             Requested size: 455.24411pt x 222.55263pt.
 
-Underfull \hbox (badness 2573) in paragraph at lines 143--148
+Underfull \hbox (badness 2573) in paragraph at lines 153--158
  []\T1/ptm/b/n/10.95 (+20) Mid-denoising plateau.[] \T1/ptm/m/n/10.95 (+20) Fig
 -ure [][]1[][] re-ports a
  []
 
 
-Underfull \hbox (badness 2111) in paragraph at lines 143--148
+Underfull \hbox (badness 2111) in paragraph at lines 153--158
 \OT1/cmr/m/n/10.95 21$\T1/ptm/m/n/10.95 (+20) -step tra-jec-tory for LLaDA-MBPP
  from a
  []
 
 
-Underfull \hbox (badness 1533) in paragraph at lines 143--148
+Underfull \hbox (badness 1533) in paragraph at lines 153--158
 \T1/ptm/m/n/10.95 (+20) sin-gle gen-er-a-tion run, with three seeds (Ap-
  []
 
 
-Underfull \hbox (badness 6910) in paragraph at lines 143--148
-\T1/ptm/m/n/10.95 (+20) pendix [][]I[][]): an-chors $\OMS/cmsy/m/n/10.95 f\OT1/
+Underfull \hbox (badness 4217) in paragraph at lines 153--158
+\T1/ptm/m/n/10.95 (+20) pendix [][]G[][]): an-chors $\OMS/cmsy/m/n/10.95 f\OT1/
 cmr/m/n/10.95 0\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 ; 
 \OT1/cmr/m/n/10.95 4\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 16\OML/cmm/m/it/10
 .95 ; \OT1/cmr/m/n/10.95 32\OMS/cmsy/m/n/10.95 g$\T1/ptm/m/n/10.95 (+20) , plat
@@ -695,51 +695,36 @@ eau
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 143--148
+Underfull \hbox (badness 10000) in paragraph at lines 153--158
 \T1/ptm/m/n/10.95 (+20) dense $\OMS/cmsy/m/n/10.95 f\OT1/cmr/m/n/10.95 48\OML/c
 mm/m/it/10.95 ; \OT1/cmr/m/n/10.95 52\OML/cmm/m/it/10.95 ; [] ; \OT1/cmr/m/n/10
 .95 80\OMS/cmsy/m/n/10.95 g$\T1/ptm/m/n/10.95 (+20) , post-plateau dense
  []
 
 
-Underfull \hbox (badness 1270) in paragraph at lines 143--148
+Underfull \hbox (badness 1270) in paragraph at lines 153--158
 \T1/ptm/m/n/10.95 (+20) than a sharp peak at step 64, the tra-jec-tory
- []
-
-
-Underfull \hbox (badness 2213) in paragraph at lines 143--148
-\T1/ptm/m/n/10.95 (+20) through-out this range and only col-lapses at
- []
-
-
-Underfull \hbox (badness 1132) in paragraph at lines 143--148
-\T1/ptm/m/n/10.95 (+20) of the early-plateau dense steps and re-mains
- []
-
-
-Underfull \hbox (badness 3492) in paragraph at lines 143--148
-\T1/ptm/m/n/10.95 (+20) not yet en-cod-ing committed-token de-ci-sions
  []
 
 [2 <../figures/fig1_trajectory.pdf>] [3 <../figures/fig2_cross.pdf>]
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 9.0pt on input line 179.
+(Font)              scaled to size 9.0pt on input line 189.
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 10.0pt on input line 187.
+(Font)              scaled to size 10.0pt on input line 197.
  [4]
-Underfull \hbox (badness 1107) in paragraph at lines 247--251
+Underfull \hbox (badness 1107) in paragraph at lines 257--261
 \T1/ptm/m/n/10.95 (+20) re-port the best $\OML/cmm/m/it/10.95 K$ \T1/ptm/m/n/10
 .95 (+20) per cell. On LLaDA-8B
  []
 
 
-Underfull \hbox (badness 1221) in paragraph at lines 247--251
+Underfull \hbox (badness 1221) in paragraph at lines 257--261
 \T1/ptm/m/n/10.95 (+20) / MBPP the best $\OML/cmm/m/it/10.95 K$ \T1/ptm/m/n/10.
 95 (+20) is $\OT1/cmr/m/n/10.95 2$ \T1/ptm/m/n/10.95 (+20) at ev-ery step; on
  []
 
 
-Underfull \hbox (badness 1205) in paragraph at lines 247--251
+Underfull \hbox (badness 1205) in paragraph at lines 257--261
 \OMS/cmsy/m/n/10.95 f\OT1/cmr/m/n/10.95 10\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10
 .95 20\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 30\OML/cmm/m/it/10.95 ; \OT1/cmr
 /m/n/10.95 50\OMS/cmsy/m/n/10.95 g$ \T1/ptm/m/n/10.95 (+20) at step $\OT1/cmr/m
@@ -762,64 +747,127 @@ Underfull \hbox (badness 1728) in paragraph at lines 105--110
  []
 
 )
-<../figures/fig4_feature_drift.pdf, id=325, 521.54805pt x 214.15962pt>
+<../figures/fig4_feature_drift.pdf, id=316, 520.81662pt x 217.33691pt>
 File: ../figures/fig4_feature_drift.pdf Graphic file (type pdf)
 <use ../figures/fig4_feature_drift.pdf>
 Package pdftex.def Info: ../figures/fig4_feature_drift.pdf  used on input line 
-282.
-(pdftex.def)             Requested size: 418.82375pt x 171.98148pt.
+291.
+(pdftex.def)             Requested size: 418.82375pt x 174.7751pt.
  [6]
-Underfull \hbox (badness 1755) in paragraph at lines 336--336
-[]\T1/ptm/m/n/10 (+20) Table 3: |Il-lus-tra-tive gen-er-ated fail-ures from LLa
-DA-MBPP step-64 fail clus-ters. Error-type counts
+Underfull \hbox (badness 10000) in paragraph at lines 311--312
+[]\T1/zi4/m/n/9 f11404\T1/ptm/m/n/9 (+20) , \T1/zi4/m/n/9 f9798\T1/ptm/m/n/9 (+
+20) ,
  []
 
 
-Underfull \hbox (badness 1019) in paragraph at lines 336--336
-\T1/ptm/m/n/10 (+20) are com-puted over 10 re-gen-er-ated fail-ures per clus-te
-r; full gen-er-ated out-puts and er-rors are saved in
+Underfull \hbox (badness 10000) in paragraph at lines 311--312
+\T1/zi4/m/n/9 f189\T1/ptm/m/n/9 (+20) , \T1/zi4/m/n/9 f496\T1/ptm/m/n/9 (+20) ,
+
  []
 
-[7] [8 <../figures/fig4_feature_drift.pdf>] [9] [10] [11] (./acl_latex.aux)
+
+Underfull \hbox (badness 10000) in paragraph at lines 315--316
+[]\T1/zi4/m/n/9 f189\T1/ptm/m/n/9 (+20) , \T1/zi4/m/n/9 f492\T1/ptm/m/n/9 (+20)
+ ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 315--316
+\T1/zi4/m/n/9 f3320\T1/ptm/m/n/9 (+20) , \T1/zi4/m/n/9 f11404\T1/ptm/m/n/9 (+20
+) ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 316--318
+[]\T1/ptm/m/it/9 (+20) remove first/last oc-cur-rence\T1/ptm/m/n/9 (+20) :
+ []
+
+
+Underfull \hbox (badness 1546) in paragraph at lines 316--318
+\T1/zi4/m/n/9 re.compile \T1/ptm/m/n/9 (+20) with-out im-port-ing
+ []
+
+[7]
+<../figures/fig5_auc_compare.pdf, id=368, 517.69362pt x 211.2661pt>
+File: ../figures/fig5_auc_compare.pdf Graphic file (type pdf)
+<use ../figures/fig5_auc_compare.pdf>
+Package pdftex.def Info: ../figures/fig5_auc_compare.pdf  used on input line 40
+4.
+(pdftex.def)             Requested size: 437.0374pt x 178.35202pt.
+ [8 <../figures/fig4_feature_drift.pdf>]
+<../figures/fig6_dense_compare.pdf, id=393, 250.29463pt x 155.79517pt>
+File: ../figures/fig6_dense_compare.pdf Graphic file (type pdf)
+<use ../figures/fig6_dense_compare.pdf>
+Package pdftex.def Info: ../figures/fig6_dense_compare.pdf  used on input line 
+424.
+(pdftex.def)             Requested size: 208.13115pt x 129.55717pt.
+
+Underfull \hbox (badness 4805) in paragraph at lines 440--442
+\T1/ptm/m/n/10.95 (+20) the SAE-layer resid-ual per-tur-ba-tion reaches
+ []
+
+
+Underfull \hbox (badness 6348) in paragraph at lines 440--442
+\OMS/cmsy/m/n/10.95 k\OT1/cmr/m/n/10.95 ^^A\OML/cmm/m/it/10.95 h\OMS/cmsy/m/n/1
+0.95 k\OML/cmm/m/it/10.95 =\OMS/cmsy/m/n/10.95 k\OML/cmm/m/it/10.95 h\OMS/cmsy/
+m/n/10.95 k[]\OT1/cmr/m/n/10.95 4\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 4%$ \T
+1/ptm/m/n/10.95 (+20) for single-feature sup-pres-
+ []
+
+
+Underfull \hbox (badness 1360) in paragraph at lines 440--442
+\T1/ptm/m/n/10.95 (+20) sion of \T1/zi4/m/n/10.95 f15601 \T1/ptm/m/n/10.95 (+20
+) at s64 and s16 ($\OMS/cmsy/m/n/10.95 k\OT1/cmr/m/n/10.95 ^^A\OML/cmm/m/it/10.
+95 h\OMS/cmsy/m/n/10.95 k[]\OT1/cmr/m/n/10.95 185$\T1/ptm/m/n/10.95 (+20) ,
+ []
+
+[9 <../figures/fig5_auc_compare.pdf> <../figures/fig6_dense_compare.pdf>]
+<../figures/fig7_topN_sensitivity.pdf, id=442, 250.29463pt x 155.79517pt>
+File: ../figures/fig7_topN_sensitivity.pdf Graphic file (type pdf)
+<use ../figures/fig7_topN_sensitivity.pdf>
+Package pdftex.def Info: ../figures/fig7_topN_sensitivity.pdf  used on input li
+ne 456.
+(pdftex.def)             Requested size: 208.13115pt x 129.55717pt.
+
+[10
+
+ <../figures/fig7_topN_sensitivity.pdf>] (./acl_latex.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `acl_latex.out' has not changed.
-(rerunfilecheck)             Checksum: FF57D0AA8AD18F95C40AA6E0D5F59959;2887.
+(rerunfilecheck)             Checksum: 0B9865D67A212905247D5111ED3B7ACF;2500.
  ) 
 Here is how much of TeX's memory you used:
- 16304 strings out of 467525
- 255953 string characters out of 5418982
- 747123 words of memory out of 5000000
- 44436 multiletter control sequences out of 15000+600000
- 715007 words of font info for 402 fonts, out of 8000000 for 9000
+ 16213 strings out of 467525
+ 255530 string characters out of 5418982
+ 727446 words of memory out of 5000000
+ 44416 multiletter control sequences out of 15000+600000
+ 694282 words of font info for 357 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 84i,13n,93p,1006b,551s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,12n,93p,1006b,548s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/inconsolata/Inconsolat
-a-zi4r.pfb></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmbx9.pfb
-></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/
-wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/wchiu/Lib
-rary/texmf/fonts/type1/public/amsfonts/cm/cmmi6.pfb></Users/wchiu/Library/texmf
-/fonts/type1/public/amsfonts/cm/cmmi7.pfb></Users/wchiu/Library/texmf/fonts/typ
-e1/public/amsfonts/cm/cmmi8.pfb></Users/wchiu/Library/texmf/fonts/type1/public/
-amsfonts/cm/cmmi9.pfb></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/c
-m/cmr10.pfb></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmr6.pfb
-></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmr7.pfb></Users/wc
-hiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/wchiu/Library
-/texmf/fonts/type1/public/amsfonts/cm/cmr9.pfb></Users/wchiu/Library/texmf/font
-s/type1/public/amsfonts/cm/cmsy10.pfb></Users/wchiu/Library/texmf/fonts/type1/p
-ublic/amsfonts/cm/cmsy7.pfb></Users/wchiu/Library/texmf/fonts/type1/public/amsf
-onts/cm/cmsy8.pfb></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cm
-sy9.pfb></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/symbols/msbm10.
-pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></u
-sr/local/texlive/2026/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/t
-exlive/2026/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/202
-6/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on acl_latex.pdf (11 pages, 403020 bytes).
+a-zi4r.pfb></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmex10.pf
+b></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users
+/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmmi6.pfb></Users/wchiu/Lib
+rary/texmf/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/wchiu/Library/texmf
+/fonts/type1/public/amsfonts/cm/cmmi9.pfb></Users/wchiu/Library/texmf/fonts/typ
+e1/public/amsfonts/cm/cmr10.pfb></Users/wchiu/Library/texmf/fonts/type1/public/
+amsfonts/cm/cmr6.pfb></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm
+/cmr8.pfb></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmr9.pfb><
+/Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/wc
+hiu/Library/texmf/fonts/type1/public/amsfonts/cm/cmsy8.pfb></Users/wchiu/Librar
+y/texmf/fonts/type1/public/amsfonts/cm/cmsy9.pfb></Users/wchiu/Library/texmf/fo
+nts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2026/texmf-dis
+t/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2026/texmf-dist/fonts
+/type1/urw/times/utmb8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw
+/times/utmr8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/times/utm
+ri8a.pfb>
+Output written on acl_latex.pdf (10 pages, 474472 bytes).
 PDF statistics:
- 551 PDF objects out of 1000 (max. 8388607)
- 428 compressed objects within 5 object streams
- 95 named destinations out of 1000 (max. 500000)
- 88224 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 571 PDF objects out of 1000 (max. 8388607)
+ 447 compressed objects within 5 object streams
+ 87 named destinations out of 1000 (max. 500000)
+ 60063 words of extra memory for PDF output out of 61914 (max. 10000000)
 

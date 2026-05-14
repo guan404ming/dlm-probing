@@ -93,54 +93,113 @@ def checkpoint_positions(traj: list[dict]) -> tuple[np.ndarray, list[str]]:
     return np.arange(len(traj)), [str(t["step"]) for t in traj]
 
 
+def _load_dense_seed(seed: int) -> list[dict]:
+    """Load merged anchors + plateau + post-plateau sweep for one generation seed."""
+    suffix = f"_seed{seed}" if seed > 0 else ""
+    parts = [
+        f"mbpp_llada_dense_anchors{suffix}",
+        f"mbpp_llada_dense{suffix}",
+        f"mbpp_llada_dense_post{suffix}",
+    ]
+    seen, rows = set(), []
+    for vol in parts:
+        local = CACHE_DIR / f"{vol}.json"
+        if not local.exists():
+            subprocess.run(
+                ["rtk", "proxy", "modal", "volume", "get", "probe-results",
+                 f"{vol}/dense_sweep_results.json", str(local)],
+                capture_output=True, text=True,
+            )
+        if not local.exists():
+            continue
+        try:
+            d = json.load(open(local))
+        except Exception:
+            continue
+        for rec in d.get("per_step", []):
+            s = rec["step"]
+            if s in seen:
+                continue
+            seen.add(s)
+            rows.append({
+                "step": s,
+                "silhouette": rec["silhouette"],
+                "null_mean": rec["null_mean"],
+                "p_value": rec.get("p_value"),
+            })
+    rows.sort(key=lambda r: r["step"])
+    return rows
+
+
 def fig1_trajectory():
-    """LLaDA mbpp trajectory across all 7 steps."""
-    steps = [0, 1, 4, 16, 32, 64, 127]
-    traj = load_trajectory("llada", "mbpp", steps)
-    xs, xlabels = checkpoint_positions(traj)
-    sil = [t["silhouette"] for t in traj]
-    null = [t["null_mean"] for t in traj]
+    """LLaDA / MBPP 21-step dense trajectory with 3-seed overlay and plateau band."""
+    seeds = [_load_dense_seed(i) for i in (0, 1, 2)]
+    base = seeds[0]
+    if not base:
+        print("fig1: no data, skipping")
+        return
+    steps = [r["step"] for r in base]
+    pos = {s: i for i, s in enumerate(steps)}
+    xs = np.arange(len(steps))
 
-    fig, ax = plt.subplots(figsize=(3.35, 2.15), constrained_layout=True)
+    fig, ax = plt.subplots(figsize=(3.35, 2.35), constrained_layout=True)
 
-    ax.plot(xs, sil, "o-", color="#1f5fa8", lw=1.5, ms=4,
-            label="observed")
-    ax.plot(xs, null, "s--", color="#8c8c8c", lw=1.1, ms=3,
-            label="null mean")
-    ax.fill_between(xs, null, sil,
-                    where=[s > n for s, n in zip(sil, null)],
-                    color="#1f5fa8", alpha=0.14, label="signal gap")
+    # Plateau band [48, 116].
+    if 48 in pos and 116 in pos:
+        ax.axvspan(pos[48] - 0.4, pos[116] + 0.4, color="#f5cf99",
+                   alpha=0.45, zorder=0)
+        ax.text(pos[100], 0.90, "plateau [48, 116]", fontsize=7,
+                color="#7a4a16", ha="center", va="top")
 
-    # Mark significant step without star glyphs.
-    sig_x = [i for i, t in enumerate(traj) if (t["p_value"] or 1) < 0.05]
-    sig_y = [t["silhouette"] for t in traj if (t["p_value"] or 1) < 0.05]
+    # Faint seed-1 / seed-2 overlays.
+    for srows in seeds[1:]:
+        if not srows:
+            continue
+        sx = [pos[r["step"]] for r in srows if r["step"] in pos]
+        sy = [r["silhouette"] for r in srows if r["step"] in pos]
+        ax.plot(sx, sy, color="#1f5fa8", lw=0.7, alpha=0.32, zorder=2)
+
+    sil = [r["silhouette"] for r in base]
+    nul = [r["null_mean"] for r in base]
+    ax.plot(xs, nul, "--", color="#8c8c8c", lw=1.0, zorder=3)
+    ax.plot(xs, sil, "-", color="#1f5fa8", lw=1.5, zorder=4)
+
+    sig_x = [i for i, r in enumerate(base) if (r["p_value"] or 1) < 0.05]
+    sig_y = [sil[i] for i in sig_x]
     if sig_x:
-        ax.scatter(sig_x, sig_y, marker="o", s=58, color="#d62728",
-                   edgecolor="white", linewidth=0.7, zorder=10, label="p < 0.05")
-        ax.annotate("gap peak", xy=(sig_x[0], sig_y[0]), xytext=(sig_x[0] - 1.1, sig_y[0] + 0.08),
-                    arrowprops={"arrowstyle": "->", "lw": 0.6, "color": "#444444"},
-                    fontsize=8)
+        ax.scatter(sig_x, sig_y, marker="o", s=22, color="#d62728",
+                   edgecolor="white", linewidth=0.5, zorder=10)
+
+    if 64 in pos:
+        i64 = pos[64]
+        ax.annotate("step 64 (plateau dip)", xy=(i64, sil[i64]),
+                    xytext=(i64, 0.86), ha="center",
+                    arrowprops={"arrowstyle": "->", "lw": 0.5, "color": "#444"},
+                    fontsize=7)
 
     ax.set_xlabel("denoising checkpoint")
-    ax.set_ylabel("KMeans silhouette")
+    ax.set_ylabel("KMeans silhouette (top-20 fail)")
+    label_steps = {0, 4, 16, 32, 48, 64, 80, 100, 116, 127}
     ax.set_xticks(xs)
-    ax.set_xticklabels(xlabels)
-    ax.set_ylim(0.0, 0.85)
-    legend_handles = [
-        Line2D([0], [0], color="#1f5fa8", marker="o", lw=1.5, markersize=4,
-               label="observed"),
-        Line2D([0], [0], color="#8c8c8c", marker="s", lw=1.1, linestyle="--",
-               markersize=4, label="null mean"),
-        Patch(facecolor="#1f5fa8", alpha=0.14, edgecolor="none",
-              label="signal gap"),
-        Line2D([0], [0], color="none", marker="o", markerfacecolor="#d62728",
-               markeredgecolor="white", markeredgewidth=0.7, markersize=4,
-               label="p < 0.05"),
-    ]
-    ax.legend(handles=legend_handles, loc="upper left", frameon=True,
-              framealpha=0.92, borderpad=0.3, handlelength=1.4,
-              labelspacing=0.25)
+    ax.set_xticklabels([str(s) if s in label_steps else "" for s in steps],
+                       fontsize=6.5)
+    ax.set_ylim(0.0, 0.95)
     ax.grid(True, axis="y", ls=":", alpha=0.35)
+
+    legend_handles = [
+        Line2D([0], [0], color="#1f5fa8", lw=1.5, label="seed 0"),
+        Line2D([0], [0], color="#1f5fa8", lw=0.7, alpha=0.5,
+               label="seed 1-2"),
+        Line2D([0], [0], color="#8c8c8c", lw=1.0, linestyle="--",
+               label="null mean"),
+        Line2D([0], [0], color="none", marker="o", markerfacecolor="#d62728",
+               markeredgecolor="white", markeredgewidth=0.5, markersize=4.2,
+               label="$p < 0.05$"),
+    ]
+    ax.legend(handles=legend_handles, loc="lower center", ncol=4,
+              bbox_to_anchor=(0.5, -0.42), frameon=False,
+              borderpad=0.2, handlelength=1.4, columnspacing=1.2,
+              handletextpad=0.4, fontsize=7)
 
     fig.savefig(FIG_DIR / "fig1_trajectory.pdf")
     plt.close(fig)
@@ -158,7 +217,7 @@ def fig2_cross():
         "arc": "ARC (sci. QA)",
     }
     models = ["llada", "dream"]
-    fig, axes = plt.subplots(2, 4, figsize=(7.05, 3.05), sharey=True, sharex=True,
+    fig, axes = plt.subplots(2, 4, figsize=(7.05, 3.2), sharey=True, sharex=True,
                              constrained_layout=True)
     for ri, model in enumerate(models):
         for ci, dataset in enumerate(datasets):
@@ -182,6 +241,11 @@ def fig2_cross():
             ax.scatter([peak_i], [peak_gap], s=38, color="#d62728",
                        edgecolor="#111111" if peak_sig else "white",
                        linewidth=0.9 if peak_sig else 0.6, zorder=9)
+            # Direct peak-step text label.
+            peak_step = traj[peak_i]["step"]
+            txt = f"s{peak_step}" + ("*" if peak_sig else "")
+            ax.text(peak_i, peak_gap + 0.025, txt, ha="center", va="bottom",
+                    fontsize=7, color="#a8202a")
             if ri == 0:
                 ax.set_title(dataset_titles[dataset], fontsize=9)
             if ci == 0:
@@ -190,8 +254,11 @@ def fig2_cross():
                 ax.set_xlabel("step", fontsize=8)
             ax.set_xticks(xs)
             ax.set_xticklabels(xlabels, fontsize=7)
-            ax.set_ylim(-0.18, 0.34)
+            ax.set_ylim(-0.18, 0.38)
             ax.grid(True, axis="y", ls=":", alpha=0.35)
+    # Footer legend explaining the asterisk.
+    fig.text(0.5, -0.01, "* permutation $p < 0.05$",
+             ha="center", va="top", fontsize=7, color="#a8202a")
     fig.savefig(FIG_DIR / "fig2_cross.pdf")
     plt.close(fig)
     print(f"saved {FIG_DIR / 'fig2_cross.pdf'}")
@@ -336,12 +403,14 @@ def fig4_feature_drift():
     ax1.set_yticklabels(xs, fontsize=9)
     ax1.set_xlabel("denoising step")
     ax1.set_ylabel("denoising step")
-    ax1.set_title("Top-20 fail-feature Jaccard")
+    ax1.set_title("(a) Top-20 fail-feature Jaccard")
     for i in range(N):
         for j in range(N):
             v = J[i, j]
+            # Pick text color for contrast against viridis at this value.
+            txt_color = "white" if v < 0.55 else "black"
             ax1.text(j, i, f"{v:.2f}", ha="center", va="center",
-                     color="white" if v < 0.4 else "black", fontsize=7.5)
+                     color=txt_color, fontsize=7.5)
     cbar = plt.colorbar(im, ax=ax1, fraction=0.046, pad=0.04)
     cbar.set_label("Jaccard", fontsize=8)
 
@@ -370,17 +439,149 @@ def fig4_feature_drift():
     ax2.set_ylabel("fail-pass enrichment")
     ax2.set_xticks(x_pos)
     ax2.set_xticklabels([str(x) for x in xs])
-    ax2.set_title("Persistent peak feature emerges at s32")
-    ax2.legend(loc="lower right", framealpha=0.9, fontsize=7)
+    ax2.set_title("(b) Persistent peak feature emerges at s32")
+    ax2.legend(loc="lower center", ncol=3,
+               bbox_to_anchor=(0.5, -0.36), frameon=False,
+               borderpad=0.2, handlelength=1.4, columnspacing=1.2,
+               handletextpad=0.4, fontsize=7)
     ax2.grid(True, axis="y", ls=":", alpha=0.35)
     fig.savefig(FIG_DIR / "fig4_feature_drift.pdf")
     plt.close(fig)
     print(f"saved {FIG_DIR / 'fig4_feature_drift.pdf'}")
 
 
+def fig5_auc_compare():
+    """Grouped bar chart for the 12 cells x 4 AUC metrics replacing tab:auc_compare."""
+    cells = [
+        ("LLaDA", "MBPP", [0.59, 0.73, 0.73, 0.82]),
+        ("LLaDA", "JSON",  [0.67, 0.66, 0.69, 0.81]),
+        ("LLaDA", "GSM8K", [0.69, 0.71, 0.72, 0.77]),
+        ("LLaDA", "ARC",   [0.61, 0.65, 0.66, 0.71]),
+        ("Dream", "MBPP", [0.70, 0.69, 0.73, 0.82]),
+        ("Dream", "JSON",  [0.68, 0.74, 0.78, 0.80]),
+        ("Dream", "GSM8K", [0.57, 0.61, 0.66, 0.70]),
+        ("Dream", "ARC",   [0.49, 0.54, 0.56, 0.57]),
+        ("Qwen",  "MBPP", [0.57, 0.66, 0.59, 0.61]),
+        ("Qwen",  "JSON",  [0.59, 0.66, 0.71, 0.75]),
+        ("Qwen",  "GSM8K", [0.59, 0.66, 0.71, 0.75]),
+        ("Qwen",  "ARC",   [0.56, 0.59, 0.65, 0.74]),
+    ]
+    metric_labels = ["top-1", "top-5", "top-20", "raw"]
+    metric_colors = ["#f5cf99", "#f5a261", "#1f5fa8", "#6c3a8e"]
+    fig, ax = plt.subplots(figsize=(7.05, 2.6), constrained_layout=True)
+    n_cells = len(cells)
+    n_metrics = 4
+    width = 0.20
+    xs = np.arange(n_cells)
+    for m in range(n_metrics):
+        vals = [c[2][m] for c in cells]
+        ax.bar(xs + (m - 1.5) * width, vals, width=width,
+               color=metric_colors[m], edgecolor="white", linewidth=0.3,
+               label=metric_labels[m])
+    # Star raw bar where raw is the per-cell max.
+    for ci, (_, _, vals) in enumerate(cells):
+        winner = int(np.argmax(vals))
+        ax.scatter([xs[ci] + (winner - 1.5) * width], [vals[winner] + 0.025],
+                   marker=(5, 1, 0), s=12, color="#222", zorder=10)
+    # X labels: "model / task"
+    ax.set_xticks(xs)
+    ax.set_xticklabels([f"{c[0]}/{c[1]}" for c in cells], rotation=35,
+                       ha="right", fontsize=7)
+    ax.set_ylabel("AUC at step 64")
+    ax.set_ylim(0.4, 0.95)
+    ax.axhline(0.5, color="#888", lw=0.5, ls=":")
+    ax.grid(True, axis="y", ls=":", alpha=0.35)
+    ax.legend(loc="upper center", ncol=4, bbox_to_anchor=(0.5, 1.10),
+              frameon=False, fontsize=7, columnspacing=1.4,
+              handlelength=1.2, handletextpad=0.4)
+    fig.text(0.5, -0.02,
+             "Per-cell winner marked with $\\bigstar$. Raw probe wins 11/12 cells.",
+             ha="center", va="top", fontsize=6.5, color="#444")
+    fig.savefig(FIG_DIR / "fig5_auc_compare.pdf")
+    plt.close(fig)
+    print(f"saved {FIG_DIR / 'fig5_auc_compare.pdf'}")
+
+
+def fig6_dense_compare():
+    """LLaDA vs Dream dense MBPP sweep over [48,80] replacing tab:dense_sweep."""
+    llada = [
+        (48, 0.280, True),  (52, 0.336, True), (56, 0.331, True),
+        (60, 0.266, True),  (64, 0.253, False), (68, 0.369, True),
+        (72, 0.371, True),  (76, 0.351, True), (80, 0.219, False),
+    ]
+    dream = [
+        (48, 0.105, False), (52, 0.106, False), (56, 0.134, False),
+        (60, 0.114, False), (64, 0.107, False), (68, 0.156, False),
+        (72, 0.074, False), (76, 0.084, False), (80, 0.043, False),
+    ]
+    xs = [r[0] for r in llada]
+    fig, ax = plt.subplots(figsize=(3.35, 2.0), constrained_layout=True)
+    ax.axhline(0, color="#222", lw=0.7, ls=":")
+    ax.plot(xs, [r[1] for r in llada], "o-", color="#1f5fa8", lw=1.4, ms=4,
+            label="LLaDA-8B")
+    ax.plot(xs, [r[1] for r in dream], "s--", color="#a8202a", lw=1.2, ms=3.6,
+            label="Dream-7B")
+    # Significance markers (filled = p<0.05)
+    sig_x = [r[0] for r in llada if r[2]]
+    sig_y = [r[1] for r in llada if r[2]]
+    ax.scatter(sig_x, sig_y, marker="o", s=70, facecolor="none",
+               edgecolor="#d62728", linewidth=1.0, zorder=10,
+               label="$p<0.05$")
+    ax.set_xlabel("denoising step")
+    ax.set_ylabel("signal-to-null gap")
+    ax.set_xticks(xs)
+    ax.set_xticklabels([str(x) for x in xs], fontsize=7)
+    ax.set_ylim(-0.02, 0.45)
+    ax.grid(True, axis="y", ls=":", alpha=0.35)
+    ax.legend(loc="lower center", ncol=3,
+              bbox_to_anchor=(0.5, -0.42), frameon=False,
+              borderpad=0.2, handlelength=1.4, columnspacing=1.2,
+              handletextpad=0.4, fontsize=7)
+    fig.savefig(FIG_DIR / "fig6_dense_compare.pdf")
+    plt.close(fig)
+    print(f"saved {FIG_DIR / 'fig6_dense_compare.pdf'}")
+
+
+def fig7_topN_sensitivity():
+    """Top-N sweep gap vs N for step 64 and step 68 (replaces tab:sensitivity part (a))."""
+    Ns = [10, 20, 30, 50]
+    s64 = {"gap": [0.34, 0.25, 0.20, 0.12], "p": [0.019, 0.081, 0.110, 0.192]}
+    s68 = {"gap": [0.38, 0.37, 0.29, 0.23], "p": [0.015, 0.005, 0.016, 0.009]}
+    fig, ax = plt.subplots(figsize=(3.35, 2.0), constrained_layout=True)
+    ax.axhline(0, color="#222", lw=0.6, ls=":")
+    ax.plot(Ns, s64["gap"], "o-", color="#1f5fa8", lw=1.4, ms=5, label="step 64")
+    ax.plot(Ns, s68["gap"], "s--", color="#a8202a", lw=1.4, ms=4.5, label="step 68")
+    for x, g, pv in zip(Ns, s64["gap"], s64["p"]):
+        if pv < 0.05:
+            ax.scatter([x], [g], marker="o", s=72, facecolor="none",
+                       edgecolor="#1f5fa8", linewidth=1.0, zorder=10)
+    for x, g, pv in zip(Ns, s68["gap"], s68["p"]):
+        if pv < 0.05:
+            ax.scatter([x], [g], marker="s", s=72, facecolor="none",
+                       edgecolor="#a8202a", linewidth=1.0, zorder=10)
+    ax.set_xlabel("top-$N$ fail features")
+    ax.set_ylabel("signal-to-null gap")
+    ax.set_xticks(Ns)
+    ax.set_ylim(0.05, 0.45)
+    ax.grid(True, axis="y", ls=":", alpha=0.35)
+    ax.legend(loc="lower center", ncol=3,
+              bbox_to_anchor=(0.5, -0.42), frameon=False,
+              borderpad=0.2, handlelength=1.4, columnspacing=1.4,
+              handletextpad=0.4, fontsize=7)
+    # Annotation: hollow rings = p<0.05
+    ax.text(50, 0.42, "hollow ring: $p<0.05$",
+            fontsize=6.5, color="#555", ha="right", va="top")
+    fig.savefig(FIG_DIR / "fig7_topN_sensitivity.pdf")
+    plt.close(fig)
+    print(f"saved {FIG_DIR / 'fig7_topN_sensitivity.pdf'}")
+
+
 if __name__ == "__main__":
     fig1_trajectory()
     fig2_cross()
-    fig3_steering()
+    # fig3_steering() is not cited by the manuscript (Table 1 covers it).
     fig4_feature_drift()
+    fig5_auc_compare()
+    fig6_dense_compare()
+    fig7_topN_sensitivity()
     print("\nAll figures saved to:", FIG_DIR)
