@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.12)  15 MAY 2026 14:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.12)  15 MAY 2026 14:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -709,7 +709,7 @@ Underfull \hbox (badness 4556) in paragraph at lines 126--130
  []
 
 [6])
-<../figures/fig4_feature_drift.pdf, id=355, 520.81662pt x 217.33691pt>
+<../figures/fig4_feature_drift.pdf, id=356, 520.81662pt x 217.33691pt>
 File: ../figures/fig4_feature_drift.pdf Graphic file (type pdf)
 <use ../figures/fig4_feature_drift.pdf>
 Package pdftex.def Info: ../figures/fig4_feature_drift.pdf  used on input line 
@@ -750,27 +750,27 @@ Underfull \hbox (badness 1546) in paragraph at lines 301--303
  []
 
 [7]
-<../figures/fig5_auc_compare.pdf, id=386, 517.69362pt x 211.2661pt>
+<../figures/fig5_auc_compare.pdf, id=387, 517.69362pt x 211.2661pt>
 File: ../figures/fig5_auc_compare.pdf Graphic file (type pdf)
 <use ../figures/fig5_auc_compare.pdf>
 Package pdftex.def Info: ../figures/fig5_auc_compare.pdf  used on input line 38
 9.
 (pdftex.def)             Requested size: 437.0374pt x 178.35202pt.
  [8 <../figures/fig4_feature_drift.pdf>]
-<../figures/fig6_dense_compare.pdf, id=413, 250.29463pt x 155.79517pt>
+<../figures/fig6_dense_compare.pdf, id=414, 250.29463pt x 155.79517pt>
 File: ../figures/fig6_dense_compare.pdf Graphic file (type pdf)
 <use ../figures/fig6_dense_compare.pdf>
 Package pdftex.def Info: ../figures/fig6_dense_compare.pdf  used on input line 
 409.
 (pdftex.def)             Requested size: 208.13115pt x 129.55717pt.
  [9 <../figures/fig5_auc_compare.pdf> <../figures/fig6_dense_compare.pdf>]
-<../figures/fig8_crosslayer.pdf, id=461, 250.29463pt x 177.7149pt>
+<../figures/fig8_crosslayer.pdf, id=462, 250.29463pt x 177.7149pt>
 File: ../figures/fig8_crosslayer.pdf Graphic file (type pdf)
 <use ../figures/fig8_crosslayer.pdf>
 Package pdftex.def Info: ../figures/fig8_crosslayer.pdf  used on input line 428
 .
 (pdftex.def)             Requested size: 208.13115pt x 147.78532pt.
-<../figures/fig9_fisher.pdf, id=464, 250.29463pt x 211.13255pt>
+<../figures/fig9_fisher.pdf, id=465, 250.29463pt x 211.13255pt>
 File: ../figures/fig9_fisher.pdf Graphic file (type pdf)
 <use ../figures/fig9_fisher.pdf>
 Package pdftex.def Info: ../figures/fig9_fisher.pdf  used on input line 443.
@@ -809,30 +809,35 @@ Underfull \hbox (badness 2057) in paragraph at lines 459--462
  []
 
 [10 <../figures/fig8_crosslayer.pdf> <../figures/fig9_fisher.pdf>]
-<../figures/fig7_topN_sensitivity.pdf, id=517, 250.29463pt x 155.79517pt>
+Underfull \hbox (badness 10000) in paragraph at lines 464--467
+ []\T1/ptm/b/n/10.95 (+20) Counterfactual fea-ture re-place-ment.[] \T1/ptm/m/n
+/10.95 (+20) A
+ []
+
+<../figures/fig7_topN_sensitivity.pdf, id=518, 250.29463pt x 155.79517pt>
 File: ../figures/fig7_topN_sensitivity.pdf Graphic file (type pdf)
 <use ../figures/fig7_topN_sensitivity.pdf>
 Package pdftex.def Info: ../figures/fig7_topN_sensitivity.pdf  used on input li
-ne 477.
+ne 482.
 (pdftex.def)             Requested size: 208.13115pt x 129.55717pt.
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 7.0pt on input line 496.
+(Font)              scaled to size 7.0pt on input line 501.
 
-Underfull \hbox (badness 10000) in paragraph at lines 496--496
+Underfull \hbox (badness 10000) in paragraph at lines 501--501
 []\T1/ptm/m/n/7 (+20) complex-math doc-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 496--497
+Underfull \hbox (badness 10000) in paragraph at lines 501--502
 []\T1/ptm/m/it/7 (+20) ``nth oc-tag-o-nal
  []
 
 
 LaTeX Font Warning: Font shape `T1/zi4/m/it' undefined
-(Font)              using `T1/zi4/m/n' instead on input line 497.
+(Font)              using `T1/zi4/m/n' instead on input line 502.
 
 LaTeX Font Info:    Font shape `T1/zi4/m/it' will be
-(Font)              scaled to size 7.0pt on input line 500.
+(Font)              scaled to size 7.0pt on input line 505.
 [11 <../figures/fig7_topN_sensitivity.pdf>] [12
 
 ] (./acl_latex.aux)
@@ -848,8 +853,8 @@ Package rerunfilecheck Info: File `acl_latex.out' has not changed.
 (rerunfilecheck)             Checksum: B7648DF8A6482EF0EF231B68AC1CBAFE;3118.
  ) 
 Here is how much of TeX's memory you used:
- 16313 strings out of 467525
- 257103 string characters out of 5418982
+ 16314 strings out of 467525
+ 257114 string characters out of 5418982
  730847 words of memory out of 5000000
  44461 multiletter control sequences out of 15000+600000
  702205 words of font info for 389 fonts, out of 8000000 for 9000
@@ -873,10 +878,10 @@ nts/symbols/msbm10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/helv
 etic/uhvb8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/times/utmb8
 a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></us
 r/local/texlive/2026/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on acl_latex.pdf (12 pages, 567471 bytes).
+Output written on acl_latex.pdf (12 pages, 568651 bytes).
 PDF statistics:
- 666 PDF objects out of 1000 (max. 8388607)
- 515 compressed objects within 6 object streams
- 97 named destinations out of 1000 (max. 500000)
+ 668 PDF objects out of 1000 (max. 8388607)
+ 517 compressed objects within 6 object streams
+ 98 named destinations out of 1000 (max. 500000)
  68801 words of extra memory for PDF output out of 74296 (max. 10000000)
 
