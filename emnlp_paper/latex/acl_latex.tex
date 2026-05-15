@@ -68,8 +68,9 @@ Single- and multi-feature steering across all $202$ LLaDA-MBPP fail and pass sam
 \section{Introduction}
 
 Diffusion language models (DLMs) generate text by iteratively denoising a fully masked sequence over $\sim$100 steps \citep{austin2021d3pm,sahoo2024simple,lou2024discrete,nie2025llada,ye2025dream}.
-\citet{chiu2026probe} shows that simple classifiers trained on hidden states gain $0.08$--$0.11$ AUC predicting functional correctness as denoising proceeds, framing the process as a monotonic sharpening of an aggregate scalar.
-This view leaves a basic question unanswered: \emph{which} representational components carry the failure signal, and \emph{when} during denoising do they form?
+\citet{chiu2026probe} trains scalar probes on hidden states and reports that aggregate correctness AUC accumulates \emph{monotonically} through denoising, with a $0.08$--$0.11$ gain from step $0$ to the final state.
+That scalar view leaves three questions open: (i) \emph{which} sparse representational components carry the failure signal, (ii) \emph{when} during denoising they form, and (iii) whether the discovered components are merely diagnostic or also causally control correctness.
+Decomposing the same residual stream into named SAE features rather than a single scalar score lets us answer all three, and uncovers temporal structure that the monotonic AUC curve hides.
 
 \paragraph{Contributions.}
 \begin{itemize}
@@ -150,11 +151,11 @@ A zero-out smoke test (force $h\!\leftarrow\!0$) confirms the hook propagates. I
 \end{figure*}
 
 \paragraph{Mid-denoising plateau.}
-Figure~\ref{fig:trajectory} reports a $21$-step trajectory for LLaDA-MBPP from a single generation run, with three seeds (Appendix~\ref{sec:appendix_seed}): anchors $\{0,1,4,16,32\}$, plateau dense $\{48,52,\ldots,80\}$, post-plateau dense $\{84,92,\ldots,124\}$, and final state $127$.
-Rather than a sharp peak at step 64, the trajectory shows a broad plateau spanning steps $48$--$116$: the signal-to-null gap stays in $[+0.19, +0.41]$ throughout this range and only collapses at step $124$ as the model approaches its final state.
-\texttt{f15601} is the top-1 fail-enriched feature at $7/9$ of the early-plateau dense steps and remains dominant through step $100$. In the late-plateau steps $108$--$116$ it gives way to \texttt{f3892}, indicating a within-plateau hand-off rather than feature swapping outside the plateau.
-At steps $0$--$16$ the top fail feature changes every step (Appendix~\ref{sec:appendix_persist}), consistent with the residual stream not yet encoding committed-token decisions when most positions are still masked.
-\citet{chiu2026probe} reports that aggregate raw-probe AUC \emph{monotonically} increases over these same steps (for LLaDA / MBPP, from $\sim$$0.75$ at step 0 to $\sim$$0.84$ at step 64). The feature-level plateau is therefore invisible to scalar probing.
+Figure~\ref{fig:trajectory} reports a $21$-step trajectory for LLaDA-MBPP across three seeds: anchors $\{0,1,4,16,32\}$, dense plateau $\{48,\ldots,80\}$, dense post-plateau $\{84,\ldots,124\}$, and final state $127$.
+Rather than a sharp peak at step 64, the trajectory shows a broad plateau over steps $48$--$116$: the signal-to-null gap stays in $[+0.19, +0.41]$ and only collapses at step $124$.
+\texttt{f15601} is the top-1 fail-enriched feature at $7/9$ early-plateau dense steps and remains dominant through step $100$; \texttt{f3892} replaces it at steps $108$--$116$, indicating a within-plateau hand-off rather than feature swapping outside the plateau.
+At steps $0$--$16$ the top fail feature instead changes every step (Appendix~\ref{sec:appendix_persist}), consistent with the residual stream not yet encoding committed-token decisions when most positions are still masked.
+The raw-probe AUC in \citet{chiu2026probe} \emph{monotonically} increases over the same steps (LLaDA-MBPP, $\sim$$0.75$ at $s0$ to $\sim$$0.84$ at $s64$), framing denoising as gradual scalar sharpening, whereas the feature-level plateau and the late hand-off are invisible to scalar probing.
 
 \paragraph{Cross-model $\times$ cross-task phase agreement.}
 \label{sec:cross}
