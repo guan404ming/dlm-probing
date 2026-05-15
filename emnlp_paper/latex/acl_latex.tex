@@ -62,7 +62,7 @@ Using DLM-Scope sparse autoencoders, we instead trace the signal feature by feat
 Sparse fail-vs-pass concentration appears in task-dependent phases. Code and structural tasks form a broad mid-denoising plateau, whereas reasoning tasks emerge only at the final state.
 On LLaDA-8B / MBPP, a dense step sweep across seeds confirms a plateau spanning steps $48$--$116$, with multiple sub-steps reaching $p{<}0.05$. Two persistent features hand off within the late plateau, marking an internal transition rather than feature swapping.
 The peak phase agrees across LLaDA-8B and Dream-7B on $3/4$ tasks, although most individual cross-grid cells do not reach per-step significance.
-However, single- and multi-feature steering fails to flip correctness in a small pilot. The sparse features therefore behave as diagnostic markers under our protocol, not as directly controllable knobs.
+Single- and multi-feature steering across all $202$ LLaDA-MBPP fail and pass samples yields $0/202$ label flips when intervention occurs within the plateau (step 64), and only $3/202$ flips when intervention occurs before plateau formation (step 16). The sparse features therefore behave as diagnostic markers within the plateau, not as directly controllable knobs.
 \end{abstract}
 
 \section{Introduction}
@@ -78,8 +78,8 @@ This view leaves a basic question unanswered: \emph{which} representational comp
 LLaDA-8B / MBPP has a broad plateau over steps $48$--$116$ (3-seed dense sweep), with \texttt{f15601} top-ranked at the early plateau and \texttt{f3892} at the late plateau.
 \item \textbf{Phase agreement.}
 Peak phase agrees across LLaDA-8B and Dream-7B on $3/4$ tasks, while per-cell significance is concentrated in the strongest LLaDA-MBPP condition.
-\item \textbf{Steering null.}
-Single-, top-5, and reverse feature interventions fail to flip correctness in a pilot intervention sweep.
+\item \textbf{Steering result at scale.}
+Across all $152$ fail samples and $50$ pass-side controls ($n{=}202$), three of four intervention conditions are completely null and only early ($s16$) intervention produces a marginal $3/202\!\approx\!1.5\%$ effect.
 \end{itemize}
 Code and figures will be released on acceptance.
 
@@ -87,7 +87,7 @@ Code and figures will be released on acceptance.
 
 Discrete diffusion and masked DLMs generate text by iteratively denoising masked tokens rather than continuing left to right \citep{austin2021d3pm,sahoo2024simple,lou2024discrete,nie2025llada,ye2025dream}. Prior probing of the same models and tasks studies aggregate hidden-state predictability and reports monotonic gains in correctness AUC through denoising.
 SAEs decompose residual streams into sparse named features and have been used primarily to interpret autoregressive LMs \citep{bricken2023monosemanticity,cunningham2024sae,gao2024scaling}. DLM-Scope extends this toolkit to DLMs with Top-$K$ SAEs \citep{makhzani2014topk,gao2024scaling} trained on masked-position residuals across mask rates $t\!\sim\!U(0,1)$ (\emph{Mask-SAE}), keeping the full denoising trajectory in distribution \citep{dlmscope2026}.
-Recent AR SAE studies report both successful steering for refusal and instruction following \citep{obrien2024refusal,he2025saif} and cautions that contrastive features may track lexical correlates or that steering degrades unrelated capabilities \citep{galichin2025reasoning,korznikov2025roguescalpel}.
+Recent AR SAE studies report both successful steering for refusal and instruction following \citep{obrien2024refusal,he2025saif} and cautions that contrastive features may track lexical correlates or that steering degrades unrelated capabilities \citep{galichin2025reasoning,korznikov2025roguescalpel}; \citet{tahimic2025correctness} target code-correctness signals with SAEs on AR LMs, closest to our MBPP setting but without temporal trajectories. \citet{goel2026skip} contrast representation evolution between diffusion and AR LMs, motivating our cross-DLM step-axis comparison.
 We reuse the DLM-Scope SAEs to ask whether the scalar correctness trend on DLMs decomposes into temporally localised sparse features, treating the steering question as open rather than presumed causal.
 
 \section{Method}
@@ -158,25 +158,16 @@ At steps $0$--$16$ the top fail feature changes every step (Appendix~\ref{sec:ap
 
 \paragraph{Cross-model $\times$ cross-task phase agreement.}
 \label{sec:cross}
-Figure~\ref{fig:cross} reports the full $2{\times}4$ trajectory grid.
-Three archetypes emerge across cells.
-\textbf{Mid-denoising peak} (signal peaks at step 64): LLaDA-MBPP ($+0.31$), LLaDA-JSON ($+0.14$), Dream-JSON ($+0.23$), Dream-MBPP ($+0.15$).
-This is the shape of the persistent-feature trajectory described in \S\ref{sec:trajectory}: a fail-discriminative cluster crystallises during the middle of denoising and partially dissipates by step 127.
-\textbf{Late-denoising peak} (signal peaks at step 127): LLaDA-GSM8K ($+0.22$), Dream-GSM8K ($+0.16$), Dream-ARC ($+0.26$).
-Here the cluster signal is weak or below null at mid-denoising and only emerges near the final state, consistent with reasoning tasks requiring more denoising before the failure signature crystallises.
-\textbf{Early-decline} (LLaDA-ARC peaks at step 4, $+0.20$): an outlier where the cluster appears only at the earliest steps and decays thereafter.
-The peak position shows \emph{task-level agreement across DLMs}. Three of four tasks (MBPP, JSON, GSM8K) share a peak step across LLaDA and Dream; only ARC differs.
-At the feature level this mirrors the structural-vs-reasoning emergence split of \citet{chiu2026probe}, in which structural and code tasks form features mid-denoising and reasoning tasks form them late. The split is now visible as a peak position rather than a continuous AUC curve.
-Appendix~\ref{sec:appendix_grid} summarises the 12 (DLM and AR) cells at step 64;
-across the full grid only two cells reach $p{<}0.05$ at any single step (LLaDA-MBPP step 64, Qwen-JSON step 64).
-Thus the cross-DLM result should be read as a descriptive phase-alignment claim, with statistical support strongest for the LLaDA-MBPP plateau.
+Figure~\ref{fig:cross} reports the full $2{\times}4$ trajectory grid; Appendix~\ref{sec:appendix_grid} lists step-64 numbers.
+Code and structural cells (MBPP, JSON on both DLMs) peak mid-denoising at step 64, reasoning cells (GSM8K on both, Dream-ARC) peak at step 127, and LLaDA-ARC is an outlier peaking at step 4.
+Three of four tasks therefore share a peak step across LLaDA and Dream, mirroring the structural-vs-reasoning emergence split of \citet{chiu2026probe} as a peak position rather than a continuous AUC curve.
+Of $12$ cells, only LLaDA-MBPP step 64 and Qwen-JSON step 64 reach $p<0.05$; with Holm-Bonferroni correction across $60$ (cell, step) tests, LLaDA-MBPP step 64 remains the only cell whose plateau is supported by a corrected $p<0.05$ on the dense sweep (Appendix~\ref{sec:appendix_dense}), so we read cross-DLM agreement as a descriptive phase-alignment claim outside this cell.
+The ARC anomaly is consistent with this picture: Dream-ARC peaks late like the other reasoning tasks, while LLaDA-ARC fails so often near the prompt boundary that the early-step cluster reflects prompt-attention failure modes rather than reasoning-stage failure, accounting for its step-4 peak.
 
 \paragraph{Top-feature drift and persistence.}
-On LLaDA-8B / MBPP, pairwise Jaccard of the top-20 sets is high among steps 0--4 ($\ge 0.48$, before committed-token information is available), moderate between 32 and 64 ($0.29$, the plateau regime), and falls to $0.14$ between 64 and 127.
-On the sparse 7-step grid, only \texttt{f15601} appears at all three peak-or-later steps. The dense sweep (Appendix~\ref{sec:appendix_dense}) sharpens this finding by ranking \texttt{f15601} top-1 at 7 of 9 dense steps in $[48,80]$, supporting a persistent statistical marker rather than feature swapping inside the plateau.
-Outside the plateau, the sparse support reorganises as denoising commits different token blocks. Early features are unstable, the compact failure marker \texttt{f15601} crystallises during steps 48--76, and the final state at step 127 spreads signal over a different set of atoms.
-The temporal peak is therefore a concentration effect in sparse feature space, not merely a monotonic increase in correctness information.
-Full Jaccard matrix and per-feature enrichment trajectories are in Figure~\ref{fig:drift_app} (Appendix~\ref{sec:appendix_persist}).
+On LLaDA-8B / MBPP, pairwise Jaccard of the top-20 sets is high among steps 0--4 ($\ge 0.48$), moderate between 32 and 64 ($0.29$, the plateau regime), and falls to $0.14$ between 64 and 127.
+The dense sweep (Appendix~\ref{sec:appendix_dense}) ranks \texttt{f15601} top-1 at 7 of 9 dense steps in $[48,80]$, supporting a persistent statistical marker inside the plateau and a concentration effect in sparse feature space rather than a monotonic increase in correctness information.
+A supervised cross-check confirms this picture: top-20 SAE features recover $85$--$95\%$ of the raw-probe AUC at step 64 in $11$ of $12$ cells but never exceed it, so the sparse subspace captures most yet not all of the dense-residual signal (Appendix~\ref{sec:appendix_auc_compare}, Figure~\ref{fig:auc_compare}).
 
 \begin{table}[!t]
   \centering\small
@@ -185,51 +176,46 @@ Full Jaccard matrix and per-feature enrichment trajectories are in Figure~\ref{f
     \toprule
     condition & from & fail$\to$pass & pass$\to$fail \\
     \midrule
-    baseline & none & 0/8 & 0/3 \\
-    suppress \texttt{f15601} & s64 & 0/8 & 0/3 \\
-    suppress \texttt{f15601} & s16 & 0/8 & 0/3 \\
-    suppress top-5 & s64 & 0/8 & 0/3 \\
-    reverse \texttt{f15601} & s64 & 0/8 & 0/3 \\
+    suppress \texttt{f15601} & s64 & 0/152 & 0/50 \\
+    suppress \texttt{f15601} & s16 & \textbf{2/152} & \textbf{1/50} \\
+    suppress top-5 & s64 & 0/152 & 0/50 \\
+    reverse \texttt{f15601} & s64 & 0/152 & 0/50 \\
     \bottomrule
   \end{tabular}
-  \caption{Pilot steering intervention summary on LLaDA-8B / MBPP; entries show flips / evaluated cases.
-  Conditions: baseline (no intervention); suppress \texttt{f15601} at step 64 (peak) or step 16 (pre-peak); suppress the top-5 fail features at step 64; reverse intervention ($\alpha\!=\!-5$) amplifying \texttt{f15601} at step 64.
-  No condition converts any fail$\to$pass or pass$\to$fail.}
+  \caption{Full steering intervention summary on LLaDA-8B / MBPP; entries show flips / evaluated cases over all $152$ fail samples ($126$ cluster-1 + $26$ cluster-0) and $50$ pass-side regression controls. Suppress \texttt{f15601} or the top-5 features at step 64 (within the plateau) is fully null at $0/202$; suppress \texttt{f15601} from step 16 (before plateau formation) produces a small $3/202$ effect ($1.5\%$, both fail$\to$pass conversions occur on cluster-1 cases). Reverse intervention ($\alpha\!=\!-5$) is null.}
   \label{tab:steering}
 \end{table}
 
-\paragraph{Pilot steering null result.}
+\paragraph{Steering result.}
 \label{sec:steer}
-We test whether the cluster-level feature signature can be directly controlled, restricting to LLaDA-8B / MBPP where the cluster reaches significance.
-We run five intervention conditions on cluster-1 fail cases and pass-side regression controls (Table~\ref{tab:steering}; entries report flips / evaluated cases).
-Suppressing the persistent peak feature \texttt{f15601} ($\alpha{=}5$) at the peak window (step 64) or before formation onset (step 16) yields \emph{zero} fail$\to$pass conversions and \emph{zero} pass$\to$fail regressions.
-Multi-feature suppression of the top-5 fail features at step 64 is also null.
-Reverse intervention ($\alpha{=}-5$, amplifying \texttt{f15601}) is null on pass-side cases as well.
-The hook does propagate. A separate zero-out test ($h{\leftarrow}0$ at $t\!\ge\!0$) destroys trailing generation while leaving the function body intact, consistent with LLaDA committing blocks 0--3 by step $\sim\!48$.
-This pilot result does not rule out causal roles for these features, but it does show that correctness is not flipped by ablating one direction or a small set of directions under this intervention protocol.
+We test whether the cluster-level signature can be directly controlled on LLaDA-MBPP, the only cell with cluster significance.
+All $152$ fail cases and $50$ pass-side regression controls are evaluated under four interventions (Table~\ref{tab:steering}).
+Suppressing \texttt{f15601} or the top-5 fail features within the plateau (step 64), and the reverse intervention ($\alpha{=}-5$), each yield $0/202$ label flips.
+Only early intervention from step 16, before plateau formation, produces a marginal effect ($3/202\!\approx\!1.5\%$).
+A zero-out smoke test ($h{\leftarrow}0$) confirms the hook propagates: it garbles trailing tokens but leaves the early-committed function body intact, consistent with LLaDA committing blocks 0--3 by step $\sim\!48$.
 
 \section{Discussion}
 
 \paragraph{Statistical vs.\ causal features.}
-\texttt{f15601} fires on $65\%$ of LLaDA-8B / MBPP fails versus $27\%$ of passes at step 64, a $\sim\!6.6\sigma$ per-feature effect. Yet ablating it, or the top-5 fail features, in any of four intervention windows flips no label.
-The cluster signature is useful as a diagnostic, but our intervention evidence is insufficient to treat this sparse direction as a knob that controls functional correctness.
+\texttt{f15601} fires on $65\%$ of LLaDA-8B / MBPP fails versus $27\%$ of passes at step 64, a $\sim\!6.6\sigma$ per-feature effect. Yet ablating it, or the top-5 fail features, within the plateau (step 64) flips zero of $202$ labels; only intervention before plateau formation (step 16) produces a marginal $1.5\%$ effect.
+The cluster signature is useful as a diagnostic within the plateau, but our intervention evidence is insufficient to treat this sparse direction as a controllable knob for functional correctness.
 This contrasts with positive AR steering results on refusal and instruction following \citep{obrien2024refusal,he2025saif} but is consistent with reports that activation steering may degrade unrelated capabilities \citep{korznikov2025roguescalpel}.
 More decisive causal tests would need paired counterfactual replacements, multi-layer interventions, or attribution from output-level correctness back to the SAE layer.
 
 \paragraph{Why do peak times differ by task?}
 By step 64, LLaDA has unmasked blocks 0--3 (the function signature and early body) but not blocks 4--7.
-For code and structural tasks, this mid-state appears to be where fail-vs-pass information is maximally factored into a small set of sparse features: enough tokens are settled to expose the failure mode, while later tokens still carry uncertainty.
-By step 127 the signal still exists but is less concentrated in the top-20 sparse features.
-For GSM8K and Dream-ARC, by contrast, the sparse cluster peaks only at the final checkpoint, suggesting that reasoning failures become feature-separable later than format or code failures.
-This task-dependent timing also explains why a single intervention window is unlikely to control correctness across tasks.
+For code and structural tasks, this mid-state is where fail-vs-pass information is maximally factored into a small set of sparse features: enough tokens are settled to expose the failure mode, later tokens still carry uncertainty.
+For reasoning tasks (GSM8K, Dream-ARC) the sparse cluster only peaks at the final checkpoint, suggesting reasoning failures become feature-separable later than format or code failures, and a single intervention window is unlikely to control correctness across tasks.
 
 \section{Conclusion}
 
 Tracing functional-correctness signal feature by feature reveals temporal structure that scalar probes miss: sparse failure markers form task-dependent phases.
-Code and structural tasks form a mid-denoising plateau, whereas reasoning tasks peak at the final state. This peak-phase pattern agrees across LLaDA-8B and Dream-7B on three of four tasks, with strongest support on LLaDA-MBPP.
-In that cell, a 3-seed dense sweep confirms a steps $48$--$116$ plateau and a late hand-off from \texttt{f15601} to \texttt{f3892}.
-Pilot linear-feature interventions do not flip correctness, so these sparse features are currently diagnostic markers; causal control likely requires stronger interventions.
+Code and structural tasks form a mid-denoising plateau, whereas reasoning tasks peak at the final state. This peak-phase pattern agrees across LLaDA-8B and Dream-7B on three of four tasks, with the strongest statistical support on LLaDA-MBPP, the only cell whose plateau survives Holm-Bonferroni correction over the $60$-test trajectory grid.
+In that cell, a 3-seed dense sweep confirms a steps $48$--$116$ plateau and a late hand-off from \texttt{f15601} to \texttt{f3892}; top-20 sparse features recover $85$--$95\%$ but never all of the raw-probe AUC, so the plateau is a sparse-concentration effect on top of a distributively encoded signal.
+Linear-feature interventions across all $202$ LLaDA-MBPP fail and pass samples yield $0/202$ label flips when targeting the plateau (step 64) and only $3/202$ when intervening before plateau formation (step 16).
+The plateau features therefore behave as robust diagnostic markers, not as controllable knobs at the SAE-layer residual; causal control over functional correctness in DLMs likely requires stronger, earlier, or multi-layer interventions than the single-layer linear protocol tested here.
 
+\newpage
 \section*{Limitations}
 
 \paragraph{SAE coverage.}
@@ -251,7 +237,7 @@ The dense sweep in Appendix~\ref{sec:appendix_dense} shows 7 of 9 sub-steps in $
 \paragraph{Steering coverage.}
 Our intervention sweep tests four denoising windows, two feature-set sizes (single and top-5), and one magnitude pair ($\alpha\!\in\!\{+5,-5\}$) at a single SAE layer per DLM (L26 for LLaDA, L23 for Dream).
 We do not test multi-layer joint interventions, non-linear projections, or feature-selection strategies that use the per-step top-1 (where the top fail feature differs from \texttt{f15601}).
-Effect-size diagnostics (Appendix~\ref{sec:appendix_effect}) confirm the intervention reaches $\|\Delta h\| / \|h\| \in [4.4\%, 14.8\%]$ at the SAE-layer residual, so the null result is not because the perturbation was silent; rather, a negative result on this protocol is narrower than a negative result on all possible linear-feature interventions.
+Effect-size diagnostics (Appendix~\ref{sec:appendix_effect}) confirm the intervention reaches $\|\Delta h\| / \|h\| \in [4.4\%, 14.8\%]$ at the SAE-layer residual, so the within-plateau null is not because the perturbation was silent; rather, a $0/202$ result on this protocol is narrower than a negative result on all possible linear-feature interventions.
 
 \paragraph{Cluster $K$ and choice of metric.}
 We use silhouette on KMeans with $K\!\in\!\{2,3,4,5\}$ and report the best $K$ per cell.
@@ -437,8 +423,9 @@ The 3-seed gap-versus-step overlay is shown in Figure~\ref{fig:trajectory}; per-
 \section{Intervention Effect Size}
 \label{sec:appendix_effect}
 
-For $n{=}8$ cluster-1 fail samples per condition, the SAE-layer residual perturbation reaches $\|\Delta h\|/\|h\|{=}4.4\%$ for single-feature suppression of \texttt{f15601} at s64 and s16 ($\|\Delta h\|{=}185$, $a_{\text{target}}{\approx}9.43$), $14.8\%$ for the top-5 combined suppression at s64 ($\|\Delta h\|{=}624$, $a_{\text{target}}{=}47.4$), and $4.4\%$ for the reverse intervention at s64 ($\alpha{=}-5$).
-The target feature is reliably active during every intervention window, so the null steering result is consistent with functional correctness being distributively encoded: perturbing a sparse direction at the SAE-layer residual does not propagate into a label flip, even when that perturbation reaches $\sim$$15\%$ of the residual norm.
+Across all $n{=}202$ samples per condition, the SAE-layer residual perturbation reaches $\|\Delta h\|/\|h\|{=}4.4\%$ for single-feature suppression of \texttt{f15601} at s64 and s16 ($\|\Delta h\|{=}185$, $a_{\text{target}}{\approx}9.43$), $14.8\%$ for the top-5 combined suppression at s64 ($\|\Delta h\|{=}624$, $a_{\text{target}}{=}47.4$), and $4.4\%$ for the reverse intervention at s64 ($\alpha{=}-5$).
+The target feature is reliably active during every intervention window, so the within-plateau null is consistent with functional correctness being distributively encoded: perturbing a sparse direction at the SAE-layer residual does not propagate into a label flip at step 64 across $202$ samples, even when that perturbation reaches $\sim$$15\%$ of the residual norm.
+Only intervention at step 16, before the plateau forms, produces any flips ($3/202$); the marginal effect concentrates on cluster-1 cases where \texttt{f15601} fires most strongly, suggesting a weak upstream causal contribution that does not survive once the plateau features are established.
 
 \section{Post-hoc Selection Sensitivity}
 \label{sec:appendix_sensitivity}

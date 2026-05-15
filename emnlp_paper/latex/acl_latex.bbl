@@ -1,4 +1,4 @@
-\begin{thebibliography}{20}
+\begin{thebibliography}{22}
 \providecommand{\natexlab}[1]{#1}
 
 \bibitem[{Austin et~al.(2021{\natexlab{a}})Austin, Johnson, Ho, Tarlow, and
@@ -72,6 +72,12 @@ Leo Gao, Gabriel Goh, Ilya Sutskever, Stephanie Lin, Steven Bills, and Jeff Wu.
 \newblock Scaling and evaluating sparse autoencoders.
 \newblock \emph{arXiv preprint arXiv:2406.04093}.
 
+\bibitem[{Goel et~al.(2026)}]{goel2026skip}
+Raghavv Goel and 1 others. 2026.
+\newblock Skip to the good part: Representation structure and inference-time
+  layer skipping in diffusion vs.\ autoregressive {LLMs}.
+\newblock \emph{arXiv preprint arXiv:2603.07475}.
+
 \bibitem[{He et~al.(2025)He, Zhao et~al.}]{he2025saif}
 Zirui He, Haiyan Zhao, and 1 others. 2025.
 \newblock {SAIF}: A sparse autoencoder framework for interpreting and steering
@@ -96,8 +102,8 @@ Alireza Makhzani and Brendan Frey. 2014.
 
 \bibitem[{Nie et~al.(2025)Nie, Zhu, You, Zhang, and Ou}]{nie2025llada}
 Shen Nie, Fengqi Zhu, Chao You, Xiaojun Zhang, and Zhenguo Ou. 2025.
-\newblock \href {https://arxiv.org/abs/2502.09992} {{LLaDA}: Large language
-  diffusion with m{A}sking}.
+\newblock \href {https://arxiv.org/abs/2502.09992} {Large language diffusion
+  models}.
 \newblock \emph{arXiv preprint arXiv:2502.09992}.
 
 \bibitem[{O'Brien et~al.(2024)O'Brien, Majercak, Fernandes, Edgar, Chen, Nori,
@@ -116,10 +122,22 @@ Subham~Sekhar Sahoo, Marianne Arriola, Yair Schiff, Aaron Gokaslan, Edgar
   diffusion language models}.
 \newblock \emph{arXiv preprint arXiv:2406.07524}.
 
+\bibitem[{Tahimic and Cheng(2025)}]{tahimic2025correctness}
+Kriz Tahimic and Charibeth Cheng. 2025.
+\newblock Mechanistic interpretability of code correctness in {LLMs} via sparse
+  autoencoders.
+\newblock \emph{arXiv preprint arXiv:2510.02917}.
+
 \bibitem[{Team(2024)}]{qwen2.5}
 Qwen Team. 2024.
 \newblock Qwen2.5 technical report.
 \newblock \emph{arXiv preprint arXiv:2412.15115}.
+
+\bibitem[{Wang et~al.(2025)Wang, Fang, Jing et~al.}]{wang2025time}
+Wen Wang, Bozhen Fang, Chenchen Jing, and 1 others. 2025.
+\newblock \href {https://arxiv.org/abs/2508.09138} {Time is a feature:
+  Exploiting temporal dynamics in diffusion language models}.
+\newblock \emph{arXiv preprint arXiv:2508.09138}.
 
 \bibitem[{Wang et~al.(2026)Wang, Jiang, Wan, Yang, Kong, and
   Zou}]{dlmscope2026}
@@ -129,18 +147,10 @@ Xu~Wang, Bingqing Jiang, Yu~Wan, Baosong Yang, Lingpeng Kong, and Difan Zou.
   interpretability of diffusion language models via sparse autoencoders}.
 \newblock \emph{arXiv preprint arXiv:2602.05859}.
 
-\bibitem[{Wang et~al.(2025)Wang, Luo, Tang, and Gao}]{wang2025time}
-Ziming Wang, Jiahao Luo, Haowei Tang, and Tian Gao. 2025.
-\newblock \href {https://arxiv.org/abs/2505.11229} {Time is a feature: Temporal
-  oscillation in discrete diffusion language models}.
-\newblock \emph{arXiv preprint arXiv:2505.11229}.
-
-\bibitem[{Ye et~al.(2025)Ye, Gong, Lin, Zhuo, Chen, Jiang, Li, Liu, and
-  Liu}]{ye2025dream}
-Jiacheng Ye, Jiahui Gong, Yanru Lin, Ting~Hin Zhuo, Tong Chen, Xin Jiang,
-  Zhenguo Li, Qun Liu, and Lingpeng Liu. 2025.
-\newblock \href {https://arxiv.org/abs/2504.16915} {Dream: Diffusion reasoning
-  with enhanced accuracy and mastery}.
-\newblock \emph{arXiv preprint arXiv:2504.16915}.
+\bibitem[{Ye et~al.(2025)Ye, Xie, Zheng, Gao, Wu et~al.}]{ye2025dream}
+Jiacheng Ye, Zhihui Xie, Lin Zheng, Jiahui Gao, Zirui Wu, and 1 others. 2025.
+\newblock \href {https://arxiv.org/abs/2508.15487} {Dream 7{B}: Diffusion large
+  language models}.
+\newblock \emph{arXiv preprint arXiv:2508.15487}.
 
 \end{thebibliography}
