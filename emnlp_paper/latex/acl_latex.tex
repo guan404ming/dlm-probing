@@ -196,15 +196,8 @@ A zero-out smoke test ($h{\leftarrow}0$) confirms the hook propagates: it garble
 
 \section{Discussion}
 
-\paragraph{Statistical vs.\ causal features.}
-\texttt{f15601} fires on $65\%$ of LLaDA-8B / MBPP fails versus $27\%$ of passes at step 64, a $\sim\!6.6\sigma$ per-feature effect. Yet ablating it, or the top-5 fail features, within the plateau (step 64) flips zero of $202$ labels; only intervention before plateau formation (step 16) produces a marginal $1.5\%$ effect.
-The cluster signature is useful as a diagnostic within the plateau, but our intervention evidence is insufficient to treat this sparse direction as a controllable knob for functional correctness.
-This contrasts with positive AR steering results on refusal and instruction following \citep{obrien2024refusal,he2025saif} but is consistent with reports that activation steering may degrade unrelated capabilities \citep{korznikov2025roguescalpel}.
-More decisive causal tests would need paired counterfactual replacements, multi-layer interventions, or attribution from output-level correctness back to the SAE layer.
-
-\paragraph{What the plateau features represent.}
-By step 64, LLaDA has unmasked blocks 0--3 (signature and early body), so code and structural failure modes are exposed while later tokens remain uncertain; reasoning tasks only peak at the final checkpoint.
-Activation-maximising examples at step 64 (Appendix~\ref{sec:appendix_actmax}) further show that \texttt{f15601} fires on complex-math docstring contexts (a task-difficulty correlate, not a fail-cause), whereas late-state \texttt{f11265} fires on broken-syntax contexts (closer to a true failure detector); this dissociation explains the within-plateau steering null, since ablating \texttt{f15601} perturbs a difficulty signal upstream of the failure mechanism.
+\paragraph{Why linear steering fails: testing two hypotheses.}
+Two structural explanations can account for the $0/345$ within-plateau null. (\emph{H1, sparse-subspace}) the SAE captures only $85$--$95\%$ of the raw-probe AUC, so the remaining $5$--$15\%$ may be the causal portion sparse interventions miss. (\emph{H2, block-commit timing}) blocks 0--3 commit by step $\sim\!48$, so any L26 perturbation at step 64 alters at best blocks 4--7, not the function signature where MBPP correctness is most often decided. H1 predicts raw-direction steering should succeed; H2 predicts it should still fail. The raw-direction sweep (Appendix~\ref{sec:appendix_effect}) refutes H1: mean-difference, top-PC, and Fisher LDA all yield $0/90$ fail$\to$pass even at $\|\Delta h\|\!>\!17\!\times\!\|h\|$. H2 remains consistent with the only nonzero flips (step 16, pre-commit) and with activation-maximising contexts where \texttt{f15601} fires inside the committed signature region (Appendix~\ref{sec:appendix_actmax}).
 
 \section{Conclusion}
 
