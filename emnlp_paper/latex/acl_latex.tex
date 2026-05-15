@@ -121,7 +121,7 @@ We run KMeans on the fail samples for $K\!\in\!\{2,3,4,5\}$ using the top-20 fea
 The permutation null shuffles labels $1000\times$, \emph{re-selects} the top-20 features on each shuffled label set, then recomputes silhouette, controlling for the post-hoc feature selection.
 We report $p = \Pr[\mathrm{silhouette}_{\mathrm{perm}}\!\ge\!\mathrm{silhouette}_{\mathrm{obs}}]$.
 The silhouette is computed on fails only and measures sub-structure within failures, not fail-vs-pass separability directly.
-We therefore interpret it as \emph{concentration of failure modes} in a selected sparse subspace, and cross-check fail/pass separability with supervised AUC in the same subspace (Appendix~\ref{sec:appendix_auc_compare}, per-fold selection).
+We therefore interpret it as \emph{concentration of failure modes} in a selected sparse subspace, and cross-check fail/pass separability with supervised AUC in the same subspace under per-fold selection (Appendix~\ref{sec:appendix_auc_compare}).
 
 \paragraph{Steering.}
 We write \emph{fail$\to$pass} for a sample whose label flips from fail to pass after intervention, and \emph{pass$\to$fail} for the reverse pass-side regression.
@@ -438,6 +438,7 @@ Step $68$ remains $p<0.05$ at every $N$, while step $64$ degrades for $N\!\ge\!3
 \textbf{(b) Clustering method.} At $N{=}20$, KMeans, Agglomerative (Ward), and HDBSCAN ($\min\_\text{size}{=}5$) all recover $K{=}2$ with near-identical silhouette at both steps ($0.609$ / $0.719$ for step 64 / 68; HDBSCAN drops $11$ samples as noise).
 \textbf{(c) Labels-hidden.}
 Clustering the full $257$-sample fail+pass set at $K{=}2$ with the same top-$20$ features (selected via labels, cluster unsupervised) gives ARI $\approx -0.007$ at both steps ($p>0.85$), confirming the silhouette signal measures within-fail sub-structure rather than fail/pass separability.
+\textbf{(d) Held-out feature selection.} To address selection-bias concerns even after the permutation null already re-selects features inside each shuffle, we partition the $142$ fail samples into $5$ stratified folds, select the top-$20$ fail-enriched features on the held-in $4$ folds, and compute the KMeans silhouette on the held-out fold (mean across folds). Across the nine dense plateau steps in $[48,80]$, the held-out silhouette is $0.63$--$0.73$ with held-out null mean $0.37$--$0.42$ (gap $+0.25$ to $+0.34$); under a $500$-shuffle permutation null using the same held-out pipeline, \emph{all nine steps reach $p<0.05$} (best $p<10^{-3}$ at steps 56/68/72), which is stronger than the $7/9$ achieved by in-sample selection. The plateau is therefore not an artifact of label-driven feature selection.
 
 \begin{figure}[H]
   \centering
