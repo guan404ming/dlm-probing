@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.12)  15 MAY 2026 14:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.12)  15 MAY 2026 15:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -663,11 +663,11 @@ File: ../figures/fig1_trajectory.pdf Graphic file (type pdf)
 Package pdftex.def Info: ../figures/fig1_trajectory.pdf  used on input line 137
 .
 (pdftex.def)             Requested size: 208.13115pt x 150.73466pt.
-<../figures/fig2_cross.pdf, id=173, 517.65pt x 253.04915pt>
+<../figures/fig2_cross.pdf, id=173, 517.64859pt x 239.695pt>
 File: ../figures/fig2_cross.pdf Graphic file (type pdf)
 <use ../figures/fig2_cross.pdf>
 Package pdftex.def Info: ../figures/fig2_cross.pdf  used on input line 144.
-(pdftex.def)             Requested size: 455.24411pt x 222.55263pt.
+(pdftex.def)             Requested size: 455.24411pt x 210.80789pt.
 [2]
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
 (Font)              scaled to size 9.0pt on input line 180.
@@ -709,7 +709,7 @@ Underfull \hbox (badness 4556) in paragraph at lines 126--130
  []
 
 [6])
-<../figures/fig4_feature_drift.pdf, id=356, 520.81662pt x 217.33691pt>
+<../figures/fig4_feature_drift.pdf, id=342, 520.81662pt x 217.33691pt>
 File: ../figures/fig4_feature_drift.pdf Graphic file (type pdf)
 <use ../figures/fig4_feature_drift.pdf>
 Package pdftex.def Info: ../figures/fig4_feature_drift.pdf  used on input line 
@@ -750,31 +750,31 @@ Underfull \hbox (badness 1546) in paragraph at lines 301--303
  []
 
 [7]
-<../figures/fig5_auc_compare.pdf, id=387, 517.69362pt x 211.2661pt>
+<../figures/fig5_auc_compare.pdf, id=373, 517.69362pt x 196.46655pt>
 File: ../figures/fig5_auc_compare.pdf Graphic file (type pdf)
 <use ../figures/fig5_auc_compare.pdf>
 Package pdftex.def Info: ../figures/fig5_auc_compare.pdf  used on input line 38
 9.
-(pdftex.def)             Requested size: 437.0374pt x 178.35202pt.
+(pdftex.def)             Requested size: 437.0374pt x 165.85817pt.
  [8 <../figures/fig4_feature_drift.pdf>]
-<../figures/fig6_dense_compare.pdf, id=414, 250.29463pt x 155.79517pt>
+<../figures/fig6_dense_compare.pdf, id=400, 250.29463pt x 155.79517pt>
 File: ../figures/fig6_dense_compare.pdf Graphic file (type pdf)
 <use ../figures/fig6_dense_compare.pdf>
 Package pdftex.def Info: ../figures/fig6_dense_compare.pdf  used on input line 
 409.
 (pdftex.def)             Requested size: 208.13115pt x 129.55717pt.
  [9 <../figures/fig5_auc_compare.pdf> <../figures/fig6_dense_compare.pdf>]
-<../figures/fig8_crosslayer.pdf, id=462, 250.29463pt x 177.7149pt>
+<../figures/fig8_crosslayer.pdf, id=441, 250.29463pt x 163.81047pt>
 File: ../figures/fig8_crosslayer.pdf Graphic file (type pdf)
 <use ../figures/fig8_crosslayer.pdf>
 Package pdftex.def Info: ../figures/fig8_crosslayer.pdf  used on input line 428
 .
-(pdftex.def)             Requested size: 208.13115pt x 147.78532pt.
-<../figures/fig9_fisher.pdf, id=465, 250.29463pt x 211.13255pt>
+(pdftex.def)             Requested size: 208.13115pt x 136.2226pt.
+<../figures/fig9_fisher.pdf, id=444, 250.29463pt x 196.33302pt>
 File: ../figures/fig9_fisher.pdf Graphic file (type pdf)
 <use ../figures/fig9_fisher.pdf>
 Package pdftex.def Info: ../figures/fig9_fisher.pdf  used on input line 443.
-(pdftex.def)             Requested size: 208.13115pt x 175.575pt.
+(pdftex.def)             Requested size: 208.13115pt x 163.26791pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 459--462
 \T1/ptm/m/n/10.95 (+20) Across all $\OML/cmm/m/it/10.95 n[]\OT1/cmr/m/n/10.95 2
@@ -814,7 +814,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 464--467
 /10.95 (+20) A
  []
 
-<../figures/fig7_topN_sensitivity.pdf, id=518, 250.29463pt x 155.79517pt>
+<../figures/fig7_topN_sensitivity.pdf, id=483, 250.29463pt x 155.79517pt>
 File: ../figures/fig7_topN_sensitivity.pdf Graphic file (type pdf)
 <use ../figures/fig7_topN_sensitivity.pdf>
 Package pdftex.def Info: ../figures/fig7_topN_sensitivity.pdf  used on input li
@@ -878,10 +878,10 @@ nts/symbols/msbm10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/helv
 etic/uhvb8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/times/utmb8
 a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></us
 r/local/texlive/2026/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on acl_latex.pdf (12 pages, 568651 bytes).
+Output written on acl_latex.pdf (12 pages, 537481 bytes).
 PDF statistics:
- 668 PDF objects out of 1000 (max. 8388607)
- 517 compressed objects within 6 object streams
+ 625 PDF objects out of 1000 (max. 8388607)
+ 493 compressed objects within 5 object streams
  98 named destinations out of 1000 (max. 500000)
  68801 words of extra memory for PDF output out of 74296 (max. 10000000)
 

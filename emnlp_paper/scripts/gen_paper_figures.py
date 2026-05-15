@@ -144,12 +144,10 @@ def fig1_trajectory():
 
     fig, ax = plt.subplots(figsize=(3.35, 2.35), constrained_layout=True)
 
-    # Plateau band [48, 116].
+    # Plateau band [48, 116]: shaded only, no in-figure label.
     if 48 in pos and 116 in pos:
         ax.axvspan(pos[48] - 0.4, pos[116] + 0.4, color="#f5cf99",
                    alpha=0.45, zorder=0)
-        ax.text(pos[100], 0.90, "plateau [48, 116]", fontsize=7,
-                color="#7a4a16", ha="center", va="top")
 
     # Faint seed-1 / seed-2 overlays.
     for srows in seeds[1:]:
@@ -169,13 +167,6 @@ def fig1_trajectory():
     if sig_x:
         ax.scatter(sig_x, sig_y, marker="o", s=22, color="#d62728",
                    edgecolor="white", linewidth=0.5, zorder=10)
-
-    if 64 in pos:
-        i64 = pos[64]
-        ax.annotate("step 64 (plateau dip)", xy=(i64, sil[i64]),
-                    xytext=(i64, 0.86), ha="center",
-                    arrowprops={"arrowstyle": "->", "lw": 0.5, "color": "#444"},
-                    fontsize=7)
 
     ax.set_xlabel("denoising checkpoint")
     ax.set_ylabel("KMeans silhouette (top-20 fail)")
@@ -241,11 +232,6 @@ def fig2_cross():
             ax.scatter([peak_i], [peak_gap], s=38, color="#d62728",
                        edgecolor="#111111" if peak_sig else "white",
                        linewidth=0.9 if peak_sig else 0.6, zorder=9)
-            # Direct peak-step text label.
-            peak_step = traj[peak_i]["step"]
-            txt = f"s{peak_step}" + ("*" if peak_sig else "")
-            ax.text(peak_i, peak_gap + 0.025, txt, ha="center", va="bottom",
-                    fontsize=7, color="#a8202a")
             if ri == 0:
                 ax.set_title(dataset_titles[dataset], fontsize=9)
             if ci == 0:
@@ -256,9 +242,6 @@ def fig2_cross():
             ax.set_xticklabels(xlabels, fontsize=7)
             ax.set_ylim(-0.18, 0.38)
             ax.grid(True, axis="y", ls=":", alpha=0.35)
-    # Footer legend explaining the asterisk.
-    fig.text(0.5, -0.01, "* permutation $p < 0.05$",
-             ha="center", va="top", fontsize=7, color="#a8202a")
     fig.savefig(FIG_DIR / "fig2_cross.pdf")
     plt.close(fig)
     print(f"saved {FIG_DIR / 'fig2_cross.pdf'}")
@@ -494,9 +477,6 @@ def fig5_auc_compare():
     ax.legend(loc="upper center", ncol=4, bbox_to_anchor=(0.5, 1.10),
               frameon=False, fontsize=7, columnspacing=1.4,
               handlelength=1.2, handletextpad=0.4)
-    fig.text(0.5, -0.02,
-             "Per-cell winner marked with $\\bigstar$. Raw probe wins 11/12 cells.",
-             ha="center", va="top", fontsize=6.5, color="#444")
     fig.savefig(FIG_DIR / "fig5_auc_compare.pdf")
     plt.close(fig)
     print(f"saved {FIG_DIR / 'fig5_auc_compare.pdf'}")
@@ -568,9 +548,6 @@ def fig7_topN_sensitivity():
               bbox_to_anchor=(0.5, -0.42), frameon=False,
               borderpad=0.2, handlelength=1.4, columnspacing=1.4,
               handletextpad=0.4, fontsize=7)
-    # Annotation: hollow rings = p<0.05
-    ax.text(50, 0.42, "hollow ring: $p<0.05$",
-            fontsize=6.5, color="#555", ha="right", va="top")
     fig.savefig(FIG_DIR / "fig7_topN_sensitivity.pdf")
     plt.close(fig)
     print(f"saved {FIG_DIR / 'fig7_topN_sensitivity.pdf'}")
@@ -621,8 +598,6 @@ def fig8_crosslayer():
               bbox_to_anchor=(0.5, -0.30), frameon=False,
               borderpad=0.2, handlelength=1.4, columnspacing=1.4,
               handletextpad=0.4, fontsize=7)
-    fig.text(0.5, -0.02, "* permutation $p < 0.05$",
-             ha="center", va="top", fontsize=6.5, color="#444")
 
     fig.savefig(FIG_DIR / "fig8_crosslayer.pdf")
     plt.close(fig)
@@ -647,25 +622,15 @@ def fig9_fisher():
     colors = ["#1f5fa8" if s else "#bcbcbc" for s in sig_mask]
     ax.barh(ypos, neglog, color=colors, edgecolor="white", linewidth=0.4, height=0.7)
 
-    # Threshold line at -log10(0.05)
+    # Threshold line at -log10(0.05); label moved to caption.
     thresh = -np.log10(0.05)
     ax.axvline(thresh, color="#a8202a", lw=0.9, ls="--")
-    ax.text(thresh + 0.05, ypos[-1] - 0.6, "$p\\!=\\!0.05$",
-            color="#a8202a", fontsize=7, va="top")
-
-    # Direct labels for the highlighted cells (right of bar)
-    for i, (lab, v, sig) in enumerate(zip(labels, neglog, sig_mask)):
-        ax.text(v + 0.05, ypos[i], f"$p={cells[i]['fisher_p']:.3f}$",
-                fontsize=6.5, va="center",
-                color="#1f5fa8" if sig else "#666")
 
     ax.set_yticks(ypos)
     ax.set_yticklabels(labels, fontsize=8)
     ax.set_xlabel("$-\\log_{10}$ Fisher combined $p$")
-    ax.set_xlim(0, max(neglog) * 1.35)
+    ax.set_xlim(0, max(neglog) * 1.20)
     ax.grid(True, axis="x", ls=":", alpha=0.35)
-    fig.text(0.5, -0.02, "blue: $p\\!<\\!0.05$ after aggregation across 5 sparse-grid steps",
-             ha="center", va="top", fontsize=6.5, color="#444")
 
     fig.savefig(FIG_DIR / "fig9_fisher.pdf")
     plt.close(fig)
