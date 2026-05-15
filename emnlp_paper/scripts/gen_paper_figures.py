@@ -514,7 +514,7 @@ def fig6_dense_compare():
     ax.set_ylim(-0.02, 0.45)
     ax.grid(True, axis="y", ls=":", alpha=0.35)
     ax.legend(loc="lower center", ncol=3,
-              bbox_to_anchor=(0.5, -0.42), frameon=False,
+              bbox_to_anchor=(0.5, -0.52), frameon=False,
               borderpad=0.2, handlelength=1.4, columnspacing=1.2,
               handletextpad=0.4, fontsize=7)
     fig.savefig(FIG_DIR / "fig6_dense_compare.pdf")
@@ -595,7 +595,7 @@ def fig8_crosslayer():
     ax.axhline(0, color="#888", lw=0.6, ls=":")
     ax.grid(True, axis="y", ls=":", alpha=0.35)
     ax.legend(loc="lower center", ncol=2,
-              bbox_to_anchor=(0.5, -0.30), frameon=False,
+              bbox_to_anchor=(0.5, -0.50), frameon=False,
               borderpad=0.2, handlelength=1.4, columnspacing=1.4,
               handletextpad=0.4, fontsize=7)
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.12)  15 MAY 2026 16:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.12)  15 MAY 2026 16:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -757,19 +757,19 @@ Package pdftex.def Info: ../figures/fig5_auc_compare.pdf  used on input line 38
 8.
 (pdftex.def)             Requested size: 437.0374pt x 165.85817pt.
  [8 <../figures/fig4_feature_drift.pdf>]
-<../figures/fig6_dense_compare.pdf, id=400, 250.29463pt x 155.79517pt>
+<../figures/fig6_dense_compare.pdf, id=400, 250.29463pt x 160.30952pt>
 File: ../figures/fig6_dense_compare.pdf Graphic file (type pdf)
 <use ../figures/fig6_dense_compare.pdf>
 Package pdftex.def Info: ../figures/fig6_dense_compare.pdf  used on input line 
 408.
-(pdftex.def)             Requested size: 208.13115pt x 129.55717pt.
+(pdftex.def)             Requested size: 208.13115pt x 133.31126pt.
  [9 <../figures/fig5_auc_compare.pdf> <../figures/fig6_dense_compare.pdf>]
-<../figures/fig8_crosslayer.pdf, id=441, 250.29463pt x 163.81047pt>
+<../figures/fig8_crosslayer.pdf, id=441, 250.29463pt x 170.20973pt>
 File: ../figures/fig8_crosslayer.pdf Graphic file (type pdf)
 <use ../figures/fig8_crosslayer.pdf>
 Package pdftex.def Info: ../figures/fig8_crosslayer.pdf  used on input line 427
 .
-(pdftex.def)             Requested size: 208.13115pt x 136.2226pt.
+(pdftex.def)             Requested size: 208.13115pt x 141.54413pt.
 <../figures/fig9_fisher.pdf, id=444, 250.29463pt x 196.33302pt>
 File: ../figures/fig9_fisher.pdf Graphic file (type pdf)
 <use ../figures/fig9_fisher.pdf>
