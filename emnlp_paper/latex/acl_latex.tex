@@ -213,9 +213,8 @@ Tracing functional-correctness signal feature by feature reveals temporal struct
 Code and structural tasks form a mid-denoising plateau, whereas reasoning tasks peak at the final state, with cross-model agreement on three of four tasks and a Fisher-combined $p\!<\!10^{-7}$ on LLaDA-MBPP anchoring the trajectory claim.
 In that cell, a 3-seed dense sweep confirms a steps $48$--$116$ plateau and a late hand-off from \texttt{f15601} to \texttt{f3892}; top-20 sparse features recover $85$--$95\%$ but never all of the raw-probe AUC, so the plateau is a sparse-concentration effect on top of a distributively encoded signal.
 Linear-feature interventions across all $202$ LLaDA-MBPP fail and pass samples yield $0/202$ label flips when targeting the plateau (step 64) and only $3/202$ when intervening before plateau formation (step 16).
-The plateau features therefore behave as robust diagnostic markers, not as controllable knobs at the SAE-layer residual; causal control over functional correctness in DLMs likely requires stronger, earlier, or multi-layer interventions than the single-layer linear protocol tested here.
+The plateau features therefore behave as robust diagnostic markers; causal control over correctness in DLMs likely requires stronger, earlier, or multi-layer interventions than the single-layer linear protocol tested here.
 
-\newpage
 \section*{Limitations}
 
 \paragraph{SAE coverage.}
