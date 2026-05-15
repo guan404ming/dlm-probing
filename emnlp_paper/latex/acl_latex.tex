@@ -191,8 +191,8 @@ A supervised cross-check confirms this picture: top-20 SAE features recover $85$
 \label{sec:steer}
 We test whether the cluster-level signature can be directly controlled on LLaDA-MBPP, the only cell with cluster significance.
 All $152$ fail cases and $50$ pass-side regression controls are evaluated under four interventions (Table~\ref{tab:steering}).
-Suppressing \texttt{f15601} or the top-5 fail features within the plateau (step 64), and the reverse intervention ($\alpha{=}-5$), each yield $0/202$ label flips, as does a counterfactual replacement that simultaneously subtracts the top-5 fail-enriched and adds the top-5 pass-enriched directions (Appendix~\ref{sec:appendix_effect}).
-Only early intervention from step 16, before plateau formation, produces a marginal effect ($3/202\!\approx\!1.5\%$).
+Suppressing \texttt{f15601} or the top-5 fail features within the plateau (step 64), and the reverse intervention ($\alpha{=}-5$), each yield $0/202$ label flips, as does a counterfactual replacement that subtracts the top-5 fail-enriched and adds the top-5 pass-enriched directions. A broader sweep of $17$ single-layer linear protocols on small $n$ (Appendix~\ref{sec:appendix_effect}) varying magnitude ($\alpha$ up to $50$), direction, start step, feature-set size, and replacement vs.\ suppression yields $0/255$ fail$\to$pass across the entire family.
+Only early intervention from step 16, before plateau formation, produces a marginal effect ($3/202\!\approx\!1.5\%$) under the main protocol.
 A zero-out smoke test ($h{\leftarrow}0$) confirms the hook propagates: it garbles trailing tokens but leaves the early-committed function body intact, consistent with LLaDA committing blocks 0--3 by step $\sim\!48$.
 
 \section{Discussion}
@@ -463,7 +463,12 @@ Only intervention at step 16, before the plateau forms, produces any flips ($3/2
 \paragraph{Counterfactual feature replacement.}
 A stronger protocol simultaneously subtracts the top-$5$ fail-enriched directions and adds the top-$5$ pass-enriched directions at L26 from step 64 (replacing rather than merely ablating the fail cluster signature; top pass-enriched features at step 64 are f7961, f9732, f3011, f4420, f11861).
 Across the same $n\!=\!202$ samples, this counterfactual yields $0/152$ fail$\to$pass conversions on cluster-1 and cluster-0 cases combined, and a net-zero $1$ fail$\to$pass / $1$ pass$\to$fail on the $50$ pass controls.
-Pairing the fail-out and pass-in directions therefore does not unlock the controllability that plain suppression failed to demonstrate, further supporting the diagnostic-only interpretation.
+Pairing the fail-out and pass-in directions therefore does not unlock the controllability that plain suppression failed to demonstrate.
+
+\paragraph{Protocol sweep.}
+Concerned that the negative result might reflect one too-narrow protocol, we additionally sweep $17$ single-layer linear configurations at L26 with $n\!=\!15$ cluster-1 fails and $n\!=\!5$ pass controls each: magnitude $\alpha\!\in\!\{1, 5, 10, 20, 50\}$ on \texttt{f15601} at $s64$ (perturbation norm $\|\Delta h\|$ scales from $69$ to $3152$); start step $\in\!\{0, 4, 32, 48\}$ at $\alpha\!=\!5$; reverse $\alpha\!\in\!\{-5, -10, -20\}$ amplifying \texttt{f15601}; multi-feature suppression of the top-$5$ and top-$10$ fail features; and counterfactual replacement at $K\!\in\!\{1, 5\}$ including a strong $\alpha\!=\!20$ variant.
+Every one of the $17$ protocols yields $0/15$ fail$\to$pass on cluster-1, for an aggregate $0/255$ across the entire single-layer linear sweep; only one protocol (start step $s4$, $\alpha\!=\!5$) induces a single pass-side regression ($1/5$).
+This bounds the negative result tightly to the single-layer linear family at L26 over a wide swath of magnitudes, directions, start steps, and feature sets. Whether gradient-based, multi-layer joint, or non-linear interventions can flip correctness in DLMs remains open.
 
 \section{Post-hoc Selection Sensitivity}
 \label{sec:appendix_sensitivity}
