@@ -576,6 +576,102 @@ def fig7_topN_sensitivity():
     print(f"saved {FIG_DIR / 'fig7_topN_sensitivity.pdf'}")
 
 
+def fig8_crosslayer():
+    """LLaDA-MBPP signal-to-null gap across SAE layers {11,16,26,30} at steps 64/68."""
+    src = Path("/tmp/paper_figs_dense/crosslayer_diagnose.json")
+    if not src.exists():
+        print(f"fig8: missing {src}, skipping")
+        return
+    data = json.load(open(src))
+    layers = [L["sae_layer"] for L in data["layers"]]
+    rows = {L["sae_layer"]: {s["step"]: s for s in L["steps"]} for L in data["layers"]}
+
+    fig, ax = plt.subplots(figsize=(3.35, 2.15), constrained_layout=True)
+    xs = np.arange(len(layers))
+    width = 0.38
+
+    gaps_64 = [rows[L][64]["gap"] for L in layers]
+    gaps_68 = [rows[L][68]["gap"] for L in layers]
+    p64 = [rows[L][64]["p_value"] for L in layers]
+    p68 = [rows[L][68]["p_value"] for L in layers]
+
+    ax.bar(xs - width / 2, gaps_64, width=width, color="#1f5fa8",
+           edgecolor="white", linewidth=0.4, label="step 64")
+    ax.bar(xs + width / 2, gaps_68, width=width, color="#a8202a",
+           edgecolor="white", linewidth=0.4, label="step 68")
+
+    # Mark significance with asterisks above bars
+    for i, p in enumerate(p64):
+        if p < 0.05:
+            ax.text(xs[i] - width / 2, gaps_64[i] + 0.008, "*",
+                    ha="center", va="bottom", fontsize=11, color="#1f5fa8")
+    for i, p in enumerate(p68):
+        if p < 0.05:
+            ax.text(xs[i] + width / 2, gaps_68[i] + 0.008, "*",
+                    ha="center", va="bottom", fontsize=11, color="#a8202a")
+
+    ax.set_xticks(xs)
+    ax.set_xticklabels([f"L{L}" for L in layers])
+    ax.set_xlabel("DLM-Scope LLaDA Mask-SAE layer")
+    ax.set_ylabel("signal-to-null gap")
+    ax.set_ylim(0.0, 0.42)
+    ax.axhline(0, color="#888", lw=0.6, ls=":")
+    ax.grid(True, axis="y", ls=":", alpha=0.35)
+    ax.legend(loc="lower center", ncol=2,
+              bbox_to_anchor=(0.5, -0.30), frameon=False,
+              borderpad=0.2, handlelength=1.4, columnspacing=1.4,
+              handletextpad=0.4, fontsize=7)
+    fig.text(0.5, -0.02, "* permutation $p < 0.05$",
+             ha="center", va="top", fontsize=6.5, color="#444")
+
+    fig.savefig(FIG_DIR / "fig8_crosslayer.pdf")
+    plt.close(fig)
+    print(f"saved {FIG_DIR / 'fig8_crosslayer.pdf'}")
+
+
+def fig9_fisher():
+    """Horizontal bar of -log10(Fisher combined p) across 8 (model, task) cells."""
+    src = Path("/tmp/paper_figs/fisher_per_cell.json")
+    if not src.exists():
+        print(f"fig9: missing {src}, skipping")
+        return
+    cells = json.load(open(src))
+    # Sort by Fisher p ascending (smallest p first; largest -log10 first)
+    cells = sorted(cells, key=lambda c: c["fisher_p"])
+    labels = [c["cell"] for c in cells]
+    neglog = [-np.log10(c["fisher_p"]) for c in cells]
+    sig_mask = [c["fisher_p"] < 0.05 for c in cells]
+
+    fig, ax = plt.subplots(figsize=(3.35, 2.6), constrained_layout=True)
+    ypos = np.arange(len(labels))[::-1]  # most significant on top
+    colors = ["#1f5fa8" if s else "#bcbcbc" for s in sig_mask]
+    ax.barh(ypos, neglog, color=colors, edgecolor="white", linewidth=0.4, height=0.7)
+
+    # Threshold line at -log10(0.05)
+    thresh = -np.log10(0.05)
+    ax.axvline(thresh, color="#a8202a", lw=0.9, ls="--")
+    ax.text(thresh + 0.05, ypos[-1] - 0.6, "$p\\!=\\!0.05$",
+            color="#a8202a", fontsize=7, va="top")
+
+    # Direct labels for the highlighted cells (right of bar)
+    for i, (lab, v, sig) in enumerate(zip(labels, neglog, sig_mask)):
+        ax.text(v + 0.05, ypos[i], f"$p={cells[i]['fisher_p']:.3f}$",
+                fontsize=6.5, va="center",
+                color="#1f5fa8" if sig else "#666")
+
+    ax.set_yticks(ypos)
+    ax.set_yticklabels(labels, fontsize=8)
+    ax.set_xlabel("$-\\log_{10}$ Fisher combined $p$")
+    ax.set_xlim(0, max(neglog) * 1.35)
+    ax.grid(True, axis="x", ls=":", alpha=0.35)
+    fig.text(0.5, -0.02, "blue: $p\\!<\\!0.05$ after aggregation across 5 sparse-grid steps",
+             ha="center", va="top", fontsize=6.5, color="#444")
+
+    fig.savefig(FIG_DIR / "fig9_fisher.pdf")
+    plt.close(fig)
+    print(f"saved {FIG_DIR / 'fig9_fisher.pdf'}")
+
+
 if __name__ == "__main__":
     fig1_trajectory()
     fig2_cross()
@@ -584,4 +680,6 @@ if __name__ == "__main__":
     fig5_auc_compare()
     fig6_dense_compare()
     fig7_topN_sensitivity()
+    fig8_crosslayer()
+    fig9_fisher()
     print("\nAll figures saved to:", FIG_DIR)

@@ -162,7 +162,7 @@ The raw-probe AUC in \citet{chiu2026probe} \emph{monotonically} increases over t
 Figure~\ref{fig:cross} reports the full $2{\times}4$ trajectory grid; Appendix~\ref{sec:appendix_grid} lists step-64 numbers.
 Code and structural cells (MBPP, JSON on both DLMs) peak mid-denoising at step 64, reasoning cells (GSM8K on both, Dream-ARC) peak at step 127, and LLaDA-ARC is an outlier peaking at step 4.
 Three of four tasks therefore share a peak step across LLaDA and Dream, mirroring the structural-vs-reasoning emergence split of \citet{chiu2026probe} as a peak position rather than a continuous AUC curve.
-Of $12$ cells, only LLaDA-MBPP and Qwen-JSON reach raw $p<0.05$ at step 64; no cell survives Holm-Bonferroni at $\alpha\!=\!0.05$ across $40$ sparse-grid tests. Aggregating the $14$ dense LLaDA-MBPP plateau sub-steps via Fisher's combined probability still gives $p\!<\!10^{-7}$ on every seed (Appendix~\ref{sec:appendix_dense}), so the LLaDA-MBPP plateau anchors the cross-DLM agreement claim while other cells remain descriptive.
+No cell survives Holm-Bonferroni across $40$ sparse-grid tests, but two cells reach aggregated significance: the LLaDA-MBPP dense plateau (Fisher $p\!<\!10^{-7}$ per seed) and Dream-JSON via sparse 5-step Fisher ($p=0.047$); the LLaDA-MBPP plateau is also L26-specific under a cross-layer scan (Appendices~\ref{sec:appendix_dense}, \ref{sec:appendix_crosslayer}, \ref{sec:appendix_fisher}).
 The ARC anomaly fits this picture: LLaDA-ARC fails near the prompt boundary so its early-step cluster captures prompt-attention failure modes rather than reasoning-stage failure, accounting for the step-4 peak versus Dream-ARC's step-127 peak.
 
 \paragraph{Top-feature drift and persistence.}
@@ -409,6 +409,36 @@ Four findings emerge.
   \includegraphics[width=0.95\columnwidth]{../figures/fig6_dense_compare.pdf}
   \caption{Dense step sweep ($48$--$80$ every $4$ steps) on LLaDA-MBPP and Dream-MBPP. Hollow red rings mark LLaDA sub-steps with permutation $p<0.05$; 7 of 9 sub-steps are significant on LLaDA, none reach significance on Dream. \texttt{f15601} (LLaDA) and \texttt{f6326} (Dream) are top-1 at most plateau steps.}
   \label{fig:dense_compare}
+\end{figure}
+
+\section{Cross-Layer SAE Specificity}
+\label{sec:appendix_crosslayer}
+
+To check that our choice of L26 is empirically motivated rather than an arbitrary single-layer restriction, we re-run the silhouette-with-permutation-null pipeline on cached LLaDA-MBPP plateau residuals at SAE layers $\{11, 16, 26, 30\}$ (the available DLM-Scope LLaDA Mask-SAE checkpoints) at steps 64 and 68.
+Figure~\ref{fig:crosslayer} shows that L26 is the unique peak: step 68 at L26 reaches gap $+0.357$ with permutation $p=0.006$, while L11, L16, and L30 give gaps below $+0.21$ and none reach $p<0.05$.
+Moreover \texttt{f15601} is the top-1 fail-enriched feature only at L26 (different layers select different atoms: f13087/f541 at L11, f2741/f15654 at L16, f8020/f654 at L30), so the persistent-feature claim is itself L26-specific.
+The within-plateau steering null reported in the main text is therefore not the easiest single-layer test to fail; it is the test most likely to succeed if any layer could be controlled linearly, yet still produces $0/202$.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\columnwidth]{../figures/fig8_crosslayer.pdf}
+  \caption{LLaDA-MBPP signal-to-null gap across SAE layers at plateau steps 64 and 68. L26 is the unique layer where the gap reaches permutation $p<0.05$ (step 68, gap $+0.357$, $p=0.006$). Top-1 fail-enriched feature varies by layer; \texttt{f15601} appears only at L26.}
+  \label{fig:crosslayer}
+\end{figure}
+
+\section{Aggregated Significance Across Cells}
+\label{sec:appendix_fisher}
+
+The Holm-Bonferroni correction on the $40$ sparse-grid tests retains $0$ cells (\S\ref{sec:cross}), but the sparse 5-step grid hides a second aggregated-significance cell.
+For each of the $8$ (DLM, task) cells we combine the five sparse-step $p$-values via Fisher's combined probability test (clamping $p_{\min}\!=\!10^{-3}$ to avoid $\log 0$).
+Figure~\ref{fig:fisher} shows the result: \emph{Dream-JSON} reaches Fisher $p=0.047$, a second cell beyond the LLaDA-MBPP dense plateau where the within-cell trajectory exceeds chance once we look at the full trajectory rather than any single step.
+This corroborates the cross-DLM phase-alignment claim: code/structural tasks have aggregated significance on both DLMs (LLaDA-MBPP via dense sweep, Dream-JSON via 5-step aggregation), while reasoning tasks have aggregated significance on neither.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\columnwidth]{../figures/fig9_fisher.pdf}
+  \caption{Fisher combined $p$ across the sparse $5$-step grid for each of the $8$ (DLM, task) cells. Dream-JSON reaches aggregated significance ($p=0.047$); LLaDA-MBPP is next strongest. The dashed line marks $p=0.05$.}
+  \label{fig:fisher}
 \end{figure}
 
 \section{Seed Sensitivity}
