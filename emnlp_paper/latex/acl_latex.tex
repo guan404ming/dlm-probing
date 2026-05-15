@@ -203,15 +203,14 @@ The cluster signature is useful as a diagnostic within the plateau, but our inte
 This contrasts with positive AR steering results on refusal and instruction following \citep{obrien2024refusal,he2025saif} but is consistent with reports that activation steering may degrade unrelated capabilities \citep{korznikov2025roguescalpel}.
 More decisive causal tests would need paired counterfactual replacements, multi-layer interventions, or attribution from output-level correctness back to the SAE layer.
 
-\paragraph{Why do peak times differ by task?}
-By step 64, LLaDA has unmasked blocks 0--3 (the function signature and early body) but not blocks 4--7.
-For code and structural tasks, this mid-state is where fail-vs-pass information is maximally factored into a small set of sparse features: enough tokens are settled to expose the failure mode, later tokens still carry uncertainty.
-For reasoning tasks (GSM8K, Dream-ARC) the sparse cluster only peaks at the final checkpoint, suggesting reasoning failures become feature-separable later than format or code failures, and a single intervention window is unlikely to control correctness across tasks.
+\paragraph{What the plateau features represent.}
+By step 64, LLaDA has unmasked blocks 0--3 (signature and early body), so code and structural failure modes are exposed while later tokens remain uncertain; reasoning tasks only peak at the final checkpoint.
+Activation-maximising examples at step 64 (Appendix~\ref{sec:appendix_actmax}) further show that \texttt{f15601} fires on complex-math docstring contexts (a task-difficulty correlate, not a fail-cause), whereas late-state \texttt{f11265} fires on broken-syntax contexts (closer to a true failure detector); this dissociation explains the within-plateau steering null, since ablating \texttt{f15601} perturbs a difficulty signal upstream of the failure mechanism.
 
 \section{Conclusion}
 
 Tracing functional-correctness signal feature by feature reveals temporal structure that scalar probes miss: sparse failure markers form task-dependent phases.
-Code and structural tasks form a mid-denoising plateau, whereas reasoning tasks peak at the final state. This peak-phase pattern agrees across LLaDA-8B and Dream-7B on three of four tasks; no individual cell on the sparse $40$-test grid survives Holm-Bonferroni, but the LLaDA-MBPP plateau itself aggregates to Fisher's combined $p\!<\!10^{-7}$ on every seed, anchoring the trajectory claim on one fully significant cell.
+Code and structural tasks form a mid-denoising plateau, whereas reasoning tasks peak at the final state, with cross-model agreement on three of four tasks and a Fisher-combined $p\!<\!10^{-7}$ on LLaDA-MBPP anchoring the trajectory claim.
 In that cell, a 3-seed dense sweep confirms a steps $48$--$116$ plateau and a late hand-off from \texttt{f15601} to \texttt{f3892}; top-20 sparse features recover $85$--$95\%$ but never all of the raw-probe AUC, so the plateau is a sparse-concentration effect on top of a distributively encoded signal.
 Linear-feature interventions across all $202$ LLaDA-MBPP fail and pass samples yield $0/202$ label flips when targeting the plateau (step 64) and only $3/202$ when intervening before plateau formation (step 16).
 The plateau features therefore behave as robust diagnostic markers, not as controllable knobs at the SAE-layer residual; causal control over functional correctness in DLMs likely requires stronger, earlier, or multi-layer interventions than the single-layer linear protocol tested here.
@@ -226,14 +225,13 @@ Early-step instability (steps 0--16) reflects the residual stream not yet encodi
 
 \paragraph{Feature semantics.}
 We identify persistent dictionary atoms such as \texttt{f15601} and \texttt{f3892} by statistical enrichment and temporal persistence, not by human-validated semantic labels.
-The present experiments therefore support a claim about when sparse failure markers concentrate, but they do not name the underlying error modes captured by each feature.
-Manual cluster inspection or activation-maximising examples would be needed to turn these feature IDs into interpretable failure categories.
+The present experiments therefore support a claim about when sparse failure markers concentrate; Appendix~\ref{sec:appendix_actmax} characterises four of them via activation-maximising contexts, but full mechanistic naming would require systematic intervention beyond this protocol.
 
 \paragraph{Permutation test interpretation.}
 Our permutation null re-selects the top-20 fail features on each shuffled label set before recomputing silhouette.
 This is conservative (any post-hoc selection procedure that could find clusters on random labels is included in the null), and it inflates the null mean noticeably (e.g.\ $0.36$ for LLaDA-8B / MBPP at step 64).
 A consequence is that only two of twelve cells reach $p<0.05$ at an individual step on the sparse 7-grid even though the DLM grid shows systematic plateau structure.
-The dense sweep in Appendix~\ref{sec:appendix_dense} shows 7 of 9 sub-steps in $[48, 76]$ reach $p<0.05$ on LLaDA-MBPP, so sparse-grid per-step significance is an underestimate; we present our cross-model claims as plateau-shape claims rather than per-cell significance.
+Aggregated tests partially mitigate this: the $14$ dense LLaDA-MBPP plateau sub-steps yield Fisher combined $p\!<\!10^{-7}$ on every seed and held-out feature selection (Appendix~\ref{sec:appendix_sensitivity}) reaches $p<0.05$ on all $9$ dense sub-steps; we present cross-model claims as plateau-shape claims rather than per-cell significance.
 
 \paragraph{Steering coverage.}
 Our intervention sweep tests four denoising windows, two feature-set sizes (single and top-5), and one magnitude pair ($\alpha\!\in\!\{+5,-5\}$) at a single SAE layer per DLM (L26 for LLaDA, L23 for Dream).
@@ -446,6 +444,36 @@ Clustering the full $257$-sample fail+pass set at $K{=}2$ with the same top-$20$
   \caption{Signal-to-null gap as the top-$N$ fail-feature cutoff is varied at LLaDA-MBPP plateau steps 64 and 68. Hollow rings mark $p<0.05$. Step 68 is robust across $N$; step 64 only reaches significance at $N{=}10$.}
   \label{fig:topN_sensitivity}
 \end{figure}
+
+\section{Activation-Maximizing Examples}
+\label{sec:appendix_actmax}
+
+To turn the statistically discovered top features into interpretable failure markers, we re-run LLaDA-8B at step 64 on all $257$ MBPP samples, encode every generation position through the L26 Mask-SAE, and record the top-$30$ \emph{(sample, position)} entries per target feature.
+Table~\ref{tab:actmax} summarises the dominant context type for each feature, the fail-rate in its top-$30$ examples, and a representative quotation.
+
+\begin{table}[H]
+  \centering\scriptsize
+  \setlength{\tabcolsep}{3pt}
+  \renewcommand{\arraystretch}{1.05}
+  \begin{tabular}{@{}l p{0.30\columnwidth} p{0.44\columnwidth}@{}}
+    \toprule
+    feature & dominant context (F/P split) & top quotation \\
+    \midrule
+    \texttt{f15601} & complex-math docstring (25/5) & \emph{``nth octagonal number...O(n)$=$(n$^2{+}3$n)//2''} \\
+    \texttt{f3892}  & \texttt{:param}/\texttt{:return} annotation (15/15) & \emph{``\texttt{:param tuple\_list:} input list of tuples''} \\
+    \texttt{f5561}  & arithmetic variable assignment (22/8) & \emph{``max\_product = min\_product''} \\
+    \texttt{f11265} & broken-syntax / incomplete code (17/13) & \emph{``dp[n $==$ 0] $=$ [1 \textbackslash n dp $=$ [0]''} \\
+    \texttt{f2144}  & docstring opening newline (14/16) & \emph{``def fn(x):\textbackslash n \texttt{"""}\textbackslash n''} \\
+    \bottomrule
+  \end{tabular}
+  \caption{Activation-maximising contexts for the top fail-enriched features on LLaDA-8B / MBPP at step 64; fail/pass counts are among each feature's top-$30$ examples. \texttt{f15601} fires on complex-math docstring contexts (task-difficulty correlate), \texttt{f11265} fires on broken-syntax contexts (closer to a true failure detector), and \texttt{f2144} fires on a structural position (non-discriminative).}
+  \label{tab:actmax}
+\end{table}
+
+Two interpretive points follow.
+First, the mid-plateau peak feature \texttt{f15601} is a \emph{task-difficulty correlate}: its top contexts are dense mathematical specifications (Eulerian / octagonal / hexagonal / Babylonian formulae) where the model is more likely to fail, but the feature is not directly causal.
+This is consistent with the within-plateau steering null (\S\ref{sec:steer}): ablating a task-difficulty signal does not flip correctness because the perturbation is upstream of the failure mechanism.
+Second, the late-state feature \texttt{f11265} fires on contexts that already contain visible syntactic defects in the partially-generated code, suggesting it is closer to a genuine failure detector than the mid-plateau atoms; the within-plateau hand-off from \texttt{f15601} to \texttt{f3892} (and the late shift toward \texttt{f11265}) thus reflects a transition from \emph{difficulty signalling} to \emph{outcome signalling} as denoising completes.
 
 \section{Functional Correctness Definitions}
 \label{sec:appendix_correctness}
