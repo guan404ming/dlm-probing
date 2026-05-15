@@ -191,8 +191,7 @@ A supervised cross-check confirms this picture: top-20 SAE features recover $85$
 \label{sec:steer}
 We test whether the cluster-level signature can be directly controlled on LLaDA-MBPP, the only cell with cluster significance.
 All $152$ fail cases and $50$ pass-side regression controls are evaluated under four interventions (Table~\ref{tab:steering}).
-Suppressing \texttt{f15601} or the top-5 fail features within the plateau (step 64), and the reverse intervention ($\alpha{=}-5$), each yield $0/202$ label flips, as does a counterfactual replacement that subtracts the top-5 fail-enriched and adds the top-5 pass-enriched directions. A broader sweep of $17$ single-layer linear protocols on small $n$ (Appendix~\ref{sec:appendix_effect}) varying magnitude ($\alpha$ up to $50$), direction, start step, feature-set size, and replacement vs.\ suppression yields $0/255$ fail$\to$pass across the entire family.
-Only early intervention from step 16, before plateau formation, produces a marginal effect ($3/202\!\approx\!1.5\%$) under the main protocol.
+Suppressing \texttt{f15601} or the top-5 fail features within the plateau (step 64), and the reverse intervention ($\alpha{=}-5$), each yield $0/202$ label flips, as does a counterfactual replacement that subtracts the top-5 fail-enriched and adds the top-5 pass-enriched directions. A broader sweep of $23$ linear protocols on small $n$ (Appendix~\ref{sec:appendix_effect}) covering both sparse SAE directions ($17$ configs, magnitudes up to $\alpha\!=\!50$) and raw residual directions (mean-difference, PCA, Fisher LDA; $6$ configs) yields $0/345$ fail$\to$pass total. Only step-16 intervention, before plateau formation, produces a marginal effect ($3/202$).
 A zero-out smoke test ($h{\leftarrow}0$) confirms the hook propagates: it garbles trailing tokens but leaves the early-committed function body intact, consistent with LLaDA committing blocks 0--3 by step $\sim\!48$.
 
 \section{Discussion}
@@ -466,8 +465,15 @@ Pairing the fail-out and pass-in directions therefore does not unlock the contro
 
 \paragraph{Protocol sweep.}
 Concerned that the negative result might reflect one too-narrow protocol, we additionally sweep $17$ single-layer linear configurations at L26 with $n\!=\!15$ cluster-1 fails and $n\!=\!5$ pass controls each: magnitude $\alpha\!\in\!\{1, 5, 10, 20, 50\}$ on \texttt{f15601} at $s64$ (perturbation norm $\|\Delta h\|$ scales from $69$ to $3152$); start step $\in\!\{0, 4, 32, 48\}$ at $\alpha\!=\!5$; reverse $\alpha\!\in\!\{-5, -10, -20\}$ amplifying \texttt{f15601}; multi-feature suppression of the top-$5$ and top-$10$ fail features; and counterfactual replacement at $K\!\in\!\{1, 5\}$ including a strong $\alpha\!=\!20$ variant.
-Every one of the $17$ protocols yields $0/15$ fail$\to$pass on cluster-1, for an aggregate $0/255$ across the entire single-layer linear sweep; only one protocol (start step $s4$, $\alpha\!=\!5$) induces a single pass-side regression ($1/5$).
-This bounds the negative result tightly to the single-layer linear family at L26 over a wide swath of magnitudes, directions, start steps, and feature sets. Whether gradient-based, multi-layer joint, or non-linear interventions can flip correctness in DLMs remains open.
+Every one of the $17$ protocols yields $0/15$ fail$\to$pass on cluster-1, for an aggregate $0/255$ across the entire single-layer linear sweep on \emph{sparse} SAE directions.
+
+\paragraph{Raw-residual directional steering.}
+The 5--15\% of correctness information not captured by the top-20 sparse subspace (Figure~\ref{fig:auc_compare}) raises a natural question: would steering along a \emph{raw} residual direction, rather than a sparse SAE feature, succeed where sparse steering fails?
+We test three candidate raw directions at $L26$ step 64: (i) the pass-minus-fail mean-difference vector ($\bar h_{\text{pass}} - \bar h_{\text{fail}}$, unit-normalised), (ii) the top principal component of the residual covariance oriented toward pass, and (iii) a Fisher LDA direction with regularised within-class covariance.
+Across $6$ configurations (mean-diff at $\alpha\!\in\!\{5, 20, 50\}$, PCA-1 at $\alpha\!=\!5$, Fisher at $\alpha\!=\!5$, and mean-diff at $\alpha\!=\!5$ from step 16), every protocol yields $0/15$ fail$\to$pass on cluster-1 fails, for an aggregate $0/90$ on top of the SAE sweep.
+The largest perturbation ($\alpha\!=\!50$, raw mean-diff) drives $\|\Delta h\|$ to $71{,}168$ ($\sim$$17\!\times$ the residual norm), well beyond the magnitudes used in successful AR steering studies, and still produces zero flips.
+The combined linear-steering ledger at L26 thus stands at $0/345$ fail$\to$pass over $23$ protocols.
+This rules out the hypothesis that the sparse-subspace restriction is the culprit (raw directions occupy the full residual and still fail), and tightens the remaining explanation toward DLM-specific structural causes such as block-commit timing or non-linear computational paths. Gradient-based, multi-layer joint, and non-linear interventions remain open.
 
 \section{Post-hoc Selection Sensitivity}
 \label{sec:appendix_sensitivity}
