@@ -507,14 +507,14 @@ def fig6_dense_compare():
     ax.scatter(sig_x, sig_y, marker="o", s=70, facecolor="none",
                edgecolor="#d62728", linewidth=1.0, zorder=10,
                label="$p<0.05$")
-    ax.set_xlabel("denoising step")
+    ax.set_xlabel("denoising step", labelpad=6.0)
     ax.set_ylabel("signal-to-null gap")
     ax.set_xticks(xs)
     ax.set_xticklabels([str(x) for x in xs], fontsize=7)
     ax.set_ylim(-0.02, 0.45)
     ax.grid(True, axis="y", ls=":", alpha=0.35)
     ax.legend(loc="lower center", ncol=3,
-              bbox_to_anchor=(0.5, -0.52), frameon=False,
+              bbox_to_anchor=(0.5, -0.58), frameon=False,
               borderpad=0.2, handlelength=1.4, columnspacing=1.2,
               handletextpad=0.4, fontsize=7)
     fig.savefig(FIG_DIR / "fig6_dense_compare.pdf")
@@ -589,13 +589,13 @@ def fig8_crosslayer():
 
     ax.set_xticks(xs)
     ax.set_xticklabels([f"L{L}" for L in layers])
-    ax.set_xlabel("DLM-Scope LLaDA Mask-SAE layer")
+    ax.set_xlabel("DLM-Scope LLaDA Mask-SAE layer", labelpad=8.0)
     ax.set_ylabel("signal-to-null gap")
     ax.set_ylim(0.0, 0.42)
     ax.axhline(0, color="#888", lw=0.6, ls=":")
     ax.grid(True, axis="y", ls=":", alpha=0.35)
     ax.legend(loc="lower center", ncol=2,
-              bbox_to_anchor=(0.5, -0.50), frameon=False,
+              bbox_to_anchor=(0.5, -0.55), frameon=False,
               borderpad=0.2, handlelength=1.4, columnspacing=1.4,
               handletextpad=0.4, fontsize=7)
 
@@ -628,13 +628,68 @@ def fig9_fisher():
 
     ax.set_yticks(ypos)
     ax.set_yticklabels(labels, fontsize=8)
-    ax.set_xlabel("$-\\log_{10}$ Fisher combined $p$")
+    ax.set_xlabel("$-\\log_{10}$ Fisher combined $p$", labelpad=6.0)
     ax.set_xlim(0, max(neglog) * 1.20)
     ax.grid(True, axis="x", ls=":", alpha=0.35)
 
     fig.savefig(FIG_DIR / "fig9_fisher.pdf")
     plt.close(fig)
     print(f"saved {FIG_DIR / 'fig9_fisher.pdf'}")
+
+
+def fig10_ardlm():
+    """Per-layer CV-AUC and cos-similarity for Qwen-Base, Qwen-Instruct, Dream-Base."""
+    src = Path("/tmp/paper_figs/ardlm_3way.json")
+    if not src.exists():
+        print(f"fig10: missing {src}, skipping")
+        return
+    d = json.load(open(src))
+    rows = d["per_layer"]
+    L = np.array([r["layer"] for r in rows])
+    auc_QB = np.array([r["auc_QB"] for r in rows])
+    auc_QI = np.array([r["auc_QI"] for r in rows])
+    auc_DB = np.array([r["auc_DB"] for r in rows])
+    cos_QB_DB = np.array([r["cos_QB_DB_mean"] for r in rows])
+    cos_QB_QI = np.array([r["cos_QB_QI_mean"] for r in rows])
+    cos_QI_DB = np.array([r["cos_QI_DB_mean"] for r in rows])
+
+    fig, (axA, axB) = plt.subplots(2, 1, figsize=(3.35, 3.8),
+                                   constrained_layout=True, sharex=True)
+
+    axA.plot(L, auc_QB, "-o", color="#1f5fa8", lw=1.2, ms=3.2,
+             label="Qwen-2.5-7B-Base (AR)")
+    axA.plot(L, auc_QI, "-s", color="#2e8b3a", lw=1.2, ms=3.2,
+             label="Qwen-2.5-7B-Instruct (AR+IFT)")
+    axA.plot(L, auc_DB, "-^", color="#a8202a", lw=1.2, ms=3.5,
+             label="Dream-7B-Base (DLM)")
+    qb_peak = int(L[np.argmax(auc_QB)])
+    qi_peak = int(L[np.argmax(auc_QI)])
+    db_peak = int(L[np.argmax(auc_DB)])
+    for x, c in [(qb_peak, "#1f5fa8"), (qi_peak, "#2e8b3a"), (db_peak, "#a8202a")]:
+        axA.axvline(x, color=c, lw=0.5, ls=":", alpha=0.5)
+    axA.set_ylabel("5-fold CV-AUC")
+    axA.set_ylim(0.55, 0.78)
+    axA.grid(True, ls=":", alpha=0.3)
+    axA.legend(loc="lower right", fontsize=7, frameon=False,
+               handlelength=1.4, handletextpad=0.4, borderpad=0.2)
+
+    axB.plot(L, cos_QB_QI, "-s", color="#2e8b3a", lw=1.2, ms=3.0,
+             label="cos(QB, QI)")
+    axB.plot(L, cos_QB_DB, "-^", color="#a8202a", lw=1.2, ms=3.0,
+             label="cos(QB, DB)")
+    axB.plot(L, cos_QI_DB, "-d", color="#8a4ba3", lw=1.2, ms=3.0,
+             label="cos(QI, DB)")
+    axB.set_xlabel("transformer layer index", labelpad=6.0)
+    axB.set_ylabel("per-sample cosine")
+    axB.set_ylim(0.0, 1.0)
+    axB.set_xticks(np.arange(0, 28, 4))
+    axB.grid(True, ls=":", alpha=0.3)
+    axB.legend(loc="lower left", fontsize=7, frameon=False,
+               handlelength=1.4, handletextpad=0.4, borderpad=0.2)
+
+    fig.savefig(FIG_DIR / "fig10_ardlm.pdf")
+    plt.close(fig)
+    print(f"saved {FIG_DIR / 'fig10_ardlm.pdf'}")
 
 
 if __name__ == "__main__":
@@ -647,4 +702,5 @@ if __name__ == "__main__":
     fig7_topN_sensitivity()
     fig8_crosslayer()
     fig9_fisher()
+    fig10_ardlm()
     print("\nAll figures saved to:", FIG_DIR)
