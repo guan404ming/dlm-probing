@@ -417,7 +417,11 @@ Four findings emerge.
 To check that our choice of L26 is empirically motivated rather than an arbitrary single-layer restriction, we re-run the silhouette-with-permutation-null pipeline on cached LLaDA-MBPP plateau residuals at SAE layers $\{11, 16, 26, 30\}$ (the available DLM-Scope LLaDA Mask-SAE checkpoints) at steps 64 and 68.
 Figure~\ref{fig:crosslayer} shows that L26 is the unique peak: step 68 at L26 reaches gap $+0.357$ with permutation $p=0.006$, while L11, L16, and L30 give gaps below $+0.21$ and none reach $p<0.05$.
 Moreover \texttt{f15601} is the top-1 fail-enriched feature only at L26 (different layers select different atoms: f13087/f541 at L11, f2741/f15654 at L16, f8020/f654 at L30), so the persistent-feature claim is itself L26-specific.
-The within-plateau steering null reported in the main text is therefore not the easiest single-layer test to fail; it is the test most likely to succeed if any layer could be controlled linearly, yet still produces $0/202$.
+
+\textbf{Multi-layer steering control.}
+We further repeat the suppression protocol of \S\ref{sec:steer} at the same three non-L26 layers, using each layer's top-1 fail-enriched feature ($\alpha\!=\!5$, $t\!\ge\!64$) on $n\!=\!60$ samples per layer ($30$ cluster-1 fails, $10$ cluster-0 fails, $20$ pass).
+All three layers yield $0/60$ flips in every condition, matching the L26 within-plateau null at $0/202$.
+The within-plateau steering null therefore generalises across the layer span; the strongest within-plateau signal (L26) is not a controllable knob and weaker layers fare no better.
 
 \begin{figure}[H]
   \centering
