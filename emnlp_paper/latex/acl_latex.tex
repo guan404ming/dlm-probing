@@ -65,12 +65,12 @@
 
 \begin{abstract}
 Prior probing of diffusion language models (DLMs) reads a hidden-state correctness signal that grows monotonically through denoising.
-Using DLM-Scope sparse autoencoders to trace this signal feature by feature across two DLMs and four tasks, we reach a different reading: what these probes detect in DLMs largely encodes \emph{problem difficulty}, a property of the prompt, rather than \emph{generation-specific correctness}, a property of the output.
-A direct cross-generator test isolates the distinction. A probe trained on Dream-7B's L26 representation predicts Qwen-2.5-7B-Instruct's pass/fail at AUC $0.68$, essentially matching its $0.72$ on Dream's own labels ($n{=}257$), even though Qwen-Instruct never produced Dream's solutions, so the representation tracks \emph{which prompts are hard}, not \emph{which generations are wrong}.
+Using DLM-Scope sparse autoencoders to trace this signal feature by feature across two DLMs and four tasks, we reach a different reading: what these probes detect largely encodes \emph{problem difficulty}, a property of the prompt, rather than \emph{generation-specific correctness}, a property of the output.
+A direct cross-generator test isolates the distinction. A probe trained on Dream-7B's L26 representation predicts Qwen-2.5-7B-Instruct's pass/fail at AUC $0.68$, essentially matching its $0.72$ on Dream's own labels ($n{=}257$), even though Qwen-Instruct never produced Dream's solutions, so the representation tracks \emph{which prompts are hard}, not \emph{which generations are wrong}; the transport replicates on JSON-schema and GSM8K.
 A three-way per-layer scan (Qwen-Base, Qwen-Instruct, Dream-Base) shows all three reach the same peak 5-fold CV-AUC ($0.71$--$0.73$) at different layers (L19, L20, L26): diffusion training shifts the \emph{locus} of this signal without expanding its \emph{capacity} over instruction tuning.
 Feature-level tracing then exposes the temporal structure the scalar curve hides: sparse fail-vs-pass concentration is not monotonic but forms task-dependent phases, a broad mid-denoising plateau for code and structural tasks (LLaDA-MBPP, Fisher $p\!<\!10^{-7}$) with a late within-plateau hand-off between two persistent features, versus final-state emergence for reasoning, agreeing across models on $3/4$ tasks.
-The difficulty reading makes a falsifiable prediction, that amplifying or suppressing these features should not change outcomes, which single- and multi-feature steering confirms: $0/202$ label flips within the plateau (step 64) and only $3/202$ before it forms (step 16).
-The sparse features are diagnostic correlates of prompt difficulty, not controllable causes of correctness.
+The difficulty reading makes a falsifiable prediction: amplifying or suppressing these features should not change outcomes, which single- and multi-feature steering confirms with $0/202$ label flips within the plateau (step 64) and only $3/202$ before it forms (step 16).
+Under the linear interventions we test, the sparse features behave as diagnostic correlates of prompt difficulty rather than controllable causes of correctness.
 \end{abstract}
 
 \section{Introduction}
@@ -85,7 +85,7 @@ Our central finding sharpens (iii) into a reinterpretation of what the scalar pr
 \begin{itemize}
 \setlength{\itemsep}{0pt}
 \item \textbf{Correctness probes track difficulty, not correctness.}
-A three-way per-layer comparison across Qwen-2.5-7B-Base, Qwen-2.5-7B-Instruct, and Dream-7B-Base shows the same peak CV-AUC ($\sim$$0.72$) reached at different layers (L19, L20, L26 respectively); a cross-generator test (the Dream L26 probe predicts Qwen-Instruct correctness at AUC $0.68$, matching its $0.72$ on Dream's own labels, though Qwen-Instruct never generated the solutions) shows the representation encodes \emph{problem difficulty} rather than \emph{generation-specific correctness}, and that diffusion training shifts the locus of this signal without expanding its capacity.
+A three-way per-layer comparison across Qwen-2.5-7B-Base, Qwen-2.5-7B-Instruct, and Dream-7B-Base shows the same peak CV-AUC ($\sim$$0.72$) reached at different layers (L19, L20, L26 respectively); a cross-generator test (the Dream L26 probe predicts Qwen-Instruct correctness at AUC $0.68$, matching its $0.72$ on Dream's own labels, though Qwen-Instruct never generated the solutions) shows the representation encodes \emph{problem difficulty} rather than \emph{generation-specific correctness}, and that diffusion training shifts the locus of this signal without expanding its capacity. The transport replicates across code, structural, and reasoning tasks (MBPP, JSON, GSM8K).
 \item \textbf{Temporal anatomy of the signal.}
 Feature-level tracing exposes structure the monotonic scalar curve hides: on LLaDA-8B / MBPP a 3-seed dense sweep reveals a mid-denoising plateau over steps $48$--$116$ with a within-plateau hand-off from \texttt{f15601} to \texttt{f3892} (Fisher $p\!<\!10^{-7}$); the peak phase is task-dependent and agrees across LLaDA-8B and Dream-7B on $3/4$ tasks.
 \item \textbf{Steering null as a predicted consequence.}
@@ -97,7 +97,9 @@ Code and figures will be released on acceptance.
 
 Discrete diffusion and masked DLMs generate text by iteratively denoising masked tokens rather than continuing left to right \citep{austin2021d3pm,sahoo2024simple,lou2024discrete,nie2025llada,ye2025dream}. Prior probing of the same models and tasks studies aggregate hidden-state predictability and reports monotonic gains in correctness AUC through denoising.
 SAEs decompose residual streams into sparse named features and have been used primarily to interpret autoregressive LMs \citep{bricken2023monosemanticity,cunningham2024sae,gao2024scaling}. DLM-Scope extends this toolkit to DLMs with Top-$K$ SAEs \citep{makhzani2014topk,gao2024scaling} trained on masked-position residuals across mask rates $t\!\sim\!U(0,1)$ (\emph{Mask-SAE}), keeping the full denoising trajectory in distribution \citep{dlmscope2026}.
-Recent AR SAE studies report both successful steering for refusal and instruction following \citep{obrien2024refusal,he2025saif} and cautions that contrastive features may track lexical correlates or that steering degrades unrelated capabilities \citep{galichin2025reasoning,korznikov2025roguescalpel}; \citet{tahimic2025correctness} target code-correctness signals with SAEs on AR LMs, closest to our MBPP setting but without temporal trajectories. \citet{goel2026skip} contrast representation evolution between diffusion and AR LMs, motivating our cross-DLM step-axis comparison.
+Recent AR SAE studies report both successful steering for refusal and instruction following \citep{obrien2024refusal,he2025saif} and cautions that contrastive features may track lexical correlates, that steering degrades unrelated capabilities \citep{galichin2025reasoning,korznikov2025roguescalpel}, or that SAE features need not beat random-dictionary baselines \citep{korznikov2026sanity}, which our held-out selection and re-selecting permutation null guard against; \citet{tahimic2025correctness} target code-correctness signals with SAEs on AR LMs, closest to our MBPP setting but without temporal trajectories. \citet{goel2026skip} contrast representation evolution between diffusion and AR LMs, motivating our cross-DLM step-axis comparison.
+Closest to our intervention setting, \citet{shnaidman2025steering} apply activation steering directly in discrete DLMs; our negative result locates one signal, the SAE-plateau difficulty feature, that resists such linear control, sharpening where steering can and cannot act.
+That probes may track a confound rather than the target property is a long-standing caution for probing classifiers \citep{belinkov2022probing}; our cross-generator transport makes the specific confound, problem difficulty, measurable.
 We reuse the DLM-Scope SAEs to ask whether the scalar correctness trend on DLMs decomposes into temporally localised sparse features, treating the steering question as open rather than presumed causal.
 
 \section{Method}
@@ -113,7 +115,7 @@ The AR comparison (DLM-Scope L23 SAE on Qwen-2.5-7B \citep{qwen2.5}) is a single
 Dream-7B is architecturally identical to Qwen-2.5-7B (28 layers, $d_{\mathrm{model}}{=}3584$, identical attention head counts and vocab), enabling layer-aligned comparison.
 Throughout the paper, ``Dream-Instruct'' denotes the checkpoint used for all DLM generation in the cross-model cells; ``Dream-Base'' denotes the sibling diffusion checkpoint without instruction tuning, used only as the hidden-state source for the AR-DLM scan.
 For all $257$ MBPP-sanitized prompts we collect the last-prompt-token hidden state at every transformer block ($L\!\in\!\{0,\ldots,27\}$) for three models under the same chat-template prompt: Qwen-2.5-7B-Base (AR pretraining), Qwen-2.5-7B-Instruct (AR pretraining + instruction tuning), and Dream-7B-Base (AR pretraining + masked diffusion fine-tuning from the same Qwen base).
-We then fit per-layer logistic probes (5-fold CV, $C{=}0.01$) on the Dream-Instruct fail/pass labels (so all three models predict the same generation outcomes) and report CV-AUC.
+We then fit per-layer logistic probes (5-fold CV, $C{=}0.01$ fixed throughout, not tuned per cell) on the Dream-Instruct fail/pass labels (so all three models predict the same generation outcomes) and report CV-AUC.
 This isolates two effects against the shared AR base: instruction tuning (Qwen-Base $\to$ Qwen-Instruct) and diffusion fine-tuning (Qwen-Base $\to$ Dream-Base).
 
 \paragraph{Data.}
@@ -160,10 +162,10 @@ A zero-out smoke test (force $h\!\leftarrow\!0$) confirms the hook propagates. I
   \centering
   \includegraphics[width=\textwidth]{../figures/fig2_cross.pdf}
   \caption{Cross-model $\times$ cross-task trajectory grid. Each panel plots signal-to-null gap (observed KMeans silhouette minus permutation null mean) across denoising steps for one (model, task) cell;
-  red marker = peak gap step; black outline = $p{<}0.05$ permutation significance.
+  shaded band = 95\% bootstrap CI over fail samples; red marker = peak gap step, filled when its CI excludes zero.
   Code (MBPP) and structural (JSON) tasks peak at mid-denoising (step 64) on both DLMs.
   Math (GSM8K), and on Dream science QA (ARC), peak at late denoising (step 127).
-  The peak step shows task-level agreement across LLaDA-8B and Dream-7B on three of four tasks; only ARC disagrees (LLaDA peak step 4, Dream step 127).}
+  The peak step shows task-level agreement across LLaDA-8B and Dream-7B on three of four tasks; only ARC disagrees (LLaDA peak step 4, Dream step 127). We read this as a phase \emph{tendency}: individual steps are mostly not significant after Holm-Bonferroni (\S\ref{sec:cross}), and only the aggregated trajectory tests reach significance.}
   \label{fig:cross}
 \end{figure*}
 
@@ -200,8 +202,9 @@ The ARC anomaly fits this picture: LLaDA-ARC fails near the prompt boundary so i
 \paragraph{Top-feature drift and persistence.}
 On LLaDA-8B / MBPP, pairwise Jaccard of the top-20 sets is high among steps 0--4 ($\ge 0.48$), moderate between 32 and 64 ($0.29$, the plateau regime), and falls to $0.14$ between 64 and 127.
 The dense sweep (Appendix~\ref{sec:appendix_dense}) ranks \texttt{f15601} top-1 at 7 of 9 dense steps in $[48,80]$, supporting a persistent statistical marker inside the plateau and a concentration effect in sparse feature space rather than a monotonic increase in correctness information.
+Selecting the top-20 on held-out folds rather than in-sample leaves all nine dense sub-steps significant (Appendix~\ref{sec:appendix_sensitivity}), so the plateau does not depend on in-sample feature selection.
 A supervised cross-check confirms this picture: top-20 SAE features recover $85$--$95\%$ of the raw-probe AUC at step 64, with raw probing winning in $10$ of $12$ cells (the two SAE wins, Qwen-MBPP and Dream-ARC, are cells where the raw probe is itself near chance), so the sparse subspace captures most yet not all of the dense-residual signal (Appendix~\ref{sec:appendix_auc_compare}, Figure~\ref{fig:auc_compare}).
-This $5$--$15\%$ residual matters for the steering account: even an optimally selected sparse subspace under-represents the information that separates pass from fail, which is why we also test raw-residual directions that occupy the full hidden state (\S\ref{sec:steer}); their null result removes the sparse-subspace restriction as the explanation and leaves the difficulty reading, in which the recovered signal is largely a prompt property rather than a controllable correctness factor, as the parsimonious account of why neither sparse nor dense linear directions move the outcome.
+This $5$--$15\%$ residual motivates testing raw-residual directions that occupy the full hidden state (\S\ref{sec:steer}); their null result rules out the sparse-subspace restriction as the explanation, leaving the difficulty reading as the parsimonious account of why neither sparse nor dense linear directions move the outcome.
 
 \begin{table}[!t]
   \centering\small
@@ -216,16 +219,17 @@ This $5$--$15\%$ residual matters for the steering account: even an optimally se
     reverse \texttt{f15601} & s64 & 0/152 & 0/50 \\
     \bottomrule
   \end{tabular}
-  \caption{Full steering intervention summary on LLaDA-8B / MBPP; entries show flips / evaluated cases over all $152$ fail samples ($126$ cluster-1 + $26$ cluster-0) and $50$ pass-side regression controls. Suppress \texttt{f15601} or the top-5 features at step 64 (within the plateau) is fully null at $0/202$; suppress \texttt{f15601} from step 16 (before plateau formation) produces a small $3/202$ effect ($1.5\%$, both fail$\to$pass conversions occur on cluster-1 cases). Reverse intervention ($\alpha\!=\!-5$) is null.}
+  \caption{Full steering intervention summary on LLaDA-8B / MBPP; entries show flips / evaluated cases over all $152$ fail samples ($126$ cluster-1 + $26$ cluster-0) and $50$ pass-side regression controls. Suppress \texttt{f15601} or the top-5 features at step 64 (within the plateau) is fully null at $0/202$; suppress \texttt{f15601} from step 16 (before plateau formation) produces a small $3/202$ effect ($1.5\%$, both fail$\to$pass conversions occur on cluster-1 cases). Reverse intervention ($\alpha\!=\!-5$) is null. The $0/202$ plateau null has a $95\%$ Clopper-Pearson upper bound of $1.8\%$ ($1.1\%$ for the full $0/345$ sweep), so the protocol is powered to exclude within-plateau flip rates above $\sim$$2\%$.}
   \label{tab:steering}
 \end{table}
 
 \paragraph{Steering result.}
 \label{sec:steer}
 We test whether the cluster-level signature can be directly controlled on LLaDA-MBPP, the only cell with cluster significance.
-The steering generation is a separate seed-$0$ decoding pass with $105/152$ pass/fail (versus the dense sweep's $115/142$, Appendix~\ref{sec:appendix_seed}); we report all $152$ fails and $50$ pass-side regression controls across four interventions (Table~\ref{tab:steering}).
+The steering generation is a separate seed-$0$ decoding run yielding $105$ pass and $152$ fail (versus the dense sweep's $115/142$, Appendix~\ref{sec:appendix_seed}); we report all $152$ fails and $50$ pass-side regression controls across four interventions (Table~\ref{tab:steering}).
 Suppressing \texttt{f15601} or the top-5 fail features within the plateau (step 64), and the reverse intervention ($\alpha{=}-5$), each yield $0/202$ label flips, as does a counterfactual replacement that subtracts the top-5 fail-enriched and adds the top-5 pass-enriched directions. A broader sweep of $23$ linear protocols on small $n$ (Appendix~\ref{sec:appendix_effect}) covering both sparse SAE directions ($17$ configs, magnitudes up to $\alpha\!=\!50$) and raw residual directions (mean-difference, PCA, Fisher LDA; $6$ configs) yields $0/345$ fail$\to$pass total. Only step-16 intervention, before plateau formation, produces a marginal effect ($3/202$).
 The null is not an artifact of a silent perturbation: at step 64 the SAE-layer residual edit reaches $\|\Delta h\|/\|h\|\!=\!4.4\%$ for single-feature suppression and $14.8\%$ for top-5 suppression, and the largest raw mean-difference protocol ($\alpha\!=\!50$) drives $\|\Delta h\|$ to $\sim$$17\times$ the residual norm, well beyond the magnitudes used in successful AR steering studies, yet still flips $0/15$ cluster-1 fails.
+Nor is it an artifact of intervening at a single layer: jointly suppressing each layer's top-1 fail feature at L11, L16, L26, and L30 \emph{simultaneously} (hooks registered together, $\alpha\!=\!5$, $t\!\ge\!64$) also flips $0/40$ fails and regresses $0/20$ pass controls, so the multi-layer write that distinguishes the AR-DLM representations (\S\ref{sec:ardlm}) is not recovered by a joint linear intervention either.
 The target feature is reliably active during every intervention window, so a $0/202$ result at the plateau is consistent with functional correctness being distributively encoded rather than carried by the single direction the SAE plateau makes salient, which is the difficulty signal the cross-generator test isolates below (\S\ref{sec:cross_gen}).
 A zero-out smoke test ($h{\leftarrow}0$) confirms the hook propagates: it garbles trailing tokens but leaves the early-committed function body intact, consistent with LLaDA committing blocks 0--3 by step $\sim\!48$.
 
@@ -271,7 +275,7 @@ Repeating the suppression protocol of \S\ref{sec:steer} at the three non-L26 lay
 \begin{figure}[t]
   \centering
   \includegraphics[width=0.95\columnwidth]{../figures/fig10_ardlm.pdf}
-  \caption{Per-layer 5-fold CV-AUC for predicting Dream-Instruct MBPP correctness from the last-prompt-token residual at each transformer block (top), and per-sample cosine similarity between the three models (bottom). All three models are architecturally identical (28 layers, $d{=}3584$, same vocab). Qwen-Base peaks at L19 (AUC $0.71$), Qwen-Instruct at L20 ($0.73$), Dream-Base at L26 ($0.72$); peak capacity is shared but the locus shifts. At L27, both post-trained models diverge sharply from Qwen-Base (cos $\!<\!0.16$) and from each other (cos $0.13$), indicating post-training rewrites the final layer regardless of objective.}
+  \caption{Per-layer 5-fold CV-AUC for predicting Dream-Instruct MBPP correctness from the last-prompt-token residual at each transformer block (top), and per-sample cosine similarity between the three models (bottom). All three models are architecturally identical (28 layers, $d{=}3584$, same vocab). Shaded bands are $\pm$ per-fold std. Qwen-Base peaks at L19 ($0.71$), Qwen-Instruct at L20 ($0.73$), Dream-Base at L26 ($0.72$); the peaks lie within one std (overlapping bands), so capacity is shared while the locus shifts. At L27, both post-trained models diverge sharply from Qwen-Base (cos $\!<\!0.16$) and from each other (cos $0.13$), indicating post-training rewrites the final layer regardless of objective.}
   \label{fig:ardlm}
 \end{figure}
 
@@ -282,12 +286,12 @@ Repeating the suppression protocol of \S\ref{sec:steer} at the three non-L26 lay
     \toprule
     model & peak L & peak AUC & L27 AUC & cos$_{27}$ \\
     \midrule
-    Qwen-Base (AR)    & 19 & 0.712 & 0.631 & 1.00 \\
-    Qwen-Instruct     & 20 & \textbf{0.730} & 0.708 & 0.16 \\
-    Dream-Base (DLM)  & 26 & 0.715 & 0.696 & 0.12 \\
+    Qwen-Base (AR)    & 19 & $0.712{\pm}.06$ & 0.631 & 1.00 \\
+    Qwen-Instruct     & 20 & $0.730{\pm}.07$ & 0.708 & 0.16 \\
+    Dream-Base (DLM)  & 26 & $0.715{\pm}.04$ & 0.696 & 0.12 \\
     \bottomrule
   \end{tabular}
-  \caption{Per-layer CV-AUC peaks on MBPP-Dream labels ($n{=}257$). Peak AUC is similar but the locus shifts from L19/20 to L26. At L27 both post-trained models diverge from Qwen-Base (cos $\!<\!0.17$); the rewrite is not diffusion-specific.}
+  \caption{Per-layer CV-AUC peaks on MBPP-Dream labels ($n{=}257$, $\pm$ per-fold std). The three peaks lie within one standard deviation of one another, so peak capacity is statistically indistinguishable while the locus shifts from L19/20 to L26. At L27 both post-trained models diverge from Qwen-Base (cos $\!<\!0.17$); the rewrite is not diffusion-specific.}
   \label{tab:ardlm}
 \end{table}
 
@@ -295,8 +299,8 @@ Repeating the suppression protocol of \S\ref{sec:steer} at the three non-L26 lay
 \label{sec:ardlm}
 Figure~\ref{fig:ardlm} shows the per-layer CV-AUC for the three architecturally matched 7B models on the same prompts and Dream-Instruct labels ($n{=}257$); Table~\ref{tab:ardlm} summarises the three peaks.
 Three observations:
-(i) the three models reach equivalent peak AUC ($0.712$, $0.730$, $0.715$) but at different layers ($L_{19}, L_{20}, L_{26}$);
-(ii) diffusion training does not exceed instruction tuning at peak (Qwen-Instruct's L20 peak is the highest of the three);
+(i) the three models reach equivalent peak AUC ($0.712$, $0.730$, $0.715$, all within one per-fold std of each other; Table~\ref{tab:ardlm}) but at different layers ($L_{19}, L_{20}, L_{26}$);
+(ii) diffusion training does not exceed instruction tuning at peak;
 (iii) post-training rewrites the final layer regardless of objective: at L27 both Qwen-Instruct and Dream-Base diverge from Qwen-Base (cos $0.16$ and $0.12$ respectively) and from each other (cos $0.13$).
 The L27 collapse of Qwen-Base AUC (from $0.71$ at L19 to $0.63$) is recovered by both post-training procedures ($0.71$ for Qwen-Instruct, $0.70$ for Dream-Base), so the late-layer divergence is not diffusion-specific.
 Critically, Qwen-Instruct does not generate the Dream solutions, yet matches Dream's L26 peak with an L20 peak of comparable AUC: this implies the per-layer AUC reflects \emph{problem-difficulty encoding}, which is shared across architectures and post-training procedures, rather than DLM-specific generation-correctness encoding.
@@ -313,22 +317,21 @@ A linear suppression at L26 therefore subtracts a difficulty estimate from the r
 We test the difficulty interpretation directly by re-running MBPP-sanitized with Qwen-2.5-7B-Instruct (pass rate $190/257\!=\!74\%$, per-sample pass/fail agreement with Dream-Instruct $0.642$) and asking how well \emph{Dream}'s L26 hidden states predict \emph{Qwen-Instruct}'s correctness on the same problems.
 Under 5-fold logistic CV with $C\!=\!0.01$, the Dream L26 probe predicts Qwen-Instruct labels at AUC $0.681$, essentially matching its $0.715$ on Dream's own labels (diff $-0.033$).
 The L26 probe therefore transports across generators with little AUC loss, suggesting much of the predictive signal is shared problem difficulty rather than Dream-specific self-correctness.
+This replicates on two further tasks (Appendix~\ref{sec:appendix_transport}): on JSON-schema a probe on Dream's representation predicts Qwen-Instruct's correctness at least as well as Dream's own at every upper layer (best $0.744$ vs $0.771$; agreement $0.783$), and on GSM8K it predicts Qwen-Instruct \emph{better} than Dream itself ($0.651$ vs $0.719$), so the transport holds across code, structural, and reasoning tasks rather than being specific to MBPP.
 This reading aligns with the three steering signatures: the full $0/345$ flip rate across sparse and raw-residual directions, the marginal $3/202$ effect only at step 16 before any token commits, and Qwen-Instruct's higher L20 AUC despite not being the generating model.
 A capacity-limited DLM control protocol therefore needs features that encode commitments rather than difficulty, plausibly at earlier layers or denoising steps, or non-linear interventions that re-route the trajectory rather than scaling a single direction.
 
 \paragraph{Difficulty reading and the task-dependent phase.}
 \label{sec:diff_phase}
 The difficulty interpretation also organises the cross-task peak pattern of Figure~\ref{fig:cross}.
-A difficulty signal is most predictive once the prompt has been encoded but before the answer is committed, which is exactly the mid-denoising window where code and structural tasks (MBPP, JSON) form their plateau: the hardness of a programming spec is fixed by the docstring and is readable throughout the long commit phase, matching \texttt{f15601}'s concentration on dense-math docstrings (Table~\ref{tab:actmax_main}).
-Reasoning tasks behave differently because their difficulty is not separable from the answer: a GSM8K item is hard or easy largely in virtue of the arithmetic chain the model is still constructing, so the fail-vs-pass signal cannot concentrate until the final state, which is where GSM8K and Dream-ARC peak.
+A difficulty signal is most predictive once the prompt is encoded but before the answer commits, exactly the mid-denoising window where code and structural tasks plateau: the hardness of a spec is fixed by the docstring and readable throughout the commit phase, matching \texttt{f15601}'s concentration on dense-math docstrings (Table~\ref{tab:actmax_main}).
+Reasoning tasks differ because their difficulty is inseparable from the answer the model is still constructing, so the fail-vs-pass signal cannot concentrate until the final state, where GSM8K and Dream-ARC peak.
 On this reading the structural-vs-reasoning split that \citet{chiu2026probe} report as a continuous AUC gap is the temporal shadow of a single mechanism, namely \emph{when} prompt difficulty becomes estimable from the residual, rather than two separate correctness signals.
-It also predicts that tasks whose difficulty is fixed at the prompt should plateau early and tolerate the steering null, whereas tasks whose difficulty co-evolves with the generation should resist sparse-feature probing throughout denoising, a prediction the four-task grid is consistent with and that a wider task suite could test directly.
 
 \paragraph{Relation to AR SAE steering successes.}
 \label{sec:relation_ar_sae}
 Recent AR SAE work reports successful steering for refusal \citep{obrien2024refusal} and instruction following \citep{he2025saif}; \citet{tahimic2025correctness} steer code-correctness signals at the SAE layer on AR LMs.
-The difficulty-encoding mechanism we identify is consistent with that body of work rather than in tension with it: refusal and instruction following are stylistic axes that are not predictable from problem difficulty, so an AR SAE feature can causally affect them without overlapping with a difficulty signal.
-Code correctness is the harder target: \citet{tahimic2025correctness} achieves a smaller-than-refusal effect size, and our DLM cross-generator test suggests that what AR correctness probes detect is partly a difficulty correlate as well.
+The difficulty-encoding mechanism we identify is consistent with that body of work rather than in tension with it: refusal and instruction following are stylistic axes not predictable from problem difficulty, so an AR SAE feature can causally affect them without overlapping a difficulty signal, whereas code correctness is the harder target where \citet{tahimic2025correctness} achieves a smaller effect.
 We therefore read the DLM steering null as a sharpened instance of a general SAE-correctness limitation rather than a DLM-specific failure mode; the per-layer scan further suggests that for DLMs the steering layer should track the model's self-correctness peak rather than the SAE plateau.
 
 \paragraph{A methodological caution for correctness probing.}
@@ -336,15 +339,14 @@ We therefore read the DLM steering null as a sharpened instance of a general SAE
 The cross-generator transport has a consequence beyond DLMs: a probe that predicts correctness with above-chance AUC does not establish that the model represents \emph{its own} correctness, because problem difficulty is confounded with outcome whenever harder prompts fail more often.
 On MBPP this confound is large enough to carry most of the predictive signal, since the Dream L26 probe loses only $0.033$ AUC when transferred to a model that did not generate the labelled outputs.
 A correctness probe is thus best read as an upper bound that mixes a prompt-difficulty term, transportable across generators, with a generation-specific term, which is the part a control protocol can actually move.
-Two checks separate the terms without new training. First, transport the probe to an independent generator on the same prompts: AUC retained under transport is the difficulty floor, and AUC lost is an estimate of the generation-specific component (here $0.68$ vs.\ $0.72$, a $5\%$ relative drop). Second, condition on a difficulty proxy such as pass rate across seeds and re-fit within difficulty strata; a probe that collapses to chance within strata is reading difficulty alone.
-We report the transport check here and leave stratified re-fitting, which needs more fails per stratum than our $\sim$$140$ MBPP cases allow, to future work.
-The practical reading is that steering should target the residual after the difficulty term, i.e.\ the commitment-level features at the self-correctness peak (L19--L20 for the AR siblings) rather than the difficulty-dominated SAE plateau (L26), and that reported correctness-probe AUCs in the DLM-probing literature should be discounted by an estimated difficulty floor before they are read as evidence of self-monitoring.
+Two checks separate the terms without new training: transport to an independent generator (AUC retained is the difficulty floor, AUC lost the generation-specific component) and re-fitting within difficulty-matched strata (Appendices~\ref{sec:appendix_transport}, \ref{sec:appendix_stratify}); both indicate difficulty dominates the signal across our tasks.
+Practically, steering should target commitment-level features at the self-correctness peak (L19--L20 for the AR siblings) rather than the difficulty-dominated SAE plateau, and reported correctness-probe AUCs should be discounted by an estimated difficulty floor before being read as evidence of self-monitoring.
 
 \paragraph{Future directions.}
 \label{sec:future_work}
 Three concrete avenues follow from the present results.
 \emph{Commitment-level features.}
-The actmax contexts show \texttt{f11265} as the late-plateau feature that fires on \emph{already broken} partial code (Table~\ref{tab:actmax_main}); a Mask-SAE trained on Unmask positions (already revealed tokens) and selected on the late hand-off step might surface a similar outcome-side feature whose ablation is closer to causal.
+The actmax contexts show \texttt{f11265} as the late-plateau feature that fires on \emph{already broken} partial code (Table~\ref{tab:actmax_main}); a Mask-SAE trained on Unmask positions (already revealed tokens) and selected on the late hand-off step, or a gradient-aware dictionary that prioritises downstream influence \citep{olmo2025features}, might surface a similar outcome-side feature whose ablation is closer to causal.
 \emph{Multi-layer joint steering.}
 The cross-layer specificity test (Figure~\ref{fig:crosslayer}) and the AR-DLM per-layer scan (Figure~\ref{fig:ardlm}) both indicate that the correctness-related representation is layer-distributed; a single-layer linear intervention cannot recover the multi-layer write that distinguishes Dream from Qwen-Instruct.
 \emph{Pre-commit interventions.}
@@ -352,16 +354,15 @@ The marginal $3/202$ flips occur only when the intervention starts at step 16, i
 
 \section{Conclusion}
 
-Tracing functional-correctness signal feature by feature leads to a reinterpretation of what hidden-state probes read in DLMs: the signal largely encodes problem difficulty, a property of the prompt, rather than generation-specific correctness. The reinterpretation rests on a cross-generator test in which a probe transports across models that did not produce each other's outputs, and it predicts the steering null we observe.
-Feature-level tracing also reveals temporal structure that scalar probes miss: sparse failure markers form task-dependent phases, with code and structural tasks on a mid-denoising plateau and reasoning tasks peaking at the final state (Fisher $p\!<\!10^{-7}$ on LLaDA-MBPP, cross-model agreement on $3/4$ tasks). A 3-seed dense sweep confirms the steps $48$--$116$ plateau and a late \texttt{f15601}$\!\to\!$\texttt{f3892} hand-off; top-20 sparse features recover $85$--$95\%$ of the raw-probe AUC.
-Linear interventions across $202$ LLaDA-MBPP samples flip $0/202$ within the plateau and $3/202$ before plateau formation.
-A three-way per-layer scan of Dream-7B-Base and its AR siblings Qwen-Base and Qwen-Instruct supplies a candidate mechanism: all three reach equivalent peak CV-AUC ($0.71$--$0.73$) but at different layers, and Qwen-Instruct (which does not generate the Dream solutions) matches the Dream L26 peak, so the L26 representation tracks problem difficulty rather than generation-specific correctness. The LLaDA L26 SAE plateau is most consistent with the same difficulty signal, accounting for the steering null; causal control therefore needs commitment-level features at earlier layers or steps, not amplification of the difficulty signal already inherited from the AR base.
+Tracing functional-correctness signal feature by feature reinterprets what hidden-state probes read in DLMs: the signal largely encodes problem difficulty, a prompt property, rather than generation-specific correctness, a reading that rests on cross-generator transport and predicts the steering null.
+Feature-level tracing also reveals temporal structure scalar probes miss: sparse failure markers form task-dependent phases, code and structural tasks on a mid-denoising plateau and reasoning tasks peaking at the final state (Fisher $p\!<\!10^{-7}$ on LLaDA-MBPP, agreement on $3/4$ tasks), with a late \texttt{f15601}$\!\to\!$\texttt{f3892} hand-off.
+Linear interventions flip $0/202$ within the plateau (and $0/40$ under joint multi-layer suppression); since Qwen-Instruct, which never generated the Dream solutions, matches Dream's L26 peak, the representation tracks difficulty inherited from the AR base, and causal control needs commitment-level features at earlier layers, not amplification of the difficulty signal.
 
 \section*{Limitations}
 
 \paragraph{SAE coverage.}
 All findings depend on a single DLM-Scope Mask-SAE per model (L26 for LLaDA, L23 for Dream), trained with mask rate $t\!\sim\!U(0,1)$ on masked-position residuals.
-The full denoising trajectory is therefore in distribution, but features extracted at other layers, the Unmask-SAE trained on already-revealed positions, or higher-capacity dictionaries ($K{>}160$) may surface different failure correlates.
+The full denoising trajectory is therefore in distribution, but features extracted at other layers, the Unmask-SAE trained on already-revealed positions, or higher-capacity dictionaries ($K{>}160$) may surface different failure correlates; re-encoding through $k\!\in\!\{50,160,520\}$ dictionaries (Appendix~\ref{sec:appendix_altsae}) shows the plateau significance is dictionary-robust while the exact top atom is sparsity-dependent.
 Early-step instability (steps 0--16) reflects the residual stream not yet encoding committed-token decisions rather than SAE distribution shift.
 
 \paragraph{Feature semantics.}
@@ -376,7 +377,7 @@ Aggregated tests partially mitigate this: the $14$ dense LLaDA-MBPP plateau sub-
 
 \paragraph{Steering coverage.}
 Our intervention sweep tests four denoising windows, two feature-set sizes (single and top-5), and one magnitude pair ($\alpha\!\in\!\{+5,-5\}$) at a single SAE layer per DLM (L26 for LLaDA, L23 for Dream).
-We do not test multi-layer joint interventions, non-linear projections, or feature-selection strategies that use the per-step top-1 (where the top fail feature differs from \texttt{f15601}).
+We add a joint multi-layer intervention (suppressing each of L11/L16/L26/L30's top-1 fail feature at once), which is also null ($0/40$), but we do not test non-linear projections or feature-selection strategies that use the per-step top-1 (where the top fail feature differs from \texttt{f15601}).
 Effect-size diagnostics (Appendix~\ref{sec:appendix_effect}) confirm the intervention reaches $\|\Delta h\| / \|h\| \in [4.4\%, 14.8\%]$ at the SAE-layer residual, so the within-plateau null is not because the perturbation was silent; rather, a $0/202$ result on this protocol is narrower than a negative result on all possible linear-feature interventions.
 
 \paragraph{Cluster $K$ and choice of metric.}
@@ -388,7 +389,7 @@ A labels-hidden $K{=}2$ test on the full fail+pass set yields ARI $\approx 0$, c
 \paragraph{Cross-model comparison.}
 LLaDA uses block-wise unmasking with block length 32, whereas Dream uses a global linear schedule.
 At a matched checkpoint step, the spatial distribution of unmasked tokens differs between the models, so step-axis comparisons in Figure~\ref{fig:cross} reflect approximate denoising-progress alignments rather than identical model states.
-We do not attempt to map between block-wise commit fractions and global mask fractions on a per-sample basis.
+The unmasked \emph{fraction}, however, matches closely at every checkpoint ($\le\!1.6\%$ apart, both $\sim$$50\%$ at step 64; Appendix~\ref{sec:appendix_unmask}), so the comparison is aligned in denoising progress even though the per-position commit order differs.
 Our AR baseline (Qwen-2.5-7B) uses last-prompt-token hidden states; this is the natural single-token analog of the DLM's pre-generation state but is not a temporal trajectory.
 
 \paragraph{Task coverage.}
@@ -400,17 +401,20 @@ Cluster sample sizes are limited by the number of fail cases per (model, dataset
 A three-seed sensitivity check on LLaDA-MBPP (Appendix~\ref{sec:appendix_seed}) shows pass/fail counts vary by at most $\pm 3$ samples and the plateau structure is preserved across seeds. The temporal-oscillation phenomenon noted in concurrent DLM work \citep{wang2025time} would primarily affect borderline samples, which our seed-stability check is consistent with.
 
 \paragraph{Difficulty vs.\ correctness disentanglement.}
-Our central claim, that the L26 representation tracks problem difficulty rather than generation-specific correctness, rests on a single disentangling instrument: cross-generator transport on MBPP-sanitized.
-The instrument is informative but not complete.
-The retained AUC under transport ($0.68$ of $0.72$) bounds the difficulty floor from below only to the extent that Qwen-Instruct and Dream share a difficulty ordering over these prompts; if the two models found systematically different prompts hard, transport would understate the generation-specific component and our claim would be too strong.
-The residual $0.033$ AUC gap is consistent with a small but non-zero generation-specific term, so the honest statement is that difficulty \emph{dominates} the signal on this cell, not that correctness is absent from it.
-We test transport on one task (MBPP) and one generator pair; tasks where difficulty and correctness decouple more cleanly (for instance, prompts of matched difficulty with different solution lengths) would tighten the estimate, as would a third generator to triangulate the shared difficulty ordering.
+Our central claim, that the L26 representation tracks problem difficulty rather than generation-specific correctness, is supported by two complementary instruments: cross-generator transport (\S\ref{sec:cross_gen}, Appendix~\ref{sec:appendix_transport}) and prompt-difficulty stratification (Appendix~\ref{sec:appendix_stratify}).
+Both are informative but neither is complete.
+The retained AUC under transport ($0.68$ of $0.72$ on MBPP, and a slight \emph{gain} on JSON) bounds the difficulty floor from below only to the extent that Qwen-Instruct and Dream share a difficulty ordering over these prompts; if the two models found systematically different prompts hard, transport would understate the generation-specific component and our claim would be too strong.
+The residual AUC gap on MBPP ($0.033$) is consistent with a small but non-zero generation-specific term, so the honest statement is that difficulty \emph{dominates} the signal, not that correctness is absent from it; the stratification instrument is consistent with this, removing only $0.026$--$0.036$ AUC under prompt-length matching.
+Transport now holds across four datasets (MBPP, JSON, GSM8K, and held-out HumanEval) and three generators (Dream-Instruct, Qwen-Instruct, Llama-Instruct), which triangulates the shared difficulty ordering rather than relying on one model pair (Appendix~\ref{sec:appendix_transport}); the residual generation-specific term is what remains for a control protocol to move.
 Finally, the LLaDA L26 SAE plateau is linked to the same difficulty interpretation by parsimony and by the shared L26 locus, not by a cross-generator test on LLaDA itself, which would require an architecturally matched AR sibling for LLaDA that we do not have.
 
 \paragraph{Causal interpretation.}
 Even with the negative steering result, our conclusion that ``\texttt{f15601} is a diagnostic correlate rather than a directly controllable cause under our protocol'' is interpretation-dependent.
-A more decisive test would be a counterfactual experiment that surgically replaces the feature direction with a paired pass-cluster feature direction at the peak step, or a gradient-based attribution that traces logit differences back to the SAE layer.
-We leave such causal-mechanistic follow-up to future work.
+Two converging checks support it beyond plain suppression: a counterfactual replacement that swaps in paired pass-cluster directions ($0/202$, \S\ref{sec:steer}) and a gradient attribution in which \texttt{f15601} ranks $220$th of $491$ active features for influence on the output (Appendix~\ref{sec:appendix_gradattrib}).
+A fully mechanistic account would still require tracing the multi-layer write that distinguishes the AR-DLM representations, which we leave to future work.
+
+\paragraph{Broader impact.}
+Our main finding is a caution against over-reading correctness probes, so its direct use is defensive: it discourages treating a difficulty-correlated feature as a reliable lever for behaviour change. Two risks attend the tooling. Steering hooks like ours could be repurposed to search for failure-inducing inputs rather than to improve reliability, and ``difficulty'' features estimated this way should not be reused as proxies for protected attributes when similar analyses are applied to user-generated content, since prompt difficulty and demographic correlates can be entangled in open-domain data.
 
 \bibliography{custom}
 
@@ -662,5 +666,88 @@ Every task uses a deterministic, machine-checkable rubric; samples with no extra
 \textbf{JSON schema:} output must parse as valid JSON and match the reference structure (top-level type, required keys, scalar-leaf types), ignoring key order and extra keys.
 \textbf{GSM8K:} compare only the final numeric answer; extract \texttt{\#\#\#\#\textbackslash s*([-\textbackslash d.]+)} and compare to gold after stripping commas and trailing zeros.
 \textbf{ARC-Challenge:} extract \texttt{\#\#\#\#\textbackslash s*([A-D])}; fallback to the last standalone A--D letter.
+
+\section{Cross-Task Transport Replication}
+\label{sec:appendix_transport}
+
+To test whether the cross-generator transport result generalises beyond MBPP, we repeat the protocol of \S\ref{sec:cross_gen} on JSON-schema generation.
+We generate Qwen-2.5-7B-Instruct solutions for all $272$ JSON-schema prompts under the same chat template and functional rubric (Appendix~\ref{sec:appendix_correctness}), and ask how well Dream-Base's per-layer hidden states predict \emph{Qwen-Instruct}'s pass/fail versus \emph{Dream-Instruct}'s own pass/fail (5-fold logistic CV, $C{=}0.01$, last-prompt-token state).
+Qwen-Instruct passes $162/272$ ($59.6\%$); per-sample pass/fail agreement with Dream-Instruct is $0.783$.
+The transport is if anything stronger than on MBPP: at every layer above L16 the AUC for predicting Qwen-Instruct's labels \emph{exceeds} the AUC for Dream's own labels (best Dream layer L25: $0.744$ on Dream vs $0.771$ on Qwen, $\Delta\!=\!+0.027$; at L26 the gap is $+0.051$).
+A probe built on Dream's representation therefore predicts a non-generating model's JSON correctness at least as well as Dream's own, replicating the MBPP finding that the layer encodes shared problem difficulty rather than generation-specific correctness.
+
+We also run the protocol on GSM8K, a reasoning task where difficulty co-evolves with the answer (Qwen-Instruct passes $1200/1319\!=\!91\%$, Dream-Instruct $811/1319\!=\!61.5\%$, agreement $0.663$).
+The transport is again positive at every layer, and the gap is larger: the best Dream layer (L20) predicts Dream's own correctness at AUC $0.651$ but Qwen-Instruct's at $0.719$ ($\Delta\!=\!+0.068$).
+That Dream features predict a stronger non-generating model's failures \emph{better} than Dream's own is the difficulty reading in its sharpest form: Qwen-Instruct fails GSM8K almost only on genuinely hard problems, so a prompt-difficulty probe tracks its pass/fail more cleanly than Dream's noisier self-correctness.
+Because Qwen-Instruct's GSM8K failures are only $9\%$ of items, this AUC is computed on an imbalanced label set and should be read alongside the more balanced MBPP and JSON cells.
+
+To triangulate the shared difficulty ordering with a third, architecturally unrelated generator, we repeat the test with Llama-3.1-8B-Instruct.
+Dream's features predict Llama-Instruct's pass/fail almost as well as Dream's own: on MBPP, AUC $0.762$ for Llama vs $0.771$ for Dream at the best layer ($\Delta\!=\!-0.009$, Llama pass $176/257$, agreement $0.673$); on JSON, $0.726$ vs $0.744$ ($\Delta\!=\!-0.018$, Llama pass $128/272$, agreement $0.761$).
+A third generator from a different model family therefore transports with $<\!0.02$ AUC loss, so the L26 signal indexes generator-agnostic problem difficulty rather than a property of the Dream--Qwen pair.
+
+Finally, we test a held-out code dataset never used elsewhere in the pipeline, HumanEval ($164$ problems).
+Dream-Base features (a forward-pass difficulty estimate, no DLM generation) predict the pass/fail of two independent AR generators on the same problems: Qwen-Instruct at AUC $0.66$ and Llama-Instruct at $0.69$ (mid-layer), with the two generators agreeing $0.689$.
+The AUC is more modest than on MBPP/JSON, as expected for a dataset Dream never trained on, but the difficulty transport, a DLM representation predicting independent generators' correctness, holds on a new code task.
+
+\section{Probe-Class and Regularization Robustness}
+\label{sec:appendix_proberobust}
+
+Because the difficulty reading rests on probe behaviour, we check that it is not an artifact of the probe family or its regularization (Dream, MBPP, per-step best layer).
+Replacing the linear logistic probe with an RBF-kernel SVM changes peak AUC by at most $\pm 0.01$ at every checkpoint (step 16: $0.802$ vs $0.804$; step 32: $0.830$ vs $0.824$; step 64: $0.837$ vs $0.827$; step 127: $0.876$ vs $0.878$), so a non-linear probe extracts no additional separability and the signal is essentially linearly accessible.
+Nested cross-validation, which selects layer and regularization on an inner fold and evaluates on a held-out outer fold, lowers AUC by only $0.021$ on average ($0.038$ worst-case), confirming the per-layer numbers are not the product of regularization tuning.
+Per-fold AUC standard deviation at step 64 is $0.03$.
+
+\section{Difficulty Stratification}
+\label{sec:appendix_stratify}
+
+As a second disentanglement instrument complementing cross-generator transport (\S\ref{sec:cross_gen}), we stratify by a per-prompt difficulty proxy.
+A probe trained to predict prompt length alone reaches AUC $0.78$ at step 64, confirming that an explicit difficulty surrogate is itself linearly decodable from the residual.
+Re-fitting the correctness probe within prompt-length-matched strata ($n{=}196$) lowers AUC by $0.026$--$0.036$ across steps (step 0: $0.757\!\to\!0.721$; step 16: $0.816\!\to\!0.789$; step 64: $0.835\!\to\!0.809$; step 127: $0.877\!\to\!0.849$).
+Length-matching therefore removes a measurable but minor part of the signal: prompt length is one crude difficulty axis, whereas the cross-generator transport (which retains $94\%$ of AUC) captures shared difficulty more completely.
+The two instruments agree in direction: a substantial fraction of what the correctness probe reads is a prompt property, not a generation-specific one.
+
+\section{Alternative-SAE Robustness}
+\label{sec:appendix_altsae}
+
+To check that the plateau signal is not an artifact of one SAE dictionary, we re-encode the LLaDA-MBPP step-64 residuals at L26 through three DLM-Scope dictionaries of increasing density (trainers $0$/$2$/$4$, $k\!=\!50$/$160$/$520$) and recompute the top-20 fail-enrichment, KMeans silhouette, and permutation null.
+The within-fail cluster structure is significant for the two higher-capacity dictionaries (gap $+0.294$, $p\!=\!0.038$ at $k\!=\!160$; gap $+0.313$, $p\!=\!0.022$ at $k\!=\!520$) and weaker only at the very sparse $k\!=\!50$ (gap $+0.147$, $p\!=\!0.134$), so the plateau is not specific to the $k\!=\!160$ SAE used in the main text.
+The dominant fail feature \texttt{f15601} is top-1 at $k\!=\!50$ and $k\!=\!160$; at $k\!=\!520$ the denser dictionary splits the same difficulty direction across atoms (top-1 becomes \texttt{f11355}), so the \emph{phenomenon} is dictionary-robust while the exact atom identity is sparsity-dependent, as expected for SAEs.
+
+\section{Denoising-Progress Alignment}
+\label{sec:appendix_unmask}
+
+The cross-model step-axis comparison (Figure~\ref{fig:cross}) pairs LLaDA's block-wise schedule with Dream's global schedule at matched checkpoint steps.
+Although the unmasking \emph{order} differs, the unmasked \emph{fraction} is nearly identical at every checkpoint, so the comparison is aligned in denoising progress rather than only loosely:
+
+\begin{center}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lccccccc}
+\toprule
+step & 0 & 1 & 4 & 16 & 32 & 64 & 127 \\
+\midrule
+LLaDA (block) & 0\% & 0.8\% & 3.1\% & 12.5\% & 25\% & 50\% & 99\% \\
+Dream (global) & 0.8\% & 1.6\% & 3.9\% & 13.3\% & 26\% & 51\% & 100\% \\
+\bottomrule
+\end{tabular}}
+\end{center}
+
+\noindent The fractions are deterministic from each schedule (LLaDA commits $32$-token blocks over $16$ steps each; Dream unmasks on a global linear timestep), and differ by $\le 1.6\%$ at every checkpoint. At the plateau step 64 both models have committed $\sim$$50\%$ of the generation region, so the mid-denoising phase compared across models corresponds to matched denoising progress.
+
+\section{Gradient Attribution of the Diagnostic Features}
+\label{sec:appendix_gradattrib}
+
+The steering null shows the diagnostic features cannot be \emph{driven} to change outcomes; gradient attribution asks the complementary question without intervention: do they lie on a salient path from the L26 residual to the output?
+At the step-64 partially-denoised state we cut the computation graph at L26 (insert the residual as a leaf), backpropagate the model's self-confidence (sum of $\log p$ of its argmax over masked generation positions), and score each SAE feature by $\bigl(\nabla_h\!\cdot\!W_{\mathrm{dec}}[:,i]\bigr)\,z_i$, the gradient-times-activation in feature space, averaged over $20$ fail samples.
+Of the $491$ features active across these samples, the diagnostic features rank low: \texttt{f15601} ranks $220$th (attribution $0.13\%$ of the maximum), \texttt{f3892} $55$th, and \texttt{f11265} $62$nd.
+The top-attribution features (\texttt{f5978}, \texttt{f3689}, \texttt{f12026}, \dots) are disjoint from the fail-enriched set.
+Independently of intervention, then, the difficulty features are not on a salient gradient path to the output, corroborating the diagnostic-not-causal reading.
+
+\section{Pooling Granularity}
+\label{sec:appendix_pooling}
+
+Region-mean pooling over the four generation regions could in principle manufacture the plateau cluster structure by averaging.
+Re-running the L26 step-64 diagnose on each region separately, \texttt{f15601} remains the most fail-enriched feature in the docstring-bearing first region (enrichment $0.39$), consistent with its difficulty reading, and regions $1$--$3$ show positive cluster gaps ($+0.15$ to $+0.19$).
+No single region reaches permutation significance on its own ($p$ between $0.13$ and $0.81$); the region-mean aggregates the consistent per-region enrichment into the significant $+0.29$ ($p\!=\!0.038$).
+Pooling therefore aggregates a distributed weak signal rather than fabricating one from noise, though the per-step significance does rely on this aggregation, which we note as a sensitivity of the pooling choice.
 
 \end{document}

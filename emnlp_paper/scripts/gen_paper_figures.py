@@ -198,7 +198,7 @@ def fig1_trajectory():
 
 
 def fig2_cross():
-    """2x4 cross-model x cross-task signal-to-null gap matrix."""
+    """2x4 cross-model x cross-task signal-to-null gap matrix with 95% bootstrap CIs."""
     steps = [4, 16, 32, 64, 127]
     datasets = ["mbpp", "jsonschema", "gsm8k", "arc"]
     dataset_titles = {
@@ -208,27 +208,30 @@ def fig2_cross():
         "arc": "ARC (sci. QA)",
     }
     models = ["llada", "dream"]
-    fig, axes = plt.subplots(2, 4, figsize=(7.05, 3.2), sharey=True, sharex=True,
+    ci_data = json.load(open(FIG_DIR / "fig2_bootstrap_ci.json"))
+    xs = list(range(len(steps)))
+    xlabels = [str(s) for s in steps]
+    fig, axes = plt.subplots(2, 4, figsize=(7.05, 2.78), sharey=True, sharex=True,
                              constrained_layout=True)
     for ri, model in enumerate(models):
         for ci, dataset in enumerate(datasets):
             ax = axes[ri, ci]
-            traj = load_trajectory(model, dataset, steps)
-            if not traj:
+            per = ci_data.get(f"{dataset}_{model}", {}).get("per_step", {})
+            if not per:
                 ax.set_title(f"{model}/{dataset} (no data)")
                 continue
-            xs, xlabels = checkpoint_positions(traj)
-            gap = [t["silhouette"] - t["null_mean"] for t in traj]
+            gap = [per[str(s)]["gap"] for s in steps]
+            lo = [per[str(s)]["ci_lo"] for s in steps]
+            hi = [per[str(s)]["ci_hi"] for s in steps]
+            pval = [per[str(s)]["p_value"] for s in steps]
             ax.axhline(0, color="#222222", lw=0.7, ls=":")
-            ax.plot(xs, gap, "o-", color="#1f5fa8", lw=1.4, ms=3.6)
-            ax.fill_between(xs, 0, gap, where=[g >= 0 for g in gap],
-                            color="#1f5fa8", alpha=0.10)
-            ax.fill_between(xs, 0, gap, where=[g < 0 for g in gap],
-                            color="#d62728", alpha=0.08)
-            # Mark peak step
+            # 95% bootstrap CI band
+            ax.fill_between(xs, lo, hi, color="#1f5fa8", alpha=0.18, linewidth=0)
+            ax.plot(xs, gap, "o-", color="#1f5fa8", lw=1.4, ms=3.4, zorder=8)
+            # Mark peak step; filled if CI excludes zero (lo > 0)
             peak_i, peak_gap = max(enumerate(gap), key=lambda x: x[1])
-            ax.axvline(peak_i, color="#d62728", lw=0.8, ls=":", alpha=0.65)
-            peak_sig = (traj[peak_i]["p_value"] or 1) < 0.05
+            ax.axvline(peak_i, color="#d62728", lw=0.8, ls=":", alpha=0.6)
+            peak_sig = lo[peak_i] > 0
             ax.scatter([peak_i], [peak_gap], s=38, color="#d62728",
                        edgecolor="#111111" if peak_sig else "white",
                        linewidth=0.9 if peak_sig else 0.6, zorder=9)
@@ -240,7 +243,7 @@ def fig2_cross():
                 ax.set_xlabel("step", fontsize=8)
             ax.set_xticks(xs)
             ax.set_xticklabels(xlabels, fontsize=7)
-            ax.set_ylim(-0.18, 0.38)
+            ax.set_ylim(-0.30, 0.42)
             ax.grid(True, axis="y", ls=":", alpha=0.35)
     fig.savefig(FIG_DIR / "fig2_cross.pdf")
     plt.close(fig)
@@ -656,6 +659,12 @@ def fig10_ardlm():
     fig, (axA, axB) = plt.subplots(2, 1, figsize=(3.35, 3.8),
                                    constrained_layout=True, sharex=True)
 
+    sd_QB = np.array([r.get("auc_QB_std", 0) for r in rows])
+    sd_QI = np.array([r.get("auc_QI_std", 0) for r in rows])
+    sd_DB = np.array([r.get("auc_DB_std", 0) for r in rows])
+    for mu, sd, c in [(auc_QB, sd_QB, "#1f5fa8"), (auc_QI, sd_QI, "#2e8b3a"),
+                      (auc_DB, sd_DB, "#a8202a")]:
+        axA.fill_between(L, mu - sd, mu + sd, color=c, alpha=0.12, linewidth=0)
     axA.plot(L, auc_QB, "-o", color="#1f5fa8", lw=1.2, ms=3.2,
              label="Qwen-2.5-7B-Base (AR)")
     axA.plot(L, auc_QI, "-s", color="#2e8b3a", lw=1.2, ms=3.2,
@@ -668,7 +677,7 @@ def fig10_ardlm():
     for x, c in [(qb_peak, "#1f5fa8"), (qi_peak, "#2e8b3a"), (db_peak, "#a8202a")]:
         axA.axvline(x, color=c, lw=0.5, ls=":", alpha=0.5)
     axA.set_ylabel("5-fold CV-AUC")
-    axA.set_ylim(0.55, 0.80)
+    axA.set_ylim(0.52, 0.83)
     axA.grid(True, ls=":", alpha=0.3)
     axA.legend(loc="upper left", fontsize=7, frameon=False,
                handlelength=1.4, handletextpad=0.4, borderpad=0.2)

@@ -1,4 +1,4 @@
-\begin{thebibliography}{22}
+\begin{thebibliography}{26}
 \providecommand{\natexlab}[1]{#1}
 
 \bibitem[{Austin et~al.(2021{\natexlab{a}})Austin, Johnson, Ho, Tarlow, and
@@ -18,6 +18,11 @@ Jacob Austin, Augustus Odena, Maxwell Nye, Maarten Bosma, Henryk Michalewski,
   large language models}.
 \newblock \emph{arXiv preprint arXiv:2108.07732}.
 
+\bibitem[{Belinkov(2022)}]{belinkov2022probing}
+Yonatan Belinkov. 2022.
+\newblock Probing classifiers: Promises, shortcomings, and advances.
+\newblock \emph{Computational Linguistics}, 48(1):207--219.
+
 \bibitem[{Bricken et~al.(2023)Bricken, Templeton, Batson, Chen, Jermyn,
   Conerly, Turner, Anil, Denison, Askell et~al.}]{bricken2023monosemanticity}
 Trenton Bricken, Adly Templeton, Joshua Batson, Brian Chen, Adam Jermyn, Tom
@@ -27,8 +32,8 @@ Trenton Bricken, Adly Templeton, Joshua Batson, Brian Chen, Adam Jermyn, Tom
   learning.
 \newblock \emph{Anthropic Transformer Circuits Thread}.
 
-\bibitem[{Chiu(2026)}]{chiu2026probe}
-Guan-Ming Chiu. 2026.
+\bibitem[{Chiu and Liu(2026)}]{chiu2026probe}
+Guan-Ming Chiu and Jeng-Yue Liu. 2026.
 \newblock Probing functional correctness in diffusion language models.
 \newblock In \emph{Proceedings of the ACL 2026 Student Research Workshop}.
 
@@ -89,6 +94,11 @@ Anton Korznikov and 1 others. 2025.
 \newblock The rogue scalpel: Activation steering compromises {LLM} safety.
 \newblock \emph{arXiv preprint arXiv:2509.22067}.
 
+\bibitem[{Korznikov et~al.(2026)}]{korznikov2026sanity}
+Anton Korznikov and 1 others. 2026.
+\newblock Sanity checks for sparse autoencoders: Do saes beat random baselines?
+\newblock \emph{arXiv preprint arXiv:2602.14111}.
+
 \bibitem[{Lou et~al.(2024)Lou, Meng, and Ermon}]{lou2024discrete}
 Aaron Lou, Chenlin Meng, and Stefano Ermon. 2024.
 \newblock \href {https://arxiv.org/abs/2310.16834} {Discrete diffusion modeling
@@ -114,6 +124,15 @@ Kyle O'Brien, David Majercak, Xavier Fernandes, Richard Edgar, Jingya Chen,
 \newblock Steering language model refusal with sparse autoencoders.
 \newblock \emph{arXiv preprint arXiv:2411.11296}.
 
+\bibitem[{Olmo et~al.(2025)Olmo, Wilson, Forsey, Hepner, Howe, and
+  Wingate}]{olmo2025features}
+Jeffrey Olmo, Jared Wilson, Max Forsey, Bryce Hepner, Thomas Howe, and David
+  Wingate. 2025.
+\newblock Features that make a difference: Leveraging gradients for improved
+  dictionary learning.
+\newblock \emph{Findings of the Association for Computational Linguistics:
+  NAACL 2025}.
+
 \bibitem[{Sahoo et~al.(2024)Sahoo, Arriola, Schiff, Gokaslan, Marroquin, Chiu,
   Rush, and Kuleshov}]{sahoo2024simple}
 Subham~Sekhar Sahoo, Marianne Arriola, Yair Schiff, Aaron Gokaslan, Edgar
@@ -121,6 +140,12 @@ Subham~Sekhar Sahoo, Marianne Arriola, Yair Schiff, Aaron Gokaslan, Edgar
 \newblock \href {https://arxiv.org/abs/2406.07524} {Simple and effective masked
   diffusion language models}.
 \newblock \emph{arXiv preprint arXiv:2406.07524}.
+
+\bibitem[{Shnaidman et~al.(2025)Shnaidman, Marek, Karpas, and
+  Herzig}]{shnaidman2025steering}
+Andrey Shnaidman, Philip Marek, Eyal Karpas, and Jonathan Herzig. 2025.
+\newblock Activation steering in discrete diffusion language models.
+\newblock \emph{arXiv preprint arXiv:2505.20389}.
 
 \bibitem[{Tahimic and Cheng(2025)}]{tahimic2025correctness}
 Kriz Tahimic and Charibeth Cheng. 2025.

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.12)  26 MAY 2026 12:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.12)  26 MAY 2026 19:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -619,58 +619,58 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `zi4' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-
-Underfull \hbox (badness 4024) in paragraph at lines 120--122
+ [2{/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}
+]
+Underfull \hbox (badness 4024) in paragraph at lines 122--124
  []\T1/ptm/b/n/10.95 (+20) Data.[] \T1/ptm/m/n/10.95 (+20) We reuse cached hid-
 den states and
  []
 
-[2{/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}]
 
-Underfull \hbox (badness 1371) in paragraph at lines 124--129
+Underfull \hbox (badness 1371) in paragraph at lines 126--131
 \OML/cmm/m/it/10.95 h \OMS/cmsy/m/n/10.95 2 \U/msb/m/n/10.95 R[]$ \T1/ptm/m/n/1
 0.95 (+20) per sam-ple and en-code it: $\OML/cmm/m/it/10.95 z \OT1/cmr/m/n/10.9
 5 =
  []
 
 
-Underfull \hbox (badness 2088) in paragraph at lines 124--129
+Underfull \hbox (badness 2088) in paragraph at lines 126--131
 [] [][]  [] [] \OMS/cmsy/m/n/10.95 2 \U/msb/m/n/10.95 R[]$\T1/ptm/m/n/10.95 (+2
 0) ,
  []
 
 
-Underfull \hbox (badness 1226) in paragraph at lines 131--135
+Underfull \hbox (badness 1226) in paragraph at lines 133--137
 \T1/ptm/m/n/10.95 (+20) and pass sets at a cell. Fea-ture $\OML/cmm/m/it/10.95 
 i$\T1/ptm/m/n/10.95 (+20) 's en-rich-
  []
 
 
-Underfull \hbox (badness 1275) in paragraph at lines 144--148
+Underfull \hbox (badness 1275) in paragraph at lines 146--150
  []\T1/ptm/b/n/10.95 (+20) Steering.[] \T1/ptm/m/n/10.95 (+20) We write \T1/ptm
 /m/it/10.95 (+20) fail$\OMS/cmsy/m/n/10.95 !$\T1/ptm/m/it/10.95 (+20) pass \T1/
 ptm/m/n/10.95 (+20) for a sam-ple
  []
 
-<../figures/fig1_trajectory.pdf, id=193, 250.29463pt x 181.26154pt>
+<../figures/fig1_trajectory.pdf, id=233, 250.29463pt x 181.26154pt>
 File: ../figures/fig1_trajectory.pdf Graphic file (type pdf)
 <use ../figures/fig1_trajectory.pdf>
-Package pdftex.def Info: ../figures/fig1_trajectory.pdf  used on input line 154
+Package pdftex.def Info: ../figures/fig1_trajectory.pdf  used on input line 156
 .
 (pdftex.def)             Requested size: 208.13115pt x 150.73466pt.
-<../figures/fig2_cross.pdf, id=196, 517.64859pt x 239.695pt>
+<../figures/fig2_cross.pdf, id=236, 517.65092pt x 208.85982pt>
 File: ../figures/fig2_cross.pdf Graphic file (type pdf)
 <use ../figures/fig2_cross.pdf>
-Package pdftex.def Info: ../figures/fig2_cross.pdf  used on input line 161.
-(pdftex.def)             Requested size: 455.24411pt x 210.80789pt.
-<../figures/fig6_dense_compare.pdf, id=197, 250.29463pt x 164.34714pt>
+Package pdftex.def Info: ../figures/fig2_cross.pdf  used on input line 163.
+(pdftex.def)             Requested size: 455.24411pt x 183.68884pt.
+<../figures/fig6_dense_compare.pdf, id=239, 250.29463pt x 164.34714pt>
 File: ../figures/fig6_dense_compare.pdf Graphic file (type pdf)
 <use ../figures/fig6_dense_compare.pdf>
 Package pdftex.def Info: ../figures/fig6_dense_compare.pdf  used on input line 
-172.
+174.
 (pdftex.def)             Requested size: 208.13115pt x 136.66887pt.
 
-Underfull \hbox (badness 1122) in paragraph at lines 178--184
+Underfull \hbox (badness 1122) in paragraph at lines 180--186
 \T1/ptm/m/n/10.95 (+20) seeds: an-chors $\OMS/cmsy/m/n/10.95 f\OT1/cmr/m/n/10.9
 5 0\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n
 /10.95 4\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 16\OML/cmm/m/it/10.95 ; \OT1/c
@@ -678,148 +678,155 @@ mr/m/n/10.95 32\OMS/cmsy/m/n/10.95 g$\T1/ptm/m/n/10.95 (+20) , early plateau
  []
 
 [3 <../figures/fig1_trajectory.pdf>]
-<../figures/fig9_fisher.pdf, id=243, 250.29463pt x 196.33302pt>
+<../figures/fig9_fisher.pdf, id=287, 250.29463pt x 196.33302pt>
 File: ../figures/fig9_fisher.pdf Graphic file (type pdf)
 <use ../figures/fig9_fisher.pdf>
-Package pdftex.def Info: ../figures/fig9_fisher.pdf  used on input line 187.
+Package pdftex.def Info: ../figures/fig9_fisher.pdf  used on input line 189.
 (pdftex.def)             Requested size: 208.13115pt x 163.26791pt.
  [4 <../figures/fig2_cross.pdf> <../figures/fig6_dense_compare.pdf> <../figures
 /fig9_fisher.pdf>]
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 9.0pt on input line 213.
+(Font)              scaled to size 9.0pt on input line 216.
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 10.0pt on input line 219.
+(Font)              scaled to size 10.0pt on input line 222.
+ [5]
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 7.0pt on input line 240.
+(Font)              scaled to size 7.0pt on input line 244.
 
-Underfull \hbox (badness 10000) in paragraph at lines 240--240
+Underfull \hbox (badness 10000) in paragraph at lines 244--244
 []\T1/ptm/m/n/7 (+20) complex-math doc-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 241--241
+Underfull \hbox (badness 10000) in paragraph at lines 245--245
 []\T1/zi4/m/n/7 :param\T1/ptm/m/n/7 (+20) /\T1/zi4/m/n/7 :return
  []
 
 
 LaTeX Font Warning: Font shape `T1/zi4/m/it' undefined
-(Font)              using `T1/zi4/m/n' instead on input line 241.
+(Font)              using `T1/zi4/m/n' instead on input line 245.
 
 LaTeX Font Info:    Font shape `T1/zi4/b/n' will be
-(Font)              scaled to size 10.95pt on input line 251.
-[5]
-<../figures/fig8_crosslayer.pdf, id=348, 250.29463pt x 173.41075pt>
+(Font)              scaled to size 10.95pt on input line 255.
+<../figures/fig8_crosslayer.pdf, id=392, 250.29463pt x 173.41075pt>
 File: ../figures/fig8_crosslayer.pdf Graphic file (type pdf)
 <use ../figures/fig8_crosslayer.pdf>
-Package pdftex.def Info: ../figures/fig8_crosslayer.pdf  used on input line 259
+Package pdftex.def Info: ../figures/fig8_crosslayer.pdf  used on input line 263
 .
 (pdftex.def)             Requested size: 208.13115pt x 144.20607pt.
-<../figures/fig10_ardlm.pdf, id=352, 250.29463pt x 283.057pt>
+<../figures/fig10_ardlm.pdf, id=396, 250.29463pt x 283.057pt>
 File: ../figures/fig10_ardlm.pdf Graphic file (type pdf)
 <use ../figures/fig10_ardlm.pdf>
-Package pdftex.def Info: ../figures/fig10_ardlm.pdf  used on input line 273.
+Package pdftex.def Info: ../figures/fig10_ardlm.pdf  used on input line 277.
 (pdftex.def)             Requested size: 208.13115pt x 235.38644pt.
 
-Overfull \hbox (1.70677pt too wide) in paragraph at lines 281--290
+Overfull \hbox (4.04402pt too wide) in paragraph at lines 285--294
  [][] 
  []
 
-[6 <../figures/fig8_crosslayer.pdf> <../figures/fig10_ardlm.pdf>] [7] [8]
-Underfull \hbox (badness 1107) in paragraph at lines 383--387
+[6 <../figures/fig8_crosslayer.pdf>] [7 <../figures/fig10_ardlm.pdf>] [8]
+Underfull \hbox (badness 1810) in paragraph at lines 379--382
+\OMS/cmsy/m/n/10.95 f\OT1/cmr/m/n/10.95 +5\OML/cmm/m/it/10.95 ; \OMS/cmsy/m/n/1
+0.95 ^^@\OT1/cmr/m/n/10.95 5\OMS/cmsy/m/n/10.95 g$\T1/ptm/m/n/10.95 (+20) ) at 
+a sin-gle SAE layer per DLM
+ []
+
+
+Underfull \hbox (badness 1107) in paragraph at lines 384--388
 \T1/ptm/m/n/10.95 (+20) re-port the best $\OML/cmm/m/it/10.95 K$ \T1/ptm/m/n/10
 .95 (+20) per cell. On LLaDA-8B
  []
 
 
-Underfull \hbox (badness 1221) in paragraph at lines 383--387
+Underfull \hbox (badness 1221) in paragraph at lines 384--388
 \T1/ptm/m/n/10.95 (+20) / MBPP the best $\OML/cmm/m/it/10.95 K$ \T1/ptm/m/n/10.
 95 (+20) is $\OT1/cmr/m/n/10.95 2$ \T1/ptm/m/n/10.95 (+20) at ev-ery step; on
  []
 
 
-Underfull \hbox (badness 1205) in paragraph at lines 383--387
+Underfull \hbox (badness 1205) in paragraph at lines 384--388
 \OMS/cmsy/m/n/10.95 f\OT1/cmr/m/n/10.95 10\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10
 .95 20\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 30\OML/cmm/m/it/10.95 ; \OT1/cmr
 /m/n/10.95 50\OMS/cmsy/m/n/10.95 g$ \T1/ptm/m/n/10.95 (+20) at step $\OT1/cmr/m
 /n/10.95 68$ \T1/ptm/m/n/10.95 (+20) (the plateau peak)
  []
 
-[9] (./acl_latex.bbl
-Underfull \hbox (badness 2027) in paragraph at lines 93--97
+[9] (./acl_latex.bbl [10]
+Underfull \hbox (badness 2027) in paragraph at lines 103--107
 []\T1/ptm/m/n/10 (+20) Aaron Lou, Chen-lin Meng, and Ste-fano Er-mon.
  []
 
-[10]
-Underfull \hbox (badness 1728) in paragraph at lines 111--116
+
+Underfull \hbox (badness 1728) in paragraph at lines 121--126
 \T1/ptm/m/n/10 (+20) Sangdeh. 2024.  Steer-ing lan-guage model re-
  []
 
 
-Underfull \hbox (badness 4556) in paragraph at lines 126--130
+Underfull \hbox (badness 4556) in paragraph at lines 151--155
 \T1/ptm/m/n/10 (+20) a-nis-tic in-ter-pretabil-ity of code correct-ness in
  []
 
 )
-<../figures/fig4_feature_drift.pdf, id=465, 520.81662pt x 217.33691pt>
+<../figures/fig4_feature_drift.pdf, id=530, 520.81662pt x 217.33691pt>
 File: ../figures/fig4_feature_drift.pdf Graphic file (type pdf)
 <use ../figures/fig4_feature_drift.pdf>
 Package pdftex.def Info: ../figures/fig4_feature_drift.pdf  used on input line 
-425.
+429.
 (pdftex.def)             Requested size: 418.82375pt x 174.7751pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 445--446
+Underfull \hbox (badness 10000) in paragraph at lines 449--450
 []\T1/zi4/m/n/9 f11404\T1/ptm/m/n/9 (+20) , \T1/zi4/m/n/9 f9798\T1/ptm/m/n/9 (+
 20) ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 445--446
+Underfull \hbox (badness 10000) in paragraph at lines 449--450
 \T1/zi4/m/n/9 f189\T1/ptm/m/n/9 (+20) , \T1/zi4/m/n/9 f496\T1/ptm/m/n/9 (+20) ,
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 449--450
+Underfull \hbox (badness 10000) in paragraph at lines 453--454
 []\T1/zi4/m/n/9 f189\T1/ptm/m/n/9 (+20) , \T1/zi4/m/n/9 f492\T1/ptm/m/n/9 (+20)
  ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 449--450
+Underfull \hbox (badness 10000) in paragraph at lines 453--454
 \T1/zi4/m/n/9 f3320\T1/ptm/m/n/9 (+20) , \T1/zi4/m/n/9 f11404\T1/ptm/m/n/9 (+20
 ) ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 450--452
+Underfull \hbox (badness 10000) in paragraph at lines 454--456
 []\T1/ptm/m/it/9 (+20) remove first/last oc-cur-rence\T1/ptm/m/n/9 (+20) :
  []
 
 
-Underfull \hbox (badness 1546) in paragraph at lines 450--452
+Underfull \hbox (badness 1546) in paragraph at lines 454--456
 \T1/zi4/m/n/9 re.compile \T1/ptm/m/n/9 (+20) with-out im-port-ing
  []
 
 [11] [12 <../figures/fig4_feature_drift.pdf>]
-<../figures/fig5_auc_compare.pdf, id=521, 517.69362pt x 196.46655pt>
+<../figures/fig5_auc_compare.pdf, id=583, 517.69362pt x 196.46655pt>
 File: ../figures/fig5_auc_compare.pdf Graphic file (type pdf)
 <use ../figures/fig5_auc_compare.pdf>
-Package pdftex.def Info: ../figures/fig5_auc_compare.pdf  used on input line 53
-8.
+Package pdftex.def Info: ../figures/fig5_auc_compare.pdf  used on input line 54
+2.
 (pdftex.def)             Requested size: 437.0374pt x 165.85817pt.
  [13]
-Underfull \hbox (badness 10000) in paragraph at lines 587--590
+Underfull \hbox (badness 10000) in paragraph at lines 591--594
 \T1/ptm/m/n/10.95 (+20) Across all $\OML/cmm/m/it/10.95 n[]\OT1/cmr/m/n/10.95 2
 02$ \T1/ptm/m/n/10.95 (+20) sam-ples per con-di-tion,
  []
 
 
-Underfull \hbox (badness 4805) in paragraph at lines 587--590
+Underfull \hbox (badness 4805) in paragraph at lines 591--594
 \T1/ptm/m/n/10.95 (+20) the SAE-layer resid-ual per-tur-ba-tion reaches
  []
 
 
-Underfull \hbox (badness 6348) in paragraph at lines 587--590
+Underfull \hbox (badness 6348) in paragraph at lines 591--594
 \OMS/cmsy/m/n/10.95 k\OT1/cmr/m/n/10.95 ^^A\OML/cmm/m/it/10.95 h\OMS/cmsy/m/n/1
 0.95 k\OML/cmm/m/it/10.95 =\OMS/cmsy/m/n/10.95 k\OML/cmm/m/it/10.95 h\OMS/cmsy/
 m/n/10.95 k[]\OT1/cmr/m/n/10.95 4\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 4%$ \T
@@ -827,52 +834,50 @@ m/n/10.95 k[]\OT1/cmr/m/n/10.95 4\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 4%$ \T
  []
 
 
-Underfull \hbox (badness 1360) in paragraph at lines 587--590
+Underfull \hbox (badness 1360) in paragraph at lines 591--594
 \T1/ptm/m/n/10.95 (+20) sion of \T1/zi4/m/n/10.95 f15601 \T1/ptm/m/n/10.95 (+20
 ) at s64 and s16 ($\OMS/cmsy/m/n/10.95 k\OT1/cmr/m/n/10.95 ^^A\OML/cmm/m/it/10.
 95 h\OMS/cmsy/m/n/10.95 k[]\OT1/cmr/m/n/10.95 185$\T1/ptm/m/n/10.95 (+20) ,
  []
 
 
-Underfull \hbox (badness 2057) in paragraph at lines 587--590
+Underfull \hbox (badness 2057) in paragraph at lines 591--594
 \OML/cmm/m/it/10.95 a[][]\OT1/cmr/m/n/10.95 9\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/
 10.95 43$\T1/ptm/m/n/10.95 (+20) ), $\OT1/cmr/m/n/10.95 14\OML/cmm/m/it/10.95 :
 \OT1/cmr/m/n/10.95 8%$ \T1/ptm/m/n/10.95 (+20) for the top-5 com-bined
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 592--595
+[14 <../figures/fig5_auc_compare.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 596--599
  []\T1/ptm/b/n/10.95 (+20) Counterfactual fea-ture re-place-ment.[] \T1/ptm/m/n
 /10.95 (+20) A
  []
 
 
-Underfull \hbox (badness 1033) in paragraph at lines 592--595
+Underfull \hbox (badness 1033) in paragraph at lines 596--599
 \T1/ptm/m/n/10.95 (+20) does not un-lock the con-trol-la-bil-ity that plain
  []
 
-[14 <../figures/fig5_auc_compare.pdf>]
-<../figures/fig7_topN_sensitivity.pdf, id=554, 250.29463pt x 155.79517pt>
+[15]
+<../figures/fig7_topN_sensitivity.pdf, id=625, 250.29463pt x 155.79517pt>
 File: ../figures/fig7_topN_sensitivity.pdf Graphic file (type pdf)
 <use ../figures/fig7_topN_sensitivity.pdf>
 Package pdftex.def Info: ../figures/fig7_topN_sensitivity.pdf  used on input li
-ne 622.
+ne 626.
 (pdftex.def)             Requested size: 208.13115pt x 129.55717pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 641--641
+Underfull \hbox (badness 10000) in paragraph at lines 645--645
 []\T1/ptm/m/n/7 (+20) complex-math doc-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 641--642
+Underfull \hbox (badness 10000) in paragraph at lines 645--646
 []\T1/ptm/m/it/7 (+20) ``nth oc-tag-o-nal
  []
 
 LaTeX Font Info:    Font shape `T1/zi4/m/it' will be
-(Font)              scaled to size 7.0pt on input line 642.
-[15 <../figures/fig7_topN_sensitivity.pdf>] [16
-
-] (./acl_latex.aux)
+(Font)              scaled to size 7.0pt on input line 646.
+[16 <../figures/fig7_topN_sensitivity.pdf>] [17] [18] (./acl_latex.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
@@ -882,16 +887,16 @@ L3 programming layer <2026-01-19>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `acl_latex.out' has not changed.
-(rerunfilecheck)             Checksum: 276FE8848C1E7DDBE874B65DB9E1B443;3118.
+(rerunfilecheck)             Checksum: 69B0A6B4501C191EDBCCC2C68A8A22AF;4565.
  ) 
 Here is how much of TeX's memory you used:
- 16406 strings out of 467525
- 258280 string characters out of 5418982
- 730154 words of memory out of 5000000
- 44498 multiletter control sequences out of 15000+600000
- 704933 words of font info for 414 fonts, out of 8000000 for 9000
+ 16490 strings out of 467525
+ 259433 string characters out of 5418982
+ 734543 words of memory out of 5000000
+ 44532 multiletter control sequences out of 15000+600000
+ 707155 words of font info for 438 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 84i,12n,93p,1006b,632s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,12n,93p,1006b,620s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/inconsolata/Inconsolat
 a-zi4b.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/inconsolata/I
 nconsolata-zi4r.pfb></Users/wchiu/Library/texmf/fonts/type1/public/amsfonts/cm/
@@ -912,10 +917,10 @@ ts/symbols/msbm10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/helve
 tic/uhvb8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/times/utmb8a
 .pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr
 /local/texlive/2026/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on acl_latex.pdf (16 pages, 615715 bytes).
+Output written on acl_latex.pdf (18 pages, 638680 bytes).
 PDF statistics:
- 707 PDF objects out of 1000 (max. 8388607)
- 555 compressed objects within 6 object streams
- 116 named destinations out of 1000 (max. 500000)
- 69318 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 787 PDF objects out of 1000 (max. 8388607)
+ 631 compressed objects within 7 object streams
+ 130 named destinations out of 1000 (max. 500000)
+ 69374 words of extra memory for PDF output out of 74296 (max. 10000000)
 
