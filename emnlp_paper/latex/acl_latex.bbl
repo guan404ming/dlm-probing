@@ -77,27 +77,32 @@ Leo Gao, Gabriel Goh, Ilya Sutskever, Stephanie Lin, Steven Bills, and Jeff Wu.
 \newblock Scaling and evaluating sparse autoencoders.
 \newblock \emph{arXiv preprint arXiv:2406.04093}.
 
-\bibitem[{Goel et~al.(2026)}]{goel2026skip}
-Raghavv Goel and 1 others. 2026.
-\newblock Skip to the good part: Representation structure and inference-time
-  layer skipping in diffusion vs.\ autoregressive {LLMs}.
+\bibitem[{Goel et~al.(2026)Goel, Garrepalli, Agrawal, Lott, Lee, and
+  Porikli}]{goel2026skip}
+Raghavv Goel, Risheek Garrepalli, Sudhanshu Agrawal, Chris Lott, Mingu Lee, and
+  Fatih Porikli. 2026.
+\newblock A comparative analysis of layer-wise representational capacity in
+  {AR} and diffusion {LLMs}.
 \newblock \emph{arXiv preprint arXiv:2603.07475}.
 
-\bibitem[{He et~al.(2025)He, Zhao et~al.}]{he2025saif}
-Zirui He, Haiyan Zhao, and 1 others. 2025.
+\bibitem[{He et~al.(2025)He, Zhao, Qiao, Yang, Payani, Ma, and Du}]{he2025saif}
+Zirui He, Haiyan Zhao, Yiran Qiao, Fan Yang, Ali Payani, Jing Ma, and Mengnan
+  Du. 2025.
 \newblock {SAIF}: A sparse autoencoder framework for interpreting and steering
   instruction following of language models.
 \newblock \emph{arXiv preprint arXiv:2502.11356}.
+
+\bibitem[{Korznikov et~al.(2026)Korznikov, Galichin, Dontsov, Rogov, Oseledets,
+  and Tutubalina}]{korznikov2026sanity}
+Anton Korznikov, Andrey Galichin, Alexey Dontsov, Oleg Rogov, Ivan Oseledets,
+  and Elena Tutubalina. 2026.
+\newblock Sanity checks for sparse autoencoders: Do saes beat random baselines?
+\newblock \emph{arXiv preprint arXiv:2602.14111}.
 
 \bibitem[{Korznikov et~al.(2025)}]{korznikov2025roguescalpel}
 Anton Korznikov and 1 others. 2025.
 \newblock The rogue scalpel: Activation steering compromises {LLM} safety.
 \newblock \emph{arXiv preprint arXiv:2509.22067}.
-
-\bibitem[{Korznikov et~al.(2026)}]{korznikov2026sanity}
-Anton Korznikov and 1 others. 2026.
-\newblock Sanity checks for sparse autoencoders: Do saes beat random baselines?
-\newblock \emph{arXiv preprint arXiv:2602.14111}.
 
 \bibitem[{Lou et~al.(2024)Lou, Meng, and Ermon}]{lou2024discrete}
 Aaron Lou, Chenlin Meng, and Stefano Ermon. 2024.
@@ -158,8 +163,10 @@ Qwen Team. 2024.
 \newblock Qwen2.5 technical report.
 \newblock \emph{arXiv preprint arXiv:2412.15115}.
 
-\bibitem[{Wang et~al.(2025)Wang, Fang, Jing et~al.}]{wang2025time}
-Wen Wang, Bozhen Fang, Chenchen Jing, and 1 others. 2025.
+\bibitem[{Wang et~al.(2025)Wang, Fang, Jing, Shen, Shen, Wang, Ouyang, Chen,
+  and Shen}]{wang2025time}
+Wen Wang, Bozhen Fang, Chenchen Jing, Yongliang Shen, Yangyi Shen, Qiuyu Wang,
+  Hao Ouyang, Hao Chen, and Chunhua Shen. 2025.
 \newblock \href {https://arxiv.org/abs/2508.09138} {Time is a feature:
   Exploiting temporal dynamics in diffusion language models}.
 \newblock \emph{arXiv preprint arXiv:2508.09138}.

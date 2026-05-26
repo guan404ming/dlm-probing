@@ -1,0 +1,973 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - navigation [ref=e3]:
+      - text: 
+      - generic [ref=e4]:
+        - generic [ref=e5]:
+          - link "OpenReview .net" [ref=e6] [cursor=pointer]:
+            - /url: /
+            - strong [ref=e7]: OpenReview
+            - text: .net
+          - search [ref=e8]:
+            - generic [ref=e9]:
+              - textbox "term" [ref=e10]:
+                - /placeholder: Search articles, authors and reviews...
+              - generic:
+                - generic: 
+        - generic [ref=e11]:
+          - link "Notifications" [ref=e12] [cursor=pointer]:
+            - /url: /notifications
+          - link "Activity" [ref=e13] [cursor=pointer]:
+            - /url: /activity
+          - link "Tasks" [ref=e14] [cursor=pointer]:
+            - /url: /tasks
+          - generic [ref=e15] [cursor=pointer]: Guan-Ming Chiu
+    - main [ref=e26]:
+      - generic [ref=e28]:
+        - generic [ref=e29]:
+          - heading "ACL Rolling Review - May 2026" [level=1] [ref=e30]
+          - heading "ARR - May 2026" [level=3] [ref=e31]
+          - heading "May 01 2026 http://aclrollingreview.org/ support@aclrollingreview.org" [level=4] [ref=e32]:
+            - generic [ref=e33]:
+              - generic [ref=e34]: 
+              - text: May 01 2026
+            - generic [ref=e35]:
+              - generic [ref=e36]: 
+              - link "http://aclrollingreview.org/" [ref=e37] [cursor=pointer]:
+                - /url: http://aclrollingreview.org/
+            - generic [ref=e38]:
+              - generic [ref=e39]: ✉
+              - link "support@aclrollingreview.org" [ref=e40] [cursor=pointer]:
+                - /url: mailto:support@aclrollingreview.org
+          - generic [ref=e41]:
+            - generic [ref=e42]:
+              - heading "For Authors" [level=2] [ref=e43]
+              - paragraph [ref=e44]:
+                - text: Visit the webpage of the official
+                - link "call for papers" [ref=e45] [cursor=pointer]:
+                  - /url: https://aclrollingreview.org/cfp
+                - text: and please read the
+                - link "author information page" [ref=e46] [cursor=pointer]:
+                  - /url: https://aclrollingreview.org/authors
+                - text: ", as well as the"
+                - link "author checklist" [ref=e47] [cursor=pointer]:
+                  - /url: https://aclrollingreview.org/authorchecklist
+                - text: for submissions.
+              - heading "For Reviewers" [level=2] [ref=e48]
+              - paragraph [ref=e49]:
+                - text: Please read the
+                - link "reviewer information page" [ref=e50] [cursor=pointer]:
+                  - /url: https://aclrollingreview.org/reviewing#reviewers
+                - text: .
+              - heading "For Action Editors" [level=2] [ref=e51]
+              - paragraph [ref=e52]:
+                - text: Also please read the
+                - link "reviewer information page" [ref=e53] [cursor=pointer]:
+                  - /url: https://aclrollingreview.org/reviewing
+                - text: including information for action editors.
+              - paragraph [ref=e54]: Please be aware that (for now) the action editors are called area chairs on OpenReview.
+              - heading "Reviewing Schedule" [level=2] [ref=e55]:
+                - link "Reviewing Schedule" [ref=e56] [cursor=pointer]:
+                  - /url: https://aclrollingreview.org/dates
+            - paragraph [ref=e57]: "Submission Start: May 12 2026 11:59AM UTC-0, Submission Deadline: May 26 2026 11:59AM UTC-0"
+        - generic [ref=e58]:
+          - generic [ref=e59]:
+            - strong [ref=e60]: "Add:"
+            - button "ACL ARR 2026 May Submission" [ref=e61] [cursor=pointer]
+          - generic [ref=e62]:
+            - generic [ref=e63]: "* denotes a required field"
+            - generic [ref=e65]:
+              - heading "Title*" [level=5] [ref=e66]
+              - generic [ref=e67]:
+                - generic [ref=e69]:
+                  - paragraph [ref=e2473]: "Title of paper. Add TeX formulas using the following formats: $In-line Formula$ or $$Block Formula$$."
+                  - paragraph [ref=e2474]:
+                    - text: "NEW: Many authors in the past cycles had papers desk rejected because they did not acknowledge a resubmission, or filled the responsible NLP checklist incorrectly, or made some mistake with other metadata. In July 2025 cycle we experiment with giving the authors two extra days to edit the metadata after the submission deadline (until July 30 EoD AoE). This is in parallel with the deadline for filling the mandatory author registration form that is also due at the same time. During this time some authors may receive warnings from us about potential problems in their submissions. All fields except the main paper pdf and the author list will remain editable. After that grace period the submission metadata is final and subject to the regular desk rejection rules (see"
+                    - link "https://aclrollingreview.org/authorchecklist" [ref=e2475] [cursor=pointer]:
+                      - /url: https://aclrollingreview.org/authorchecklist
+                    - text: for a list of common issues).
+                - textbox [ref=e74]: Tracing Functional Correctness in DLMs with Sparse Autoencoders
+            - generic [ref=e76]:
+              - heading "Authors*" [level=5] [ref=e77]
+              - generic [ref=e78]:
+                - generic [ref=e80]:
+                  - paragraph [ref=e2476]: Search for the author profile by first, middle and last name or email address. If the profile is not found, you can add the author by completing first, middle, and last names as well as author email address.
+                  - paragraph [ref=e2477]:
+                    - text: "ACL adopted a policy similar to CVPR 2025. All qualified authors are expected to sign up to review, and the highly irresponsible reviewers may become ineligible from committing or resubmitting their paper(s) in the current or next cycles. The submitting authors should (a) make sure that all other authors are aware of this policy, and (b) check that everybody on their team(s) submits their (meta-)reviews on time and in accordance with the guidelines. After submission, all authors must complete the author registration form. More details on the policy here:"
+                    - link "https://aclrollingreview.org/incentives2025" [ref=e2478] [cursor=pointer]:
+                      - /url: https://aclrollingreview.org/incentives2025
+                    - text: and
+                    - link "https://aclrollingreview.org/exemptions2025" [ref=e2479] [cursor=pointer]:
+                      - /url: https://aclrollingreview.org/exemptions2025
+                  - paragraph [ref=e2480]:
+                    - text: "The registration form will be in the author console immediately after paper submission:"
+                    - link "https://openreview.net/group?id=aclweb.org/ACL/ARR/2025/May/Authors" [ref=e2481] [cursor=pointer]:
+                      - /url: https://openreview.net/group?id=aclweb.org/ACL/ARR/2025/May/Authors
+                - generic [ref=e87]:
+                  - generic [ref=e88]:
+                    - generic [ref=e89]:
+                      - link "Guan-Ming Chiu" [ref=e91] [cursor=pointer]:
+                        - /url: /profile?id=~Guan-Ming_Chiu1
+                      - generic [ref=e92]:
+                        - button "remove" [ref=e93] [cursor=pointer]:
+                          - generic [ref=e94]: 
+                        - button "arrow-right" [ref=e1162] [cursor=pointer]:
+                          - generic [ref=e1163]: 
+                    - generic [ref=e1164]:
+                      - link "Jeng-Yue Liu" [ref=e1166] [cursor=pointer]:
+                        - /url: /profile?id=~Jeng-Yue_Liu1
+                      - button "remove" [ref=e1168] [cursor=pointer]:
+                        - generic [ref=e1169]: 
+                    - status [ref=e95]
+                  - generic [ref=e1170]:
+                    - textbox "search profiles by name or OpenReview profile ID" [ref=e1171]
+                    - button "Search" [disabled] [ref=e1172]
+            - generic [ref=e100]:
+              - heading "Keywords*" [level=5] [ref=e101]
+              - generic [ref=e102]:
+                - paragraph [ref=e2482]: Comma separated list of keywords.
+                - textbox [ref=e107]: diffusion language models, sparse autoencoders, interpretability
+            - generic [ref=e109]:
+              - heading "TL;DR" [level=5] [ref=e110]
+              - generic [ref=e111]:
+                - paragraph [ref=e2483]: "\"Too Long; Didn't Read\": a short sentence describing your paper"
+                - textbox [ref=e116]: Sparse-autoencoder tracing shows that hidden-state correctness probes in diffusion language models mainly encode prompt difficulty rather than generation-specific correctness, and steering these features does not change outcomes.
+            - generic [ref=e118]:
+              - heading "Abstract*" [level=5] [ref=e119]
+              - generic [ref=e120]:
+                - paragraph [ref=e2484]: "Abstract of paper. Add TeX formulas using the following formats: $In-line Formula$ or $$Block Formula$$."
+                - generic [ref=e125]:
+                  - tablist [ref=e127]:
+                    - tab "Write" [expanded] [ref=e128]
+                    - tab "Preview" [ref=e129] [cursor=pointer]
+                  - tabpanel [ref=e131]:
+                    - generic [ref=e132]:
+                      - textbox [ref=e133]: "Prior probing of diffusion language models (DLMs) reads a hidden-state correctness signal that grows monotonically through denoising. Using DLM-Scope sparse autoencoders to trace this signal feature by feature across two DLMs and four tasks, we reach a different reading: what these probes detect largely encodes problem difficulty, a property of the prompt, rather than generation-specific correctness, a property of the output. A direct cross-generator test isolates the distinction. A probe trained on Dream-7B's L26 representation predicts Qwen-2.5-7B-Instruct's pass/fail at AUC 0.68, essentially matching its 0.72 on Dream's own labels (n=257), even though Qwen-Instruct never produced Dream's solutions, so the representation tracks which prompts are hard, not which generations are wrong; the transport replicates on JSON-schema and GSM8K. A three-way per-layer scan (Qwen-Base, Qwen-Instruct, Dream-Base) shows all three reach the same peak 5-fold CV-AUC (0.71-0.73) at different layers (L19, L20, L26): diffusion training shifts the locus of this signal without expanding its capacity over instruction tuning. Feature-level tracing then exposes the temporal structure the scalar curve hides: sparse fail-vs-pass concentration is not monotonic but forms task-dependent phases, a broad mid-denoising plateau for code and structural tasks (LLaDA-MBPP, Fisher $p<10^{-7}$) with a late within-plateau hand-off between two persistent features, versus final-state emergence for reasoning, agreeing across models on 3/4 tasks. The difficulty reading makes a falsifiable prediction: amplifying or suppressing these features should not change outcomes, which single- and multi-feature steering confirms with 0/202 label flips within the plateau (step 64) and only 3/202 before it forms (step 16). Under the linear interventions we test, the sparse features behave as diagnostic correlates of prompt difficulty rather than controllable causes of correctness."
+                      - link "TeX is supported" [ref=e135] [cursor=pointer]:
+                        - /url: https://docs.openreview.net/reference/openreview-tex
+                        - img [ref=e136]
+                        - text: TeX is supported
+                - generic [ref=e1177]: "Characters remaining: 3043"
+            - generic [ref=e141]:
+              - heading "PDF*" [level=5] [ref=e142]
+              - generic [ref=e143]:
+                - paragraph [ref=e2485]: Upload a PDF file that ends with .pdf.
+                - generic [ref=e147]:
+                  - button "Choose PDF" [ref=e148] [cursor=pointer]
+                  - text: acl_latex.pdf (/pdf/c5c46a363332dd1bc84e7e50d11644f852a0a57f.pdf)
+                  - button "trash" [ref=e1440] [cursor=pointer]:
+                    - generic [ref=e1441]: 
+            - generic [ref=e150]:
+              - heading "Paper Type*" [level=5] [ref=e151]
+              - generic [ref=e152]:
+                - paragraph [ref=e2486]: Long or short. See the CFP for the requirements for long and short papers.
+                - generic [ref=e156]:
+                  - generic [ref=e157]:
+                    - radio "Long" [checked] [ref=e158]
+                    - generic [ref=e159]: Long
+                  - generic [ref=e160]:
+                    - radio "Short" [ref=e161]
+                    - generic [ref=e162]: Short
+            - generic [ref=e164]:
+              - heading "Research Area*" [level=5] [ref=e165]
+              - generic [ref=e166]:
+                - paragraph [ref=e2487]: Research Areas / Tracks. Select the most relevant research area / track for your paper. This will be used to inform the reviewer and area chair assignment.
+                - generic [ref=e170]:
+                  - generic [ref=e171]:
+                    - radio "Clinical and Biomedical Applications" [ref=e172]
+                    - generic [ref=e173]: Clinical and Biomedical Applications
+                  - generic [ref=e174]:
+                    - radio "Computational Social Science and Cultural Analytics" [ref=e175]
+                    - generic [ref=e176]: Computational Social Science and Cultural Analytics
+                  - generic [ref=e177]:
+                    - radio "Dialogue and Interactive Systems" [ref=e178]
+                    - generic [ref=e179]: Dialogue and Interactive Systems
+                  - generic [ref=e180]:
+                    - radio "Discourse and Pragmatics" [ref=e181]
+                    - generic [ref=e182]: Discourse and Pragmatics
+                  - generic [ref=e183]:
+                    - radio "Efficient Methods for NLP" [ref=e184]
+                    - generic [ref=e185]: Efficient Methods for NLP
+                  - generic [ref=e186]:
+                    - radio "Ethics, Bias, and Fairness" [ref=e187]
+                    - generic [ref=e188]: Ethics, Bias, and Fairness
+                  - generic [ref=e189]:
+                    - radio "Generation" [ref=e190]
+                    - generic [ref=e191]: Generation
+                  - generic [ref=e192]:
+                    - radio "Human-Centered NLP and Human-AI Interaction" [ref=e193]
+                    - generic [ref=e194]: Human-Centered NLP and Human-AI Interaction
+                  - generic [ref=e195]:
+                    - radio "Information Extraction" [ref=e196]
+                    - generic [ref=e197]: Information Extraction
+                  - generic [ref=e198]:
+                    - radio "Information Retrieval and Text Mining" [ref=e199]
+                    - generic [ref=e200]: Information Retrieval and Text Mining
+                  - generic [ref=e201]:
+                    - radio "Interpretability and Analysis of Models for NLP" [checked] [ref=e202]
+                    - generic [ref=e203]: Interpretability and Analysis of Models for NLP
+                  - generic [ref=e204]:
+                    - radio "Language Modeling" [ref=e205]
+                    - generic [ref=e206]: Language Modeling
+                  - generic [ref=e207]:
+                    - radio "LLM agents" [ref=e208]
+                    - generic [ref=e209]: LLM agents
+                  - generic [ref=e210]:
+                    - radio "Linguistic theories, Cognitive Modeling and Psycholinguistics" [ref=e211]
+                    - generic [ref=e212]: Linguistic theories, Cognitive Modeling and Psycholinguistics
+                  - generic [ref=e213]:
+                    - radio "Machine Learning for NLP" [ref=e214]
+                    - generic [ref=e215]: Machine Learning for NLP
+                  - generic [ref=e216]:
+                    - radio "Machine Translation" [ref=e217]
+                    - generic [ref=e218]: Machine Translation
+                  - generic [ref=e219]:
+                    - radio "Multilingualism and Cross-Lingual NLP" [ref=e220]
+                    - generic [ref=e221]: Multilingualism and Cross-Lingual NLP
+                  - generic [ref=e222]:
+                    - radio "Multimodality and Language Grounding to Vision, Robotics and Beyond" [ref=e223]
+                    - generic [ref=e224]: Multimodality and Language Grounding to Vision, Robotics and Beyond
+                  - generic [ref=e225]:
+                    - radio "NLP and Code Models" [ref=e226]
+                    - generic [ref=e227]: NLP and Code Models
+                  - generic [ref=e228]:
+                    - radio "NLP and Symbolic Reasoning" [ref=e229]
+                    - generic [ref=e230]: NLP and Symbolic Reasoning
+                  - generic [ref=e231]:
+                    - radio "NLP Applications" [ref=e232]
+                    - generic [ref=e233]: NLP Applications
+                  - generic [ref=e234]:
+                    - radio "Phonology, Morphology and Word Segmentation" [ref=e235]
+                    - generic [ref=e236]: Phonology, Morphology and Word Segmentation
+                  - generic [ref=e237]:
+                    - radio "Question Answering" [ref=e238]
+                    - generic [ref=e239]: Question Answering
+                  - generic [ref=e240]:
+                    - radio "Resources and Evaluation" [ref=e241]
+                    - generic [ref=e242]: Resources and Evaluation
+                  - generic [ref=e243]:
+                    - 'radio "Semantics: Lexical and Sentence-Level" [ref=e244]'
+                    - generic [ref=e245]: "Semantics: Lexical and Sentence-Level"
+                  - generic [ref=e246]:
+                    - radio "Sentiment Analysis, Stylistic Analysis, and Argument Mining" [ref=e247]
+                    - generic [ref=e248]: Sentiment Analysis, Stylistic Analysis, and Argument Mining
+                  - generic [ref=e249]:
+                    - radio "Summarization" [ref=e250]
+                    - generic [ref=e251]: Summarization
+                  - generic [ref=e252]:
+                    - radio "Speech Recognition, Text-to-Speech and Spoken Language Understanding" [ref=e253]
+                    - generic [ref=e254]: Speech Recognition, Text-to-Speech and Spoken Language Understanding
+                  - generic [ref=e255]:
+                    - 'radio "Syntax: Tagging, Chunking and Parsing" [ref=e256]'
+                    - generic [ref=e257]: "Syntax: Tagging, Chunking and Parsing"
+                  - generic [ref=e258]:
+                    - radio "Special Theme (conference specific)" [ref=e259]
+                    - generic [ref=e260]: Special Theme (conference specific)
+            - generic [ref=e262]:
+              - heading "Research Area Keywords*" [level=5] [ref=e263]
+              - generic [ref=e264]:
+                - paragraph [ref=e2488]:
+                  - text: "Area-specific keywords. Please provide a comma-separated list of keywords from this page:"
+                  - link "https://aclrollingreview.org/areas" [ref=e2489] [cursor=pointer]:
+                    - /url: https://aclrollingreview.org/areas
+                - textbox [ref=e270]: probing, feature attribution, hardness of samples
+            - generic [ref=e272]:
+              - heading "Contribution Types" [level=5] [ref=e273]
+              - generic [ref=e274]:
+                - paragraph [ref=e2490]: Which of the following types of contributions does your paper make? This will inform the reviewers and meta-reviewer about what to look for in your work.
+                - generic [ref=e278]:
+                  - generic [ref=e280] [cursor=pointer]:
+                    - checkbox "Model analysis & interpretability" [ref=e281]
+                    - text: Model analysis & interpretability
+                  - generic [ref=e283] [cursor=pointer]:
+                    - checkbox "NLP engineering experiment" [ref=e284]
+                    - text: NLP engineering experiment
+                  - generic [ref=e286] [cursor=pointer]:
+                    - checkbox "Reproduction study" [ref=e287]
+                    - text: Reproduction study
+                  - generic [ref=e289] [cursor=pointer]:
+                    - checkbox "Approaches to low-resource settings" [ref=e290]
+                    - text: Approaches to low-resource settings
+                  - generic [ref=e292] [cursor=pointer]:
+                    - checkbox "Approaches to low-compute settings (efficiency)" [ref=e293]
+                    - text: Approaches to low-compute settings (efficiency)
+                  - generic [ref=e295] [cursor=pointer]:
+                    - checkbox "Publicly available software and/or pre-trained models" [ref=e296]
+                    - text: Publicly available software and/or pre-trained models
+                  - generic [ref=e298] [cursor=pointer]:
+                    - checkbox "Data resources" [ref=e299]
+                    - text: Data resources
+                  - generic [ref=e301] [cursor=pointer]:
+                    - checkbox "Data analysis" [ref=e302]
+                    - text: Data analysis
+                  - generic [ref=e304] [cursor=pointer]:
+                    - checkbox "Position papers" [ref=e305]
+                    - text: Position papers
+                  - generic [ref=e307] [cursor=pointer]:
+                    - checkbox "Surveys" [ref=e308]
+                    - text: Surveys
+                  - generic [ref=e310] [cursor=pointer]:
+                    - checkbox "Theory" [ref=e311]
+                    - text: Theory
+            - generic [ref=e313]:
+              - heading "Languages Studied*" [level=5] [ref=e314]
+              - generic [ref=e315]:
+                - paragraph [ref=e2491]: Please list the languages studied in your paper, separated by commas.
+                - textbox [ref=e320]: English
+            - generic [ref=e322]:
+              - heading "Previous URL" [level=5] [ref=e323]
+              - generic [ref=e324]:
+                - paragraph [ref=e2492]:
+                  - text: "[COMPULSORY IF THIS IS A RESUBMISSION]: Provide the URL of your previous submission to ACL Rolling Review (this URL will look like"
+                  - link "https://openreview.net/forum?id=" [ref=e2493] [cursor=pointer]:
+                    - /url: https://openreview.net/forum?id=
+                  - text: "[object Object]). Make sure to only add the paper id and not other parameters after &. Submissions that do not acknowledge prior versions reviewed at ARR can be desk rejected (see ARR CFP:"
+                  - link "https://aclrollingreview.org/cfp#resubmission-policy" [ref=e2494] [cursor=pointer]:
+                    - /url: https://aclrollingreview.org/cfp#resubmission-policy
+                  - text: ).
+                - textbox [ref=e331]
+            - generic [ref=e333]:
+              - heading "Explanation Of Revisions PDF" [level=5] [ref=e334]
+              - generic [ref=e335]:
+                - paragraph [ref=e2495]:
+                  - text: "[COMPULSORY IF THIS IS A RESUBMISSION]: Upload a single PDF describing how you have changed your paper in response to your previous round of reviews. Note: this should NOT be a printout of your comments from the in-cycle author response period. This should be a new document that maintains anonymity and describes changes since your last submission. If any changes to the author list were made in the resubmission, do NOT include this information here See more details in the ARR CFP:"
+                  - link "https://aclrollingreview.org/cfp#resubmission-policy" [ref=e2496] [cursor=pointer]:
+                    - /url: https://aclrollingreview.org/cfp#resubmission-policy
+                - button "Choose Explanation Of Revisions PDF" [ref=e341] [cursor=pointer]
+            - generic [ref=e343]:
+              - heading "Justification For Author Changes" [level=5] [ref=e344]
+              - generic [ref=e345]:
+                - paragraph [ref=e2497]: If there were any changes to the author list since the original submission, please justify it here. Do NOT include this information in the above explanation of revisions PDF, as this will be a breach of anonymity.
+                - textbox [ref=e350]
+            - generic [ref=e352]:
+              - heading "Reassignment Request Area Chair*" [level=5] [ref=e353]
+              - generic [ref=e354]:
+                - paragraph [ref=e2498]: Do you want your submission to go to a different area chair? If you want your submission to go to the same area chair and they are unavailable this cycle, you will be assigned a new area chair.
+                - generic [ref=e358]:
+                  - generic [ref=e359]:
+                    - radio "Yes, I want a different area chair for our submission" [ref=e360]
+                    - generic [ref=e361]: Yes, I want a different area chair for our submission
+                  - generic [ref=e362]:
+                    - radio "No, I want the same area chair from our previous submission (subject to their availability)." [ref=e363]
+                    - generic [ref=e364]: No, I want the same area chair from our previous submission (subject to their availability).
+                  - generic [ref=e365]:
+                    - radio "This is not a resubmission" [checked] [ref=e366]
+                    - generic [ref=e367]: This is not a resubmission
+            - generic [ref=e369]:
+              - heading "Reassignment Request Reviewers*" [level=5] [ref=e370]
+              - generic [ref=e371]:
+                - paragraph [ref=e2499]: Do you want your submission to go to a different set of reviewers? If you want your submission to go to the same set of reviewers and at least one are unavailable this cycle, you will be assigned new reviewers in their place.
+                - generic [ref=e375]:
+                  - generic [ref=e376]:
+                    - radio "Yes, I want a different set of reviewers" [ref=e377]
+                    - generic [ref=e378]: Yes, I want a different set of reviewers
+                  - generic [ref=e379]:
+                    - radio "No, I want the same set of reviewers from our previous submission (subject to their availability)" [ref=e380]
+                    - generic [ref=e381]: No, I want the same set of reviewers from our previous submission (subject to their availability)
+                  - generic [ref=e382]:
+                    - radio "This is not a resubmission" [checked] [ref=e383]
+                    - generic [ref=e384]: This is not a resubmission
+            - generic [ref=e386]:
+              - heading "Justification For Not Keeping Action Editor Or Reviewers" [level=5] [ref=e387]
+              - generic [ref=e388]:
+                - paragraph [ref=e2500]: Please specify reason for any reassignment request. Reasons may include clear lack of expertise in the area or dismissing the work without any concrete comments regarding correctness of the results or argumentation, limited perceived impact of the methods or findings, lack of clarity in exposition, or other valid criticisms. It is up to the discretion of the area chairs or editors in chief regarding whether to heed these requests.
+                - textbox [ref=e393]
+            - generic [ref=e395]:
+              - heading "Software" [level=5] [ref=e396]
+              - generic [ref=e397]:
+                - paragraph [ref=e2501]: Each ARR submission can be accompanied by one .tgz or .zip archive containing software (max. 200MB).
+                - button "Choose Software" [ref=e402] [cursor=pointer]
+            - generic [ref=e404]:
+              - heading "Data" [level=5] [ref=e405]
+              - generic [ref=e406]:
+                - paragraph [ref=e2502]: Each ARR submission can be accompanied by one .tgz or .zip archive containing data (max. 200MB). Any anonymized concurrent submissions by the same authors, referenced within the paper, can also be provided in this field.
+                - button "Choose Data" [ref=e411] [cursor=pointer]
+            - generic [ref=e413]:
+              - heading "Preprint*" [level=5] [ref=e414]
+              - generic [ref=e415]:
+                - paragraph [ref=e2503]: Would the authors like ARR to release a public anonymous pre-print of the submission?
+                - generic [ref=e419]:
+                  - generic [ref=e420]:
+                    - radio "yes" [ref=e421]
+                    - generic [ref=e422]: "yes"
+                  - generic [ref=e423]:
+                    - radio "no" [ref=e424]
+                    - generic [ref=e425]: "no"
+            - generic [ref=e427]:
+              - heading "Preprint Status*" [level=5] [ref=e428]
+              - generic [ref=e429]:
+                - generic [ref=e431]:
+                  - paragraph [ref=e2504]: Is there are a publicly available non-anonymous preprints of this paper, or do you plan to release one? Note, all options for this question are permitted under the updated ACL preprint policy. We are collecting this information to help inform the review process. The last option is binding, i.e. you cannot change your mind later in the cycle.
+                  - paragraph [ref=e2505]: "NB: this category is about the possibility of deanonymization, rather than any specific publication channel such as arXiv. So e.g. withdrawn publications from other conferences also count as preprints, as long as they reveal the authors' names."
+                - generic [ref=e434]:
+                  - generic [ref=e435]:
+                    - radio "There is a non-anonymous preprint (URL specified in the next question)." [ref=e436]
+                    - generic [ref=e437]: There is a non-anonymous preprint (URL specified in the next question).
+                  - generic [ref=e438]:
+                    - radio "We plan to release a non-anonymous preprint in the next two months (i.e., during the reviewing process)." [ref=e439]
+                    - generic [ref=e440]: We plan to release a non-anonymous preprint in the next two months (i.e., during the reviewing process).
+                  - generic [ref=e441]:
+                    - radio "We are considering releasing a non-anonymous preprint in the next two months (i.e., during the reviewing process)." [ref=e442]
+                    - generic [ref=e443]: We are considering releasing a non-anonymous preprint in the next two months (i.e., during the reviewing process).
+                  - generic [ref=e444]:
+                    - radio "There is no non-anonymous preprint and we do not intend to release one. (this option is binding)" [ref=e445]
+                    - generic [ref=e446]: There is no non-anonymous preprint and we do not intend to release one. (this option is binding)
+            - generic [ref=e448]:
+              - heading "Existing Preprints" [level=5] [ref=e449]
+              - generic [ref=e450]:
+                - paragraph [ref=e2506]: If there are any publicly available non-anonymous preprints of this paper, please list them here (provide the URLs please).
+                - textbox [ref=e455]
+            - generic [ref=e457]:
+              - heading "Preferred Venue*" [level=5] [ref=e458]
+              - generic [ref=e459]:
+                - paragraph [ref=e2507]:
+                  - strong [ref=e2508]: "ARR 2026 policy valid ONLY for the May cycle:"
+                  - text: "Given that the ARR 2026 May cycle is aligned with two conferences (EMNLP and AACL), authors need to explicitly declare which conference they intend to commit to at submission time. This choice will be binding for EMNLP 2026 and AACL 2026: i.e., ARR 2026 May submissions that do not select EMNLP/AACL 2026 during submission will not be able to commit to EMNLP 2026 or AACL 2026, respectively. This policy does NOT apply to any papers submitted and reviewed in prior ARR cycles that wish to commit to EMNLP/AACL or papers planning to commit to other future conferences."
+                - generic [ref=e464]:
+                  - generic [ref=e465]:
+                    - radio "AACL" [ref=e466]
+                    - generic [ref=e467]: AACL
+                  - generic [ref=e468]:
+                    - radio "ACL" [ref=e469]
+                    - generic [ref=e470]: ACL
+                  - generic [ref=e471]:
+                    - radio "EACL" [ref=e472]
+                    - generic [ref=e473]: EACL
+                  - generic [ref=e474]:
+                    - radio "EMNLP" [checked] [ref=e475]
+                    - generic [ref=e476]: EMNLP
+                  - generic [ref=e477]:
+                    - radio "NAACL" [ref=e478]
+                    - generic [ref=e479]: NAACL
+                  - generic [ref=e480]:
+                    - radio "Another venue that accepts ARR reviews" [ref=e481]
+                    - generic [ref=e482]: Another venue that accepts ARR reviews
+            - generic [ref=e484]:
+              - heading "Visa Needs*" [level=5] [ref=e485]
+              - generic [ref=e486]:
+                - paragraph [ref=e2509]: If this submission is successfully reviewed, committed and accepted to your target venue specified above, will the presenting author need a visa to attend the conference? This question is only to assist the program chairs with estimating the visa needs of the prospective participants.
+                - generic [ref=e490]:
+                  - generic [ref=e491]:
+                    - radio "yes" [checked] [ref=e492]
+                    - generic [ref=e493]: "yes"
+                  - generic [ref=e494]:
+                    - radio "no" [ref=e495]
+                    - generic [ref=e496]: "no"
+            - generic [ref=e498]:
+              - heading "Country Of Origin" [level=5] [ref=e499]
+              - generic [ref=e500]:
+                - paragraph [ref=e2510]:
+                  - text: If this submission is successfully reviewed, committed and accepted to your target venue specified above, and the presenting author would need a visa to attend, what is the country of their origin? This question is only to assist the program chairs with estimating the visa needs of the prospective participants. Please specify the country with the two-letter country code, e.g. 'CN' for China (
+                  - link "https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes" [ref=e2511] [cursor=pointer]:
+                    - /url: https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes
+                  - text: )
+                - textbox [ref=e506]
+            - generic [ref=e508]:
+              - heading "Consent To Share Data*" [level=5] [ref=e509]
+              - generic [ref=e510]:
+                - paragraph [ref=e2512]: I agree for the anonymized metadata associated with my submission to be included in a publicly available dataset. This dataset WILL include scores, anonymized paper and reviewer IDs that allow grouping the reviews by paper and by reviewer, as well as acceptance decisions and other numerical and categorical metadata. This dataset WILL NOT include any textual or uniquely attributable data like names, submission titles and texts, review texts, author responses, etc. Your decision to opt-in the data does not affect the reviewing of your submission in any way.
+                - generic [ref=e514]:
+                  - generic [ref=e515]:
+                    - radio "yes" [checked] [ref=e516]
+                    - generic [ref=e517]: "yes"
+                  - generic [ref=e518]:
+                    - radio "no" [ref=e519]
+                    - generic [ref=e520]: "no"
+            - generic [ref=e522]:
+              - heading "Consent To Share Submission Details*" [level=5] [ref=e523]
+              - generic [ref=e524]:
+                - paragraph [ref=e2513]: Upon submitting this paper, authors agree to allow us to share their submission details (such as title, author names, and potentially abstract) with program committees from other conference venues for the purpose of verifying compliance with submission requirements.
+                - generic [ref=e529]:
+                  - radio "On behalf of all authors, we agree to the terms above to share our submission details." [checked] [ref=e530]
+                  - generic [ref=e531]: On behalf of all authors, we agree to the terms above to share our submission details.
+            - generic [ref=e533]:
+              - heading "A1 Limitations Section*" [level=5] [ref=e534]
+              - generic [ref=e535]:
+                - generic [ref=e537]:
+                  - paragraph [ref=e2514]: Authors are required to discuss the limitations of their work in a dedicated section titled "Limitations" (not counting towards page limit). Papers without this section will be desk rejected. Please confirm that your paper has a limitations section by checking this box.
+                  - paragraph [ref=e2515]:
+                    - text: "This question and those that follow are from the Responsible Research Checklist, please see this page for advice on filling it in:"
+                    - link "https://aclrollingreview.org/responsibleNLPresearch/" [ref=e2516] [cursor=pointer]:
+                      - /url: https://aclrollingreview.org/responsibleNLPresearch/
+                    - text: . Please note that inappropriate or missing answers to checklist questions can be grounds for DESK REJECTION. If your answer to a given question is 'yes' or 'no', rather than 'n/a', the 'elaboration' fields MUST be filled in.
+                - generic [ref=e543] [cursor=pointer]:
+                  - checkbox "This paper has a limitations section." [checked] [ref=e544]
+                  - text: This paper has a limitations section.
+            - generic [ref=e546]:
+              - heading "A2 Potential Risks*" [level=5] [ref=e547]
+              - generic [ref=e548]:
+                - paragraph [ref=e2517]: Did you discuss any potential risks of your work?
+                - generic [ref=e552]:
+                  - generic [ref=e553]:
+                    - radio "Yes" [checked] [ref=e554]
+                    - generic [ref=e555]: "Yes"
+                  - generic [ref=e556]:
+                    - radio "No" [ref=e557]
+                    - generic [ref=e558]: "No"
+                  - generic [ref=e559]:
+                    - radio "N/A" [ref=e560]
+                    - generic [ref=e561]: N/A
+            - generic [ref=e563]:
+              - heading "A2 Elaboration" [level=5] [ref=e564]
+              - generic [ref=e565]:
+                - paragraph [ref=e2518]: "[COMPULSORY IF YES/NO] For yes, provide a section number. For no, justify why not."
+                - textbox [ref=e570]: Discussed in the Limitations section ('Broader impact' paragraph).
+            - generic [ref=e572]:
+              - heading "B Use Or Create Scientific Artifacts*" [level=5] [ref=e573]
+              - generic [ref=e574]:
+                - paragraph [ref=e2519]: Did you use or create scientific artifacts? (e.g. code, datasets, models)
+                - generic [ref=e578]:
+                  - generic [ref=e579]:
+                    - radio "Yes" [checked] [ref=e580]
+                    - generic [ref=e581]: "Yes"
+                  - generic [ref=e582]:
+                    - radio "No" [ref=e583]
+                    - generic [ref=e584]: "No"
+            - generic [ref=e586]:
+              - heading "B1 Cite Creators Of Artifacts*" [level=5] [ref=e587]
+              - generic [ref=e588]:
+                - paragraph [ref=e2520]: Did you cite the creators of artifacts you used?
+                - generic [ref=e592]:
+                  - generic [ref=e593]:
+                    - radio "Yes" [checked] [ref=e594]
+                    - generic [ref=e595]: "Yes"
+                  - generic [ref=e596]:
+                    - radio "No" [ref=e597]
+                    - generic [ref=e598]: "No"
+                  - generic [ref=e599]:
+                    - radio "N/A" [ref=e600]
+                    - generic [ref=e601]: N/A
+            - generic [ref=e603]:
+              - heading "B1 Elaboration" [level=5] [ref=e604]
+              - generic [ref=e605]:
+                - paragraph [ref=e2521]: "[COMPULSORY IF YES/NO] For yes, provide a section number. For no, justify why not."
+                - textbox [ref=e610]: "Creators are cited in Section 3 (Method) and the References: MBPP (Austin et al., 2021), GSM8K (Cobbe et al., 2021), ARC (Clark et al., 2018), together with the model and SAE sources."
+            - generic [ref=e612]:
+              - heading "B2 Discuss The License For Artifacts*" [level=5] [ref=e613]
+              - generic [ref=e614]:
+                - paragraph [ref=e2522]: Did you discuss the license or terms for use and/or distribution of any artifacts?
+                - generic [ref=e618]:
+                  - generic [ref=e619]:
+                    - radio "Yes" [ref=e620]
+                    - generic [ref=e621]: "Yes"
+                  - generic [ref=e622]:
+                    - radio "No" [ref=e623]
+                    - generic [ref=e624]: "No"
+                  - generic [ref=e625]:
+                    - radio "N/A" [checked] [ref=e626]
+                    - generic [ref=e627]: N/A
+            - generic [ref=e629]:
+              - heading "B2 Elaboration" [level=5] [ref=e630]
+              - generic [ref=e631]:
+                - paragraph [ref=e2523]: "[COMPULSORY IF YES/NO] For yes, provide a section number. For no, justify why not."
+                - textbox [ref=e636]
+            - generic [ref=e638]:
+              - heading "B3 Artifact Use Consistent With Intended Use*" [level=5] [ref=e639]
+              - generic [ref=e640]:
+                - paragraph [ref=e2524]: Did you discuss if your use of existing artifact(s) was consistent with their intended use, provided that it was specified? For the artifacts you create, do you specify intended use and whether that is compatible with the original access conditions (in particular, derivatives of data accessed for research purposes should not be used outside of research contexts)?
+                - generic [ref=e644]:
+                  - generic [ref=e645]:
+                    - radio "Yes" [ref=e646]
+                    - generic [ref=e647]: "Yes"
+                  - generic [ref=e648]:
+                    - radio "No" [ref=e649]
+                    - generic [ref=e650]: "No"
+                  - generic [ref=e651]:
+                    - radio "N/A" [checked] [ref=e652]
+                    - generic [ref=e653]: N/A
+            - generic [ref=e655]:
+              - heading "B3 Elaboration" [level=5] [ref=e656]
+              - generic [ref=e657]:
+                - paragraph [ref=e2525]: "[COMPULSORY IF YES/NO] For yes, provide a section number. For no, justify why not."
+                - textbox [ref=e662]
+            - generic [ref=e664]:
+              - heading "B4 Data Contains Personally Identifying Info Or Offensive Content*" [level=5] [ref=e665]
+              - generic [ref=e666]:
+                - paragraph [ref=e2526]: Did you discuss the steps taken to check whether the data that was collected/used contains any information that names or uniquely identifies individual people or offensive content, and the steps taken to protect/anonymize it?
+                - generic [ref=e670]:
+                  - generic [ref=e671]:
+                    - radio "Yes" [ref=e672]
+                    - generic [ref=e673]: "Yes"
+                  - generic [ref=e674]:
+                    - radio "No" [ref=e675]
+                    - generic [ref=e676]: "No"
+                  - generic [ref=e677]:
+                    - radio "N/A" [checked] [ref=e678]
+                    - generic [ref=e679]: N/A
+            - generic [ref=e681]:
+              - heading "B4 Elaboration" [level=5] [ref=e682]
+              - generic [ref=e683]:
+                - paragraph [ref=e2527]: "[COMPULSORY IF YES/NO] For yes, provide a section number. For no, justify why not."
+                - textbox [ref=e688]
+            - generic [ref=e690]:
+              - heading "B5 Documentation Of Artifacts*" [level=5] [ref=e691]
+              - generic [ref=e692]:
+                - paragraph [ref=e2528]: Did you provide documentation of the artifacts, e.g., coverage of domains, languages, and linguistic phenomena, demographic groups represented, etc.?
+                - generic [ref=e696]:
+                  - generic [ref=e697]:
+                    - radio "Yes" [ref=e698]
+                    - generic [ref=e699]: "Yes"
+                  - generic [ref=e700]:
+                    - radio "No" [ref=e701]
+                    - generic [ref=e702]: "No"
+                  - generic [ref=e703]:
+                    - radio "N/A" [checked] [ref=e704]
+                    - generic [ref=e705]: N/A
+            - generic [ref=e707]:
+              - heading "B5 Elaboration" [level=5] [ref=e708]
+              - generic [ref=e709]:
+                - paragraph [ref=e2529]: "[COMPULSORY IF YES/NO] For yes, provide a section number. For no, justify why not."
+                - textbox [ref=e714]
+            - generic [ref=e716]:
+              - heading "B6 Statistics For Data*" [level=5] [ref=e717]
+              - generic [ref=e718]:
+                - paragraph [ref=e2530]: Did you report relevant statistics like the number of examples, details of train/test/dev splits, etc. for the data that you used/created?
+                - generic [ref=e722]:
+                  - generic [ref=e723]:
+                    - radio "Yes" [checked] [ref=e724]
+                    - generic [ref=e725]: "Yes"
+                  - generic [ref=e726]:
+                    - radio "No" [ref=e727]
+                    - generic [ref=e728]: "No"
+                  - generic [ref=e729]:
+                    - radio "N/A" [ref=e730]
+                    - generic [ref=e731]: N/A
+            - generic [ref=e733]:
+              - heading "B6 Elaboration" [level=5] [ref=e734]
+              - generic [ref=e735]:
+                - paragraph [ref=e2531]: "[COMPULSORY IF YES/NO] For yes, provide a section number. For no, justify why not."
+                - textbox [ref=e740]: "Reported in Section 3 (Method) and the Appendix 'Generation and Probing Details' (dataset sizes: MBPP-sanitized 257, JSON 272, GSM8K 1319, ARC 1172)."
+            - generic [ref=e742]:
+              - heading "C Computational Experiments*" [level=5] [ref=e743]
+              - generic [ref=e744]:
+                - paragraph [ref=e2532]: Did you run computational experiments?
+                - generic [ref=e748]:
+                  - generic [ref=e749]:
+                    - radio "Yes" [checked] [ref=e750]
+                    - generic [ref=e751]: "Yes"
+                  - generic [ref=e752]:
+                    - radio "No" [ref=e753]
+                    - generic [ref=e754]: "No"
+            - generic [ref=e756]:
+              - heading "C1 Model Size And Budget*" [level=5] [ref=e757]
+              - generic [ref=e758]:
+                - paragraph [ref=e2533]: Did you report the number of parameters in the models used, the total computational budget (e.g., GPU hours), and computing infrastructure used?
+                - generic [ref=e762]:
+                  - generic [ref=e763]:
+                    - radio "Yes" [checked] [ref=e764]
+                    - generic [ref=e765]: "Yes"
+                  - generic [ref=e766]:
+                    - radio "No" [ref=e767]
+                    - generic [ref=e768]: "No"
+                  - generic [ref=e769]:
+                    - radio "N/A" [ref=e770]
+                    - generic [ref=e771]: N/A
+            - generic [ref=e773]:
+              - heading "C1 Elaboration" [level=5] [ref=e774]
+              - generic [ref=e775]:
+                - paragraph [ref=e2534]: "[COMPULSORY IF YES/NO] For yes, provide a section number. For no, justify why not."
+                - textbox [ref=e780]: "Reported in the Appendix 'Generation and Probing Details': 7-8B-parameter models, approximately 40 NVIDIA A100 (80GB) GPU-hours total on Modal."
+            - generic [ref=e782]:
+              - heading "C2 Experimental Setup And Hyperparameters*" [level=5] [ref=e783]
+              - generic [ref=e784]:
+                - paragraph [ref=e2535]: Did you discuss the experimental setup, including hyperparameter search and best-found hyperparameter values?
+                - generic [ref=e788]:
+                  - generic [ref=e789]:
+                    - radio "Yes" [checked] [ref=e790]
+                    - generic [ref=e791]: "Yes"
+                  - generic [ref=e792]:
+                    - radio "No" [ref=e793]
+                    - generic [ref=e794]: "No"
+                  - generic [ref=e795]:
+                    - radio "N/A" [ref=e796]
+                    - generic [ref=e797]: N/A
+            - generic [ref=e799]:
+              - heading "C2 Elaboration" [level=5] [ref=e800]
+              - generic [ref=e801]:
+                - paragraph [ref=e2536]: "[COMPULSORY IF YES/NO] For yes, provide a section number. For no, justify why not."
+                - textbox [ref=e806]: "Reported in Section 3 and the Appendix 'Generation and Probing Details': generation seed 0, T=128 denoising steps, KMeans with K in {2,3,4,5} selected by silhouette."
+            - generic [ref=e808]:
+              - heading "C3 Descriptive Statistics*" [level=5] [ref=e809]
+              - generic [ref=e810]:
+                - paragraph [ref=e2537]: Did you report descriptive statistics about your results (e.g., error bars around results, summary statistics from sets of experiments), and is it transparent whether you are reporting the max, mean, etc. or just a single run?
+                - generic [ref=e814]:
+                  - generic [ref=e815]:
+                    - radio "Yes" [checked] [ref=e816]
+                    - generic [ref=e817]: "Yes"
+                  - generic [ref=e818]:
+                    - radio "No" [ref=e819]
+                    - generic [ref=e820]: "No"
+                  - generic [ref=e821]:
+                    - radio "N/A" [ref=e822]
+                    - generic [ref=e823]: N/A
+            - generic [ref=e825]:
+              - heading "C3 Elaboration" [level=5] [ref=e826]
+              - generic [ref=e827]:
+                - paragraph [ref=e2538]: "[COMPULSORY IF YES/NO] For yes, provide a section number. For no, justify why not."
+                - textbox [ref=e832]: Results report per-fold standard deviations, permutation-null p-values, and Fisher combined p-values across three seeds.
+            - generic [ref=e834]:
+              - heading "C4 Parameters For Packages*" [level=5] [ref=e835]
+              - generic [ref=e836]:
+                - paragraph [ref=e2539]: If you used existing packages (e.g., for preprocessing, for normalization, or for evaluation, such as NLTK, SpaCy, ROUGE, etc.), did you report the implementation, model, and parameter settings used?
+                - generic [ref=e840]:
+                  - generic [ref=e841]:
+                    - radio "Yes" [checked] [ref=e842]
+                    - generic [ref=e843]: "Yes"
+                  - generic [ref=e844]:
+                    - radio "No" [ref=e845]
+                    - generic [ref=e846]: "No"
+                  - generic [ref=e847]:
+                    - radio "N/A" [ref=e848]
+                    - generic [ref=e849]: N/A
+            - generic [ref=e851]:
+              - heading "C4 Elaboration" [level=5] [ref=e852]
+              - generic [ref=e853]:
+                - paragraph [ref=e2540]: "[COMPULSORY IF YES/NO] For yes, provide a section number. For no, justify why not."
+                - textbox [ref=e858]: "Clustering uses scikit-learn KMeans (K in {2,3,4,5}, best by silhouette) with a 1000-shuffle permutation null; reported in the Limitations section and the Appendix."
+            - generic [ref=e860]:
+              - heading "D Human Subjects Including Annotators*" [level=5] [ref=e861]
+              - generic [ref=e862]:
+                - paragraph [ref=e2541]: Did you use human annotators (e.g., crowdworkers) or research with human subjects?
+                - generic [ref=e866]:
+                  - generic [ref=e867]:
+                    - radio "Yes" [ref=e868]
+                    - generic [ref=e869]: "Yes"
+                  - generic [ref=e870]:
+                    - radio "No" [checked] [ref=e871]
+                    - generic [ref=e872]: "No"
+            - generic [ref=e874]:
+              - heading "D1 Instructions Given To Participants*" [level=5] [ref=e875]
+              - generic [ref=e876]:
+                - paragraph [ref=e2542]: Did you report the full text of instructions given to participants, including e.g., screenshots, disclaimers of any risks to participants or annotators, etc.?
+                - generic [ref=e880]:
+                  - generic [ref=e881]:
+                    - radio "Yes" [ref=e882]
+                    - generic [ref=e883]: "Yes"
+                  - generic [ref=e884]:
+                    - radio "No" [ref=e885]
+                    - generic [ref=e886]: "No"
+                  - generic [ref=e887]:
+                    - radio "N/A" [checked] [ref=e888]
+                    - generic [ref=e889]: N/A
+            - generic [ref=e891]:
+              - heading "D1 Elaboration" [level=5] [ref=e892]
+              - generic [ref=e893]:
+                - paragraph [ref=e2543]: "[COMPULSORY IF YES/NO] For yes, provide a section number. For no, justify why not."
+                - textbox [ref=e898]
+            - generic [ref=e900]:
+              - heading "D2 Recruitment And Payment*" [level=5] [ref=e901]
+              - generic [ref=e902]:
+                - paragraph [ref=e2544]: Did you report information about how you recruited (e.g., crowdsourcing platform, students) and paid participants, and discuss if such payment is adequate given the participants' demographic (e.g., country of residence)?
+                - generic [ref=e906]:
+                  - generic [ref=e907]:
+                    - radio "Yes" [ref=e908]
+                    - generic [ref=e909]: "Yes"
+                  - generic [ref=e910]:
+                    - radio "No" [ref=e911]
+                    - generic [ref=e912]: "No"
+                  - generic [ref=e913]:
+                    - radio "N/A" [checked] [ref=e914]
+                    - generic [ref=e915]: N/A
+            - generic [ref=e917]:
+              - heading "D2 Elaboration" [level=5] [ref=e918]
+              - generic [ref=e919]:
+                - paragraph [ref=e2545]: "[COMPULSORY IF YES/NO] For yes, provide a section number. For no, justify why not."
+                - textbox [ref=e924]
+            - generic [ref=e926]:
+              - heading "D3 Data Consent*" [level=5] [ref=e927]
+              - generic [ref=e928]:
+                - paragraph [ref=e2546]: Did you discuss whether and how consent was obtained from people whose data you're using/curating (e.g., did your instructions explain how the data would be used)?
+                - generic [ref=e932]:
+                  - generic [ref=e933]:
+                    - radio "Yes" [ref=e934]
+                    - generic [ref=e935]: "Yes"
+                  - generic [ref=e936]:
+                    - radio "No" [ref=e937]
+                    - generic [ref=e938]: "No"
+                  - generic [ref=e939]:
+                    - radio "N/A" [checked] [ref=e940]
+                    - generic [ref=e941]: N/A
+            - generic [ref=e943]:
+              - heading "D3 Elaboration" [level=5] [ref=e944]
+              - generic [ref=e945]:
+                - paragraph [ref=e2547]: "[COMPULSORY IF YES/NO] For yes, provide a section number. For no, justify why not."
+                - textbox [ref=e950]
+            - generic [ref=e952]:
+              - heading "D4 Ethics Review Board Approval*" [level=5] [ref=e953]
+              - generic [ref=e954]:
+                - paragraph [ref=e2548]: Was the data collection protocol approved (or determined exempt) by an ethics review board?
+                - generic [ref=e958]:
+                  - generic [ref=e959]:
+                    - radio "Yes" [ref=e960]
+                    - generic [ref=e961]: "Yes"
+                  - generic [ref=e962]:
+                    - radio "No" [ref=e963]
+                    - generic [ref=e964]: "No"
+                  - generic [ref=e965]:
+                    - radio "N/A" [checked] [active] [ref=e966]
+                    - generic [ref=e967]: N/A
+            - generic [ref=e969]:
+              - heading "D4 Elaboration" [level=5] [ref=e970]
+              - generic [ref=e971]:
+                - paragraph [ref=e2549]: "[COMPULSORY IF YES/NO] For yes, provide a section number. For no, justify why not."
+                - textbox [ref=e976]
+            - generic [ref=e978]:
+              - heading "E Ai Assistants In Research Or Writing*" [level=5] [ref=e979]
+              - generic [ref=e980]:
+                - paragraph [ref=e2550]: Did you use AI assistants (e.g., ChatGPT, Copilot) in your research, coding, or writing?
+                - generic [ref=e984]:
+                  - generic [ref=e985]:
+                    - radio "Yes" [ref=e986]
+                    - generic [ref=e987]: "Yes"
+                  - generic [ref=e988]:
+                    - radio "No" [ref=e989]
+                    - generic [ref=e990]: "No"
+            - generic [ref=e992]:
+              - heading "E1 Information About Use Of Ai Assistants*" [level=5] [ref=e993]
+              - generic [ref=e994]:
+                - paragraph [ref=e2551]: If you used AI assistants, did you include information about their use?
+                - generic [ref=e998]:
+                  - generic [ref=e999]:
+                    - radio "Yes" [ref=e1000]
+                    - generic [ref=e1001]: "Yes"
+                  - generic [ref=e1002]:
+                    - radio "No" [ref=e1003]
+                    - generic [ref=e1004]: "No"
+                  - generic [ref=e1005]:
+                    - radio "N/A" [ref=e1006]
+                    - generic [ref=e1007]: N/A
+            - generic [ref=e1009]:
+              - heading "E1 Elaboration" [level=5] [ref=e1010]
+              - generic [ref=e1011]:
+                - paragraph [ref=e2552]: "[COMPULSORY IF YES/NO] For yes, provide a section number, or include your elaboration directly in the checklist response. For no, justify why not."
+                - textbox [ref=e1016]
+            - generic [ref=e1018]:
+              - heading "Author Submission Checklist*" [level=5] [ref=e1019]
+              - generic [ref=e1020]:
+                - generic [ref=e1022]:
+                  - paragraph [ref=e2553]: I confirm that this submission adheres to ARR requirements.
+                  - paragraph [ref=e2554]:
+                    - text: "Note: to help the authors avoid desk rejections, we prepared a list of common submission problems to check for:"
+                    - link "https://aclrollingreview.org/authorchecklist" [ref=e2555] [cursor=pointer]:
+                      - /url: https://aclrollingreview.org/authorchecklist
+                  - paragraph [ref=e2556]:
+                    - text: "NEW: Following ICML policy, any related concurrent work should be discussed in related work and enclosed in supplementary material. See the update on submission originality and thinly sliced contributions, with desk rejection penalties:"
+                    - link "https://aclrollingreview.org/cfp#originality" [ref=e2557] [cursor=pointer]:
+                      - /url: https://aclrollingreview.org/cfp#originality
+                - generic [ref=e1028]:
+                  - generic [ref=e1029]:
+                    - radio "yes" [checked] [ref=e1030]
+                    - generic [ref=e1031]: "yes"
+                  - generic [ref=e1032]:
+                    - radio "no" [ref=e1033]
+                    - generic [ref=e1034]: "no"
+            - generic [ref=e1036]:
+              - heading "Association For Computational Linguistics - Blind Submission License Agreement*" [level=5] [ref=e1037]
+              - generic [ref=e1038]:
+                - textbox [ref=e1040]: "Please read and decide whether to transfer the license to your blind submission draft and its associated peer reviewing data in the current and/or previous iterations of ARR. *** DISCLAIMER *** Your participation is strictly voluntary. By transferring this license you grant ACL the right to distribute your draft and associated peer reviews. In particular, we may include your draft with donated review texts and scores in research datasets. Please note, to attribute authors for their draft, the author names are explicitly listed along with the draft and its associated peer reviews. Only reviews for accepted papers will be eventually made publicly available. The reviewers have to agree to the release of the textual review data associated with your submission. This Blind Submission License Agreement (\"Agreement\") is entered into between the Association for Computational Linguistics (\"ACL\") and the Authors listed in connection with Authors’ blind submission paper listed above (referred as \"Blind Submission Content\"). In exchange of adequate consideration, ACL and the Authors agree as follows: Section 1: Grant of License After the peer review process is concluded and upon acceptance of the paper, Authors grant ACL a worldwide, irrevocable, and royalty-free license to use the blind submission paper version and, if applicable, the associated amendment notes and author responses to reviewers’ inquiries (referred as \"Content\"). The foregoing license grants ACL the right to reproduce, publish, distribute, prepare derivative work, and otherwise make use of the Content, and to sub-license the Content to the public according to terms of the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. Notwithstanding the foregoing, the Parties acknowledge and agree that this Agreement does not transfer to ACL the ownership of any proprietary rights pertaining to the Content, and that the Authors retain their respective ownership in and to the Content. Section 2: Permission to Publish Peer Reviewers Content After the peer review process is concluded and upon acceptance of the paper, Authors have the option to grant ACL permission to publish peer reviewers content associated with the Content, which may include text, review form scores and metadata, charts, graphics, spreadsheets, and any other materials developed by peer reviewers in connection with the peer review process. Section 3: Attribution and Public Access License A. The Parties agree that for purpose of administering the public access license, ACL will be identified as the licensor of the Content with the following copyright notice: Copyright © 2023 administered by the Association for Computational Linguistics (ACL) on behalf of the authors and content contributors. Content displayed on this webpage is made available under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. B. The Parties understand and acknowledge that the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License is irrevocable once granted unless the licensee breaches the public access license terms. Section 4: Effective Date The grant of license pursuant to Section 1 and permission to publish peer reviewers content pursuant to Section 2 becomes effective in the event Authors’ blind submission paper has passed through this ACL Rolling Review cycle's peer review process and the cycle has ended; the end of a cycle is marked by the fact that authors received both the assigned peer review reports and the final meta-review report for this submission. Section 5: Warranty Authors represent and warrant that the Content is Authors’ original work and does not infringe on the proprietary rights of others. Authors further warrant that they have obtained all necessary permissions from any persons or organizations whose materials are included in the Content, and that the Content includes appropriate citations that give credit to the original sources. Section 6: Legal Relationship The Parties agree that this Agreement is not intended to create any joint venture, partnership, or agency relationship of any kind; and both agree not to contract any obligations in the name of the other. By selecting 'On behalf of all authors, I agree' below, I confirm that all Authors have agreed to the above terms and that I am authorized to execute this Agreement on their behalf. Optionally, if you wish to transfer the license to the peer reviewing and blind submission data of all previous versions of this paper submitted to ARR, please select 'On behalf of all authors, I agree for all previous versions of this submission'."
+                - generic [ref=e1041]:
+                  - generic [ref=e1042]:
+                    - radio "On behalf of all authors, I agree" [checked] [ref=e1043]
+                    - generic [ref=e1044]: On behalf of all authors, I agree
+                  - generic [ref=e1045]:
+                    - radio "On behalf of all authors, I do not agree" [ref=e1046]
+                    - generic [ref=e1047]: On behalf of all authors, I do not agree
+                  - generic [ref=e1048]:
+                    - radio "On behalf of all authors, I agree for this and all previous versions of this submission" [ref=e1049]
+                    - generic [ref=e1050]: On behalf of all authors, I agree for this and all previous versions of this submission
+            - generic [ref=e1052]:
+              - heading "EMNLP 2026 AI Reviewing Experiment*" [level=5] [ref=e1053]
+              - generic [ref=e1054]:
+                - paragraph [ref=e2558]:
+                  - text: "Do you want to opt-in to the EMNLP 2026 AI Reviewing Experiment for this submission? Read more details here:"
+                  - link "https://2026.emnlp.org/ai-reviewing-experiment/" [ref=e2559] [cursor=pointer]:
+                    - /url: https://2026.emnlp.org/ai-reviewing-experiment/
+                  - text: . (Your response only applies to this submission.)
+                - generic [ref=e1059]:
+                  - generic [ref=e1060]:
+                    - radio "yes" [ref=e1061]
+                    - generic [ref=e1062]: "yes"
+                  - generic [ref=e1063]:
+                    - radio "no" [checked] [ref=e1064]
+                    - generic [ref=e1065]: "no"
+            - generic [ref=e1066]:
+              - heading "License*" [level=5] [ref=e1067]
+              - generic [ref=e1070]: CC BY 4.0
+            - generic [ref=e1071]:
+              - heading "Readers*" [level=5] [ref=e1072]
+              - generic [ref=e1074]:
+                - generic [ref=e1075]: ACL ARR 2026 May
+                - emphasis [ref=e1077]: authorids
+            - generic [ref=e1078]:
+              - heading "Signatures*" [level=5] [ref=e1079]
+              - emphasis [ref=e1084]: signatures
+            - generic [ref=e1085]:
+              - heading "Edit History" [level=2] [ref=e1086]
+              - separator [ref=e1087]
+              - generic [ref=e1088]:
+                - heading "Readers*" [level=5] [ref=e1089]
+                - generic [ref=e1091]:
+                  - generic [ref=e1092]: ACL ARR 2026 May
+                  - emphasis [ref=e1094]: authorids
+              - generic [ref=e1095]:
+                - heading "Signatures*" [level=5] [ref=e1096]
+                - generic [ref=e1100]: Guan-Ming Chiu
+            - generic [ref=e1101]:
+              - button "Submit" [ref=e1102] [cursor=pointer]
+              - button "Cancel" [ref=e1103] [cursor=pointer]
+        - generic [ref=e1105]:
+          - tablist [ref=e1107]:
+            - tab "Your Consoles" [expanded] [ref=e1108]
+            - tab "Anonymous Pre-prints" [ref=e1109] [cursor=pointer]
+            - tab "Recent Activity" [ref=e1110] [cursor=pointer]
+          - generic [ref=e1111]:
+            - tabpanel [ref=e1112]:
+              - list [ref=e1113]:
+                - listitem [ref=e1114]:
+                  - link "Author Console" [ref=e1115] [cursor=pointer]:
+                    - /url: /group?id=aclweb.org/ACL/ARR/2026/May/Authors
+            - text:           
+    - contentinfo [ref=e1116]:
+      - generic [ref=e1118]:
+        - list [ref=e1120]:
+          - listitem [ref=e1121]:
+            - link "About OpenReview" [ref=e1122] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e1123]:
+            - link "Hosting a Venue" [ref=e1124] [cursor=pointer]:
+              - /url: /group?id=OpenReview.net/Support
+          - listitem [ref=e1125]:
+            - link "All Venues" [ref=e1126] [cursor=pointer]:
+              - /url: /venues
+        - list [ref=e1128]:
+          - listitem [ref=e1129]:
+            - link "Contact" [ref=e1130] [cursor=pointer]:
+              - /url: /contact
+          - listitem [ref=e1131]:
+            - link "Sponsors" [ref=e1132] [cursor=pointer]:
+              - /url: /sponsors
+          - listitem [ref=e1133]:
+            - link "Donate" [ref=e1134] [cursor=pointer]:
+              - /url: /donate
+              - strong [ref=e1135]: Donate
+        - list [ref=e1137]:
+          - listitem [ref=e1138]:
+            - link "FAQ" [ref=e1139] [cursor=pointer]:
+              - /url: https://docs.openreview.net/getting-started/frequently-asked-questions
+          - listitem [ref=e1140]:
+            - link "Terms of Use" [ref=e1141] [cursor=pointer]:
+              - /url: /legal/terms
+            - text: /
+            - link "Privacy Policy" [ref=e1142] [cursor=pointer]:
+              - /url: /legal/privacy
+          - listitem [ref=e1143]:
+            - link "News" [ref=e1144] [cursor=pointer]:
+              - /url: /group?id=OpenReview.net/News&referrer=[Homepage](/)
+    - paragraph [ref=e1149]:
+      - link "OpenReview" [ref=e1150] [cursor=pointer]:
+        - /url: /about
+      - text: is a long-term project to advance science through improved peer review with legal nonprofit status. We gratefully acknowledge the support of the
+      - link "OpenReview Sponsors" [ref=e1151] [cursor=pointer]:
+        - /url: /sponsors
+      - text: . © 2026 OpenReview
+  - alert [ref=e1152]: ACL ARR 2026 May | OpenReview
