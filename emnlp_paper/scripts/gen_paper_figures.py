@@ -668,9 +668,9 @@ def fig10_ardlm():
     for x, c in [(qb_peak, "#1f5fa8"), (qi_peak, "#2e8b3a"), (db_peak, "#a8202a")]:
         axA.axvline(x, color=c, lw=0.5, ls=":", alpha=0.5)
     axA.set_ylabel("5-fold CV-AUC")
-    axA.set_ylim(0.55, 0.78)
+    axA.set_ylim(0.55, 0.80)
     axA.grid(True, ls=":", alpha=0.3)
-    axA.legend(loc="lower right", fontsize=7, frameon=False,
+    axA.legend(loc="upper left", fontsize=7, frameon=False,
                handlelength=1.4, handletextpad=0.4, borderpad=0.2)
 
     axB.plot(L, cos_QB_QI, "-s", color="#2e8b3a", lw=1.2, ms=3.0,
