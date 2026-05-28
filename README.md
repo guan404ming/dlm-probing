@@ -4,6 +4,10 @@ Accepted to ACL 2026 SRW. Go check out our [paper](paper.pdf)! 🎉
 
 First probing study of diffusion language model (DLM) hidden states. Linear classifiers on intermediate denoising steps predict whether outputs will be functionally correct.
 
+<p align="center">
+  <a href="acl_srw_paper/poster/poster.pdf"><img src="assets/poster.png" alt="ACL 2026 SRW poster" width="640"></a>
+</p>
+
 ## Key Findings
 
 1. **Correctness signal emerges across denoising steps** (+0.08-0.11 AUC on reasoning tasks). Unlike AR models, DLMs accumulate additional signal through iterative refinement on GSM8K, MBPP, and ARC.
