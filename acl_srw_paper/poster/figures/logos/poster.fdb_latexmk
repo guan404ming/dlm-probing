@@ -1,0 +1,12 @@
+# Fdb version 4
+["pdflatex"] 1779978659.38189 "/usr/local/texlive/2026/texmf-dist/tex/generic/poster-mac/poster.tex" "poster.pdf" "poster" 1779978659.58071 2
+  "/usr/local/texlive/2026/texmf-dist/tex/generic/poster-mac/poster.tex" 1274112139 9415 ae19dbf56eeae5199ac6b5a2aa878b7f ""
+  "/usr/local/texlive/2026/texmf-dist/web2c/texmf.cnf" 1770478701 43630 e9fa012910491fe5ae08a72c3c2997a7 ""
+  "/usr/local/texlive/2026/texmf-var/web2c/pdftex/pdflatex.fmt" 1775991724 3636774 2dff1e7806e63022778e6514705eadd3 ""
+  "/usr/local/texlive/2026/texmf.cnf" 1774209515 577 648cd9f92f9c0eac486f4c71c85cfbbe ""
+  "poster.aux" 1779978651.38111 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  (generated)
+  "poster.aux"
+  "poster.log"
+  "poster.pdf"
+  (rewritten before read)
