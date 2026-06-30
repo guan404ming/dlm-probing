@@ -1,0 +1,6 @@
+PWD /Users/wchiu/Documents/GitHub/dllm-probing/acl_srw_paper/poster/figures/logos
+INPUT /usr/local/texlive/2026/texmf.cnf
+INPUT /usr/local/texlive/2026/texmf-dist/web2c/texmf.cnf
+INPUT /usr/local/texlive/2026/texmf-var/web2c/pdftex/pdflatex.fmt
+INPUT /usr/local/texlive/2026/texmf-dist/tex/generic/poster-mac/poster.tex
+OUTPUT poster.log
